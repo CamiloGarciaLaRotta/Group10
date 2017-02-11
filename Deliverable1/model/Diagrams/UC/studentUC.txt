@@ -1,0 +1,7 @@
+[Student] - (Apply to Job Posting)
+[Student] - (Accept or Reject Job Offer)
+[Student] - (Sign in as Student)
+[Security Authentication] - (User Sign In)
+(User Sign In) < (Sign in as Student)
+(Apply to Job Posting) > (Submit Personal Details)
+(Apply to Job Posting) > (Submit Past TA or Grader Experience)

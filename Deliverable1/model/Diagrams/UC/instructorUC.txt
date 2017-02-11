@@ -1,0 +1,6 @@
+[Instructor] - (Publish Job Posting)
+[Instructor] - (Modify Initial Allocation)
+[Instructor] - (Evaluate TA or Grader)
+[Instructor] - (Sign in as Instructor)
+[Security Authentication] - (User Sign In)
+(user Sign In) < (Sign in as Instructor)
