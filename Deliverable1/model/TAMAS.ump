@@ -20,7 +20,7 @@ class Laboratory {
 }
 
 class Instructor {
-  username;
+  isA Profile;
   * <@>- 1 Profile;
   * -> * Course;
   * <@>- * Job;
@@ -28,7 +28,8 @@ class Instructor {
 }
 
 class Student {
-  username;
+  isA Profile;
+  experience;
   degree { // enum, wont show in diagram, shows in code
     UNDERGRAD{}
     GRADUATE{}
@@ -40,9 +41,10 @@ class Student {
 
 class Profile {
   immutable id; // either student or employee ID, for the securities yo
+  username;
+  password;
   firstName;
   lastName;
-  experience;
 }
 
 class Job {
@@ -64,10 +66,11 @@ class Application {
 // unsure if class should create instances of Intrsuctor/Student
 // or rather have all the methods of Instructor/Student
 class Admin{
-  username;
+  isA Profile;
   * -> * Instructor;
   * -> * Student;
   * <@>- 1 JobManager;
+  * <@>- 1 Profile;
 }
 
 // mimic the registrationManager,
