@@ -1,0 +1,40 @@
+class JobPosting
+{
+  status {
+    NoPosting{ createJobPosting -> EmptyPosting;  }
+    EmptyPosting{
+      detailsAddedByProfessor -> JobDefined;
+      deleteJobPosting-> NoPosting;
+    }
+    JobDefined{
+      editPosting -> JobDefined; 
+      publishPosting -> PostingPublished;
+      deleteJobPosting -> NoPosting;
+      removeJobDetails -> EmptyPosting;
+         
+    }
+     
+    PostingPublished{
+      timeToApply -> ApplicationPeriod;
+      deleteJobPosting -> NoPosting;
+      editPosting -> JobDefined;
+    }
+     
+    ApplicationPeriod {
+      deadlinePassed -> Reviewing;  
+      deleteJobPosting -> NoPosting;
+      noApplicants -> PostingPublished;
+    }
+    
+    Reviewing{
+      hiringDecisionMade -> JobOfferSentOut;
+      noQualifiedApplicants -> PostingPublished;
+    }
+     
+    JobOfferSentOut{
+      jobOfferAccepted -> PositionFull;
+      jobOfferNotAccepted -> PostingPublished;
+    }
+    PositionFull{ }
+  }
+}
