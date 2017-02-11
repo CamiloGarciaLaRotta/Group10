@@ -1,0 +1,79 @@
+namespace ca.mcgill.ecse321.group10.TAMAS;
+
+class Course {
+  className;
+  immutable cdn;
+  Float graderTimeBudget; // time budget
+  Float taTimeBudget;      // time budget
+  * <@>- 0..* Tutorial;
+  * <@>- 0..* Laboratory;
+}
+
+class Tutorial {
+  Date startTime;
+  Date endTime;
+}
+
+class Laboratory {
+  Date startTime;
+  Date endTime;
+}
+
+class Instructor {
+  username;
+  * <@>- 1 Profile;
+  * -> * Course;
+  * <@>- * Job;
+  * -- * Application;
+}
+
+class Student {
+  username;
+  degree { // enum, wont show in diagram, shows in code
+    UNDERGRAD{}
+    GRADUATE{}
+  }
+  * <@>- 1 Profile;
+  * -- * Job;
+  * <@>- * Application;
+}
+
+class Profile {
+  immutable id; // either student or employee ID, for the securities yo
+  firstName;
+  lastName;
+  experience;
+}
+
+class Job {
+  autounique id;
+  position {  // enum, wont show in diagram, shows in code
+    TA {}
+    GRADER {}
+  }
+  immutable double salary; // cuz the pay is so big we need a double
+  immutable requirements;
+  immutable Date requiredTime;
+}
+
+class Application {
+  autounique id;
+  Integer postingID;
+}
+
+// unsure if class should create instances of Intrsuctor/Student
+// or rather have all the methods of Instructor/Student
+class Admin{
+  username;
+  * -> * Instructor;
+  * -> * Student;
+  * <@>- 1 JobManager;
+}
+
+// mimic the registrationManager,
+// oversee all job posting/application transactions
+class JobManager {
+  singleton;
+  1 <@>- * Job;
+  1 <@>- * Application;
+}
