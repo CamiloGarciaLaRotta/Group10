@@ -45,6 +45,7 @@ class Profile {
   password;
   firstName;
   lastName;
+  * <@>- 1 ProfileManager;
 }
 
 class Job {
@@ -79,4 +80,9 @@ class JobManager {
   singleton;
   1 <@>- * Job;
   1 <@>- * Application;
+}
+
+class ProfileManager {
+  singleton;
+  1 <@>- * Profile;
 }
