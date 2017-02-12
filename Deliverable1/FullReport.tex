@@ -230,4 +230,30 @@ default Profile.
 \includegraphics[scale=1.0]{model/Diagrams/Sequence/SeqStudent}
 \section{Authentication Sequence}
 \includegraphics[scale=0.8]{model/Diagrams/Sequence/SeqAuthentication}
+
+\chapter{Statechart}
+The following statechart was conceived to emphasize the roles and navigations of different states of
+the applications.
+\includegraphics{model/Diagrams/StateDiagram/StateChartDiagram.pdf}
+
+\chapter{Work Plan for Remaining Iterations}
+%\includegraphics{workplan}
+Remaining iterations of the requirements should only modify the nonfunctional
+requirements. All functional requirements should have been accounted for. Modifications to
+the nonfunctional requirements should not require any changes to the software architecture
+after it has been designed.
+The use cases and actors change due to the addition of new features; new use cases can
+be generated. The current functionality has been modeled in our use cases.
+The Domain model is planned to change. We have a profile manager which will
+authenticate username and passwords; however, the architecture which has yet to be designed
+may require changes to the domain model in the future.
+There are currently no plans to change the state chart for the job class.
+The sequence diagrams currently account for how the different actors interact with
+other actors and objects. The architectural details of the software should not change this.
+In the next week, we plan to develop the software architecture and details of the class
+diagrams which will allow us to move on to the development of source code.
+In the following week, we will create more detailed sequence diagrams going into the
+details of the implementations on individual platforms. We will then develop prototype source
+code for the \textit{Publish Job Posting} and \textit{Apply for Job} use cases for the desktop and mobile
+applications respectively.
 \end{document}
