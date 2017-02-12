@@ -156,66 +156,35 @@ generate the use case diagrams may be found in \hyperref[appA]{Appendix A}.
 \section{Use Case Diagrams}
 \subsection{Administrator Use Case Diagram}
 \includegraphics[scale=0.45]{model/Diagrams/UC/adminUC}
+\\
+Firstly, the \textbf{Administrators} must be able to access the \textit{user sign in form}. This is
+extended as \textit{Sign in as Admin} in the use case diagram which is handled by the
+\textbf{Security Authentication} actor. The \textbf{administrators} may then \textit{Upload Student
+Enrollment Data} and \textit{Upload List of Courses} which contains the information needed to
+generate the intitial schedules and budgets needed. \textit{Generate Initial Allocation} includes
+\textit{Assess Application List} which takes into account the fact that initial allocation will need
+to be assessed by the department. \textit{Calculate Default TA and Grader Hours} include
+\textit{Assess Student Enrollment Data} and \textit{Assess Courses Information} which are necessary
+to calculate the TA and Grader work hours.
 \subsection{Instructor Use Case Diagram}
 \includegraphics[scale=0.5]{model/Diagrams/UC/instructorUC}
+\\
+\textbf{Instructors} must be able to access \textit{user sign in} as instructors. \textit{User sign in}
+therefore extends \textit{sign in as instructor} which is handled by \textbf{Security
+Authentication}. \textbf{Instructors} may then access the \textit{Publish Job Posting} form. After
+the job has been published and \textbf{students} have applied, \textbf{instructors} may modify the
+first allocation under the \textit{modify initial allocation} use case as needed. After the
+semester, the \textbf{instructor} has the ability to access the \textit{Evaluate TA or Grader} form
+to provide feedback on the performance of hired \textbf{students}.
 \subsection{Student Use Case Diagram}
 \includegraphics[scale=0.5]{model/Diagrams/UC/studentUC}
-\section{Descriptions of Use Case Diagrams}
-%\subsection{Administrator Use Case Diagram}
-%\textbf{Use case name:} Administrator Use Case\\
-%\textbf{ID:} UC-AP\\
-%\textbf{Use case goal:} Model the administrator's use of the application\\
-%\textbf{Actor(s):} Administrator, Security Authentication\\
-%\textbf{Domain Entitites:} Profile, Administrator, Course, Instructor\\
-%\\
-%\begin{tabular}{|c|c|}
-%	\hline
-%	\textbf{Main Success Scenario} & \\\hline
-%	Step 1 & Sign in\\\hline
-%	Step 2 & Upload student enrollment data \\ \hline
-%	Step 3 & Upload list of courses \\ \hline
-%	Step 4 & Calculate default TA and Grader hours \\ \hline
-%	Step 5 & Send Job Offers \\ \hline
-%	Step 6 & Approve final TA and Grader allocation \\ \hline
-%	& \\ \hline
-%	\textbf{Alternative Workflow 1} & Sign in unsuccessful\\ \hline
-%	Step 1.1 & User enters incorrect data\\\hline
-%	Step 1.2 & User returns to Main Success Scenario Step 1 with error message\\\hline
-%	& \\ \hline
-%	\textbf{Alternative Workflow 2} & Upload of Student Enrollment Data Fails\\\hline
-%	Step 2.1 & Administrator submits data in the wrong format\\\hline
-%	Step 2.2 & Administrator receives error message concerning the faulty data \\ \hline
-%	Step 2.3 & Administrator returns to Step 2 of Main Success Scenario\\\hline
-%	& \\ \hline
-%	\textbf{Alternative Workflow 3} & Administrator disapproves of the Final TA and Grader
-%	Allocation\\ \hline
-%	Step 3.1 & Allocated hours for a TA exceed the maximum allocated hours allowed \\ \hline
-%	Step 3.2 & TAMAS submits warning to administrator \\\hline
-%	Step 3.3 & Administrator asserts that the allocation has not been approved \\\hline
-%	Step 3.4 & Instructor makes appropriate changes to allocation \\ \hline
-%	Step 3.5 & Department returns to Step 6 of Main Success Scenario\\ \hline
-%\end{tabular}
-%\subsection{Instructor Use Case Diagram}
-%\textbf{Use case name:} Instructor Use Case\\
-%\textbf{ID:} UC-IN\\
-%\textbf{Use case goal:} Model the instructor's use of the application\\
-%\textbf{Actor(s):} Instructor, Security Authentication\\
-%\textbf{Domain Entities:} Profile, Instructor, Course, JobManager\\
-%\begin{tabular}{|c|c|}
-%	\hline
-%	\textbf{Main Success Scenario}& \\\hline
-%	Step 1 & Sign in\\\hline
-%	Step 2 & Publish Job Postings \\ \hline
-%	Step 3 & View generated TA/Grader allocation from JobManager\\\hline
-%	Step 4 & Make desired modifications to TA/Grader allocation\\\hline
-%	Step 5 & Evaluate TA and Grader Performance\\\hline
-%	& \\ \hline
-%	\textbf{Alternative Workflow 1} & Sign in unsuccessful\\ \hline
-%	Step 1.1 & User enters incorrect data\\\hline
-%	Step 1.2 & User returns to Main Success Scenario Step 1 with error message\\\hline
-%	& \\ \hline
-%	\textbf{Alternative Workflow 2} & Publishing of job posting was unsuccessful\\\hline
-%\end{tabular}
+\\
+\textbf{Students} must be able to access the \textit{user sign in} form as students.
+\textbf{Security Authentication} authorizes the \textbf{student} to \textit{sign in as student}.
+From there, the \textbf{student} may use the \textit{Apply to Job Posting} forms to apply to
+available positions. This includes the use of forms to \textit{Submit Past TA or Grader Experience}
+and \textit{Submit Personal Details}. Finally, if job offers are sent to a \textbf{student}, he or
+she may access an \textit{Accept or Reject Job Offer} form.
 \chapter{Sequence Diagrams}
 The following sequence diagrams were designed to display the sequence of actions that will occur in
 the use of the applications. One sequence diagram was designed per actor, and another was designed
