@@ -21,7 +21,6 @@ class Laboratory {
 
 class Instructor {
   isA Profile;
-  * <@>- 1 Profile;
   * -> * Course;
   * <@>- * Job;
   * -- * Application;
@@ -34,7 +33,6 @@ class Student {
     UNDERGRAD{}
     GRADUATE{}
   }
-  * <@>- 1 Profile;
   * -- * Job;
   * <@>- * Application;
 }
@@ -45,7 +43,6 @@ class Profile {
   password;
   firstName;
   lastName;
-  * <@>- 1 ProfileManager;
 }
 
 class Job {
@@ -71,7 +68,6 @@ class Admin{
   * -> * Instructor;
   * -> * Student;
   * <@>- 1 JobManager;
-  * <@>- 1 Profile;
 }
 
 // mimic the registrationManager,
