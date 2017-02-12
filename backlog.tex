@@ -20,13 +20,19 @@
 
 \subsection{Main Tasks}
 
-\textbf{ADD HERE ALL THE SHIT YALL DID}
+%\textbf{ADD HERE ALL THE SHIT YALL DID}
 
 \begin{itemize}
     \item Harley Wiltzer
+	\begin{itemize}
+		\item Co-formulated the prototype Requirements Document.
+		\item Drafted the first Requirements Document.
+		\item Designed Sequence Diagrams for Instructor Actions, Student Actions, Admin Actions.
+		\item Made small changes to Class Diagram.
+	\end{itemize}
     \item Camilo Garcia La Rotta
     \begin{itemize}
-        \item Co-formulated the prototype Requirement document
+        \item Co-formulated the prototype Requirements Document
         \item Designed the prototype Class Diagram
         \item Structured the GitHub file system
     \end{itemize}
@@ -41,7 +47,7 @@
 
 \subsection{Key Decisions}
 
-\textbf{ADD HERE ALL THE DECISIONS YALL TOOK}
+%\textbf{ADD HERE ALL THE DECISIONS YALL TOOK}
 
 \begin{enumerate}
     \item \textbf{Requirement Document}
@@ -54,9 +60,20 @@
     \begin{itemize}
         \item Trying to mimic the architecture of the event registration app, an early choice was to have a JobManager oversee the job transactions between Instructors and Students
         \item Each user, whether it has administrator, instructor or student access rights, is obliged to have profile instance to facilitate identity access management
-        \item to enable an administrator to recreate actions available to instructors or student, we give the class administrator the power to create instances of the aforementioned users
+		\item Later, it was also decided to have a ProfileManager to handle the actors' profiles and
+			their authentication.
+        \item To enable an administrator to recreate actions available to instructors or student, we give the class administrator the power to create instances of the aforementioned users
     \end{itemize}
     \item \textbf{Sequence Diagram}
+		\begin{itemize}
+			\item For convenience and concision, it was decided to design sequence diagrams for each
+				main user action.
+			\item The sequence diagrams may contain actions from multiple user classes to emphasize
+				the sequence. For example, in the Instructor sequence diagram, the action of an
+				administrator verifying Instructor modifications to the TA/Grader hours is seen.
+			\item The current sequence diagrams include Student actions, Instructor actions,
+				Administrator actions, and the authentication process.
+		\end{itemize}
     \item \textbf{State Chart}
 \end{enumerate}
 
