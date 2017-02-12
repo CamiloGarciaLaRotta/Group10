@@ -1,0 +1,136 @@
+\documentclass[12pt]{report}
+
+\usepackage{amsmath,amssymb,amsfonts} %In case we need math stuff
+\usepackage{graphicx} %For inserting images and stuff
+\usepackage{listings} %For inserting code snippets
+\usepackage{enumerate} %For fancy enumeration
+\usepackage[margin=2cm]{geometry} %Nice margin setting
+
+\title{ECSE 321 - Intro to Software Engineering\\Deliverable 1}
+\author{Harley Wiltzer\\Camilo Garcia La Rotta\\Jake Shnaidman\\Robert Attard\\Matthew Lesko}
+\date{February 12, 2017}
+
+\begin{document}
+\pagenumbering{gobble} %No page number on title page
+\maketitle
+\newpage
+\pagenumbering{arabic} %Arabic numeral page numbers on regular pages
+\tableofcontents
+\chapter{Requirements Document}
+\section{Functional Requirements}
+\textbf{Please Note:}
+\begin{itemize}
+    \item The requirement's ID is its list number, i.e. 1.1.1.
+    \item The priority of requirements starts with the General Requirements from 1.1.1 to 1.1.6, followed by the Non-functional Requirements. 
+    More specifically:
+        \begin{enumerate}
+            \item Total completion of Desktop app requirements in numerical order.
+            \item Total completion of Web app in requirements numerical order.
+            \item Total completion of Mobile app in requirements numerical order.
+            \item Implementation of XML persistence across all platforms.
+            \item Implementation of database persistence across all platforms.
+            \item Intercommunication between all platforms under a centralized persistence system.
+            \item Total completion of Non-functional Requirements in requirements numerical order.
+        \end{enumerate} 
+\end{itemize}
+\subsection{General Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The Teaching Assistant Management System shall include a desktop application.
+	\item The Teaching Assistant Management System shall include a web application.
+	\item The Teaching Assistant Management System include a mobile application.
+	\item All applications (desktop, web, and mobile) shall have an XML persistence layer.
+	\item All applications (desktop, web, and mobile) shall have database persistence.
+	\item The three applications (desktop, web, and mobile) may be capable of communicating with
+		one another.
+\end{enumerate}
+
+\subsection{Desktop Application Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The desktop application shall only allow be accessible to users with administrator credentials.
+	\item The desktop application shall be written in Java with the Java Swing library.
+	\item The desktop application shall be capable of storing in its persistence layer a list of courses with their hours and credits.
+	\item The desktop application shall be capable of manipulating a list of courses with their hours and credits from its persistence layer.
+	\item The desktop application shall provide the ability to store a list of courses and their attributes listed in (1.2.3).
+	\item The desktop application shall be capable of storing the student enrollment data in its persistence layer.
+    \item  The desktop application shall be capable of storing the TA/Grader salaries of all McGill Departments from a CSV file onto its persistence layer.
+	\item The application shall be capable of accessing TA/Grader schedules from its persistence layer.
+	\item The scheduling algorithm shall never appoint work hours for prospective students that are beyond the students' available hours.
+	\item The scheduling algorithm shall hire a certain TA for as many time-slots as possible for a given class with multiple lab or tutorial sessions.
+	\item The scheduling algorithm shall limit individual TA/Grader hours to within the range of  a minimum of 45 for each course to 180 hours total per semester for all courses.
+	\item The scheduling algorithm shall prefer graduate students to undergraduate students.
+	\item The scheduling algorithm shall account for students' indicated priorities when assigning job placements.
+	\item The desktop application shall provide administrators with the opportunity to review instructor modifications to the TA/Grader hours.
+	\item The desktop application shall provide administrators with the opportunity to accept or reject the instructors' modifications.
+	\item The desktop application shall be capable of sending job offers to the selected TA's and Graders \textit{once the administrator has explicitly accepted the placements}.
+	\item The desktop application shall allow the user to perform the instructor actions described in section 1.2.
+	\item The desktop application shall allow the user to perform the TA/Grader actions described in section 1.3.
+\end{enumerate}
+
+\subsection{Web Application Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The web application shall only allow be accessible to users with instructor credentials.
+	\item The web application shall be programmed in PHP with the use of HTML and CSS.
+	\item The web application shall be capable of retrieving the course data from its persistence layer.
+	\item The web application shall be capable of displaying the course data from its persistence layer.
+	\item The web application shall be capable of retrieving the student enrollment data from its persistence layer.
+	\item The web application shall be capable of displaying the student enrollment data from its persistence layer.
+	\item The web application shall be capable of creating job postings with the attributes requisite skills and previous experience.
+	\item The web application shall be able to save job postings in the persistence layer.
+	\item The web application shall be capable of retrieving the course data from its persistence layer.
+	\item The application shall be capable of displaying the list of TA/Grader placements from its persistence layer.
+	\item The application shall allow the modification of TA/Grader placements without allowing the modifications to cause budget issues.
+\end{enumerate}
+
+\subsection{Mobile Application Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The mobile application shall only allow be accessible to users with student credentials.
+	\item The mobile application shall be programmed in Java for the Android operating system.
+	\item The mobile application shall be created using only the tools provided in the Android UI library in Android Studio.
+	\item The mobile application shall be able to create a profile that contains the users' student ID.
+	\item The mobile application shall be capable of retrieving a list of job postings from its persistence layer.
+	\item The mobile application shall be capable of displaying a list of job postings from its persistence layer.
+	\item The mobile application shall limit the amount of applications of the user to a maximum of three.
+	\item The mobile application shall allow the arbitrary ranking of job applications by the user.
+	\item The mobile application shall be capable of retrieving a list of job offers from its persistence layer.
+	\item The mobile application shall be capable of displaying a list of job offers from its persistence layer.
+	\item The mobile application shall be capable of submitting acceptance or denial of the aforementioned job offers.
+\end{enumerate}
+
+\section{Non-functional Requirements}
+\subsection{Performance Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The three applications provided with the product (desktop, web, mobile) shall limit RAM usage to within 750MB.
+	\item The scheduling algorithm of the desktop application shall not take longer than one minute to complete.
+	\item The three applications shall provide error messages to handle unexpected behavior.
+	\item The three applications shall, in case of a system crash, restart the application with the last saved persistence file.
+\end{enumerate}
+
+\subsection{Security Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The desktop application shall include a secure authentication procedure to ensure that only administrators gain access.
+	\item The web application shall include a secure authentication procedure to ensure that only instructors gain access.
+	\item The web application shall be able to identify the current user and associate users with their modification histories.
+	\item The mobile application shall include a secure authentication procedure to identify which student is currently using the software. 
+	\item The mobile application shall be capable of associating student security information with the respective student account information.
+	\item The persistence of administrator, instructor, and student passwords shall be achieved cryptographically, using RSA/NTRU cryptosystems.
+\end{enumerate}
+
+\subsection{Compatibility Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The desktop application shall work on Windows 10, Macintosh OS X 10.5 Leopard., GNU/Linux 4.9.8, and BSD 10.3 systems.
+	\item The web application shall be compatible with Google Chrome version 25, Mozilla Firefox version 50.0.0, Safari 10, Microsoft Edge, and Internet Explorer 9.
+	\item The mobile application shall be compatible with Android phones running Android 4.0 (Ice Cream Sandwich) or a more recent version.
+\end{enumerate}
+\subsection{Graphical Requirements}
+\begin{enumerate}[\thesubsection .1]
+	\item The three applications provided with the product (desktop, web, mobile) shall share a common logo (app icon, desktop shortcut, web logo).
+	\item The three applications shall have consistent (i.e. the same) color palettes.
+	\item The three applications shall have the ability to select between Light and Dark themes for optimal comfort in a variety of lighting conditions.
+	\item The color palettes (light theme and dark theme) shall be designed in a color-blind-friendly manner, to promote a common experience to all users. %for Harley's and stuff%
+\end{enumerate}
+\chapter{TAMAS Domain Model}
+The following UMPLE code was written for the generation of the TAMAS domain model:
+%\begin{figure}
+\lstinputlisting[language=Java,frame=single]{model/TAMAS.ump}
+%\end{figure}
+\end{document}
