@@ -12,6 +12,14 @@ A brief description of each delivery follows.
     * Work plan for remaining iterations
 
 *  __Deliverable #2__
+	* Architecture with Desription, Rationale, Block Diagram(s)
+	* Detailed Design with Description, Rationale, Class Diagram(s)
+	* "Publish Job Posting" use case for Desktop + Implementation-level sequence diagram
+	* "Publish Job Posting" use case for Web + Implementation-level sequence diagram
+	* "Apply for Job" use case for Desktop + Implementation-level sequence diagram
+	* "Apply for Job" use case for Mobile + Implementation-level sequence diagram
+	* Demonstration of individual and teamwork
+	
 *  __Deliverable #3__
 *  __Deliverable #4__
 *  __Deliverable #5__
