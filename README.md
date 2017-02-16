@@ -19,6 +19,7 @@ A brief description of each delivery follows.
 	* "Apply for Job" use case for Desktop + Implementation-level sequence diagram
 	* "Apply for Job" use case for Mobile + Implementation-level sequence diagram
 	* Demonstration of individual and teamwork
+	* GitHub usage and Work plan for completed and remaining iterations
 	
 *  __Deliverable #3__
 *  __Deliverable #4__
