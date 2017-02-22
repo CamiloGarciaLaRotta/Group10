@@ -109,9 +109,9 @@ In the following week, we will create more detailed sequence diagrams going into
 		\end{itemize}
     \item Camilo Garcia La Rotta
     \begin{itemize}
-        \item Requirements document: 2 hours
+        \item Requirements document: 3 hours
         \item Class diagram: 2 hours
-        \item State diagram: 1 hour
+        \item State diagram: 2 hour
     \end{itemize}
     \item Jacob Shnaidman
     \begin{itemize}
@@ -132,5 +132,166 @@ In the following week, we will create more detailed sequence diagrams going into
     	\item Co-design sequence diagrams: 4 hours
     \end{itemize}
 \end{itemize}
+
+\newpage
+
+\section{Week 2}
+
+\subsection{Main Tasks}
+
+\begin{itemize}
+    \item Harley Wiltzer
+	\begin{itemize}
+		\item gg
+	\end{itemize}
+    \item Camilo Garcia La Rotta
+    \begin{itemize}
+        \item Designed and documented Use Case Diagrams for the Web and Desktop implementation of "Publish Job Posting"
+        \item Designed and documented Sequence Diagrams for the Web and Desktop implementation of "Publish Job Posting"
+        \item Derived the PHP code implementation of "Publish Job Posting" and "Apply to Job Posting" based on the aforementioned design-level Class Diagram
+    \end{itemize}
+    \item Jacob Shnaidman
+		\begin{itemize}
+			\item gg
+		\end{itemize}
+    \item Robert Attard
+    \begin{itemize}
+        \item gg
+    \end{itemize}
+    \item Matthew Lesko
+    \begin{itemize}
+    	\item gg
+    \end{itemize}
+\end{itemize}
+
+\subsection{Key Decisions}
+
+\begin{enumerate}
+    \item \textbf{Use Cases}
+    \begin{itemize}
+    	\item In order to correctly implement the Entity-Control-Boundary pattern and symbolism in the Use Cases, the naming of the cases from the first deliverable were reviewed and adjusted. Moreover, the relationships between each action was refined so as to reflect the following rules:
+    	\begin{itemize}
+    	    \item Actor only interacts with $<<$Boundary$>>$
+    	    \item $<<$Entity$>>$ only interacts with $<<$Control$>>$
+    	    \item $<<$Control$>>$ manages the interaction flow between $<<$Boundary$>>$ and $<<$Entity$>>$
+    	\end{itemize}
+    	\item The overall structure of the Use Case for deliverable \#2 focused solely on the Profile subclasses Admin and Instructor. To highlight this structure the Use Cases made a deliberate use of Generalization.
+        \item The "Publish Job Posting" Sequence diagram had to be clear about the alternative actions based on the approval or disapproval of the Posting instance. As such, an ALT pane was implemented only for the Web Use Case, which didn't necessarily imply the posting would be automatically approved. As opposed to the Desktop application, only used by Admin which ensures the posting is automatically approved at the moment of submitting a publish form.
+    \end{itemize}
+    \item \textbf{Sequence Diagram}
+    \begin{itemize}
+        \item gg
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Work Plan}
+
+gg
+
+\subsection{Work Hours}
+
+\begin{itemize}
+    \item Harley Wiltzer
+		\begin{itemize}
+			\item gg
+		\end{itemize}
+    \item Camilo Garcia La Rotta
+    \begin{itemize}
+        \item Use Case Diagrams: 3 hours
+        \item Sequence Diagrams: 2 hours
+        \item PHP: 
+    \end{itemize}
+    \item Jacob Shnaidman
+    \begin{itemize}
+        \item gg
+    \end{itemize}
+    \item Robert Attard
+    \begin{itemize}
+        \item gg
+    \end{itemize}
+    \item Matthew Lesko
+    \begin{itemize}
+    	\item gg
+    \end{itemize}
+\end{itemize}
+
+%% TEMPALTE
+%%% JSUT COPY PASTE THIS EVERY WEEK
+
+% \section{Week 2}
+
+% \subsection{Main Tasks}
+
+% %\textbf{ADD HERE ALL THE SHIT YALL DID}
+
+% \begin{itemize}
+%     \item Harley Wiltzer
+% 	\begin{itemize}
+% 		\item gg
+% 	\end{itemize}
+%     \item Camilo Garcia La Rotta
+%     \begin{itemize}
+%         \item gg
+%     \end{itemize}
+%     \item Jacob Shnaidman
+% 		\begin{itemize}
+% 			\item gg
+% 		\end{itemize}
+%     \item Robert Attard
+%     \begin{itemize}
+%         \item gg
+%     \end{itemize}
+%     \item Matthew Lesko
+%     \begin{itemize}
+%     	\item gg
+%     \end{itemize}
+% \end{itemize}
+
+% \subsection{Key Decisions}
+
+% %\textbf{ADD HERE ALL THE DECISIONS YALL TOOK}
+
+% \begin{enumerate}
+%     \item \textbf{Use Cases}
+%     \begin{itemize}
+%     	\item gg
+%     \end{itemize}
+%     \item \textbf{Sequence Diagram}
+%     \begin{itemize}
+%         \item gg
+%     \end{itemize}
+% \end{enumerate}
+
+% \subsection{Work Plan}
+
+% gg
+
+% \subsection{Work Hours}
+
+% \begin{itemize}
+%     \item Harley Wiltzer
+% 		\begin{itemize}
+% 			\item gg
+% 		\end{itemize}
+%     \item Camilo Garcia La Rotta
+%     \begin{itemize}
+%         \item gg
+%     \end{itemize}
+%     \item Jacob Shnaidman
+%     \begin{itemize}
+%         \item gg
+%     \end{itemize}
+%     \item Robert Attard
+%     \begin{itemize}
+%         \item gg
+%     \end{itemize}
+%     \item Matthew Lesko
+%     \begin{itemize}
+%     	\item gg
+%     \end{itemize}
+% \end{itemize}
+
+
+
 
 \end{document}
