@@ -1,0 +1,169 @@
+namespace ca.mcgill.ecse321.group10.TAMAS.model;
+
+class Course {
+  className;
+  immutable cdn;
+  Float graderTimeBudget; // time budget
+  Float taTimeBudget;      // time budget
+  1 <@>- * TimeSlot timeslots;
+  }
+
+class TimeSlot{
+  Date startTime;
+  Date endTime;
+}
+
+class Tutorial {
+  isA TimeSlot;
+}
+
+class Laboratory {
+  isA TimeSlot;
+}
+
+class Instructor {
+  isA Profile;
+  * -> * Course courses;
+  * -> * Application applications;
+  1 -- * Job jobs;
+}
+
+class Student {
+  isA Profile;
+  experience;
+  degree { // enum, wont show in diagram, shows in code
+    UNDERGRAD{}
+    GRADUATE{}
+  }
+  * -- * Job jobs;
+}
+
+class Profile {
+  immutable id; // either student or employee ID, for the securities yo
+  username;
+  password;
+  firstName;
+  lastName;
+}
+
+class Job {
+  autounique id;
+  position {  // enum, wont show in diagram, shows in code
+    TA {}
+    GRADER {}
+  }
+  immutable double salary; // cuz the pay is so big we need a double
+  immutable requirements;
+  immutable Date requiredTime;
+  * -<@> * Course course;
+  }
+
+class ApplicationManager {
+  1 <@>- * Application applications;
+}
+
+class Application {
+  autounique id;
+  Integer postingID;
+  *-<@> 1 Student student;
+  *-<@> 1 Job jobs;
+}
+
+// unsure if class should create instances of Intrsuctor/Student
+// or rather have all the methods of Instructor/Student
+class Admin{
+  isA Profile;
+  * -> * Instructor intructors;
+  * -> * Student students;
+  * <@>- 1 JobManager jobManagers;
+}
+
+// mimic the registrationManager,
+// oversee all job posting/application transactions
+class JobManager {
+  singleton;
+  1 <@>- * Job jobs;
+}
+
+class ProfileManager {
+  singleton;
+  1 <@>- * Profile userProfiles;
+}//$?[End_of_model]$?
+
+class Course
+{
+  position 24 269 190 107;
+  position.association Course__TimeSlot:timeslots 32,107 30,0;
+}
+
+class TimeSlot
+{
+  position 42 419 130 74;
+}
+
+class Tutorial
+{
+  position 139 544 109 45;
+}
+
+class Laboratory
+{
+  position 12 545 109 45;
+}
+
+class Instructor
+{
+  position 367 190 109 45;
+  position.association Course:courses__Instructor 0,25 190,76;
+  position.association Application:applications__Instructor 32,45 22,0;
+  position.association Instructor__Job:jobs 3,45 144,0;
+}
+
+class Student
+{
+  position 648 199 147 57;
+  position.association Job:jobs__Student 0,43 163,8;
+}
+
+class Profile
+{
+  position 489 10 141 125;
+}
+
+class Job
+{
+  position 250 418 163 107;
+  position.association Course:course__Job 0,10 190,75;
+}
+
+class ApplicationManager
+{
+  position 647 367 139 45;
+}
+
+class Application
+{
+  position 514 488 148 74;
+  position.association Application__Student:student 30,0 24,57;
+  position.association Application__Job:jobs 0,6 163,99;
+}
+
+class Admin
+{
+  position 512 198 109 45;
+  position.association Admin__Instructor:intructors 0,4 110,15;
+  position.association Admin__Student:students 110,30 0,36;
+  position.association Admin__JobManager:jobManagers 2,45 97,0;
+}
+
+class JobManager
+{
+  position 463 317 109 45;
+  position.association Job:jobs__JobManager 30,45 100,0;
+}
+
+class ProfileManager
+{
+  position 675 12 112 55;
+  position.association Profile:userProfiles__ProfileManager 0,5 142,49;
+}
