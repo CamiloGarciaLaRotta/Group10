@@ -13,7 +13,9 @@ public class ProfileManager
   //------------------------
 
   //ProfileManager Associations
-  private List<Profile> profiles;
+  private List<Student> students;
+  private List<Instructor> instructors;
+  private List<Admin> admins;
 
   //------------------------
   // CONSTRUCTOR
@@ -21,103 +23,281 @@ public class ProfileManager
 
   public ProfileManager()
   {
-    profiles = new ArrayList<Profile>();
+    students = new ArrayList<Student>();
+    instructors = new ArrayList<Instructor>();
+    admins = new ArrayList<Admin>();
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public Profile getProfile(int index)
+  public Student getStudent(int index)
   {
-    Profile aProfile = profiles.get(index);
-    return aProfile;
+    Student aStudent = students.get(index);
+    return aStudent;
   }
 
-  public List<Profile> getProfiles()
+  public List<Student> getStudents()
   {
-    List<Profile> newProfiles = Collections.unmodifiableList(profiles);
-    return newProfiles;
+    List<Student> newStudents = Collections.unmodifiableList(students);
+    return newStudents;
   }
 
-  public int numberOfProfiles()
+  public int numberOfStudents()
   {
-    int number = profiles.size();
+    int number = students.size();
     return number;
   }
 
-  public boolean hasProfiles()
+  public boolean hasStudents()
   {
-    boolean has = profiles.size() > 0;
+    boolean has = students.size() > 0;
     return has;
   }
 
-  public int indexOfProfile(Profile aProfile)
+  public int indexOfStudent(Student aStudent)
   {
-    int index = profiles.indexOf(aProfile);
+    int index = students.indexOf(aStudent);
     return index;
   }
 
-  public static int minimumNumberOfProfiles()
+  public Instructor getInstructor(int index)
+  {
+    Instructor aInstructor = instructors.get(index);
+    return aInstructor;
+  }
+
+  public List<Instructor> getInstructors()
+  {
+    List<Instructor> newInstructors = Collections.unmodifiableList(instructors);
+    return newInstructors;
+  }
+
+  public int numberOfInstructors()
+  {
+    int number = instructors.size();
+    return number;
+  }
+
+  public boolean hasInstructors()
+  {
+    boolean has = instructors.size() > 0;
+    return has;
+  }
+
+  public int indexOfInstructor(Instructor aInstructor)
+  {
+    int index = instructors.indexOf(aInstructor);
+    return index;
+  }
+
+  public Admin getAdmin(int index)
+  {
+    Admin aAdmin = admins.get(index);
+    return aAdmin;
+  }
+
+  public List<Admin> getAdmins()
+  {
+    List<Admin> newAdmins = Collections.unmodifiableList(admins);
+    return newAdmins;
+  }
+
+  public int numberOfAdmins()
+  {
+    int number = admins.size();
+    return number;
+  }
+
+  public boolean hasAdmins()
+  {
+    boolean has = admins.size() > 0;
+    return has;
+  }
+
+  public int indexOfAdmin(Admin aAdmin)
+  {
+    int index = admins.indexOf(aAdmin);
+    return index;
+  }
+
+  public static int minimumNumberOfStudents()
   {
     return 0;
   }
 
-  public boolean addProfile(Profile aProfile)
+  public boolean addStudent(Student aStudent)
   {
     boolean wasAdded = false;
-    if (profiles.contains(aProfile)) { return false; }
-    profiles.add(aProfile);
+    if (students.contains(aStudent)) { return false; }
+    students.add(aStudent);
     wasAdded = true;
     return wasAdded;
   }
 
-  public boolean removeProfile(Profile aProfile)
+  public boolean removeStudent(Student aStudent)
   {
     boolean wasRemoved = false;
-    if (profiles.contains(aProfile))
+    if (students.contains(aStudent))
     {
-      profiles.remove(aProfile);
+      students.remove(aStudent);
       wasRemoved = true;
     }
     return wasRemoved;
   }
 
-  public boolean addProfileAt(Profile aProfile, int index)
+  public boolean addStudentAt(Student aStudent, int index)
   {  
     boolean wasAdded = false;
-    if(addProfile(aProfile))
+    if(addStudent(aStudent))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfProfiles()) { index = numberOfProfiles() - 1; }
-      profiles.remove(aProfile);
-      profiles.add(index, aProfile);
+      if(index > numberOfStudents()) { index = numberOfStudents() - 1; }
+      students.remove(aStudent);
+      students.add(index, aStudent);
       wasAdded = true;
     }
     return wasAdded;
   }
 
-  public boolean addOrMoveProfileAt(Profile aProfile, int index)
+  public boolean addOrMoveStudentAt(Student aStudent, int index)
   {
     boolean wasAdded = false;
-    if(profiles.contains(aProfile))
+    if(students.contains(aStudent))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfProfiles()) { index = numberOfProfiles() - 1; }
-      profiles.remove(aProfile);
-      profiles.add(index, aProfile);
+      if(index > numberOfStudents()) { index = numberOfStudents() - 1; }
+      students.remove(aStudent);
+      students.add(index, aStudent);
       wasAdded = true;
     } 
     else 
     {
-      wasAdded = addProfileAt(aProfile, index);
+      wasAdded = addStudentAt(aStudent, index);
+    }
+    return wasAdded;
+  }
+
+  public static int minimumNumberOfInstructors()
+  {
+    return 0;
+  }
+
+  public boolean addInstructor(Instructor aInstructor)
+  {
+    boolean wasAdded = false;
+    if (instructors.contains(aInstructor)) { return false; }
+    instructors.add(aInstructor);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeInstructor(Instructor aInstructor)
+  {
+    boolean wasRemoved = false;
+    if (instructors.contains(aInstructor))
+    {
+      instructors.remove(aInstructor);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addInstructorAt(Instructor aInstructor, int index)
+  {  
+    boolean wasAdded = false;
+    if(addInstructor(aInstructor))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfInstructors()) { index = numberOfInstructors() - 1; }
+      instructors.remove(aInstructor);
+      instructors.add(index, aInstructor);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveInstructorAt(Instructor aInstructor, int index)
+  {
+    boolean wasAdded = false;
+    if(instructors.contains(aInstructor))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfInstructors()) { index = numberOfInstructors() - 1; }
+      instructors.remove(aInstructor);
+      instructors.add(index, aInstructor);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addInstructorAt(aInstructor, index);
+    }
+    return wasAdded;
+  }
+
+  public static int minimumNumberOfAdmins()
+  {
+    return 0;
+  }
+
+  public boolean addAdmin(Admin aAdmin)
+  {
+    boolean wasAdded = false;
+    if (admins.contains(aAdmin)) { return false; }
+    admins.add(aAdmin);
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeAdmin(Admin aAdmin)
+  {
+    boolean wasRemoved = false;
+    if (admins.contains(aAdmin))
+    {
+      admins.remove(aAdmin);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+
+  public boolean addAdminAt(Admin aAdmin, int index)
+  {  
+    boolean wasAdded = false;
+    if(addAdmin(aAdmin))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfAdmins()) { index = numberOfAdmins() - 1; }
+      admins.remove(aAdmin);
+      admins.add(index, aAdmin);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveAdminAt(Admin aAdmin, int index)
+  {
+    boolean wasAdded = false;
+    if(admins.contains(aAdmin))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfAdmins()) { index = numberOfAdmins() - 1; }
+      admins.remove(aAdmin);
+      admins.add(index, aAdmin);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addAdminAt(aAdmin, index);
     }
     return wasAdded;
   }
 
   public void delete()
   {
-    profiles.clear();
+    students.clear();
+    instructors.clear();
+    admins.clear();
   }
 
 }

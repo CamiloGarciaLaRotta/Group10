@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 3 "../../../../../../alternatemodel.ump"
-// line 81 "../../../../../../alternatemodel.ump"
+// line 83 "../../../../../../alternatemodel.ump"
 public class Course
 {
 

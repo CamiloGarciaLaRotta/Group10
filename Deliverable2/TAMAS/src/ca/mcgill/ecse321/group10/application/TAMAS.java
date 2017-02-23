@@ -8,17 +8,17 @@ import ca.mcgill.ecse321.group10.view.MenuView;
 public class TAMAS {
 	
 	private static String applicationFileName = "output/applications.xml";
-	private static String staffFileName = "output/staff.xml";
+	private static String profileFileName = "output/profile.xml";
 	
 	public static void main(String[] args) {
 		
-		final ApplicationManager am = PersistenceXStream.initializeApplicationManager(applicationFileName);
-		final ProfileManager pm = PersistenceXStream.initializeProfileManager(staffFileName);
+		final ApplicationManager am = PersistenceXStream.initializeApplicationManager(applicationFileName,profileFileName);
+		final ProfileManager pm = PersistenceXStream.initializeProfileManager(profileFileName);
 		
 		java.awt.EventQueue.invokeLater(
 			new Runnable(){
 				public void run() {
-					new MenuView().setVisible(true);
+					new MenuView(am,pm).setVisible(true);
 				}
 			});
 	}

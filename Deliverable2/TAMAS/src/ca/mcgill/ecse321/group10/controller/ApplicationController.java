@@ -18,12 +18,6 @@ public class ApplicationController {
 		this.am = am;
 	}
 	
-	public void addStudentToSystem(String aId, String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) {
-		Student s = new Student(aId,aUsername,aPassword,aFirstName,aLastName,aExperience);
-		am.addProfile(s);
-		PersistenceXStream.saveToXMLwithXStream(am);
-	}
-	
 	public void addJobToSystem(Date aStartTime, Date aEndTime, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) {
 		Job j = new Job(aStartTime,aEndTime,aSalary,aRequirements,aCourse,aInstructor);
 		am.addJob(j);

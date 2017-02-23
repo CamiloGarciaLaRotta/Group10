@@ -21,9 +21,10 @@ public abstract class PersistenceXStream {
     private static XStream xstream = new XStream();
     private static String filename = "data.xml";
 
-    public static ApplicationManager initializeApplicationManager(String fileName) {
+    public static ApplicationManager initializeApplicationManager(String fileName, String profileFileName) {
         // Initialization for persistence
         ApplicationManager am;
+        ProfileManager pm = initializeProfileManager(profileFileName);
         setFilename(fileName);
         setAlias("job", Job.class);
         setAlias("student", Student.class);
@@ -41,7 +42,7 @@ public abstract class PersistenceXStream {
                 e.printStackTrace();
                 System.exit(1);
             }
-            am = new ApplicationManager();
+            am = new ApplicationManager(pm);
             saveToXMLwithXStream(am);
         }
         return am;

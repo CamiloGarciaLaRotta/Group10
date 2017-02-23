@@ -15,17 +15,20 @@ public class ApplicationManager
 
   //ApplicationManager Associations
   private List<Application> applications;
-  private List<Profile> profiles;
+  private ProfileManager profiles;
   private List<Job> jobs;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public ApplicationManager()
+  public ApplicationManager(ProfileManager aProfiles)
   {
     applications = new ArrayList<Application>();
-    profiles = new ArrayList<Profile>();
+    if (!setProfiles(aProfiles))
+    {
+      throw new RuntimeException("Unable to create ApplicationManager due to aProfiles");
+    }
     jobs = new ArrayList<Job>();
   }
 
@@ -63,34 +66,9 @@ public class ApplicationManager
     return index;
   }
 
-  public Profile getProfile(int index)
+  public ProfileManager getProfiles()
   {
-    Profile aProfile = profiles.get(index);
-    return aProfile;
-  }
-
-  public List<Profile> getProfiles()
-  {
-    List<Profile> newProfiles = Collections.unmodifiableList(profiles);
-    return newProfiles;
-  }
-
-  public int numberOfProfiles()
-  {
-    int number = profiles.size();
-    return number;
-  }
-
-  public boolean hasProfiles()
-  {
-    boolean has = profiles.size() > 0;
-    return has;
-  }
-
-  public int indexOfProfile(Profile aProfile)
-  {
-    int index = profiles.indexOf(aProfile);
-    return index;
+    return profiles;
   }
 
   public Job getJob(int index)
@@ -180,61 +158,15 @@ public class ApplicationManager
     return wasAdded;
   }
 
-  public static int minimumNumberOfProfiles()
+  public boolean setProfiles(ProfileManager aNewProfiles)
   {
-    return 0;
-  }
-
-  public boolean addProfile(Profile aProfile)
-  {
-    boolean wasAdded = false;
-    if (profiles.contains(aProfile)) { return false; }
-    profiles.add(aProfile);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeProfile(Profile aProfile)
-  {
-    boolean wasRemoved = false;
-    if (profiles.contains(aProfile))
+    boolean wasSet = false;
+    if (aNewProfiles != null)
     {
-      profiles.remove(aProfile);
-      wasRemoved = true;
+      profiles = aNewProfiles;
+      wasSet = true;
     }
-    return wasRemoved;
-  }
-
-  public boolean addProfileAt(Profile aProfile, int index)
-  {  
-    boolean wasAdded = false;
-    if(addProfile(aProfile))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfProfiles()) { index = numberOfProfiles() - 1; }
-      profiles.remove(aProfile);
-      profiles.add(index, aProfile);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveProfileAt(Profile aProfile, int index)
-  {
-    boolean wasAdded = false;
-    if(profiles.contains(aProfile))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfProfiles()) { index = numberOfProfiles() - 1; }
-      profiles.remove(aProfile);
-      profiles.add(index, aProfile);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addProfileAt(aProfile, index);
-    }
-    return wasAdded;
+    return wasSet;
   }
 
   public static int minimumNumberOfJobs()
@@ -297,7 +229,7 @@ public class ApplicationManager
   public void delete()
   {
     applications.clear();
-    profiles.clear();
+    profiles = null;
     jobs.clear();
   }
 

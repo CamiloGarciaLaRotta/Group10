@@ -62,12 +62,14 @@ class Application {
 
 class ApplicationManager {
 	1 -> * Application applications;
-	1 -> * Profile profiles;
+	1 -> 1 ProfileManager profiles;
 	1 -> * Job jobs;
 }
 
 class ProfileManager {
-	1 -> * Profile profiles;
+	1 -> * Student students;
+	1 -> * Instructor instructors;
+	1 -> * Admin admins;
 }
 
 // unsure if class should create instances of Intrsuctor/Student

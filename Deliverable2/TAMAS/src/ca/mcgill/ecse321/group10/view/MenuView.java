@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
+import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
+
 public class MenuView extends JFrame{
 	
 	private static final int X_SIZE = 300;
@@ -18,7 +21,12 @@ public class MenuView extends JFrame{
 	private JButton applicationButton;
 	private JButton publishButton;
 	
-	public MenuView() {
+	private ApplicationManager am;
+	private ProfileManager pm;
+	
+	public MenuView(ApplicationManager am, ProfileManager pm) {
+		this.am = am;
+		this.pm = pm;
 		initComponents();
 	}
 	
