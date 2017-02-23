@@ -1,3 +1,4 @@
+//Unable to update umple code due to error at [10,0]
 namespace ca.mcgill.ecse321.group10.TAMAS.model;
 
 class Course {
@@ -56,6 +57,7 @@ class Job {
   immutable requirements;
   immutable Date requiredTime;
   * -<@> * Course course;
+  * -> 1 JobManager manager;
   }
 
 class ApplicationManager {
@@ -82,7 +84,6 @@ class Admin{
 // oversee all job posting/application transactions
 class JobManager {
   singleton;
-  1 <@>- * Job jobs;
 }
 
 class ProfileManager {
@@ -92,78 +93,68 @@ class ProfileManager {
 
 class Course
 {
-  position 24 269 190 107;
-  position.association Course__TimeSlot:timeslots 32,107 30,0;
+  position 50 30 109 45;
 }
 
 class TimeSlot
 {
-  position 42 419 130 74;
+  position 50 130 109 45;
 }
 
 class Tutorial
 {
-  position 139 544 109 45;
+  position 50 230 109 45;
 }
 
 class Laboratory
 {
-  position 12 545 109 45;
+  position 50 330 109 45;
 }
 
 class Instructor
 {
-  position 367 190 109 45;
-  position.association Course:courses__Instructor 0,25 190,76;
-  position.association Application:applications__Instructor 32,45 22,0;
-  position.association Instructor__Job:jobs 3,45 144,0;
+  position 50 430 109 45;
 }
 
 class Student
 {
-  position 648 199 147 57;
-  position.association Job:jobs__Student 0,43 163,8;
+  position 250 30 109 45;
 }
 
 class Profile
 {
-  position 489 10 141 125;
+  position 250 130 109 45;
 }
 
 class Job
 {
-  position 250 418 163 107;
-  position.association Course:course__Job 0,10 190,75;
+  position 250 230 109 45;
+  position.association Job__JobManager:manager 127,0 0,10;
 }
 
 class ApplicationManager
 {
-  position 647 367 139 45;
+  position 250 330 109 45;
 }
 
 class Application
 {
-  position 514 488 148 74;
-  position.association Application__Student:student 30,0 24,57;
-  position.association Application__Job:jobs 0,6 163,99;
+  position 250 430 109 45;
 }
 
 class Admin
 {
-  position 512 198 109 45;
-  position.association Admin__Instructor:intructors 0,4 110,15;
-  position.association Admin__Student:students 110,30 0,36;
-  position.association Admin__JobManager:jobManagers 2,45 97,0;
+  position 640 25 109 45;
+  position.association Admin__Instructor:intructors 0,10 110,9;
+  position.association Admin__Student:students 0,10 147,9;
 }
 
 class JobManager
 {
-  position 463 317 109 45;
-  position.association Job:jobs__JobManager 30,45 100,0;
+  position 528 134 109 45;
 }
 
 class ProfileManager
 {
-  position 675 12 112 55;
-  position.association Profile:userProfiles__ProfileManager 0,5 142,49;
+  position 450 230 109 45;
 }
