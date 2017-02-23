@@ -72,6 +72,10 @@ class ProfileManager {
 	1 -> * Admin admins;
 }
 
+class CourseManager {
+	1 -> * Course courses;
+}
+
 // unsure if class should create instances of Intrsuctor/Student
 // or rather have all the methods of Instructor/Student
 class Admin{

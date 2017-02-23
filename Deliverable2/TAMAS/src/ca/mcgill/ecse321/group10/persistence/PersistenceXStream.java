@@ -10,6 +10,8 @@ import com.thoughtworks.xstream.XStream;
 import ca.mcgill.ecse321.group10.TAMAS.model.Admin;
 import ca.mcgill.ecse321.group10.TAMAS.model.Application;
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
+import ca.mcgill.ecse321.group10.TAMAS.model.Course;
+import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
 import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.Profile;
@@ -71,6 +73,28 @@ public abstract class PersistenceXStream {
     		saveToXMLwithXStream(pm);
     	}
     	return pm;
+    }
+    
+    public static CourseManager initializeCourseManager(String fileName) {
+    	CourseManager cm;
+    	setFilename(fileName);
+    	setAlias("course",Course.class);
+    	setAlias("cmanager",CourseManager.class);
+    	
+    	File file = new File(fileName);
+    	if(file.exists()) {
+    		cm = (CourseManager) loadFromXMLwithXStream();
+    	} else {
+    		try {
+    			file.createNewFile();
+    		}catch(IOException e) {
+    			e.printStackTrace();
+    			System.exit(1);
+    		}
+    		cm = new CourseManager();
+    		saveToXMLwithXStream(cm);
+    	}
+    	return cm;
     }
 
     public static boolean saveToXMLwithXStream(Object obj) {

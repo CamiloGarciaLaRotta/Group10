@@ -12,6 +12,8 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ApplicationController {
 	
+	public static String APPLICATION_FILE_NAME = "output/applications.xml";
+	
 	private ApplicationManager am;
 	
 	public ApplicationController(ApplicationManager am){
@@ -21,12 +23,14 @@ public class ApplicationController {
 	public void addJobToSystem(Date aStartTime, Date aEndTime, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) {
 		Job j = new Job(aStartTime,aEndTime,aSalary,aRequirements,aCourse,aInstructor);
 		am.addJob(j);
+		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 	
 	public void createApplication(int id, Student s, Job j) {
 		Application a = new Application(id,s,j);
 		am.addApplication(a);
+		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 

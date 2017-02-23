@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 31 "../../../../../../alternatemodel.ump"
-// line 104 "../../../../../../alternatemodel.ump"
+// line 108 "../../../../../../alternatemodel.ump"
 public class Instructor extends Profile
 {
 
