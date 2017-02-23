@@ -60,6 +60,12 @@ class Application {
   *-<@> 1 Job jobs;
 }
 
+class ApplicationManager {
+	1 -> * Application applications;
+	1 -> * Profile profiles;
+	1 -> * Job jobs;
+}
+
 // unsure if class should create instances of Intrsuctor/Student
 // or rather have all the methods of Instructor/Student
 class Admin{
