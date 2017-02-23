@@ -22,7 +22,7 @@ class Laboratory {
 class Instructor {
   isA Profile;
   * -> * Course courses;
-  * -> * Application applications;
+  * -- * Application applications;
 }
 
 class Student {
@@ -74,7 +74,7 @@ class Admin{
 // oversee all job posting/application transactions
 class JobManager {
   singleton;
-  1 -> * Job jobs;
+  1 <@>- * Job jobs;
 }
 
 class ProfileManager {
