@@ -28,5 +28,6 @@ The Detail Design Diagram consists of the following entities: ApplicationManager
 \section{Rationale}
 The three Manager classes were needed in order to give functionality to the user to create the entities associated with the manager classes, except for ApplicationManager creating a ProfileManager. The reason ApplicationManager is associated to ProfileManager is because otherwise the only way for ApplicationManager to have access to Student is by a direct association to it; this would cause a redundancy as now two manager classes are able to create Student entities, which is something we want to avoid.
 \section{Detailed Design Diagram}
-
+\centering
+\includegraphics[width =0.9\textwidth]{DetailedDesignDiagram.pdf}
 \end{document}
