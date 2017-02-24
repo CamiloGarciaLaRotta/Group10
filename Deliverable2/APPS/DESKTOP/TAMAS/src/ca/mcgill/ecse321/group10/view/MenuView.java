@@ -63,6 +63,12 @@ public class MenuView extends JFrame{
 			}
 		});
 		
+		publishButton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				new PublishJobView(am,pm,cm).setVisible(true);
+			}
+		});
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		

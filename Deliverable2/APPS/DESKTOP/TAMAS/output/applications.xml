@@ -1,9 +1,38 @@
 <amanager id="1">
   <applications id="2"/>
-  <profiles id="3">
-    <students id="4"/>
-    <instructors id="5"/>
-    <admins id="6"/>
-  </profiles>
-  <jobs id="7"/>
+  <jobs id="3">
+    <job id="4">
+      <startTime id="5">21:40:36</startTime>
+      <endTime id="6">21:40:36</endTime>
+      <salary>12.0</salary>
+      <requirements>blah</requirements>
+      <id>1</id>
+      <position>TA</position>
+      <course id="7">
+        <className>CIVE281</className>
+        <cdn>333</cdn>
+        <graderTimeBudget>45738.0</graderTimeBudget>
+        <taTimeBudget>37834.0</taTimeBudget>
+        <jobs id="8">
+          <job reference="4"/>
+        </jobs>
+      </course>
+      <instructor id="9">
+        <username>artvandelay</username>
+        <password>bosco</password>
+        <firstName>George</firstName>
+        <lastName>Costanza</lastName>
+        <id>3</id>
+        <courses id="10">
+          <course reference="7"/>
+        </courses>
+        <applications id="11"/>
+        <jobs id="12">
+          <job reference="4"/>
+        </jobs>
+      </instructor>
+      <students id="13"/>
+      <applications id="14"/>
+    </job>
+  </jobs>
 </amanager>

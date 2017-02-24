@@ -1,6 +1,6 @@
 package ca.mcgill.ecse321.group10.controller;
 
-import java.sql.Date;
+import java.sql.Time;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.Application;
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
@@ -20,7 +20,7 @@ public class ApplicationController {
 		this.am = am;
 	}
 	
-	public void addJobToSystem(Date aStartTime, Date aEndTime, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) {
+	public void addJobToSystem(Time aStartTime, Time aEndTime, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) {
 		Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
 		am.addJob(j);
 		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);

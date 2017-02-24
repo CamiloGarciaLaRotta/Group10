@@ -37,20 +37,28 @@
       <firstName>George</firstName>
       <lastName>Costanza</lastName>
       <id>3</id>
-      <courses id="14"/>
-      <applications id="15"/>
-      <jobs id="16"/>
+      <courses id="14">
+        <course id="15">
+          <className>CIVE281</className>
+          <cdn>333</cdn>
+          <graderTimeBudget>45738.0</graderTimeBudget>
+          <taTimeBudget>37834.0</taTimeBudget>
+          <jobs id="16"/>
+        </course>
+      </courses>
+      <applications id="17"/>
+      <jobs id="18"/>
     </instructor>
   </instructors>
-  <admins id="17">
-    <admin id="18">
+  <admins id="19">
+    <admin id="20">
       <username>ld</username>
       <password>yoyoma</password>
       <firstName>Larry</firstName>
       <lastName>David</lastName>
       <id>1</id>
-      <intructors id="19"/>
-      <students id="20"/>
+      <intructors id="21"/>
+      <students id="22"/>
     </admin>
   </admins>
 </pmanager>

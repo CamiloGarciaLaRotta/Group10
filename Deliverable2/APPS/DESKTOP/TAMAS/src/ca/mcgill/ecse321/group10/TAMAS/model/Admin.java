@@ -8,8 +8,8 @@ import java.util.*;
  * unsure if class should create instances of Intrsuctor/Student
  * or rather have all the methods of Instructor/Student
  */
-// line 81 "../../../../../../alternatemodel.ump"
-// line 140 "../../../../../../alternatemodel.ump"
+// line 80 "../../../../../../alternatemodel.ump"
+// line 139 "../../../../../../alternatemodel.ump"
 public class Admin extends Profile
 {
 

@@ -2,12 +2,12 @@
 /*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
-import java.sql.Date;
+import java.sql.Time;
 import java.util.*;
 
 // line 11 "../../../../../../alternatemodel.ump"
-// line 93 "../../../../../../alternatemodel.ump"
-// line 127 "../../../../../../alternatemodel.ump"
+// line 92 "../../../../../../alternatemodel.ump"
+// line 126 "../../../../../../alternatemodel.ump"
 public class Job
 {
 
@@ -22,8 +22,8 @@ public class Job
   //------------------------
 
   //Job Attributes
-  private Date startTime;
-  private Date endTime;
+  private Time startTime;
+  private Time endTime;
   private String day;
   private double salary;
   private String requirements;
@@ -45,7 +45,7 @@ public class Job
   // CONSTRUCTOR
   //------------------------
 
-  public Job(Date aStartTime, Date aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
+  public Job(Time aStartTime, Time aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
   {
     startTime = aStartTime;
     endTime = aEndTime;
@@ -72,7 +72,7 @@ public class Job
   // INTERFACE
   //------------------------
 
-  public boolean setStartTime(Date aStartTime)
+  public boolean setStartTime(Time aStartTime)
   {
     boolean wasSet = false;
     startTime = aStartTime;
@@ -80,7 +80,7 @@ public class Job
     return wasSet;
   }
 
-  public boolean setEndTime(Date aEndTime)
+  public boolean setEndTime(Time aEndTime)
   {
     boolean wasSet = false;
     endTime = aEndTime;
@@ -96,12 +96,12 @@ public class Job
     return wasSet;
   }
 
-  public Date getStartTime()
+  public Time getStartTime()
   {
     return startTime;
   }
 
-  public Date getEndTime()
+  public Time getEndTime()
   {
     return endTime;
   }

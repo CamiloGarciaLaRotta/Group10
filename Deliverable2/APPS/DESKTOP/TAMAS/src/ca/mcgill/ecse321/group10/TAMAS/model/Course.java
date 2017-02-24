@@ -3,10 +3,10 @@
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
-import java.sql.Date;
+import java.sql.Time;
 
 // line 3 "../../../../../../alternatemodel.ump"
-// line 87 "../../../../../../alternatemodel.ump"
+// line 86 "../../../../../../alternatemodel.ump"
 public class Course
 {
 
@@ -125,7 +125,7 @@ public class Course
     return 0;
   }
 
-  public Job addJob(Date aStartTime, Date aEndTime, String aDay, double aSalary, String aRequirements, Instructor aInstructor)
+  public Job addJob(Time aStartTime, Time aEndTime, String aDay, double aSalary, String aRequirements, Instructor aInstructor)
   {
     return new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, this, aInstructor);
   }

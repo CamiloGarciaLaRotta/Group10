@@ -7,5 +7,12 @@
       <taTimeBudget>45.0</taTimeBudget>
       <jobs id="4"/>
     </course>
+    <course id="5">
+      <className>CIVE281</className>
+      <cdn>333</cdn>
+      <graderTimeBudget>45738.0</graderTimeBudget>
+      <taTimeBudget>37834.0</taTimeBudget>
+      <jobs id="6"/>
+    </course>
   </courses>
 </cmanager>

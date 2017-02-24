@@ -44,7 +44,7 @@ public abstract class PersistenceXStream {
                 e.printStackTrace();
                 System.exit(1);
             }
-            am = new ApplicationManager(pm);
+            am = new ApplicationManager();
             saveToXMLwithXStream(am);
         }
         return am;

@@ -14,20 +14,15 @@ public class ApplicationManager
 
   //ApplicationManager Associations
   private List<Application> applications;
-  private ProfileManager profiles;
   private List<Job> jobs;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public ApplicationManager(ProfileManager aProfiles)
+  public ApplicationManager()
   {
     applications = new ArrayList<Application>();
-    if (!setProfiles(aProfiles))
-    {
-      throw new RuntimeException("Unable to create ApplicationManager due to aProfiles");
-    }
     jobs = new ArrayList<Job>();
   }
 
@@ -63,11 +58,6 @@ public class ApplicationManager
   {
     int index = applications.indexOf(aApplication);
     return index;
-  }
-
-  public ProfileManager getProfiles()
-  {
-    return profiles;
   }
 
   public Job getJob(int index)
@@ -157,17 +147,6 @@ public class ApplicationManager
     return wasAdded;
   }
 
-  public boolean setProfiles(ProfileManager aNewProfiles)
-  {
-    boolean wasSet = false;
-    if (aNewProfiles != null)
-    {
-      profiles = aNewProfiles;
-      wasSet = true;
-    }
-    return wasSet;
-  }
-
   public static int minimumNumberOfJobs()
   {
     return 0;
@@ -228,7 +207,6 @@ public class ApplicationManager
   public void delete()
   {
     applications.clear();
-    profiles = null;
     jobs.clear();
   }
 

@@ -10,8 +10,8 @@ class Course {
 
 class Job{
   autounique id;
-  Date startTime;
-  Date endTime;
+  Time startTime;
+  Time endTime;
   day;
   position {
 	  TA{}
@@ -62,7 +62,6 @@ class Application {
 
 class ApplicationManager {
 	0..1 -> * Application applications;
-	0..1 -> 1 ProfileManager profiles;
 	0..1 -> * Job jobs;
 }
 

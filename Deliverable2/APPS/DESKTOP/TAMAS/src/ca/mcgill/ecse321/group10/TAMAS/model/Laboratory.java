@@ -2,11 +2,11 @@
 /*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
-import java.sql.Date;
+import java.sql.Time;
 import java.util.*;
 
 // line 28 "../../../../../../alternatemodel.ump"
-// line 103 "../../../../../../alternatemodel.ump"
+// line 102 "../../../../../../alternatemodel.ump"
 public class Laboratory extends Job
 {
 
@@ -18,7 +18,7 @@ public class Laboratory extends Job
   // CONSTRUCTOR
   //------------------------
 
-  public Laboratory(Date aStartTime, Date aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
+  public Laboratory(Time aStartTime, Time aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
   {
     super(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
   }
