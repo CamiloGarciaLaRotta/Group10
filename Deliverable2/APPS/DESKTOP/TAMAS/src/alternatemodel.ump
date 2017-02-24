@@ -12,6 +12,7 @@ class Job{
   autounique id;
   Date startTime;
   Date endTime;
+  day;
   position {
 	  TA{}
 	  GRADER{}

@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.sql.Date;
 import java.util.*;
 
-// line 23 "../../../../../../alternatemodel.ump"
-// line 97 "../../../../../../alternatemodel.ump"
+// line 24 "../../../../../../alternatemodel.ump"
+// line 98 "../../../../../../alternatemodel.ump"
 public class Tutorial extends Job
 {
 
@@ -18,9 +18,9 @@ public class Tutorial extends Job
   // CONSTRUCTOR
   //------------------------
 
-  public Tutorial(Date aStartTime, Date aEndTime, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
+  public Tutorial(Date aStartTime, Date aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
   {
-    super(aStartTime, aEndTime, aSalary, aRequirements, aCourse, aInstructor);
+    super(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
   }
 
   //------------------------

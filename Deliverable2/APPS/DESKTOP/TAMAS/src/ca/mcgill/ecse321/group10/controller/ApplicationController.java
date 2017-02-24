@@ -20,8 +20,8 @@ public class ApplicationController {
 		this.am = am;
 	}
 	
-	public void addJobToSystem(Date aStartTime, Date aEndTime, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) {
-		Job j = new Job(aStartTime,aEndTime,aSalary,aRequirements,aCourse,aInstructor);
+	public void addJobToSystem(Date aStartTime, Date aEndTime, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) {
+		Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
 		am.addJob(j);
 		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(am);

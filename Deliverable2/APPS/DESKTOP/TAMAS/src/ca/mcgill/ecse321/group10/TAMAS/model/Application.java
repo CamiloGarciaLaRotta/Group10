@@ -3,8 +3,8 @@
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 
-// line 56 "../../../../../../alternatemodel.ump"
-// line 132 "../../../../../../alternatemodel.ump"
+// line 57 "../../../../../../alternatemodel.ump"
+// line 133 "../../../../../../alternatemodel.ump"
 public class Application
 {
 

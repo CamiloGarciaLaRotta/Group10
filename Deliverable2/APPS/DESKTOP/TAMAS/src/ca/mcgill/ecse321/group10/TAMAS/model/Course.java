@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 3 "../../../../../../alternatemodel.ump"
-// line 86 "../../../../../../alternatemodel.ump"
+// line 87 "../../../../../../alternatemodel.ump"
 public class Course
 {
 
@@ -125,9 +125,9 @@ public class Course
     return 0;
   }
 
-  public Job addJob(Date aStartTime, Date aEndTime, double aSalary, String aRequirements, Instructor aInstructor)
+  public Job addJob(Date aStartTime, Date aEndTime, String aDay, double aSalary, String aRequirements, Instructor aInstructor)
   {
-    return new Job(aStartTime, aEndTime, aSalary, aRequirements, this, aInstructor);
+    return new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, this, aInstructor);
   }
 
   public boolean addJob(Job aJob)

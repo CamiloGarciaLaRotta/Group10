@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.group10.controller;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.Admin;
+import ca.mcgill.ecse321.group10.TAMAS.model.Course;
 import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
@@ -19,6 +20,12 @@ public class ProfileController {
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName){
 		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
 		pm.addInstructor(instructor);
+		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
+		PersistenceXStream.saveToXMLwithXStream(pm);
+	}
+	
+	public void addCourseToInstructor(int instructor, Course course) {
+		pm.getInstructor(instructor).addCourse(course);
 		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}

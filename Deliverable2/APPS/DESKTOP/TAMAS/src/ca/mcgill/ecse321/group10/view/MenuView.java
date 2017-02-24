@@ -57,6 +57,12 @@ public class MenuView extends JFrame{
 			}
 		});
 		
+		courseButton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				coursePressed();
+			}
+		});
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
@@ -73,6 +79,10 @@ public class MenuView extends JFrame{
 	
 	private void profilePressed() {
 		new RegistrationView(pm).setVisible(true);
+	}
+	
+	private void coursePressed() {
+		new CreateCourseView(cm,pm).setVisible(true);
 	}
 	
 }

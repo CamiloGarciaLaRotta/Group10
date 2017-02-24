@@ -1,3 +1,11 @@
 <cmanager id="1">
-  <courses id="2"/>
+  <courses id="2">
+    <course id="3">
+      <className>Seinfeld</className>
+      <cdn>1999</cdn>
+      <graderTimeBudget>45.0</graderTimeBudget>
+      <taTimeBudget>45.0</taTimeBudget>
+      <jobs id="4"/>
+    </course>
+  </courses>
 </cmanager>

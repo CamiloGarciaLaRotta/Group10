@@ -6,8 +6,8 @@ import java.sql.Date;
 import java.util.*;
 
 // line 11 "../../../../../../alternatemodel.ump"
-// line 92 "../../../../../../alternatemodel.ump"
-// line 126 "../../../../../../alternatemodel.ump"
+// line 93 "../../../../../../alternatemodel.ump"
+// line 127 "../../../../../../alternatemodel.ump"
 public class Job
 {
 
@@ -24,6 +24,7 @@ public class Job
   //Job Attributes
   private Date startTime;
   private Date endTime;
+  private String day;
   private double salary;
   private String requirements;
 
@@ -44,10 +45,11 @@ public class Job
   // CONSTRUCTOR
   //------------------------
 
-  public Job(Date aStartTime, Date aEndTime, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
+  public Job(Date aStartTime, Date aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
   {
     startTime = aStartTime;
     endTime = aEndTime;
+    day = aDay;
     salary = aSalary;
     requirements = aRequirements;
     id = nextId++;
@@ -86,6 +88,14 @@ public class Job
     return wasSet;
   }
 
+  public boolean setDay(String aDay)
+  {
+    boolean wasSet = false;
+    day = aDay;
+    wasSet = true;
+    return wasSet;
+  }
+
   public Date getStartTime()
   {
     return startTime;
@@ -94,6 +104,11 @@ public class Job
   public Date getEndTime()
   {
     return endTime;
+  }
+
+  public String getDay()
+  {
+    return day;
   }
 
   public double getSalary()
@@ -423,6 +438,7 @@ public class Job
     String outputString = "";
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
+            "day" + ":" + getDay()+ "," +
             "salary" + ":" + getSalary()+ "," +
             "requirements" + ":" + getRequirements()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +

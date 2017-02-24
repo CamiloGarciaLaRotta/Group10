@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 31 "../../../../../../alternatemodel.ump"
-// line 107 "../../../../../../alternatemodel.ump"
+// line 32 "../../../../../../alternatemodel.ump"
+// line 108 "../../../../../../alternatemodel.ump"
 public class Instructor extends Profile
 {
 
@@ -244,9 +244,9 @@ public class Instructor extends Profile
     return 0;
   }
 
-  public Job addJob(Date aStartTime, Date aEndTime, double aSalary, String aRequirements, Course aCourse)
+  public Job addJob(Date aStartTime, Date aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse)
   {
-    return new Job(aStartTime, aEndTime, aSalary, aRequirements, aCourse, this);
+    return new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, this);
   }
 
   public boolean addJob(Job aJob)
