@@ -1,0 +1,32 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb,amsfonts} %In case we need math stuff
+\usepackage{graphicx} %For inserting images and stuff
+\usepackage{listings} %For inserting code snippets
+\usepackage{enumerate} %For fancy enumeration
+\usepackage{pdfpages} %For adding .pdf files
+
+\usepackage[margin=2cm]{geometry} %Nice margin setting
+
+\title{ECSE 321 - Intro to Software Engineering\\Detailed Design}
+\author{Harley Wiltzer\\Camilo Garcia La Rotta\\Jake Shnaidman\\Robert Attard\\Matthew Lesko}
+\date{February 24, 2017}
+
+\begin{document}
+\pagenumbering{gobble} %No page number on title page
+\maketitle
+\newpage
+\pagenumbering{arabic} %Arabic numeral page numbers on regular pages
+\tableofcontents
+\section{Description}
+The Detail Design Diagram consists of the following entities: ApplicationManager, ProfileManager, CourseManager, Application, Profile, Course, Job, Instructor, Admin, Student, Laboratory, and Tutorial. It consists of a Controller, called Controller, a Boundary, called View, and a Persistence, called Persistence XStream. The Controller uses the entities ApplicationManager, ProfileManager, and CourseManager to save, edit, and modify data within the model, which are then saved within a persistence layer. The functionality of the three "Manager" classes are listed below.
+\begin{itemize}
+	\item ApplicationManager is in charge of Application, the job application created and submitted by the student for a job. It is associated with Application, Job, and ProfileManager.
+	\item ProfileManager creates Admin, Instructor, and Student entities, all of which inherit from the Profile class.
+	\item CourseManager creates Course entities.
+\end{itemize}
+\section{Rationale}
+The three Manager classes were needed in order to give functionality to the user to create the entities associated with the manager classes, except for ApplicationManager creating a ProfileManager. The reason ApplicationManager is associated to ProfileManager is because otherwise the only way for ApplicationManager to have access to Student is by a direct association to it; this would cause a redundancy as now two manager classes are able to create Student entities, which is something we want to avoid.
+\section{Detailed Design Diagram}
+
+\end{document}
