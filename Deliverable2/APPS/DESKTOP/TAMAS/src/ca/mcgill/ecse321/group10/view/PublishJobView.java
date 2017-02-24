@@ -1,15 +1,16 @@
 package ca.mcgill.ecse321.group10.view;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -25,6 +26,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Course;
 import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
+import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
 
@@ -46,9 +48,13 @@ public class PublishJobView extends JFrame{
 	private JLabel lSalary;
 	private JLabel lReqs;
 	private JLabel errorLabel;
+	private JLabel lPos;
 	private JTextField tfSalary;
 	private JTextField tfReqs;
 	private JButton publish;
+	private JRadioButton rbTA;
+	private JRadioButton rbGrader;
+	private ButtonGroup typeGroup;
 	
 	private DefaultListModel courseListModel;
 	
@@ -73,6 +79,14 @@ public class PublishJobView extends JFrame{
 		tfReqs = new JTextField();
 		errorLabel = new JLabel();
 		publish = new JButton("Publish Job");
+		
+		lPos = new JLabel("Position type: ");
+		rbTA = new JRadioButton("TA");
+		rbTA.setSelected(true);
+		rbGrader = new JRadioButton("Grader");
+		typeGroup = new ButtonGroup();
+		typeGroup.add(rbTA);
+		typeGroup.add(rbGrader);
 		
 		publish.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -132,6 +146,12 @@ public class PublishJobView extends JFrame{
 	    		.addComponent(courseScroller)
 	    		.addGroup(
 	    				layout.createSequentialGroup()
+	    				.addComponent(lPos)
+	    				.addComponent(rbTA)
+	    				.addComponent(rbGrader)
+	    				)
+	    		.addGroup(
+	    				layout.createSequentialGroup()
 	    				.addComponent(lSalary)
 	    				.addComponent(tfSalary,50,75,100)
 	    				)
@@ -159,6 +179,12 @@ public class PublishJobView extends JFrame{
 	    		.addComponent(errorLabel)
 	    		.addComponent(instructorScroller)
 	    		.addComponent(courseScroller)
+	    		.addGroup(
+	    				layout.createParallelGroup()
+	    				.addComponent(lPos)
+	    				.addComponent(rbTA)
+	    				.addComponent(rbGrader)
+	    				)
 	    		.addGroup(
 	    				layout.createParallelGroup()
 	    				.addComponent(lSalary)
@@ -196,6 +222,8 @@ public class PublishJobView extends JFrame{
 		jDay.setValue("Monday");
 		jStartTime.setValue(new java.util.Date());
 		jEndTime.setValue(new java.util.Date());
+		rbGrader.setSelected(false);
+		rbTA.setSelected(true);
 	}
 	
 	private void publishPressed() {
@@ -213,6 +241,8 @@ public class PublishJobView extends JFrame{
 		if(error.length() == 0) {
 			ApplicationController ac = new ApplicationController(am);
 			ac.addJobToSystem(startTime, endTime, day, salary, requirements, course, instructor);
+			if(rbTA.isSelected()) ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.TA);
+			else ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.GRADER);
 		}
 		refreshData();
 	}

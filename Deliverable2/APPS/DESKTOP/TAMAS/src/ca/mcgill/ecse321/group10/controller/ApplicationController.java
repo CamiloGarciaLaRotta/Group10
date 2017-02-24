@@ -27,6 +27,12 @@ public class ApplicationController {
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 	
+	public void modifyJobPosition(int index, Job.Position pos) {
+		am.getJob(index).setPosition(pos);
+		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
+		PersistenceXStream.saveToXMLwithXStream(am);
+	}
+	
 	public void createApplication(Student s, Job j) {
 		Application a = new Application(s,j);
 		am.addApplication(a);

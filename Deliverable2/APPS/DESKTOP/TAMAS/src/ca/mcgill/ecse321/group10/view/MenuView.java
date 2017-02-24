@@ -69,6 +69,12 @@ public class MenuView extends JFrame{
 			}
 		});
 		
+		applicationButton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				new ApplicationView(am,pm).setVisible(true);
+			}
+		});
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
