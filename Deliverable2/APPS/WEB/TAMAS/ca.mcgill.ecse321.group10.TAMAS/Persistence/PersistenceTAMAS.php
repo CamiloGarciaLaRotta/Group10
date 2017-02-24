@@ -18,7 +18,7 @@ class PersistenceTAMAS {
 			$str = file_get_contents($this->filenameAM);
 			$am = unserialize($str);
 		} else {
-			$am = ApplicationManager::getInstance();
+			$am = new ApplicationManager();
 		}
 		return $am;
 	}
@@ -28,7 +28,7 @@ class PersistenceTAMAS {
 			$str = file_get_contents($this->filenamePM);
 			$pm = unserialize($str);
 		} else {
-			$pm = ProfileManager::getInstance();
+			$pm = new ProfileManager();
 		}
 		return $pm;
 	}
@@ -38,7 +38,7 @@ class PersistenceTAMAS {
 			$str = file_get_contents($this->filenameCM);
 			$cm = unserialize($str);
 		} else {
-			$cm = CourseManager::getInstance();
+			$cm = new CourseManager();
 		}
 		return $cm;
 	}

@@ -9,10 +9,10 @@ class CourseController{
 	public function __construct(){
 	}
 	
-	public function createCourse($class_name, $CDN, 
+	public function createCourse($course_name, $CDN, 
 								$graderTimeBudget, $TATimeBudget) {
 		//1. Validate input
-		$name = InputValidator::validate_input($class_name);
+		$name = InputValidator::validate_input($course_name);
 		if($name==null || strlen($name) == 0){
 			throw new Exception("Course name cannot be empty!");
 		} else if(!is_numeric($CDN)) {

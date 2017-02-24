@@ -8,16 +8,17 @@
 		</style>
 	</head>
 	<body>
-		<center> 
+		<!-- TO HELL WITH YOUR UNREALISTIC WEB BEAUTY STANDARDS -->
+		<center><br>
 		<form action="createCourse.php">
 		    <input type="submit" value="Create Course" />
-		</form>
+		</form><br>
 		<form action="createInstructor.php">
 		    <input type="submit" value="Create Instructor" />
-		</form>
+		</form><br>
 		<form action="createJob.php">
 		    <input type="submit" value="Create Job Posting" />
-		</form>
+		</form><br>
 		</center>
 	</body>
 </html>
