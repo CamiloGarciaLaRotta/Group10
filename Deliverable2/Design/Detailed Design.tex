@@ -19,7 +19,7 @@
 \pagenumbering{arabic} %Arabic numeral page numbers on regular pages
 \tableofcontents
 \section{Description}
-The Detail Design Diagram consists of the following entities: ApplicationManager, ProfileManager, CourseManager, Application, Profile, Course, Job, Instructor, Admin, Student, Laboratory, and Tutorial. It consists of a Controller, called Controller, a Boundary, called View, and a Persistence, called Persistence XStream. The Controller uses the entities ApplicationManager, ProfileManager, and CourseManager to save, edit, and modify data within the model, which are then saved within a persistence layer. The functionality of the three "Manager" classes are listed below.
+The Detail Design Diagram consists of the following entities: ApplicationManager, ProfileManager, CourseManager, Application, Profile, Course, Job, Instructor, Admin, Student, Laboratory, and Tutorial. It consists of a Controller, called Controller, a Boundary, called View, and a Persistence, called Persistence XStream. The Controller uses the entities ApplicationManager, ProfileManager, and CourseManager to save, edit, and modify data within the model, which are then saved within a persistence layer. The functionalities of the three "Manager" classes are listed below.
 \begin{itemize}
 	\item ApplicationManager is in charge of Application, the job application created and submitted by the student for a job. It is associated with Application, Job, and ProfileManager.
 	\item ProfileManager creates Admin, Instructor, and Student entities, all of which inherit from the Profile class.
