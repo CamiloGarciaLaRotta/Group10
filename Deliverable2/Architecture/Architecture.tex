@@ -25,7 +25,7 @@
 		\item View
 		\item Model
 	\end{itemize}
-	The Model component manages the system data and associated operations on that data; it encapsulates all the entities that are part of the model (can be seen in the model class diagram). The View component defines and manages how the data is presented to the user. The Controller component manages user interaction (key presses, mouse clicks, etc.) and passes these interactions to the View and the Model
+	The Model component manages the system data and associated operations on that data; it encapsulates all the entities that are part of the model (can be seen in the model class diagram). The View component defines and manages how the data is presented to the user. The Controller component manages user interaction (key presses, mouse clicks, etc.) and passes these interactions to the View and the Model.
 \section{Rationale}
 	The MVC pattern was chosen because this allows the components to be changed independently. For example, adding a new view or changing an existing view can be done without any changes to the underlying data in the model. It allows the data to change independently of its representation and vice versa. It supports presentation of the same data in different ways with changes made in one representation shown in all of them. 
 	The Layered Architecture pattern was used because the user would need to first authenticate him/herself and then receive authorization in order to interact with the sublayer.
