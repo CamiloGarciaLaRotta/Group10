@@ -2,10 +2,10 @@
   <students id="2">
     <student id="3">
       <username>trevor</username>
-      <password>sdfhlksdfjdf</password>
+      <password>sdfhjkdf</password>
       <firstName>Trevor</firstName>
       <lastName>Lahey</lastName>
-      <id>2</id>
+      <id>3</id>
       <experience></experience>
       <degree>UNDERGRAD</degree>
       <jobs id="4"/>
@@ -14,15 +14,25 @@
   </students>
   <instructors id="6">
     <instructor id="7">
-      <username>jerry</username>
-      <password>asdfkjdf</password>
-      <firstName>Jerry</firstName>
-      <lastName>Seinfeld</lastName>
-      <id>1</id>
+      <username>ld</username>
+      <password>sdfhjlksjdfd</password>
+      <firstName>Larry</firstName>
+      <lastName>David</lastName>
+      <id>2</id>
       <courses id="8"/>
       <applications id="9"/>
       <jobs id="10"/>
     </instructor>
   </instructors>
-  <admins id="11"/>
+  <admins id="11">
+    <admin id="12">
+      <username>jerry</username>
+      <password>sdfhjkdf</password>
+      <firstName>Jerry</firstName>
+      <lastName>Seinfeld</lastName>
+      <id>1</id>
+      <intructors id="13"/>
+      <students id="14"/>
+    </admin>
+  </admins>
 </pmanager>

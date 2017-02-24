@@ -56,6 +56,7 @@ public abstract class PersistenceXStream {
     	setFilename(fileName);
     	setAlias("admin",Admin.class);
     	setAlias("instructor",Instructor.class);
+    	setAlias("student",Student.class);
     	setAlias("profile",Profile.class);
     	setAlias("pmanager",ProfileManager.class);
     	

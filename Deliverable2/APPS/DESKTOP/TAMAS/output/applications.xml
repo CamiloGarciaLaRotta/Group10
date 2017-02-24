@@ -1,5 +1,9 @@
 <amanager id="1">
   <applications id="2"/>
-  <profiles id="3"/>
-  <jobs id="4"/>
+  <profiles id="3">
+    <students id="4"/>
+    <instructors id="5"/>
+    <admins id="6"/>
+  </profiles>
+  <jobs id="7"/>
 </amanager>

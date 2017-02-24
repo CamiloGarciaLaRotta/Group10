@@ -22,6 +22,7 @@ public class MenuView extends JFrame{
 	private JButton applicationButton;
 	private JButton publishButton;
 	private JButton profileButton;
+	private JButton courseButton;
 	
 	private ApplicationManager am;
 	private ProfileManager pm;
@@ -39,6 +40,7 @@ public class MenuView extends JFrame{
 		applicationButton = new JButton();
 		publishButton = new JButton();
 		profileButton = new JButton();
+		courseButton = new JButton();
 		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Main Control Center");
@@ -47,6 +49,7 @@ public class MenuView extends JFrame{
 		applicationButton.setText("Create Job Application");
 		publishButton.setText("Publish Job Posting");
 		profileButton.setText("Register Profile");
+		courseButton.setText("Create Course");
 		
 		profileButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -59,6 +62,7 @@ public class MenuView extends JFrame{
 		
 		panel.add(greeting);
 		panel.add(profileButton);
+		panel.add(courseButton);
 		panel.add(applicationButton);
 		panel.add(publishButton);
 		
