@@ -27,8 +27,8 @@ public class ApplicationController {
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 	
-	public void createApplication(int id, Student s, Job j) {
-		Application a = new Application(id,s,j);
+	public void createApplication(Student s, Job j) {
+		Application a = new Application(s,j);
 		am.addApplication(a);
 		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(am);

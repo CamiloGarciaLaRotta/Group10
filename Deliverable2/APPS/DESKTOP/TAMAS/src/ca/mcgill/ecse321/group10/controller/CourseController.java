@@ -14,7 +14,7 @@ public class CourseController {
 		this.cm = cm;
 	}
 	
-	public void createCourse(String aClassName, String aCdn, float aGraderTimeBudget, float aTaTimeBudget){
+	public void createCourse(String aClassName, int aCdn, float aGraderTimeBudget, float aTaTimeBudget){
 		Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget);
 		cm.addCourse(c);
 		PersistenceXStream.setFilename(COURSE_FILE_NAME);

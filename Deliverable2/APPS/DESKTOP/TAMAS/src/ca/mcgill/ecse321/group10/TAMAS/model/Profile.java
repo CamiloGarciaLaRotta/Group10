@@ -4,32 +4,44 @@
 package ca.mcgill.ecse321.group10.TAMAS.model;
 
 // line 48 "../../../../../../alternatemodel.ump"
-// line 122 "../../../../../../alternatemodel.ump"
+// line 121 "../../../../../../alternatemodel.ump"
 public class Profile
 {
+
+  //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  private static int nextId = 1;
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
   //Profile Attributes
-  private String id;
   private String username;
   private String password;
   private String firstName;
   private String lastName;
 
+  //Autounique Attributes
+
+  /**
+   * either student or employee ID, for the securities yo
+   */
+  private int id;
+
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Profile(String aId, String aUsername, String aPassword, String aFirstName, String aLastName)
+  public Profile(String aUsername, String aPassword, String aFirstName, String aLastName)
   {
-    id = aId;
     username = aUsername;
     password = aPassword;
     firstName = aFirstName;
     lastName = aLastName;
+    id = nextId++;
   }
 
   //------------------------
@@ -68,14 +80,6 @@ public class Profile
     return wasSet;
   }
 
-  /**
-   * either student or employee ID, for the securities yo
-   */
-  public String getId()
-  {
-    return id;
-  }
-
   public String getUsername()
   {
     return username;
@@ -94,6 +98,14 @@ public class Profile
   public String getLastName()
   {
     return lastName;
+  }
+
+  /**
+   * either student or employee ID, for the securities yo
+   */
+  public int getId()
+  {
+    return id;
   }
 
   public void delete()

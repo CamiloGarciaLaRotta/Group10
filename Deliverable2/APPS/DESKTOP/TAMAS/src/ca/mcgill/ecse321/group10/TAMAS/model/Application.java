@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.group10.TAMAS.model;
 
 // line 56 "../../../../../../alternatemodel.ump"
-// line 133 "../../../../../../alternatemodel.ump"
+// line 132 "../../../../../../alternatemodel.ump"
 public class Application
 {
 
@@ -18,9 +18,6 @@ public class Application
   // MEMBER VARIABLES
   //------------------------
 
-  //Application Attributes
-  private int postingID;
-
   //Autounique Attributes
   private int id;
 
@@ -32,9 +29,8 @@ public class Application
   // CONSTRUCTOR
   //------------------------
 
-  public Application(int aPostingID, Student aStudent, Job aJobs)
+  public Application(Student aStudent, Job aJobs)
   {
-    postingID = aPostingID;
     id = nextId++;
     boolean didAddStudent = setStudent(aStudent);
     if (!didAddStudent)
@@ -51,19 +47,6 @@ public class Application
   //------------------------
   // INTERFACE
   //------------------------
-
-  public boolean setPostingID(int aPostingID)
-  {
-    boolean wasSet = false;
-    postingID = aPostingID;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public int getPostingID()
-  {
-    return postingID;
-  }
 
   public int getId()
   {
@@ -133,8 +116,7 @@ public class Application
   {
     String outputString = "";
     return super.toString() + "["+
-            "id" + ":" + getId()+ "," +
-            "postingID" + ":" + getPostingID()+ "]" + System.getProperties().getProperty("line.separator") +
+            "id" + ":" + getId()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "student = "+(getStudent()!=null?Integer.toHexString(System.identityHashCode(getStudent())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "jobs = "+(getJobs()!=null?Integer.toHexString(System.identityHashCode(getJobs())):"null")
      + outputString;

@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
 // line 38 "../../../../../../alternatemodel.ump"
-// line 116 "../../../../../../alternatemodel.ump"
+// line 115 "../../../../../../alternatemodel.ump"
 public class Student extends Profile
 {
 
@@ -28,9 +28,9 @@ public class Student extends Profile
   // CONSTRUCTOR
   //------------------------
 
-  public Student(String aId, String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience)
+  public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience)
   {
-    super(aId, aUsername, aPassword, aFirstName, aLastName);
+    super(aUsername, aPassword, aFirstName, aLastName);
     experience = aExperience;
     jobs = new ArrayList<Job>();
     applications = new ArrayList<Application>();
@@ -218,9 +218,9 @@ public class Student extends Profile
     return 0;
   }
 
-  public Application addApplication(int aPostingID, Job aJobs)
+  public Application addApplication(Job aJobs)
   {
-    return new Application(aPostingID, this, aJobs);
+    return new Application(this, aJobs);
   }
 
   public boolean addApplication(Application aApplication)

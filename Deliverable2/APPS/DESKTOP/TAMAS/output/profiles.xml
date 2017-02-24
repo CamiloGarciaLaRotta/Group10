@@ -1,5 +1,28 @@
 <pmanager id="1">
-  <students id="2"/>
-  <instructors id="3"/>
-  <admins id="4"/>
+  <students id="2">
+    <student id="3">
+      <username>trevor</username>
+      <password>sdfhlksdfjdf</password>
+      <firstName>Trevor</firstName>
+      <lastName>Lahey</lastName>
+      <id>2</id>
+      <experience></experience>
+      <degree>UNDERGRAD</degree>
+      <jobs id="4"/>
+      <applications id="5"/>
+    </student>
+  </students>
+  <instructors id="6">
+    <instructor id="7">
+      <username>jerry</username>
+      <password>asdfkjdf</password>
+      <firstName>Jerry</firstName>
+      <lastName>Seinfeld</lastName>
+      <id>1</id>
+      <courses id="8"/>
+      <applications id="9"/>
+      <jobs id="10"/>
+    </instructor>
+  </instructors>
+  <admins id="11"/>
 </pmanager>

@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 31 "../../../../../../alternatemodel.ump"
-// line 108 "../../../../../../alternatemodel.ump"
+// line 107 "../../../../../../alternatemodel.ump"
 public class Instructor extends Profile
 {
 
@@ -23,9 +23,9 @@ public class Instructor extends Profile
   // CONSTRUCTOR
   //------------------------
 
-  public Instructor(String aId, String aUsername, String aPassword, String aFirstName, String aLastName)
+  public Instructor(String aUsername, String aPassword, String aFirstName, String aLastName)
   {
-    super(aId, aUsername, aPassword, aFirstName, aLastName);
+    super(aUsername, aPassword, aFirstName, aLastName);
     courses = new ArrayList<Course>();
     applications = new ArrayList<Application>();
     jobs = new ArrayList<Job>();

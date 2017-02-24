@@ -16,22 +16,22 @@ public class ProfileController {
 		this.pm = pm;
 	}
 	
-	public void addInstructorToSystem(String aId, String aUsername, String aPassword, String aFirstName, String aLastName){
-		Instructor instructor = new Instructor(aId,aUsername,aPassword,aFirstName,aLastName);
+	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName){
+		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
 		pm.addInstructor(instructor);
 		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
-	public void addAdminToSystem(String aId, String aUsername, String aPassword, String aFirstName, String aLastName) {
-		Admin admin = new Admin(aId,aUsername,aPassword,aFirstName,aLastName);
+	public void addAdminToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) {
+		Admin admin = new Admin(aUsername,aPassword,aFirstName,aLastName);
 		pm.addAdmin(admin);
 		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
-	public void addStudentToSystem(String aId, String aUsername, String aPassword, String aFirstName, String aLastName, String experience) {
-		Student student = new Student(aId,aUsername,aPassword,aFirstName,aLastName,experience);
+	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience) {
+		Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
 		pm.addStudent(student);
 		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
 		PersistenceXStream.saveToXMLwithXStream(pm);

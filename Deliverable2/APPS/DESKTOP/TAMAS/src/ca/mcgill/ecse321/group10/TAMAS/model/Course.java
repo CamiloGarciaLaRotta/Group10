@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 3 "../../../../../../alternatemodel.ump"
-// line 87 "../../../../../../alternatemodel.ump"
+// line 86 "../../../../../../alternatemodel.ump"
 public class Course
 {
 
@@ -16,7 +16,7 @@ public class Course
 
   //Course Attributes
   private String className;
-  private String cdn;
+  private int cdn;
   private float graderTimeBudget;
   private float taTimeBudget;
 
@@ -27,7 +27,7 @@ public class Course
   // CONSTRUCTOR
   //------------------------
 
-  public Course(String aClassName, String aCdn, float aGraderTimeBudget, float aTaTimeBudget)
+  public Course(String aClassName, int aCdn, float aGraderTimeBudget, float aTaTimeBudget)
   {
     className = aClassName;
     cdn = aCdn;
@@ -69,7 +69,7 @@ public class Course
     return className;
   }
 
-  public String getCdn()
+  public int getCdn()
   {
     return cdn;
   }

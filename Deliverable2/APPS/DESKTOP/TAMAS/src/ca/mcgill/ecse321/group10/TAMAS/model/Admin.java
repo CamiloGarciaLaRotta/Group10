@@ -8,8 +8,8 @@ import java.util.*;
  * unsure if class should create instances of Intrsuctor/Student
  * or rather have all the methods of Instructor/Student
  */
-// line 81 "../../../../../../alternatemodel.ump"
-// line 140 "../../../../../../alternatemodel.ump"
+// line 80 "../../../../../../alternatemodel.ump"
+// line 139 "../../../../../../alternatemodel.ump"
 public class Admin extends Profile
 {
 
@@ -25,9 +25,9 @@ public class Admin extends Profile
   // CONSTRUCTOR
   //------------------------
 
-  public Admin(String aId, String aUsername, String aPassword, String aFirstName, String aLastName)
+  public Admin(String aUsername, String aPassword, String aFirstName, String aLastName)
   {
-    super(aId, aUsername, aPassword, aFirstName, aLastName);
+    super(aUsername, aPassword, aFirstName, aLastName);
     intructors = new ArrayList<Instructor>();
     students = new ArrayList<Student>();
   }

@@ -6,8 +6,8 @@ import java.sql.Date;
 import java.util.*;
 
 // line 11 "../../../../../../alternatemodel.ump"
-// line 93 "../../../../../../alternatemodel.ump"
-// line 127 "../../../../../../alternatemodel.ump"
+// line 92 "../../../../../../alternatemodel.ump"
+// line 126 "../../../../../../alternatemodel.ump"
 public class Job
 {
 
@@ -325,9 +325,9 @@ public class Job
     return 0;
   }
 
-  public Application addApplication(int aPostingID, Student aStudent)
+  public Application addApplication(Student aStudent)
   {
-    return new Application(aPostingID, aStudent, this);
+    return new Application(aStudent, this);
   }
 
   public boolean addApplication(Application aApplication)

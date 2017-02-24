@@ -48,6 +48,12 @@ public class MenuView extends JFrame{
 		publishButton.setText("Publish Job Posting");
 		profileButton.setText("Register Profile");
 		
+		profileButton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				profilePressed();
+			}
+		});
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
@@ -59,6 +65,10 @@ public class MenuView extends JFrame{
 		this.add(panel);
 		this.setSize(new Dimension(X_SIZE,Y_SIZE));
 		pack();
+	}
+	
+	private void profilePressed() {
+		new RegistrationView(pm).setVisible(true);
 	}
 	
 }
