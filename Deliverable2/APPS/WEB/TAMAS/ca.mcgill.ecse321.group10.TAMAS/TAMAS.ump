@@ -2,7 +2,7 @@ namespace ca.mcgill.ecse321.group10.TAMAS.model;
 
 class Course {
   className;
-  immutable cdn;
+  immutable Integer cdn;
   Float graderTimeBudget; // time budget
   Float taTimeBudget;      // time budget
   1 <@>- * Job jobs;
@@ -46,7 +46,7 @@ class Student {
 }
 
 class Profile {
-  immutable id; // either student or employee ID, for the securities yo
+  autounique id; 
   username;
   password;
   firstName;
@@ -55,7 +55,6 @@ class Profile {
 
 class Application {
   autounique id;
-  Integer postingID;
   *-<@> 1 Student student;
   *-<@> 1 Job jobs;
 }

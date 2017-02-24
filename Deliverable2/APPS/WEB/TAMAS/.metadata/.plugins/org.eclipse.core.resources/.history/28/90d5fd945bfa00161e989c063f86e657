@@ -1,0 +1,32 @@
+<?php
+require_once __DIR__.'\..\Controller\InputValidator.php';
+require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\ApplicationManager.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\CourseManager.php';
+
+
+class ApplicationController{
+	
+	public function __construct(){
+	}
+	
+	public function createJob($startTime, $endTime, $salary, 
+							$requirements, $course, $instructor) {
+		//1. validate Input
+		
+		
+		if($name == null || strlen($name) == 0) {
+			throw new Exception("Application name cannot be empty!");
+		} else {
+			//2. Load all the data
+			$pm = new PersistenceTAMAS();
+			$am = $pm->loadApplicationManagerFromStore();
+			
+			//3. Add the new application
+
+		}
+			
+	}
+}
+?>

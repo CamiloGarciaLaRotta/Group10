@@ -1,0 +1,17 @@
+<?php
+require_once __DIR__.'\..\Controller\InputValidator.php';
+require_once __DIR__.'\..\Persistence\PersistenceEventRegistration.php';
+require_once __DIR__.'\..\Model\RegistrationManager.php';
+require_once __DIR__.'\..\Model\Participant.php';
+require_once __DIR__.'\..\Model\Event.php';
+require_once __DIR__.'\..\Model\Registration.php';
+
+class ProfileController{
+	// name of persistent file
+	const FILENAME = 'output/profiles.xml';
+
+	public function __construct(){
+	}
+
+}
+?>

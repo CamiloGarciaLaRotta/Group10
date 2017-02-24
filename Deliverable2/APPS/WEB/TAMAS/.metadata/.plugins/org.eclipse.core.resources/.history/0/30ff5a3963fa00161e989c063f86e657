@@ -1,0 +1,49 @@
+<?php
+require_once __DIR__.'\..\Controller\InputValidator.php';
+require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\ApplicationManager.php';
+require_once __DIR__.'\..\Model\Application.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\Profile.php';
+require_once __DIR__.'\..\Model\CourseManager.php';
+require_once __DIR__.'\..\Model\Course.php';
+
+class ApplicationController{
+	
+	public function __construct(){
+	}
+	
+	public function createJob($startTime, $endTime, $salary, 
+							$requirements, $course, $instructor) {
+		//1. Validate primitive var input
+// 		$startTime = InputValidator::validate_date($startTime);			//TODO check with harley how he validated date
+// 		$endTime = InputValidator::validate_date($endTime);
+		$requirements = InputValidator::validate_input($requirements);
+
+	
+		if($requirements==null || strlen($requirements) == 0){
+			throw new Exception("Requirements cannot be empty!");
+		} else {
+			//2. Load all of the data
+			$pt = new PersistenceTAMAS();
+			$am = $pt->loadApplicationManagerFromStore();
+			$pm = $pt->loadProfileManagerFromStore();
+			$cm = $pt->loadCourseManagerFromStore();
+			
+			// validate reference var input
+			if(pm->) {
+				throw new Exception("");
+			} else if () {
+				throw new Exception("");
+			} else {
+				//3. Add the new particpant
+				$job = new Job($startTime, $endTime, $salary, $requirements, $course, $instructor);
+				$am->addJob($job);
+				
+				//4. Write all the data
+				$pt->writeApplicationDataToStore($am);
+			}
+		}
+	}
+}
+?>

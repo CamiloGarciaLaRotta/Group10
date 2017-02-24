@@ -1,0 +1,42 @@
+<?php
+require_once __DIR__.'\..\Controller\InputValidator.php';
+require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\Profile.php';
+
+
+class ProfileController{
+
+	public function __construct(){
+	}
+	
+	public function createProfile($username, $password, $firstName, $lastName) {
+		//1. Validate input
+		$uName = InputValidator::validate_input($username);
+		$pass = InputValidator::validate_input($password);
+		$fName = InputValidator::validate_input($firstName);
+		$lName = InputValidator::validate_input($lastName);
+
+		if($uName==null || strlen($uName) == 0){
+			throw new Exception("Username name cannot be empty!");
+		} else if($pass==null || strlen($pass) == 0){
+			throw new Exception("Password name cannot be empty!");
+		} elseif($fName==null || strlen($fName) == 0){
+			throw new Exception("First name name cannot be empty!");
+		} elseif($lName==null || strlen($lName) == 0){
+			throw new Exception("Last name name cannot be empty!");
+		} else {
+			//2. Load all of the data
+			$pt = new PersistenceTAMAS();
+			$pm = $pt->loadProfileManagerFromStore();
+
+			//3. Add the new particpant
+			$profile = new Profile($uName, $pass, $fName, $lName);
+			$pm->addProfile($profile);
+
+			//4. Write all the data
+			$pt->writeProfileDataToStore($pm);
+		}
+	}
+}
+?>

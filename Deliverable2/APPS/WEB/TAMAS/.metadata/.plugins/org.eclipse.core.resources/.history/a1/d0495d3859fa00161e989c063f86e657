@@ -1,0 +1,15 @@
+<?php
+require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\ApplicationManager.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\CourseManager.php';
+
+class CourseController{
+	// name of persistent file
+	const FILENAME = 'output/courses.xml';
+	
+	public function __construct(){
+	}
+
+}
+?>
