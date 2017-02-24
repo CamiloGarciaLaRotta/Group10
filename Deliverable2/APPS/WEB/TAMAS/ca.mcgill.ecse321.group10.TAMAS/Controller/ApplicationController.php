@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__.'\.\Controller\InputValidator.php';
-require_once __DIR__.'\.\Persistence\PersistenceTAMAS.php';
-require_once __DIR__.'\.\Model\ApplicationManager.php';
-require_once __DIR__.'\.\Model\Application.php';
-require_once __DIR__.'\.\Model\ProfileManager.php';
-require_once __DIR__.'\.\Model\Profile.php';
-require_once __DIR__.'\.\Model\CourseManager.php';
-require_once __DIR__.'\.\Model\Course.php';
+require_once __DIR__.'\.\InputValidator.php';
+require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\ApplicationManager.php';
+require_once __DIR__.'\..\Model\Application.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\Profile.php';
+require_once __DIR__.'\..\Model\CourseManager.php';
+require_once __DIR__.'\..\Model\Course.php';
 
 class ApplicationController{
 	
@@ -16,15 +16,21 @@ class ApplicationController{
 	public function createJob($startTime, $endTime, $aSalary, 
 							$aRequirements, $aCourse, $anInstructor) {
 		//1. Validate primitive var input
+		$error = "";
 // 		$startTime = InputValidator::validate_date($startTime);			//TODO check with harley how he validated date
 // 		$endTime = InputValidator::validate_date($endTime);
 		$requirements = InputValidator::validate_input($requirements);
 
-	
+		
 		if($requirements==null || strlen($requirements) == 0){
-			throw new Exception("Requirements cannot be empty!");
-		} else if(!is_numeric($aSalary)) {
-			throw new Exception("Salary must be a non null Integer!");
+			$error .= ("Requirements cannot be empty!<br>");
+		} 
+		if(!is_numeric($aSalary)) {
+			$error .= ("Salary must be a non null Integer!<br>");
+		}
+		
+		if(strlen($error) > 0) {
+			throw new Exception($error);
 		} else {
 			//2. Load all of the data
 			$pt = new PersistenceTAMAS();
@@ -51,7 +57,6 @@ class ApplicationController{
 			}
 			
 			//4. Register for the event
-			$error = "";
 			if ($myIntstuctor != NULL && $myCourse != NULL){
 				$myJob = new Job($startTime, $endTime, $aSalary, $requirements, $myCourse, $myInstructor);
 				$am->addJob($job);
@@ -60,9 +65,10 @@ class ApplicationController{
 				$pt->writeApplicationDataToStore($am);
 			} else {
 				if($myIntstuctor == NULL){
-					$error .= "Instructor not found!";
-				} else if ($myCourse == NULL){
-					$error .= "Course not found!";
+					$error .= "Instructor not found!<br>";
+				}
+				if ($myCourse == NULL){
+					$error .= "Course not found!<br>";
 				}
 				throw new Exception(trim($error));
 			}

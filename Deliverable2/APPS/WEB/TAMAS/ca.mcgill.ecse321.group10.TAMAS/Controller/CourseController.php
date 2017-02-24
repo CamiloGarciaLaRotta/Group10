@@ -12,13 +12,20 @@ class CourseController{
 	public function createCourse($course_name, $CDN, 
 								$graderTimeBudget, $TATimeBudget) {
 		//1. Validate input
+		$error = "";
 		$name = InputValidator::validate_input($course_name);
 		if($name==null || strlen($name) == 0){
-			throw new Exception("Course name cannot be empty!");
-		} else if(!is_numeric($CDN)) {
-			throw new Exception("CDN must be a non null Integer!");
-		} else if((!is_numeric($graderTimeBudget)) || (!is_numeric($TATimeBudget))) {
-			throw new Exception("Time budget must be a non null Integer!");
+			$error .= ("Course name cannot be empty!<br> ");
+		} 
+		if(!is_numeric($CDN)) {
+			$error .= ("CDN must be a non null Integer!<br> ");
+		} 
+		if((!is_numeric($graderTimeBudget)) || (!is_numeric($TATimeBudget))) {
+			$error .= ("Time budget must be a non null Integer!<br> ");
+		}
+		
+		if(strlen($error) > 0) {
+			throw new Exception($error);
 		} else {
 			//2. Load all of the data
 			$pt = new PersistenceTAMAS();

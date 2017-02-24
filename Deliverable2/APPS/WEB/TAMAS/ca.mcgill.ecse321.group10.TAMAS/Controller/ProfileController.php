@@ -13,19 +13,27 @@ class ProfileController{
 	
 	public function createInstructor($aUsername, $aPassword, $aFirstName, $aLastName) {
 		//1. Validate input
+		$error = "";
 		$uName = InputValidator::validate_input($aUsername);
 		$pass = InputValidator::validate_input($aPassword);
 		$fName = InputValidator::validate_input($aFirstName);
 		$lName = InputValidator::validate_input($aLastName);
 
 		if($uName==null || strlen($uName) == 0){
-			throw new Exception("Username name cannot be empty!");
-		} else if($pass==null || strlen($pass) == 0){
-			throw new Exception("Password name cannot be empty!");
-		} elseif($fName==null || strlen($fName) == 0){
-			throw new Exception("First name name cannot be empty!");
-		} elseif($lName==null || strlen($lName) == 0){
-			throw new Exception("Last name name cannot be empty!");
+			$error .= ("Username name cannot be empty!<br>");
+		} 
+		if($pass==null || strlen($pass) == 0){
+			$error .= ("Password name cannot be empty!<br>");
+		} 
+		if($fName==null || strlen($fName) == 0){
+			$error .= ("First name name cannot be empty!<br>");
+		} 
+		if($lName==null || strlen($lName) == 0){
+			$error .= ("Last name name cannot be empty!<br>");
+		} 
+		
+		if(strlen($error) > 0) {
+			throw new Exception($error);
 		} else {
 			//2. Load all of the data
 			$pt = new PersistenceTAMAS();

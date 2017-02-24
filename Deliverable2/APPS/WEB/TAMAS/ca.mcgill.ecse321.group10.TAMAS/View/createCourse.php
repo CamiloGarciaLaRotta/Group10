@@ -25,7 +25,9 @@ $cm = $pt->loadCourseManagerFromStore();
 
 <p><span class ="error">
 	<?php
- 		// TODO IMPLEMENT ERROR PROMPT
+	if(isset($_SESSION['errorCourse']) && !empty($_SESSION['errorCourse'])){
+		echo $_SESSION["errorCourse"];
+	}
 	?>
 </span></p>
 

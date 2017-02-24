@@ -26,7 +26,9 @@ $pm = $pt->loadProfileManagerFromStore();
 
 <p><span class ="error">
 	<?php
- 		// TODO IMPLEMENT ERROR PROMPT
+	if(isset($_SESSION['errorInstructor']) && !empty($_SESSION['errorInstructor'])){
+		echo $_SESSION["errorInstructor"];
+	}
 	?>
 </span></p>
 
