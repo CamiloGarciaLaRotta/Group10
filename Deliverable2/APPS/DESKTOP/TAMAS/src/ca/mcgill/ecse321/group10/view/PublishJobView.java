@@ -69,7 +69,7 @@ public class PublishJobView extends JFrame{
 	}
 	
 	private void initComponents() {
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Publish Job Posting");
 		lStart = new JLabel("Start Time: ");
 		lEnd = new JLabel("End Time: ");
@@ -232,7 +232,8 @@ public class PublishJobView extends JFrame{
 		if(courseList.getSelectedIndex() == -1) error += "Course must be specified!\n";
 		double salary = Double.parseDouble(tfSalary.getText());
 		String requirements = tfReqs.getText();
-		String day = jDay.getName();
+		String day = (String)jDay.getValue();
+		System.out.println("Day: " + day);
 		Instructor instructor = pm.getInstructor(instructorList.getSelectedIndex());
 		Course course = instructor.getCourse(courseList.getSelectedIndex());
 		Time startTime = new Time(((java.util.Date)jStartTime.getValue()).getTime());

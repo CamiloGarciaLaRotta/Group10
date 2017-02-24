@@ -1,18 +1,25 @@
 <cmanager id="1">
   <courses id="2">
     <course id="3">
-      <className>Seinfeld</className>
-      <cdn>1999</cdn>
+      <className>Social Assassination</className>
+      <cdn>111</cdn>
       <graderTimeBudget>45.0</graderTimeBudget>
       <taTimeBudget>45.0</taTimeBudget>
       <jobs id="4"/>
     </course>
     <course id="5">
-      <className>CIVE281</className>
-      <cdn>333</cdn>
-      <graderTimeBudget>45738.0</graderTimeBudget>
-      <taTimeBudget>37834.0</taTimeBudget>
+      <className>Golf</className>
+      <cdn>56</cdn>
+      <graderTimeBudget>45.0</graderTimeBudget>
+      <taTimeBudget>45.0</taTimeBudget>
       <jobs id="6"/>
+    </course>
+    <course id="7">
+      <className>Cinematography</className>
+      <cdn>56</cdn>
+      <graderTimeBudget>45.0</graderTimeBudget>
+      <taTimeBudget>45.0</taTimeBudget>
+      <jobs id="8"/>
     </course>
   </courses>
 </cmanager>

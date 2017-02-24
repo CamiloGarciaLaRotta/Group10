@@ -37,7 +37,7 @@ public class ApplicationView extends JFrame{
 	}
 	
 	private void initComponents() {
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Apply for a Job");
 		
 		String [] studentNames = new String[pm.getStudents().size()];

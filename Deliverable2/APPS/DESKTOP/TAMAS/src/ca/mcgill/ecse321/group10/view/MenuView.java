@@ -19,6 +19,7 @@ public class MenuView extends JFrame{
 	private static final int Y_SIZE = 300;
 
 	private JLabel greeting;
+	private JLabel error;
 	private JButton applicationButton;
 	private JButton publishButton;
 	private JButton profileButton;
@@ -37,6 +38,7 @@ public class MenuView extends JFrame{
 	
 	private void initComponents() {
 		greeting = new JLabel();
+		error = new JLabel();
 		applicationButton = new JButton();
 		publishButton = new JButton();
 		profileButton = new JButton();
@@ -65,13 +67,23 @@ public class MenuView extends JFrame{
 		
 		publishButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				new PublishJobView(am,pm,cm).setVisible(true);
+				if(cm.getCourses().size() > 0) {
+					new PublishJobView(am,pm,cm).setVisible(true);
+					error.setText("");
+				}
+				else error.setText("No courses are available. Please create a course.");
+				pack();
 			}
 		});
 		
 		applicationButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				new ApplicationView(am,pm).setVisible(true);
+				if(am.getJobs().size() > 0) {
+					new ApplicationView(am,pm).setVisible(true);
+					error.setText("");
+				}
+				else error.setText("No jobs available.");
+				pack();
 			}
 		});
 		
@@ -79,10 +91,11 @@ public class MenuView extends JFrame{
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		panel.add(greeting);
+		panel.add(error);
 		panel.add(profileButton);
 		panel.add(courseButton);
-		panel.add(applicationButton);
 		panel.add(publishButton);
+		panel.add(applicationButton);
 		
 		this.add(panel);
 		this.setSize(new Dimension(X_SIZE,Y_SIZE));
@@ -91,10 +104,17 @@ public class MenuView extends JFrame{
 	
 	private void profilePressed() {
 		new RegistrationView(pm).setVisible(true);
+		error.setText("");
+		pack();
 	}
 	
 	private void coursePressed() {
-		new CreateCourseView(cm,pm).setVisible(true);
+		if(pm.getInstructors().size() > 0) {
+			new CreateCourseView(cm,pm).setVisible(true);
+			error.setText("");
+		}
+		else error.setText("No instructors available. Please register an instructor profile.");
+		pack();
 	}
 	
 }
