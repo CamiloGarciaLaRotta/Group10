@@ -44,7 +44,7 @@ class ApplicationController{
 					break;
 				}
 			}
-			//3. Find the event
+			// Find the event
 			$myCourse = NULL;
 			foreach ($this->cm->getCourses() as $course){
 				if(strcmp($course->getCdn(), $aCourse) ==0){
@@ -53,12 +53,12 @@ class ApplicationController{
 				}
 			}
 			
-			//4. Register for the event
+			// Register for the event
 			if ($myIntstuctor != NULL && $myCourse != NULL){
 				$myJob = new Job($startTime, $endTime, $aSalary, $requirements, $myCourse, $myInstructor);
 				$this->am->addJob($job);
 				
-				//4. Write all the data
+				// Write all the data
 				$this->pt->writeApplicationDataToStore($this->am);
 			} else {
 				if($myIntstuctor == NULL){
@@ -72,12 +72,50 @@ class ApplicationController{
 		}
 	}
 	
-	public function deleteJob() {
-		//TODO
+	public function deleteJob($jobID) {
+		$error = "";
+		
+		$myJob = NULL;
+		foreach ($this->am->getJobs() as $job){
+			if(strcmp($job->getId(), $jobID) ==0){
+				$myjob = $job;
+				break;
+			}
+		}
+			
+		if ($myjob != NULL){
+			// Delete posting
+			$this->am->removeJob($myjob);
+		
+			// Write all the data
+			$this->pt->writeApplicationDataToStore($this->am);
+		} else {
+			$error .= "Job Application not found!<br>";
+			throw new Exception(trim($error));
+		}
 	}
 	
-	public function publishJob() {
-		//TODO
+	public function publishJob($jobID) {
+		$error = "";
+		
+		$myJob = NULL;
+		foreach ($this->am->getJobs() as $job){
+			if(strcmp($job->getId(), $jobID) ==0){
+				$myjob = $job;
+				break;
+			}
+		}
+			
+		if ($myjob != NULL){
+			// Delete posting
+			$this->am->publishJob($myjob);  //TODO MUST IMPLEMENT A FLAG TO PUBLISH
+		
+			// Write all the data
+			$this->pt->writeApplicationDataToStore($this->am);
+		} else {
+			$error .= "Job Application not found!<br>";
+			throw new Exception(trim($error));
+		}
 	}
 }
 ?>
