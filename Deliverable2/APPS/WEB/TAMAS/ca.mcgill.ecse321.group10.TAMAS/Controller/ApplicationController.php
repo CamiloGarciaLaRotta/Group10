@@ -9,13 +9,17 @@ require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
 
 class ApplicationController{
+	private $pt = new PersistenceTAMAS();
+	private $am = $pt->loadApplicationManagerFromStore();
+	private $pm = $pt->loadProfileManagerFromStore();
+	private $cm = $pt->loadCourseManagerFromStore();
 	
 	public function __construct(){
 	}
 	
 	public function createJob($startTime, $endTime, $aSalary, 
 							$aRequirements, $aCourse, $anInstructor) {
-		//1. Validate primitive var input
+		//Validate primitive var input
 		$error = "";
 // 		$startTime = InputValidator::validate_date($startTime);			//TODO check with harley how he validated date
 // 		$endTime = InputValidator::validate_date($endTime);
@@ -32,16 +36,9 @@ class ApplicationController{
 		if(strlen($error) > 0) {
 			throw new Exception($error);
 		} else {
-			//2. Load all of the data
-			$pt = new PersistenceTAMAS();
-			$am = $pt->loadApplicationManagerFromStore();
-			$pm = $pt->loadProfileManagerFromStore();
-			$cm = $pt->loadCourseManagerFromStore();
-
-			
 			// validate reference var input
 			$myIntstuctor = NULL;
-			foreach ($pm->getInstructors() as $instructor){
+			foreach ($this->pm->getInstructors() as $instructor){
 				if(strcmp($instructor->getUsername(), $anInstructor)==0){
 					$myIntstuctor = $instructor;
 					break;
@@ -49,7 +46,7 @@ class ApplicationController{
 			}
 			//3. Find the event
 			$myCourse = NULL;
-			foreach ($cm->getCourses() as $course){
+			foreach ($this->cm->getCourses() as $course){
 				if(strcmp($course->getCdn(), $aCourse) ==0){
 					$myCourse = $course;
 					break;
@@ -59,10 +56,10 @@ class ApplicationController{
 			//4. Register for the event
 			if ($myIntstuctor != NULL && $myCourse != NULL){
 				$myJob = new Job($startTime, $endTime, $aSalary, $requirements, $myCourse, $myInstructor);
-				$am->addJob($job);
+				$this->am->addJob($job);
 				
 				//4. Write all the data
-				$pt->writeApplicationDataToStore($am);
+				$this->pt->writeApplicationDataToStore($this->am);
 			} else {
 				if($myIntstuctor == NULL){
 					$error .= "Instructor not found!<br>";
@@ -73,6 +70,14 @@ class ApplicationController{
 				throw new Exception(trim($error));
 			}
 		}
+	}
+	
+	public function deleteJob() {
+		//TODO
+	}
+	
+	public function publishJob() {
+		//TODO
 	}
 }
 ?>

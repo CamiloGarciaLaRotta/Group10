@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> Create Job Posting </title>
+<title> Manage Job Postings </title>
 <style>
 .error {color: #FF0000;}
 </style>
@@ -43,7 +43,23 @@ Salary: <input type ="text" name="job_salary" required/>
 		
 		End Time: <input type= "date" name="job_end" value=" <?php echo date('Y-m-d');?>" /><br>
 	</p>
-	<p><input type= "submit" value="Create Course"/></p>
+	<p><input type= "submit" value="Create"/></p>
+</form>
+
+<br>
+
+<form action='validateJob.php' method='post'>
+	<p>
+		Select the Job ID to delete:  
+			<select name='jobspinner'>
+			<?php
+			foreach ($am->getJobs() as $job){
+				echo "<option>" . $job->getId() . "</option>";
+			}
+			?>
+			</select>
+		<input type ='submit' value='Delete' /><input type ='submit' value='Publish' />
+	</p>
 </form>
 
 </body>

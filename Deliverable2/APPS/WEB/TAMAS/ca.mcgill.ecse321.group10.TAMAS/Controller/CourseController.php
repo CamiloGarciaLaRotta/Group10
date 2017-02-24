@@ -5,13 +5,15 @@ require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
 
 class CourseController{
-	
+	private $pt = new PersistenceTAMAS();
+	private $cm = $pt->loadCourseManagerFromStore();
+				
 	public function __construct(){
 	}
 	
 	public function createCourse($course_name, $CDN, 
 								$graderTimeBudget, $TATimeBudget) {
-		//1. Validate input
+		// Validate input
 		$error = "";
 		$name = InputValidator::validate_input($course_name);
 		if($name==null || strlen($name) == 0){
@@ -27,16 +29,12 @@ class CourseController{
 		if(strlen($error) > 0) {
 			throw new Exception($error);
 		} else {
-			//2. Load all of the data
-			$pt = new PersistenceTAMAS();
-			$cm = $pt->loadCourseManagerFromStore();
-				
-			//3. Add the new course
+			// Add the new course
 			$course = new Course($name, $CDN, $graderTimeBudget, $TATimeBudget);
-			$cm->addCourse($course);
+			$this->cm->addCourse($course);
 				
 			//4. Write all the data
-			$pt->writeCourseDataToStore($cm);
+			$this->pt->writeCourseDataToStore($this->cm);
 		}
 	}
 

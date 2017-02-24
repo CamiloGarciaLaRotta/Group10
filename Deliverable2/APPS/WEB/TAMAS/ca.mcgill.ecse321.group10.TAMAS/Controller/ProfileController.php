@@ -7,12 +7,14 @@ require_once __DIR__.'\..\Model\Instructor.php';
 
 
 class ProfileController{
-
+	private $pt = new PersistenceTAMAS();
+	private $pm = $pt->loadProfileManagerFromStore();
+	
 	public function __construct(){
 	}
 	
 	public function createInstructor($aUsername, $aPassword, $aFirstName, $aLastName) {
-		//1. Validate input
+		// Validate input
 		$error = "";
 		$uName = InputValidator::validate_input($aUsername);
 		$pass = InputValidator::validate_input($aPassword);
@@ -35,16 +37,12 @@ class ProfileController{
 		if(strlen($error) > 0) {
 			throw new Exception($error);
 		} else {
-			//2. Load all of the data
-			$pt = new PersistenceTAMAS();
-			$pm = $pt->loadProfileManagerFromStore();
-
-			//3. Add the new profile
+			// Add the new profile
 			$instructor = new Instructor($uName, $pass, $fName, $lName);
-			$pm->addInstructor($instructor);
+			$this->pm->addInstructor($instructor);
 
-			//4. Write all the data
-			$pt->writeProfileDataToStore($pm);
+			// Write all the data
+			$this->pt->writeProfileDataToStore($this->pm);
 		}
 	}
 }

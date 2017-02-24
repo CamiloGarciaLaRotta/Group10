@@ -16,8 +16,8 @@
 		<form action="./View/createInstructor.php">
 		    <input type="submit" value="Create Instructor" />
 		</form><br>
-		<form action="./View/createJob.php">
-		    <input type="submit" value="Create Job Posting" />
+		<form action="./View/job.php">
+		    <input type="submit" value="Manage Job Postings" />
 		</form><br>
 		</center>
 	</body>
