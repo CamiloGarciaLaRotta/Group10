@@ -12,10 +12,10 @@
 
 $timezone = date_default_timezone_set('America/New_York');
 
-require_once __DIR__.'\.\Persistence\PersistenceTAMAS.php';
-require_once __DIR__.'\.\Model\ProfileManager.php';
-require_once __DIR__.'\.\Model\Profile.php';
-require_once __DIR__.'\.\Model\Instructor.php';
+require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\Profile.php';
+require_once __DIR__.'\..\Model\Instructor.php';
 
 session_start();
 

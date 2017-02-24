@@ -61,7 +61,7 @@ class Application {
 
 class ApplicationManager {
 	0..1 -> * Application applications;
-	0..1 -> 1 ProfileManager profiles;
+	0..1 -> * ProfileManager profileManager;
 	0..1 -> * Job jobs;
 }
 

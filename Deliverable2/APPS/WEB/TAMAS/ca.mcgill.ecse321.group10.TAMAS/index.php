@@ -10,13 +10,13 @@
 	<body>
 		<!-- TO HELL WITH YOUR UNREALISTIC WEB BEAUTY STANDARDS -->
 		<center><br>
-		<form action="createCourse.php">
+		<form action="./View/createCourse.php">
 		    <input type="submit" value="Create Course" />
 		</form><br>
-		<form action="createInstructor.php">
+		<form action="./View/createInstructor.php">
 		    <input type="submit" value="Create Instructor" />
 		</form><br>
-		<form action="createJob.php">
+		<form action="./View/createJob.php">
 		    <input type="submit" value="Create Job Posting" />
 		</form><br>
 		</center>

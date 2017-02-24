@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__.'\..\Controller\InputValidator.php';
-require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-require_once __DIR__.'\..\Model\ApplicationManager.php';
-require_once __DIR__.'\..\Model\Application.php';
-require_once __DIR__.'\..\Model\ProfileManager.php';
-require_once __DIR__.'\..\Model\Profile.php';
-require_once __DIR__.'\..\Model\CourseManager.php';
-require_once __DIR__.'\..\Model\Course.php';
+require_once __DIR__.'\.\Controller\InputValidator.php';
+require_once __DIR__.'\.\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\.\Model\ApplicationManager.php';
+require_once __DIR__.'\.\Model\Application.php';
+require_once __DIR__.'\.\Model\ProfileManager.php';
+require_once __DIR__.'\.\Model\Profile.php';
+require_once __DIR__.'\.\Model\CourseManager.php';
+require_once __DIR__.'\.\Model\Course.php';
 
 class ApplicationController{
 	
@@ -31,6 +31,7 @@ class ApplicationController{
 			$am = $pt->loadApplicationManagerFromStore();
 			$pm = $pt->loadProfileManagerFromStore();
 			$cm = $pt->loadCourseManagerFromStore();
+
 			
 			// validate reference var input
 			$myIntstuctor = NULL;
