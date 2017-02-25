@@ -71,51 +71,52 @@ class ApplicationController{
 			}
 		}
 	}
-	
-	public function deleteJob($jobID) {
-		$error = "";
+
+// KEPT FOR FUTURE DELIVERABLES
+// 	public function deleteJob($jobID) {
+// 		$error = "";
 		
-		$myJob = NULL;
-		foreach ($this->am->getJobs() as $job){
-			if(strcmp($job->getId(), $jobID) ==0){
-				$myjob = $job;
-				break;
-			}
-		}
+// 		$myJob = NULL;
+// 		foreach ($this->am->getJobs() as $job){
+// 			if(strcmp($job->getId(), $jobID) ==0){
+// 				$myjob = $job;
+// 				break;
+// 			}
+// 		}
 			
-		if ($myjob != NULL){
-			// Delete posting
-			$this->am->removeJob($myjob);
+// 		if ($myjob != NULL){
+// 			// Delete posting
+// 			$this->am->removeJob($myjob);
 		
-			// Write all the data
-			$this->pt->writeApplicationDataToStore($this->am);
-		} else {
-			$error .= "Job Application not found!<br>";
-			throw new Exception(trim($error));
-		}
-	}
+// 			// Write all the data
+// 			$this->pt->writeApplicationDataToStore($this->am);
+// 		} else {
+// 			$error .= "Job Application not found!<br>";
+// 			throw new Exception(trim($error));
+// 		}
+// 	}
 	
-	public function publishJob($jobID) {
-		$error = "";
+// 	public function publishJob($jobID) {
+// 		$error = "";
 		
-		$myJob = NULL;
-		foreach ($this->am->getJobs() as $job){
-			if(strcmp($job->getId(), $jobID) ==0){
-				$myjob = $job;
-				break;
-			}
-		}
+// 		$myJob = NULL;
+// 		foreach ($this->am->getJobs() as $job){
+// 			if(strcmp($job->getId(), $jobID) ==0){
+// 				$myjob = $job;
+// 				break;
+// 			}
+// 		}
 			
-		if ($myjob != NULL){
-			// Delete posting
-			$this->am->publishJob($myjob);  //TODO MUST IMPLEMENT A FLAG TO PUBLISH
+// 		if ($myjob != NULL){
+// 			// Delete posting
+// 			$this->am->publishJob($myjob);  //TODO MUST IMPLEMENT A FLAG TO PUBLISH
 		
-			// Write all the data
-			$this->pt->writeApplicationDataToStore($this->am);
-		} else {
-			$error .= "Job Application not found!<br>";
-			throw new Exception(trim($error));
-		}
-	}
+// 			// Write all the data
+// 			$this->pt->writeApplicationDataToStore($this->am);
+// 		} else {
+// 			$error .= "Job Application not found!<br>";
+// 			throw new Exception(trim($error));
+// 		}
+// 	}
 }
 ?>

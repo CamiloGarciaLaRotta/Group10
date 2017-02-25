@@ -11,30 +11,32 @@ try {
 	$_SESSION['errorJob'] = "";
 	
 	switch($_REQUEST['subject']) {
-	
-		case 'Create': 
+		//case 'Create':
+		case 'Publish': 
 			$ac->createJob($_POST['job_start'],$_POST['job_end'],
+					$_POST['job_day'], $_POST['job_position'],
 					$_POST['job_salary'], $_POST['job_requirements'],
 					$_POST['job_courseCDN'], $_POST['job_instructorUsername']);
 			break;
 	
-		case 'Delete': 
-			$job = NULL;
-			if (isset($_POST['jobspinner'])) {
-				$jobID = $_POST['jobspinner'];
-			}
+// LEFT EHRE FOR FUTURE IMPLEMENTATIONS
+// 		case 'Delete': 
+// 			$job = NULL;
+// 			if (isset($_POST['jobspinner'])) {
+// 				$jobID = $_POST['jobspinner'];
+// 			}
 			
-			$ac->deleteJob($jobID);
-			break;
+// 			$ac->deleteJob($jobID);
+// 			break;
 	
-		case 'Publish': 
-			$job = NULL;
-			if (isset($_POST['jobspinner'])) {
-				$jobID = $_POST['jobspinner'];
-			}
+// 		case 'Publish': 
+// 			$job = NULL;
+// 			if (isset($_POST['jobspinner'])) {
+// 				$jobID = $_POST['jobspinner'];
+// 			}
 				
-			$ac->publishJob($jobID);
-			break;
+// 			$ac->publishJob($jobID);
+// 			break;
 	
 	}	
 } catch (Exception $e) {
