@@ -28,5 +28,12 @@
       <taTimeBudget>1111.0</taTimeBudget>
       <jobs id="10"/>
     </course>
+    <course id="11">
+      <className>Shit Analogies</className>
+      <cdn>32</cdn>
+      <graderTimeBudget>3423.0</graderTimeBudget>
+      <taTimeBudget>2.0</taTimeBudget>
+      <jobs id="12"/>
+    </course>
   </courses>
 </cmanager>

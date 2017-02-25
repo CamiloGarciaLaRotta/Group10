@@ -19,6 +19,9 @@ public class CourseController {
 		if(aClassName == null || aClassName.trim().length() == 0) {
 			error += "Course name cannot be empty! ";
 		}
+		if(aCdn < 0) error += "CDN must be positive! ";
+		if(aGraderTimeBudget < 0) error +=  "Grader Budget must be positive! ";
+		if(aTaTimeBudget < 0) error += "TA Budget must be positive! ";
 		if(error.length() > 0) throw new InputException(error);
 		Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget);
 		cm.addCourse(c);

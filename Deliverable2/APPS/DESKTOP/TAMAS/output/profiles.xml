@@ -74,38 +74,45 @@
           <taTimeBudget>1111.0</taTimeBudget>
           <jobs id="24"/>
         </course>
+        <course id="25">
+          <className>Shit Analogies</className>
+          <cdn>32</cdn>
+          <graderTimeBudget>3423.0</graderTimeBudget>
+          <taTimeBudget>2.0</taTimeBudget>
+          <jobs id="26"/>
+        </course>
       </courses>
-      <applications id="25"/>
-      <jobs id="26"/>
+      <applications id="27"/>
+      <jobs id="28"/>
     </instructor>
-    <instructor id="27">
+    <instructor id="29">
       <username>ld</username>
       <password>sdfjdf</password>
       <firstName>Larry</firstName>
       <lastName>David</lastName>
       <id>4</id>
-      <courses id="28">
-        <course id="29">
+      <courses id="30">
+        <course id="31">
           <className>Social Assassination</className>
           <cdn>232423</cdn>
           <graderTimeBudget>1221.0</graderTimeBudget>
           <taTimeBudget>2321.0</taTimeBudget>
-          <jobs id="30"/>
+          <jobs id="32"/>
         </course>
       </courses>
-      <applications id="31"/>
-      <jobs id="32"/>
+      <applications id="33"/>
+      <jobs id="34"/>
     </instructor>
   </instructors>
-  <admins id="33">
-    <admin id="34">
+  <admins id="35">
+    <admin id="36">
       <username>kermit</username>
       <password>dsfds</password>
       <firstName>Kermit</firstName>
       <lastName>the Frog</lastName>
       <id>1</id>
-      <intructors id="35"/>
-      <students id="36"/>
+      <intructors id="37"/>
+      <students id="38"/>
     </admin>
   </admins>
 </pmanager>
