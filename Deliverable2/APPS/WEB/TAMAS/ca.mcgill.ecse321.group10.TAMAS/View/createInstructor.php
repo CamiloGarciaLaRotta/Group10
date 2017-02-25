@@ -43,5 +43,10 @@ $pm = $pt->loadProfileManagerFromStore();
 	<p><input type= "submit" value="Create Instructor"/></p>
 </form>
 
+<br>
+
+<form action="../index.php">
+		    <input type="submit" value="Back" />
+</form><br>
 </body>
 </html>

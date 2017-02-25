@@ -52,10 +52,14 @@ Salary: <input type ="text" name="job_salary" required/>
 		  <input type="radio" name="job_position" value="PositionTA" required> TA
 		  <input type="radio" name="job_position" value="PositionGRADER" required> Grader<br>
 	</p>
-	<p><input type= "submit" value="Publish"/></p>
+	<p><input type= "submit" name="submit" value="Publish"/></p>
 </form>
 
 <br>
+
+<form action="../index.php">
+		    <input type="submit" value="Back" />
+</form><br>
 
 <!-- Leaving her ejust to facilitate its implementation in future deliverables -->
 <!-- <form action='validateJob.php' method='post'> -->

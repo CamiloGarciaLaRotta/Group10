@@ -10,7 +10,7 @@ try {
 
 	$_SESSION['errorJob'] = "";
 	
-	switch($_REQUEST['subject']) {
+	switch($_POST['submit']) {
 		//case 'Create':
 		case 'Publish': 
 			$ac->createJob($_POST['job_start'],$_POST['job_end'],
@@ -48,6 +48,6 @@ try {
 DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/job.php"/>
+<!-- 		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/job.php"/> -->
 	</head>
 </html>
