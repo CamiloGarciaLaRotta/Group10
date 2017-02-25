@@ -18,6 +18,7 @@ class Job
   //Job Attributes
   private $startTime;
   private $endTime;
+  private $day;
   private $salary;
   private $requirements;
 
@@ -39,10 +40,11 @@ class Job
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aStartTime, $aEndTime, $aSalary, $aRequirements, $aCourse, $aInstructor)
+  public function __construct($aStartTime, $aEndTime, $aDay, $aSalary, $aRequirements, $aCourse, $aInstructor)
   {
     $this->startTime = $aStartTime;
     $this->endTime = $aEndTime;
+    $this->day = $aDay;
     $this->salary = $aSalary;
     $this->requirements = $aRequirements;
     $this->id = self::$nextId++;
@@ -81,6 +83,14 @@ class Job
     return $wasSet;
   }
 
+  public function setDay($aDay)
+  {
+    $wasSet = false;
+    $this->day = $aDay;
+    $wasSet = true;
+    return $wasSet;
+  }
+
   public function getStartTime()
   {
     return $this->startTime;
@@ -89,6 +99,11 @@ class Job
   public function getEndTime()
   {
     return $this->endTime;
+  }
+
+  public function getDay()
+  {
+    return $this->day;
   }
 
   public function getSalary()

@@ -10,8 +10,9 @@ class Course {
 
 class Job{
   autounique id;
-  Date startTime;
-  Date endTime;
+  Time startTime;
+  Time endTime;
+  day;
   position {
 	  TA{}
 	  GRADER{}
@@ -46,7 +47,7 @@ class Student {
 }
 
 class Profile {
-  autounique id; 
+  autounique id; // either student or employee ID, for the securities yo
   username;
   password;
   firstName;
@@ -61,7 +62,6 @@ class Application {
 
 class ApplicationManager {
 	0..1 -> * Application applications;
-	0..1 -> * ProfileManager profileManager;
 	0..1 -> * Job jobs;
 }
 

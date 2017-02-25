@@ -17,15 +17,12 @@ class ApplicationController{
 	public function __construct(){
 	}
 	
-	public function createJob($startTime, $endTime, $aSalary, 
+	public function createJob($startTime, $endTime, $aDay, $aPosition, $aSalary, 
 							$aRequirements, $aCourse, $anInstructor) {
 		//Validate primitive var input
 		$error = "";
-// 		$startTime = InputValidator::validate_date($startTime);			//TODO check with harley how he validated date
-// 		$endTime = InputValidator::validate_date($endTime);
 		$requirements = InputValidator::validate_input($requirements);
 
-		
 		if($requirements==null || strlen($requirements) == 0){
 			$error .= ("Requirements cannot be empty!<br>");
 		} 
@@ -55,7 +52,8 @@ class ApplicationController{
 			
 			// Register for the event
 			if ($myIntstuctor != NULL && $myCourse != NULL){
-				$myJob = new Job($startTime, $endTime, $aSalary, $requirements, $myCourse, $myInstructor);
+				$myJob = new Job($startTime, $endTime, $aDay, $aSalary, $requirements, $myCourse, $myInstructor);
+				$myJob->setPosition($aPosition);
 				$this->am->addJob($job);
 				
 				// Write all the data

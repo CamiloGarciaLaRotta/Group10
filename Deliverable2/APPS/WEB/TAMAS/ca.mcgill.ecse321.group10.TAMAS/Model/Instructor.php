@@ -274,9 +274,9 @@ class Instructor extends Profile
     return 0;
   }
 
-  public function addJobVia($aStartTime, $aEndTime, $aSalary, $aRequirements, $aCourse)
+  public function addJobVia($aStartTime, $aEndTime, $aDay, $aSalary, $aRequirements, $aCourse)
   {
-    return new Job($aStartTime, $aEndTime, $aSalary, $aRequirements, $aCourse, $this);
+    return new Job($aStartTime, $aEndTime, $aDay, $aSalary, $aRequirements, $aCourse, $this);
   }
 
   public function addJob($aJob)

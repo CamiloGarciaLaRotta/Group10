@@ -11,7 +11,6 @@ class ApplicationManager
 
   //ApplicationManager Associations
   private $applications;
-  private $profileManager;
   private $jobs;
 
   //------------------------
@@ -21,7 +20,6 @@ class ApplicationManager
   public function __construct()
   {
     $this->applications = array();
-    $this->profileManager = array();
     $this->jobs = array();
   }
 
@@ -60,47 +58,6 @@ class ApplicationManager
     foreach($this->applications as $application)
     {
       if ($application->equals($aApplication))
-      {
-        $wasFound = true;
-        break;
-      }
-      $index += 1;
-    }
-    $index = $wasFound ? $index : -1;
-    return $index;
-  }
-
-  public function getProfileManager_index($index)
-  {
-    $aProfileManager = $this->profileManager[$index];
-    return $aProfileManager;
-  }
-
-  public function getProfileManager()
-  {
-    $newProfileManager = $this->profileManager;
-    return $newProfileManager;
-  }
-
-  public function numberOfProfileManager()
-  {
-    $number = count($this->profileManager);
-    return $number;
-  }
-
-  public function hasProfileManager()
-  {
-    $has = $this->numberOfProfileManager() > 0;
-    return $has;
-  }
-
-  public function indexOfProfileManager($aProfileManager)
-  {
-    $wasFound = false;
-    $index = 0;
-    foreach($this->profileManager as $profileManager)
-    {
-      if ($profileManager->equals($aProfileManager))
       {
         $wasFound = true;
         break;
@@ -210,64 +167,6 @@ class ApplicationManager
     return $wasAdded;
   }
 
-  public static function minimumNumberOfProfileManager()
-  {
-    return 0;
-  }
-
-  public function addProfileManager($aProfileManager)
-  {
-    $wasAdded = false;
-    if ($this->indexOfProfileManager($aProfileManager) !== -1) { return false; }
-    $this->profileManager[] = $aProfileManager;
-    $wasAdded = true;
-    return $wasAdded;
-  }
-
-  public function removeProfileManager($aProfileManager)
-  {
-    $wasRemoved = false;
-    if ($this->indexOfProfileManager($aProfileManager) != -1)
-    {
-      unset($this->profileManager[$this->indexOfProfileManager($aProfileManager)]);
-      $this->profileManager = array_values($this->profileManager);
-      $wasRemoved = true;
-    }
-    return $wasRemoved;
-  }
-
-  public function addProfileManagerAt($aProfileManager, $index)
-  {  
-    $wasAdded = false;
-    if($this->addProfileManager($aProfileManager))
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfProfileManager()) { $index = $this->numberOfProfileManager() - 1; }
-      array_splice($this->profileManager, $this->indexOfProfileManager($aProfileManager), 1);
-      array_splice($this->profileManager, $index, 0, array($aProfileManager));
-      $wasAdded = true;
-    }
-    return $wasAdded;
-  }
-
-  public function addOrMoveProfileManagerAt($aProfileManager, $index)
-  {
-    $wasAdded = false;
-    if($this->indexOfProfileManager($aProfileManager) !== -1)
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfProfileManager()) { $index = $this->numberOfProfileManager() - 1; }
-      array_splice($this->profileManager, $this->indexOfProfileManager($aProfileManager), 1);
-      array_splice($this->profileManager, $index, 0, array($aProfileManager));
-      $wasAdded = true;
-    } 
-    else 
-    {
-      $wasAdded = $this->addProfileManagerAt($aProfileManager, $index);
-    }
-    return $wasAdded;
-  }
-
   public static function minimumNumberOfJobs()
   {
     return 0;
@@ -334,7 +233,6 @@ class ApplicationManager
   public function delete()
   {
     $this->applications = array();
-    $this->profileManager = array();
     $this->jobs = array();
   }
 

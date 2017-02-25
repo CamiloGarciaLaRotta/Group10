@@ -49,8 +49,8 @@ $am = $pt->loadApplicationManagerFromStore();
 Salary: <input type ="text" name="job_salary" required/>
 		
 		End Time: <input type= "time" name="job_end" value="04:20" />
-		  <input type="radio" name="job_position" value="TA"> TA
-		  <input type="radio" name="job_position" value="grader"> Grader<br>
+		  <input type="radio" name="job_position" value="PositionTA" required> TA
+		  <input type="radio" name="job_position" value="PositionGRADER" required> Grader<br>
 	</p>
 	<p><input type= "submit" value="Publish"/></p>
 </form>

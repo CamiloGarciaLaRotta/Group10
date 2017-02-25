@@ -13,9 +13,9 @@ class Tutorial extends Job
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aStartTime, $aEndTime, $aSalary, $aRequirements, $aCourse, $aInstructor)
+  public function __construct($aStartTime, $aEndTime, $aDay, $aSalary, $aRequirements, $aCourse, $aInstructor)
   {
-    parent::__construct($aStartTime, $aEndTime, $aSalary, $aRequirements, $aCourse, $aInstructor);
+    parent::__construct($aStartTime, $aEndTime, $aDay, $aSalary, $aRequirements, $aCourse, $aInstructor);
   }
 
   //------------------------
