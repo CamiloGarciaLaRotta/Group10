@@ -44,7 +44,7 @@ public class CreateCourseView extends JFrame{
 	}
 	
 	private void initComponents() {
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Create Course");
 		String [] instructorNames = new String[pm.getInstructors().size()];
 		for(int c = 0; c < instructorNames.length; c++) {

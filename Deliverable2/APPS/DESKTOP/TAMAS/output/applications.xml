@@ -2,27 +2,28 @@
   <applications id="2"/>
   <jobs id="3">
     <job id="4">
-      <startTime id="5">21:48:27</startTime>
-      <endTime id="6">01:48:00</endTime>
-      <salary>12.0</salary>
+      <startTime id="5">21:11:00</startTime>
+      <endTime id="6">23:11:58</endTime>
+      <day>Tuesday</day>
+      <salary>113.0</salary>
       <requirements>blah</requirements>
       <id>1</id>
       <position>TA</position>
       <course id="7">
-        <className>CIVE281</className>
-        <cdn>333</cdn>
-        <graderTimeBudget>45738.0</graderTimeBudget>
-        <taTimeBudget>37834.0</taTimeBudget>
+        <className>Cinematography</className>
+        <cdn>56</cdn>
+        <graderTimeBudget>45.0</graderTimeBudget>
+        <taTimeBudget>45.0</taTimeBudget>
         <jobs id="8">
           <job reference="4"/>
         </jobs>
       </course>
       <instructor id="9">
-        <username>artvandelay</username>
-        <password>bosco</password>
-        <firstName>George</firstName>
-        <lastName>Costanza</lastName>
-        <id>3</id>
+        <username>kelvarnsen</username>
+        <password>hjdf</password>
+        <firstName>Jerry</firstName>
+        <lastName>Seinfeld</lastName>
+        <id>2</id>
         <courses id="10">
           <course reference="7"/>
         </courses>
@@ -35,15 +36,16 @@
       <applications id="14"/>
     </job>
     <job id="15">
-      <startTime id="16">18:48:00</startTime>
-      <endTime id="17">21:48:36</endTime>
-      <salary>13.0</salary>
-      <requirements>Hello, Newman</requirements>
-      <id>2</id>
-      <position>TA</position>
+      <startTime id="16">20:13:00</startTime>
+      <endTime id="17">23:13:03</endTime>
+      <day>Wednesday</day>
+      <salary>44.0</salary>
+      <requirements>Curb fan</requirements>
+      <id>1</id>
+      <position>GRADER</position>
       <course id="18">
-        <className>Seinfeld</className>
-        <cdn>1999</cdn>
+        <className>Social Assassination</className>
+        <cdn>111</cdn>
         <graderTimeBudget>45.0</graderTimeBudget>
         <taTimeBudget>45.0</taTimeBudget>
         <jobs id="19">
@@ -51,21 +53,28 @@
         </jobs>
       </course>
       <instructor id="20">
-        <username>kelvarnsen</username>
-        <password>dsfhjkdf</password>
-        <firstName>Jerry</firstName>
-        <lastName>Seinfeld</lastName>
-        <id>2</id>
+        <username>ld</username>
+        <password>dsfjkdf</password>
+        <firstName>Larry</firstName>
+        <lastName>David</lastName>
+        <id>1</id>
         <courses id="21">
           <course reference="18"/>
+          <course id="22">
+            <className>Golf</className>
+            <cdn>56</cdn>
+            <graderTimeBudget>45.0</graderTimeBudget>
+            <taTimeBudget>45.0</taTimeBudget>
+            <jobs id="23"/>
+          </course>
         </courses>
-        <applications id="22"/>
-        <jobs id="23">
+        <applications id="24"/>
+        <jobs id="25">
           <job reference="15"/>
         </jobs>
       </instructor>
-      <students id="24"/>
-      <applications id="25"/>
+      <students id="26"/>
+      <applications id="27"/>
     </job>
   </jobs>
 </amanager>

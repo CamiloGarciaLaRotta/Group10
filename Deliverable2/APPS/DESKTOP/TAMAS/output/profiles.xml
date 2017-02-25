@@ -1,64 +1,83 @@
 <pmanager id="1">
   <students id="2">
     <student id="3">
-      <username>pennypacker</username>
-      <password>sdfhjkdf</password>
+      <username>kman</username>
+      <password>shjkdf</password>
       <firstName>Cosmo</firstName>
       <lastName>Kramer</lastName>
-      <id>4</id>
+      <id>3</id>
       <experience></experience>
       <degree>UNDERGRAD</degree>
       <jobs id="4"/>
       <applications id="5"/>
     </student>
-  </students>
-  <instructors id="6">
-    <instructor id="7">
-      <username>kelvarnsen</username>
-      <password>dsfhjkdf</password>
-      <firstName>Jerry</firstName>
-      <lastName>Seinfeld</lastName>
-      <id>2</id>
-      <courses id="8">
-        <course id="9">
-          <className>Seinfeld</className>
-          <cdn>1999</cdn>
-          <graderTimeBudget>45.0</graderTimeBudget>
-          <taTimeBudget>45.0</taTimeBudget>
-          <jobs id="10"/>
-        </course>
-      </courses>
-      <applications id="11"/>
-      <jobs id="12"/>
-    </instructor>
-    <instructor id="13">
-      <username>artvandelay</username>
-      <password>bosco</password>
+    <student id="6">
+      <username>vandelay</username>
+      <password>dfkhjdf</password>
       <firstName>George</firstName>
       <lastName>Costanza</lastName>
-      <id>3</id>
-      <courses id="14">
-        <course id="15">
-          <className>CIVE281</className>
-          <cdn>333</cdn>
-          <graderTimeBudget>45738.0</graderTimeBudget>
-          <taTimeBudget>37834.0</taTimeBudget>
-          <jobs id="16"/>
-        </course>
-      </courses>
-      <applications id="17"/>
-      <jobs id="18"/>
-    </instructor>
-  </instructors>
-  <admins id="19">
-    <admin id="20">
+      <id>4</id>
+      <experience></experience>
+      <degree>UNDERGRAD</degree>
+      <jobs id="7"/>
+      <applications id="8"/>
+    </student>
+    <student id="9">
+      <username>mustardtiger</username>
+      <password>dskfhjdf</password>
+      <firstName>Philadelphia</firstName>
+      <lastName>Collins</lastName>
+      <id>5</id>
+      <experience></experience>
+      <degree>UNDERGRAD</degree>
+      <jobs id="10"/>
+      <applications id="11"/>
+    </student>
+  </students>
+  <instructors id="12">
+    <instructor id="13">
       <username>ld</username>
-      <password>yoyoma</password>
+      <password>dsfjkdf</password>
       <firstName>Larry</firstName>
       <lastName>David</lastName>
       <id>1</id>
-      <intructors id="21"/>
-      <students id="22"/>
-    </admin>
-  </admins>
+      <courses id="14">
+        <course id="15">
+          <className>Social Assassination</className>
+          <cdn>111</cdn>
+          <graderTimeBudget>45.0</graderTimeBudget>
+          <taTimeBudget>45.0</taTimeBudget>
+          <jobs id="16"/>
+        </course>
+        <course id="17">
+          <className>Golf</className>
+          <cdn>56</cdn>
+          <graderTimeBudget>45.0</graderTimeBudget>
+          <taTimeBudget>45.0</taTimeBudget>
+          <jobs id="18"/>
+        </course>
+      </courses>
+      <applications id="19"/>
+      <jobs id="20"/>
+    </instructor>
+    <instructor id="21">
+      <username>kelvarnsen</username>
+      <password>hjdf</password>
+      <firstName>Jerry</firstName>
+      <lastName>Seinfeld</lastName>
+      <id>2</id>
+      <courses id="22">
+        <course id="23">
+          <className>Cinematography</className>
+          <cdn>56</cdn>
+          <graderTimeBudget>45.0</graderTimeBudget>
+          <taTimeBudget>45.0</taTimeBudget>
+          <jobs id="24"/>
+        </course>
+      </courses>
+      <applications id="25"/>
+      <jobs id="26"/>
+    </instructor>
+  </instructors>
+  <admins id="27"/>
 </pmanager>

@@ -33,7 +33,7 @@ public class RegistrationView extends JFrame{
 	}
 	
 	private void initComponents() {
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Register a Profile");
 		error = new JLabel();
 		rbStudent = new JRadioButton();
