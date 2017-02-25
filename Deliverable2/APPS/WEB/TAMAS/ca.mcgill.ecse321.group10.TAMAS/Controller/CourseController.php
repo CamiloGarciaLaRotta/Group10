@@ -5,10 +5,12 @@ require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
 
 class CourseController{
-	private $pt = new PersistenceTAMAS();
-	private $cm = $pt->loadCourseManagerFromStore();
+	private $pt;
+	private $cm;
 				
 	public function __construct(){
+		$this->pt = new PersistenceTAMAS();
+		$this->cm = $this->pt->loadCourseManagerFromStore();
 	}
 	
 	public function createCourse($course_name, $CDN, 

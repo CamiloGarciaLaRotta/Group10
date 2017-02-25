@@ -3,25 +3,31 @@ require_once __DIR__.'\.\InputValidator.php';
 require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
 require_once __DIR__.'\..\Model\ApplicationManager.php';
 require_once __DIR__.'\..\Model\Application.php';
+require_once __DIR__.'\..\Model\Job.php';
 require_once __DIR__.'\..\Model\ProfileManager.php';
 require_once __DIR__.'\..\Model\Profile.php';
+require_once __DIR__.'\..\Model\Instructor.php';
 require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
 
 class ApplicationController{
-	private $pt = new PersistenceTAMAS();
-	private $am = $pt->loadApplicationManagerFromStore();
-	private $pm = $pt->loadProfileManagerFromStore();
-	private $cm = $pt->loadCourseManagerFromStore();
+	private $pt;
+	private $am;
+	private $pm;
+	private $cm;
 	
 	public function __construct(){
+		$this->pt = new PersistenceTAMAS();
+		$this->am = $this->pt->loadApplicationManagerFromStore();
+		$this->pm = $this->pt->loadProfileManagerFromStore();
+		$this->cm = $this->pt->loadCourseManagerFromStore();
 	}
 	
 	public function createJob($startTime, $endTime, $aDay, $aPosition, $aSalary, 
 							$aRequirements, $aCourse, $anInstructor) {
 		//Validate primitive var input
 		$error = "";
-		$requirements = InputValidator::validate_input($requirements);
+		$requirements = InputValidator::validate_input($aRequirements);
 
 		if($requirements==null || strlen($requirements) == 0){
 			$error .= ("Requirements cannot be empty!<br>");
@@ -34,10 +40,10 @@ class ApplicationController{
 			throw new Exception($error);
 		} else {
 			// validate reference var input
-			$myIntstuctor = NULL;
+			$myInstructor = NULL;
 			foreach ($this->pm->getInstructors() as $instructor){
 				if(strcmp($instructor->getUsername(), $anInstructor)==0){
-					$myIntstuctor = $instructor;
+					$myInstructor = $instructor;
 					break;
 				}
 			}
@@ -51,15 +57,25 @@ class ApplicationController{
 			}
 			
 			// Register for the event
-			if ($myIntstuctor != NULL && $myCourse != NULL){
-				$myJob = new Job($startTime, $endTime, $aDay, $aSalary, $requirements, $myCourse, $myInstructor);
-				$myJob->setPosition($aPosition);
-				$this->am->addJob($job);
+			if ($myInstructor != NULL && $myCourse != NULL){
+				// TODO here is where the fatal error on line 101 of applicationmanager originates.
+				// it implies that myJob wasnt correctly instanciated as a new Job.
+				// but no exception is catched from the constuctor of Job
+				try {
+					$myJob = new Job($startTime, $endTime, $aDay, 
+							$aSalary, $requirements, $myCourse, $myInstructor);
+					$myJob->setPosition($aPosition);
+					$this->am->addJob($myJob);
+				} catch (Exception $e){
+					echo $e->getMessage();
+				}
+				
+				
 				
 				// Write all the data
 				$this->pt->writeApplicationDataToStore($this->am);
 			} else {
-				if($myIntstuctor == NULL){
+				if($myInstructor == NULL){
 					$error .= "Instructor not found!<br>";
 				}
 				if ($myCourse == NULL){

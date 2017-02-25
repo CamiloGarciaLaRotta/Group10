@@ -7,10 +7,12 @@ require_once __DIR__.'\..\Model\Instructor.php';
 
 
 class ProfileController{
-	private $pt = new PersistenceTAMAS();
-	private $pm = $pt->loadProfileManagerFromStore();
+	private $pt;
+	private $pm;
 	
 	public function __construct(){
+		$this->pt = new PersistenceTAMAS();
+		$this->pm = $this->pt->loadProfileManagerFromStore(); 
 	}
 	
 	public function createInstructor($aUsername, $aPassword, $aFirstName, $aLastName) {

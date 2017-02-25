@@ -42,5 +42,10 @@ $cm = $pt->loadCourseManagerFromStore();
 	<p><input type= "submit" value="Create Course"/></p>
 </form>
 
+<br>
+
+<form action="../index.php">
+		    <input type="submit" value="Back" />
+</form><br>
 </body>
 </html>
