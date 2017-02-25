@@ -24,7 +24,8 @@ public class ApplicationController {
 		String error = "";
 		if(aInstructor == null) error += "Instructor must be defined! ";
 		if(aCourse == null) error += "Course must be defined! ";
-		if(aEndTime.getTime() - aStartTime.getTime() < 0) error += "Start time cannot be after end time! ";
+		//if(aEndTime.getTime() - aStartTime.getTime() < 0) error += "Start time cannot be after end time! ";
+		if(aStartTime.after(aEndTime)) error += "Start time cannot be after end time!";
 		if(aSalary < 0) error += "Salary must be positive! ";
 		if(error.length() > 0) throw new InputException(error);
 		
