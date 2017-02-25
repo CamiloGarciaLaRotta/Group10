@@ -2,10 +2,10 @@
   <students id="2">
     <student id="3">
       <username>kman</username>
-      <password>shjkdf</password>
+      <password>sdfhkjsd</password>
       <firstName>Cosmo</firstName>
       <lastName>Kramer</lastName>
-      <id>3</id>
+      <id>5</id>
       <experience></experience>
       <degree>UNDERGRAD</degree>
       <jobs id="4"/>
@@ -13,21 +13,21 @@
     </student>
     <student id="6">
       <username>vandelay</username>
-      <password>dfkhjdf</password>
-      <firstName>George</firstName>
+      <password>shdfjkdf</password>
+      <firstName>George </firstName>
       <lastName>Costanza</lastName>
-      <id>4</id>
+      <id>6</id>
       <experience></experience>
       <degree>UNDERGRAD</degree>
       <jobs id="7"/>
       <applications id="8"/>
     </student>
     <student id="9">
-      <username>mustardtiger</username>
-      <password>dskfhjdf</password>
-      <firstName>Philadelphia</firstName>
-      <lastName>Collins</lastName>
-      <id>5</id>
+      <username>elongatedalien</username>
+      <password>shdfjd</password>
+      <firstName>Trevor</firstName>
+      <lastName>Lahey</lastName>
+      <id>7</id>
       <experience></experience>
       <degree>UNDERGRAD</degree>
       <jobs id="10"/>
@@ -36,48 +36,76 @@
   </students>
   <instructors id="12">
     <instructor id="13">
-      <username>ld</username>
-      <password>dsfjkdf</password>
-      <firstName>Larry</firstName>
-      <lastName>David</lastName>
-      <id>1</id>
-      <courses id="14">
-        <course id="15">
-          <className>Social Assassination</className>
-          <cdn>111</cdn>
-          <graderTimeBudget>45.0</graderTimeBudget>
-          <taTimeBudget>45.0</taTimeBudget>
-          <jobs id="16"/>
-        </course>
-        <course id="17">
-          <className>Golf</className>
-          <cdn>56</cdn>
-          <graderTimeBudget>45.0</graderTimeBudget>
-          <taTimeBudget>45.0</taTimeBudget>
-          <jobs id="18"/>
-        </course>
-      </courses>
-      <applications id="19"/>
-      <jobs id="20"/>
-    </instructor>
-    <instructor id="21">
       <username>kelvarnsen</username>
-      <password>hjdf</password>
+      <password>sdfjh3</password>
       <firstName>Jerry</firstName>
       <lastName>Seinfeld</lastName>
       <id>2</id>
-      <courses id="22">
+      <courses id="14">
+        <course id="15">
+          <className>Newman</className>
+          <cdn>271</cdn>
+          <graderTimeBudget>1256.0</graderTimeBudget>
+          <taTimeBudget>21.0</taTimeBudget>
+          <jobs id="16"/>
+        </course>
+      </courses>
+      <applications id="17"/>
+      <jobs id="18"/>
+    </instructor>
+    <instructor id="19">
+      <username>trailerparksupervisor</username>
+      <password>sdfkhgrw</password>
+      <firstName>Jim</firstName>
+      <lastName>Lahey</lastName>
+      <id>3</id>
+      <courses id="20">
+        <course id="21">
+          <className>Drunk Driving</className>
+          <cdn>123</cdn>
+          <graderTimeBudget>8752125.0</graderTimeBudget>
+          <taTimeBudget>211.0</taTimeBudget>
+          <jobs id="22"/>
+        </course>
         <course id="23">
-          <className>Cinematography</className>
-          <cdn>56</cdn>
-          <graderTimeBudget>45.0</graderTimeBudget>
-          <taTimeBudget>45.0</taTimeBudget>
+          <className>Wraparound</className>
+          <cdn>1411</cdn>
+          <graderTimeBudget>36735.0</graderTimeBudget>
+          <taTimeBudget>1111.0</taTimeBudget>
           <jobs id="24"/>
         </course>
       </courses>
       <applications id="25"/>
       <jobs id="26"/>
     </instructor>
+    <instructor id="27">
+      <username>ld</username>
+      <password>sdfjdf</password>
+      <firstName>Larry</firstName>
+      <lastName>David</lastName>
+      <id>4</id>
+      <courses id="28">
+        <course id="29">
+          <className>Social Assassination</className>
+          <cdn>232423</cdn>
+          <graderTimeBudget>1221.0</graderTimeBudget>
+          <taTimeBudget>2321.0</taTimeBudget>
+          <jobs id="30"/>
+        </course>
+      </courses>
+      <applications id="31"/>
+      <jobs id="32"/>
+    </instructor>
   </instructors>
-  <admins id="27"/>
+  <admins id="33">
+    <admin id="34">
+      <username>kermit</username>
+      <password>dsfds</password>
+      <firstName>Kermit</firstName>
+      <lastName>the Frog</lastName>
+      <id>1</id>
+      <intructors id="35"/>
+      <students id="36"/>
+    </admin>
+  </admins>
 </pmanager>

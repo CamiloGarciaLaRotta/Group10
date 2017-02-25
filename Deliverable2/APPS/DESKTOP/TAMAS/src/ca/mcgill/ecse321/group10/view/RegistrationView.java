@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
+import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
 
 public class RegistrationView extends JFrame{
@@ -27,9 +28,12 @@ public class RegistrationView extends JFrame{
 	JTextField tfFirst, tfLast, tfUser, tfPass;
 	JButton submit;
 	
+	boolean problem;
+	
 	public RegistrationView(ProfileManager pm) {
 		this.pm = pm;
 		initComponents();
+		problem = false;
 	}
 	
 	private void initComponents() {
@@ -186,36 +190,56 @@ public class RegistrationView extends JFrame{
 	}
 	
 	private void submitPressed() {
+		problem = false;
 		String first = tfFirst.getText();
 		String last = tfLast.getText();
 		String user = tfUser.getText();
 		String pass = tfPass.getText();
 		ProfileController pc = new ProfileController(pm);
 		if(rbStudent.isSelected()) {
-			pc.addStudentToSystem(user, pass, first, last, "");
-			error.setText("Student " + user + " created.");
+			try {
+				pc.addStudentToSystem(user, pass, first, last, "");
+				error.setText("Student " + user + " created.");
+			} catch (InputException e) {
+				error.setText(e.getMessage());
+				problem = true;
+			}
 			refreshData();
 		}
 		else if(rbInstructor.isSelected()) {
-			pc.addInstructorToSystem(user, pass, first, last);
-			error.setText("Instructor " + user + " created.");
+			try {
+				pc.addInstructorToSystem(user, pass, first, last);
+				error.setText("Instructor " + user + " created.");
+			} catch (InputException e) {
+				error.setText(e.getMessage());
+				problem = true;
+			}
 			refreshData();
 		}
 		else if(rbAdmin.isSelected()){
-			pc.addAdminToSystem(user, pass, first, last);
-			error.setText("Admin " + user + " created.");
+			try {
+				pc.addAdminToSystem(user, pass, first, last);
+				error.setText("Admin " + user + " created.");
+			} catch (InputException e) {
+				error.setText(e.getMessage());
+				problem = true;
+			}
 			refreshData();
 		}
 		else {
 			error.setText("Please chose profile type");
+			problem = true;
 		}
 	}
 	
 	private void refreshData() {
-		tfFirst.setText("");
-		tfLast.setText("");
-		tfUser.setText("");
-		tfPass.setText("");
+		if(!problem) {
+			tfFirst.setText("");
+			tfLast.setText("");
+			tfUser.setText("");
+			tfPass.setText("");
+		}
+		pack();
 	}
 
 }

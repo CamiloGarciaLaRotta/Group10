@@ -2,24 +2,31 @@
   <courses id="2">
     <course id="3">
       <className>Social Assassination</className>
-      <cdn>111</cdn>
-      <graderTimeBudget>45.0</graderTimeBudget>
-      <taTimeBudget>45.0</taTimeBudget>
+      <cdn>232423</cdn>
+      <graderTimeBudget>1221.0</graderTimeBudget>
+      <taTimeBudget>2321.0</taTimeBudget>
       <jobs id="4"/>
     </course>
     <course id="5">
-      <className>Golf</className>
-      <cdn>56</cdn>
-      <graderTimeBudget>45.0</graderTimeBudget>
-      <taTimeBudget>45.0</taTimeBudget>
+      <className>Drunk Driving</className>
+      <cdn>123</cdn>
+      <graderTimeBudget>8752125.0</graderTimeBudget>
+      <taTimeBudget>211.0</taTimeBudget>
       <jobs id="6"/>
     </course>
     <course id="7">
-      <className>Cinematography</className>
-      <cdn>56</cdn>
-      <graderTimeBudget>45.0</graderTimeBudget>
-      <taTimeBudget>45.0</taTimeBudget>
+      <className>Newman</className>
+      <cdn>271</cdn>
+      <graderTimeBudget>1256.0</graderTimeBudget>
+      <taTimeBudget>21.0</taTimeBudget>
       <jobs id="8"/>
+    </course>
+    <course id="9">
+      <className>Wraparound</className>
+      <cdn>1411</cdn>
+      <graderTimeBudget>36735.0</graderTimeBudget>
+      <taTimeBudget>1111.0</taTimeBudget>
+      <jobs id="10"/>
     </course>
   </courses>
 </cmanager>

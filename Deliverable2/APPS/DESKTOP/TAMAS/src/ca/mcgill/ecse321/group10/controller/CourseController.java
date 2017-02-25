@@ -14,7 +14,12 @@ public class CourseController {
 		this.cm = cm;
 	}
 	
-	public void createCourse(String aClassName, int aCdn, float aGraderTimeBudget, float aTaTimeBudget){
+	public void createCourse(String aClassName, int aCdn, float aGraderTimeBudget, float aTaTimeBudget) throws InputException {
+		String error = "";
+		if(aClassName == null || aClassName.trim().length() == 0) {
+			error += "Course name cannot be empty! ";
+		}
+		if(error.length() > 0) throw new InputException(error);
 		Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget);
 		cm.addCourse(c);
 		PersistenceXStream.setFilename(COURSE_FILE_NAME);

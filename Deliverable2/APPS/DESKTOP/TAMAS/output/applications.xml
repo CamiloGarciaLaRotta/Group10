@@ -1,80 +1,137 @@
 <amanager id="1">
-  <applications id="2"/>
-  <jobs id="3">
-    <job id="4">
-      <startTime id="5">21:11:00</startTime>
-      <endTime id="6">23:11:58</endTime>
-      <day>Tuesday</day>
-      <salary>113.0</salary>
-      <requirements>blah</requirements>
+  <applications id="2">
+    <application id="3">
       <id>1</id>
-      <position>TA</position>
-      <course id="7">
-        <className>Cinematography</className>
-        <cdn>56</cdn>
-        <graderTimeBudget>45.0</graderTimeBudget>
-        <taTimeBudget>45.0</taTimeBudget>
-        <jobs id="8">
-          <job reference="4"/>
-        </jobs>
-      </course>
-      <instructor id="9">
-        <username>kelvarnsen</username>
-        <password>hjdf</password>
-        <firstName>Jerry</firstName>
-        <lastName>Seinfeld</lastName>
-        <id>2</id>
-        <courses id="10">
-          <course reference="7"/>
-        </courses>
-        <applications id="11"/>
-        <jobs id="12">
-          <job reference="4"/>
-        </jobs>
-      </instructor>
-      <students id="13"/>
-      <applications id="14"/>
-    </job>
-    <job id="15">
-      <startTime id="16">20:13:00</startTime>
-      <endTime id="17">23:13:03</endTime>
-      <day>Wednesday</day>
-      <salary>44.0</salary>
-      <requirements>Curb fan</requirements>
-      <id>1</id>
-      <position>GRADER</position>
-      <course id="18">
-        <className>Social Assassination</className>
-        <cdn>111</cdn>
-        <graderTimeBudget>45.0</graderTimeBudget>
-        <taTimeBudget>45.0</taTimeBudget>
-        <jobs id="19">
-          <job reference="15"/>
-        </jobs>
-      </course>
-      <instructor id="20">
-        <username>ld</username>
-        <password>dsfjkdf</password>
-        <firstName>Larry</firstName>
-        <lastName>David</lastName>
+      <student id="4">
+        <username>elongatedalien</username>
+        <password>shdfjd</password>
+        <firstName>Trevor</firstName>
+        <lastName>Lahey</lastName>
+        <id>7</id>
+        <experience></experience>
+        <degree>UNDERGRAD</degree>
+        <jobs id="5"/>
+        <applications id="6">
+          <application reference="3"/>
+        </applications>
+      </student>
+      <jobs id="7">
+        <startTime id="8">03:25:00</startTime>
+        <endTime id="9">05:25:00</endTime>
+        <day>Monday</day>
+        <salary>1141.0</salary>
+        <requirements></requirements>
         <id>1</id>
-        <courses id="21">
-          <course reference="18"/>
-          <course id="22">
-            <className>Golf</className>
-            <cdn>56</cdn>
-            <graderTimeBudget>45.0</graderTimeBudget>
-            <taTimeBudget>45.0</taTimeBudget>
-            <jobs id="23"/>
-          </course>
-        </courses>
-        <applications id="24"/>
-        <jobs id="25">
-          <job reference="15"/>
-        </jobs>
-      </instructor>
-      <students id="26"/>
-      <applications id="27"/>
-    </job>
+        <position>TA</position>
+        <course id="10">
+          <className>Social Assassination</className>
+          <cdn>232423</cdn>
+          <graderTimeBudget>1221.0</graderTimeBudget>
+          <taTimeBudget>2321.0</taTimeBudget>
+          <jobs id="11">
+            <job reference="7"/>
+          </jobs>
+        </course>
+        <instructor id="12">
+          <username>ld</username>
+          <password>sdfjdf</password>
+          <firstName>Larry</firstName>
+          <lastName>David</lastName>
+          <id>4</id>
+          <courses id="13">
+            <course reference="10"/>
+          </courses>
+          <applications id="14"/>
+          <jobs id="15">
+            <job reference="7"/>
+          </jobs>
+        </instructor>
+        <students id="16"/>
+        <applications id="17">
+          <application reference="3"/>
+        </applications>
+      </jobs>
+    </application>
+    <application id="18">
+      <id>2</id>
+      <student id="19">
+        <username>vandelay</username>
+        <password>shdfjkdf</password>
+        <firstName>George </firstName>
+        <lastName>Costanza</lastName>
+        <id>6</id>
+        <experience></experience>
+        <degree>UNDERGRAD</degree>
+        <jobs id="20"/>
+        <applications id="21">
+          <application reference="18"/>
+        </applications>
+      </student>
+      <jobs id="22">
+        <startTime id="23">06:26:00</startTime>
+        <endTime id="24">09:26:00</endTime>
+        <day>Tuesday</day>
+        <salary>216535.0</salary>
+        <requirements></requirements>
+        <id>2</id>
+        <position>TA</position>
+        <course id="25">
+          <className>Wraparound</className>
+          <cdn>1411</cdn>
+          <graderTimeBudget>36735.0</graderTimeBudget>
+          <taTimeBudget>1111.0</taTimeBudget>
+          <jobs id="26">
+            <job reference="22"/>
+          </jobs>
+        </course>
+        <instructor id="27">
+          <username>trailerparksupervisor</username>
+          <password>sdfkhgrw</password>
+          <firstName>Jim</firstName>
+          <lastName>Lahey</lastName>
+          <id>3</id>
+          <courses id="28">
+            <course id="29">
+              <className>Drunk Driving</className>
+              <cdn>123</cdn>
+              <graderTimeBudget>8752125.0</graderTimeBudget>
+              <taTimeBudget>211.0</taTimeBudget>
+              <jobs id="30"/>
+            </course>
+            <course reference="25"/>
+          </courses>
+          <applications id="31"/>
+          <jobs id="32">
+            <job reference="22"/>
+          </jobs>
+        </instructor>
+        <students id="33"/>
+        <applications id="34">
+          <application reference="18"/>
+          <application id="35">
+            <id>3</id>
+            <student id="36">
+              <username>kman</username>
+              <password>sdfhkjsd</password>
+              <firstName>Cosmo</firstName>
+              <lastName>Kramer</lastName>
+              <id>5</id>
+              <experience></experience>
+              <degree>UNDERGRAD</degree>
+              <jobs id="37"/>
+              <applications id="38">
+                <application reference="35"/>
+              </applications>
+            </student>
+            <jobs reference="22"/>
+          </application>
+        </applications>
+      </jobs>
+    </application>
+    <application reference="35"/>
+  </applications>
+  <jobs id="39">
+    <job reference="7"/>
+    <job reference="22"/>
   </jobs>
 </amanager>

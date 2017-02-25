@@ -14,6 +14,7 @@ import javax.swing.WindowConstants;
 import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.CourseController;
+import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
 
 public class CreateCourseView extends JFrame{
@@ -153,22 +154,33 @@ public class CreateCourseView extends JFrame{
 		tfCode.setText("");
 		tfGraderBudget.setText("");
 		tfTABudget.setText("");
+		pack();
 	}
 	
 	private void createPressed() {
 		error = "";
 		if(instructorList.getSelectedIndex() == -1) {
 			error += "Instructor must be selected!";
+			refreshData();
 			return;
 		}
 		String name = tfName.getText();
-		int code = Integer.parseInt(tfCode.getText());
-		float graderBudget = Float.parseFloat(tfGraderBudget.getText());
-		float taBudget = Float.parseFloat(tfTABudget.getText());
-		CourseController cc = new CourseController(cm);
-		cc.createCourse(name, code, graderBudget, taBudget);
-		ProfileController pc = new ProfileController(pm);
-		pc.addCourseToInstructor(instructorList.getSelectedIndex(), cm.getCourse(cm.getCourses().size()-1));
+		try {
+			int code = Integer.parseInt(tfCode.getText());
+			float graderBudget = Float.parseFloat(tfGraderBudget.getText());
+			float taBudget = Float.parseFloat(tfTABudget.getText());
+			CourseController cc = new CourseController(cm);
+			try {
+				cc.createCourse(name, code, graderBudget, taBudget);
+				ProfileController pc = new ProfileController(pm);
+				pc.addCourseToInstructor(instructorList.getSelectedIndex(), cm.getCourse(cm.getCourses().size()-1));
+			} catch (InputException e) {
+				error += e.getMessage() + "\n";
+			}
+		} catch(Exception e) {
+			error += "Invalid course code, TA budget, or grader budget";
+		}
+		
 		refreshData();
 	}
 

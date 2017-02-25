@@ -29,6 +29,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
 import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
+import ca.mcgill.ecse321.group10.controller.InputException;
 
 public class PublishJobView extends JFrame{
 
@@ -216,6 +217,7 @@ public class PublishJobView extends JFrame{
 	
 	private void refreshData() {
 		errorLabel.setText(error);
+		pack();
 		if(error.length() != 0) return;
 		tfSalary.setText("");
 		tfReqs.setText("");
@@ -224,28 +226,42 @@ public class PublishJobView extends JFrame{
 		jEndTime.setValue(new java.util.Date());
 		rbGrader.setSelected(false);
 		rbTA.setSelected(true);
+		pack();
 	}
 	
 	private void publishPressed() {
 		error = "";
 		if(instructorList.getSelectedIndex() == -1) error += "Instructor must be specified!\n";
 		if(courseList.getSelectedIndex() == -1) error += "Course must be specified!\n";
-		double salary = Double.parseDouble(tfSalary.getText());
-		String requirements = tfReqs.getText();
-		String day = (String)jDay.getValue();
-		System.out.println("Day: " + day);
-		Instructor instructor = pm.getInstructor(instructorList.getSelectedIndex());
-		Course course = instructor.getCourse(courseList.getSelectedIndex());
-		Time startTime = new Time(((java.util.Date)jStartTime.getValue()).getTime());
-		Time endTime = new Time(((java.util.Date)jEndTime.getValue()).getTime());
-		
-		if(error.length() == 0) {
-			ApplicationController ac = new ApplicationController(am);
-			ac.addJobToSystem(startTime, endTime, day, salary, requirements, course, instructor);
-			if(rbTA.isSelected()) ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.TA);
-			else ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.GRADER);
+		try {
+			double salary = Double.parseDouble(tfSalary.getText());
+			String requirements = tfReqs.getText();
+			String day = (String)jDay.getValue();
+			System.out.println("Day: " + day);
+			Instructor instructor = pm.getInstructor(instructorList.getSelectedIndex());
+			Course course = instructor.getCourse(courseList.getSelectedIndex());
+			try {
+				Time startTime = new Time(((java.util.Date)jStartTime.getValue()).getTime());
+				Time endTime = new Time(((java.util.Date)jEndTime.getValue()).getTime());
+				
+				if(error.length() == 0) {
+					ApplicationController ac = new ApplicationController(am);
+					try {
+						ac.addJobToSystem(startTime, endTime, day, salary, requirements, course, instructor);
+						if(rbTA.isSelected()) ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.TA);
+						else ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.GRADER);
+					} catch (InputException e) {
+						error += e.getMessage();
+					}
+				}
+			}catch(Exception e) {
+				error += "Invalid time format: expected HH:mm\n";
+			}
+		}catch (Exception e) {
+			error += "Salary must be a number!\n";
 		}
 		refreshData();
 	}
+		
 	
 }

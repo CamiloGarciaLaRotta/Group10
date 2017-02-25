@@ -20,7 +20,13 @@ public class ApplicationController {
 		this.am = am;
 	}
 	
-	public void addJobToSystem(Time aStartTime, Time aEndTime, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) {
+	public void addJobToSystem(Time aStartTime, Time aEndTime, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) throws InputException {
+		String error = "";
+		if(aInstructor == null) error += "Instructor must be defined!\n";
+		if(aCourse == null) error += "Course must be defined! ";
+		if(aEndTime.getTime() - aStartTime.getTime() < 0) error += "Start time cannot be after end time! ";
+		if(error.length() > 0) throw new InputException(error);
+		
 		Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
 		am.addJob(j);
 		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
