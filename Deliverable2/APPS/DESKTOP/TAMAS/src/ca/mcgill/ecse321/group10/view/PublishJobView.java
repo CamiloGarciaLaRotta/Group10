@@ -208,8 +208,8 @@ public class PublishJobView extends JFrame{
 		Instructor instructor = pm.getInstructor(instructorList.getSelectedIndex());
 		Course course = instructor.getCourse(courseList.getSelectedIndex());
 		Time startTime = new Time(((java.util.Date)jStartTime.getValue()).getTime());
-		Time endTime = new Time(((java.util.Date)jStartTime.getValue()).getTime());
-
+		Time endTime = new Time(((java.util.Date)jEndTime.getValue()).getTime());
+		
 		if(error.length() == 0) {
 			ApplicationController ac = new ApplicationController(am);
 			ac.addJobToSystem(startTime, endTime, day, salary, requirements, course, instructor);
