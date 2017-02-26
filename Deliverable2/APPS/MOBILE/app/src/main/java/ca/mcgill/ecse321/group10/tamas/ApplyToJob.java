@@ -127,6 +127,8 @@ public class ApplyToJob extends AppCompatActivity {
             errorText.setText(errors);
         }
     }
+
+    @Deprecated
     public void applyToJobClicked(View v){
         if(v.getId() == R.id.applyButton){
             String username = usernameField.getText().toString();
