@@ -185,6 +185,11 @@ public class RegistrationView extends JFrame{
 	    				)
 	    		.addComponent(submit)
 	    		);
+	    layout.linkSize(SwingConstants.VERTICAL,new java.awt.Component[]{lFirst,tfFirst});
+	    layout.linkSize(SwingConstants.VERTICAL,new java.awt.Component[]{lLast,tfLast});
+	    layout.linkSize(SwingConstants.VERTICAL,new java.awt.Component[]{lUser,tfUser});
+	    layout.linkSize(SwingConstants.VERTICAL,new java.awt.Component[]{lPass,tfPass});
+
 
 	    pack();
 	}
