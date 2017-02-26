@@ -15,7 +15,6 @@ public class ApplicationController {
 	public static String APPLICATION_FILE_NAME = "output/applications.xml";
 	
 	private ApplicationManager am;
-	
 	public ApplicationController(ApplicationManager am){
 		this.am = am;
 	}
