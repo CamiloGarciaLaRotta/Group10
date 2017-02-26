@@ -7,3 +7,10 @@ Web-2: https://creately.com/diagram/izevno74/pdWe3Fwr0FTmUc1NkyMvYrZQRk%3D
 
 Desktop-1: https://creately.com/diagram/izewbfxu/HMCmtyIS5whP7eGpW9dhI4BlBE%3D
 Desktop-2: https://creately.com/diagram/izey1ngr/0dSyUrAwvuVSGxSrA9UydJolw5Y%3D
+
+Desktop Harley's Version: https://creately.com/diagram/izlobbye4/EvzqsPLvziTQOUGx0fE55mwesw%3D
+
+Here are the links to the creately active SEQUENCE's:
+
+
+Desktop: https://creately.com/diagram/izln29xy3/6u2n4Tobh7dckh2dQ67RQDTVe8I%3D

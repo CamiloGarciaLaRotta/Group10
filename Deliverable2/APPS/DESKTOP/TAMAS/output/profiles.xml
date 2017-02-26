@@ -34,23 +34,27 @@
       <applications id="11"/>
     </student>
     <student id="12">
-      <username>ggnoob</username>
-      <password>ggnoob</password>
-      <firstName>jacob</firstName>
-      <lastName>shnaidman</lastName>
+      <username>newman</username>
+      <password>hdflskjdf</password>
+      <firstName>Wayne</firstName>
+      <lastName>Knight</lastName>
       <id>1</id>
-      <experience></experience>
+      <experience>sdfhlaksdfjhaslfsf
+ashjasflkjsdfkjhasdfsfd
+asdfhjksadlkjsfdj
+dfjlaskdjaskfjhdsalkjfasldkjfsdf
+Hello Newman</experience>
       <degree>UNDERGRAD</degree>
       <jobs id="13"/>
       <applications id="14"/>
     </student>
     <student id="15">
-      <username>ggg</username>
-      <password>ggg</password>
-      <firstName>jacob</firstName>
-      <lastName>shnaidman</lastName>
-      <id>2</id>
-      <experience></experience>
+      <username>trinitykiller</username>
+      <password>shfjjdf</password>
+      <firstName>John</firstName>
+      <lastName>Lithgow</lastName>
+      <id>1</id>
+      <experience>Hello, Dexter Morgan</experience>
       <degree>UNDERGRAD</degree>
       <jobs id="16"/>
       <applications id="17"/>
