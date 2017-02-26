@@ -169,7 +169,11 @@ generate the sufficient entities to complete the following required use cases: A
 (Desktop), Apply to Job (Mobile), Publish Job Posting (Desktop). This includes the abilities to
 create profiles, create courses, create job postings, and submit job applications. All of the
 mentioned functionalities are persisted, so the XML files that are output may be used as data for
-the other platforms.
+the other platforms. Below are the sequence diagrams describing the desktop use cases.
+\subsection{Desktop Publish Job Posting Use Case}
+\includegraphics[scale=0.73]{model/SEQUENCE/publish_desktopSequenceAlt}
+\subsection{Desktop Apply to Job Use Case}
+\includegraphics[scale=0.73]{model/SEQUENCE/apply_desktopSequence}
 
 \section{Web Application}
 The web application submitted in this Deliverable contains all functionalities required to complete
@@ -179,7 +183,11 @@ without prior XML data. Although the desktop application can provide this XML da
 the development phase if the web application could do this independently. Therefore, the ability to
 create instructors and create courses is only temporary. Importantly, in publishing a job posting,
 the job data is saved in the persistence layer and may copied to the appropriate directories on the
-other platforms for use.
+other platforms for use. Following is the sequence diagram describing the required web use case.
+\subsection{Web Publish Job Posting Use Case}
+\includegraphics[scale=0.73]{model/SEQUENCE/publish_webSEQUENCE1}\\
+Continued on next page\dots\newpage
+\includegraphics[scale=0.73]{model/SEQUENCE/publish_webSEQUENCE2}
 
 \section{Mobile Application}
 The mobile application submitted in this Deliverable has the ability to complete the Apply to Job
@@ -190,7 +198,10 @@ placing the XML files (say, that were generated from the desktop application) in
 directory: \texttt{/storage/emulated/0/Android/obb/ca.mcgill.ecse321.group10.tamas/}. This, of
 course, is also the directory of the output persistence of the mobile app. In applying to a job, the
 mobile application saves the \texttt{Application} data to a persistence XML file which can then be
-used on the other platforms.
+used on the other platforms. Below is the sequence diagram representing the required mobile use
+case.
+\subsection{Mobile Apply to Job Posting Sequence Diagram}
+\includegraphics[scale=0.90]{model/SEQUENCE/apply_mobileSEQUENCE}
 
 \part{Work Plan From Past and Future Iterations}
 In this section, the updated workplan may be pondered. The full detailed backlog including work
