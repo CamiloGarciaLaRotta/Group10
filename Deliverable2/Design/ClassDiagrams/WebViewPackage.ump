@@ -1,0 +1,21 @@
+class ValidateJob{
+	ApplicationController ac;
+}
+class CreateInstructor{
+	PersistenceTAMAS pt;
+	ProfileManager pm;
+}
+class CreateCourse{
+	PersistenceTAMAS pt;
+	CourseManager cm;
+}
+class Job{
+	PersistenceTAMAS pt;
+	ApplicationManager am;
+}
+class ValidateCourse{
+	CourseController cc;
+}
+class ValidateInstructor{
+	ProfileController pc;
+}

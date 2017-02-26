@@ -1,0 +1,142 @@
+class RegistrationView{
+
+	ProfileManager pm;
+	
+	JLabel error;
+	
+	JRadioButton rbStudent;
+	JRadioButton rbInstructor;
+	JRadioButton rbAdmin;
+	ButtonGroup radioGroup;
+	JLabel lRole;
+	
+	JLabel lFirst;
+	JLabel lLast;
+	JLabel lUser;
+	JLabel lPass;
+	JTextField tfFirst;
+	JTextField tfLast;
+	JTextField tfUser;
+	JTextField tfPass;
+	JButton submit;
+	
+	JTextArea taReqs;
+	JLabel lReqs;
+	String reqs;
+	JScrollPane reqScroller;
+	
+	boolean problem;
+
+
+	public RegistrationView(ProfileManager pm){}
+	private void initComponents(){}
+	public void actionPerformed(java.awt.event.ActionEvent e){}
+	private void submitPressed(){}
+	private void refreshData(){}
+}
+class CreateCourseView{
+
+	CourseManager cm;
+	ProfileManager pm;
+	
+	JList instructorList;
+	JScrollPane listScroller;
+	JLabel lName;
+	JLabel lCode;
+	JLabel lGraderBudget;
+	JLabel lTABudget;
+	JLabel errorLabel;
+	JTextField tfName;
+	JTextField tfCode;
+	JTextField tfGraderBudget;
+	JTextField tfTABudget;
+	JButton create;
+	
+	String error;
+
+	public CreateCourseView(CourseManager cm, ProfileManager pm){}
+	private void initComponents(){}
+	public void actionPerformed(java.awt.event.ActionEvent e){}
+	private void refreshData(){}
+	private void createPressed(){}
+
+}
+class ApplicationView{
+
+	ApplicationManager am;
+	ProfileManager pm;
+	
+	JList studentList;
+	JList jobList;
+	JScrollPane studentScroller;
+	JScrollPane jobScroller;
+	JLabel lStudent;
+	JLabel lJob;
+	JButton apply;
+	JLabel message;
+
+	public ApplicationView(ApplicationManager am, ProfileManager pm){}
+	private void initComponents(){}
+	public void actionPerformed(java.awt.event.ActionEvent e){}
+	private void applyPressed(){}
+}
+class MenuView{
+
+	int X_SIZE = 300;
+	int Y_SIZE = 300;
+
+	JLabel greeting;
+	JLabel error;
+	JButton applicationButton;
+	JButton publishButton;
+	JButton profileButton;
+	JButton courseButton;
+	
+	ApplicationManager am;
+	ProfileManager pm;
+	CourseManager cm;
+
+	public MenuView(ApplicationManager am, ProfileManager pm, CourseManager cm){}
+	private void initComponents(){}
+	public void actionPerformed(java.awt.event.ActionEvent e){}
+	private void profilePressed(){}
+	private void coursePressed(){}
+	
+}
+class PublishJobView{
+
+	ApplicationManager am;
+	ProfileManager pm;
+	CourseManager cm;
+	JList instructorList;
+	JList courseList;
+	JScrollPane instructorScroller;
+	JScrollPane courseScroller;
+	JSpinner jStartTime;
+	JSpinner jEndTime;
+	JSpinner jDay;
+	JLabel lStart;
+	JLabel lEnd;
+	JLabel lSalary;
+	JLabel lReqs;
+	JLabel errorLabel;
+	JLabel lPos;
+	JTextField tfSalary;
+	JTextField tfReqs;
+	JButton publish;
+	JRadioButton rbTA;
+	JRadioButton rbGrader;
+	ButtonGroup typeGroup;
+	
+	DefaultListModel courseListModel;
+	
+	String error;
+
+	public PublishJobView(ApplicationManager am, ProfileManager pm, CourseManager cm){}
+	private void initComponents(){}
+	public void actionPerformed(java.awt.event.ActionEvent e){}
+	public void valueChanged(ListSelectionEvent e){}
+	private void refreshData(){}
+	private void publishPressed(){}
+	
+}

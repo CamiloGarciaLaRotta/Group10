@@ -4,12 +4,20 @@ class RegistrationView{
 	
 	JLabel error;
 	
-	JRadioButton rbStudent, rbInstructor, rbAdmin;
+	JRadioButton rbStudent;
+	JRadioButton rbInstructor;
+	JRadioButton rbAdmin;
 	ButtonGroup radioGroup;
 	JLabel lRole;
 	
-	JLabel lFirst, lLast, lUser, lPass;
-	JTextField tfFirst, tfLast, tfUser, tfPass;
+	JLabel lFirst;
+	JLabel lLast;
+	JLabel lUser;
+	JLabel lPass;
+	JTextField tfFirst;
+	JTextField tfLast;
+	JTextField tfUser;
+	JTextField tfPass;
 	JButton submit;
 	
 	JTextArea taReqs;
@@ -131,4 +139,30 @@ class PublishJobView{
 	private void refreshData(){}
 	private void publishPressed(){}
 	
+}
+//$?[End_of_model]$?
+
+class RegistrationView
+{
+  position 50 30 109 45;
+}
+
+class CreateCourseView
+{
+  position 50 130 109 45;
+}
+
+class ApplicationView
+{
+  position 50 230 109 45;
+}
+
+class MenuView
+{
+  position 50 330 109 45;
+}
+
+class PublishJobView
+{
+  position 50 430 109 45;
 }
