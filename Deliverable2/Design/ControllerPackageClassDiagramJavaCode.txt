@@ -1,0 +1,31 @@
+class ApplicationController{
+  APPLICATION_FILE_NAME;
+  ApplicationManager am;
+  public ApplicationController(ApplicationManager am){}
+  void AddJobToSystem(Time start, Time end, String day, double salary, String req, Course c, Instructor inst){}
+  void modifyJobPosition(integer index,Job.Position pos){}
+  void createApplication(Student s, Job j){}  
+}
+
+class CourseController{
+  COURSE_FILE_NAME;
+  CourseManager cm;
+  public CourseController(CourseManager cm){}
+  void createCourse(String name, integer acdn, float graderTimeBudget, float TaTimeBudget){}
+}
+
+class ProfileController{
+  PROFILE_FILE_NAME;
+  ProfileManager pm;
+  public ProfileController(ProfileManager pm){}
+  void addInstructorToSystem(String username, String password, String FirstName, String LastName){}
+  void addCourseToInstructor(integer Instructor, Course course){}
+  void addAdminToSystem(String username, String password, String FirstName, String LastName){}
+  void addStudentToSystem(String username, String password, String FirstName, String LastName, String Experience){}
+  
+}
+
+class InputException{
+  long serialVersionUID;
+  public InputException(String){}
+}
