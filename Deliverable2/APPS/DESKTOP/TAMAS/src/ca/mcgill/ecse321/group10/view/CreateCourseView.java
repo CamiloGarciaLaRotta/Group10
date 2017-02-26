@@ -169,10 +169,10 @@ public class CreateCourseView extends JFrame{
 			int code = Integer.parseInt(tfCode.getText());
 			float graderBudget = Float.parseFloat(tfGraderBudget.getText());
 			float taBudget = Float.parseFloat(tfTABudget.getText());
-			CourseController cc = new CourseController(cm);
+			CourseController cc = new CourseController(cm, CourseController.COURSE_FILE_NAME);
 			try {
 				cc.createCourse(name, code, graderBudget, taBudget);
-				ProfileController pc = new ProfileController(pm);
+				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 				pc.addCourseToInstructor(instructorList.getSelectedIndex(), cm.getCourse(cm.getCourses().size()-1));
 			} catch (InputException e) {
 				error += e.getMessage() + "\n";

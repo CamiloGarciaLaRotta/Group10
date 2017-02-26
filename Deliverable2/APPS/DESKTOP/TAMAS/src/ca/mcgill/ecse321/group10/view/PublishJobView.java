@@ -245,7 +245,7 @@ public class PublishJobView extends JFrame{
 				Time endTime = new Time(((java.util.Date)jEndTime.getValue()).getTime());
 				
 				if(error.length() == 0) {
-					ApplicationController ac = new ApplicationController(am);
+					ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 					try {
 						ac.addJobToSystem(startTime, endTime, day, salary, requirements, course, instructor);
 						if(rbTA.isSelected()) ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.TA);

@@ -86,7 +86,7 @@ public class ApplicationView extends JFrame{
 	private void applyPressed() {
 		Student student = pm.getStudent(studentList.getSelectedIndex());
 		Job job = am.getJob(jobList.getSelectedIndex());
-		ApplicationController ac = new ApplicationController(am);
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		ac.createApplication(student, job);
 		String msg = student.getUsername() + " has applied to " + jobList.getSelectedValue().toString() + ". Good luck!";
 		message.setText(msg);
