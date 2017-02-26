@@ -24,8 +24,8 @@ public class ApplyToJob extends AppCompatActivity {
 
 
 
-    private ApplicationManager am = null;
-    private ProfileManager pm = null;
+    private ApplicationManager am;
+    private ProfileManager pm;
     private EditText usernameField = null;
     private Spinner jobSpinner = null;
     private TextView errorText = null;
@@ -47,13 +47,29 @@ public class ApplyToJob extends AppCompatActivity {
         usernameField = (EditText) findViewById(R.id.usernameField);
         errorText = (TextView) findViewById(R.id.errors);
 
+        String rootPath = "/sdcard/Download";
+//        String rootPath = "getFilesDir().getAbsolutePath()";
 
-        APPLICATION_FILE_NAME = getFilesDir().getAbsolutePath() + "/applications.xml";
-        PROFILE_FILE_NAME = getFilesDir().getAbsolutePath() + "/profiles.xml";
+        APPLICATION_FILE_NAME = rootPath + "/applications.xml";
+        PROFILE_FILE_NAME = rootPath + "/profiles.xml";
 
 
-        am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_NAME,PROFILE_FILE_NAME);
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_NAME);
+        am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_NAME,PROFILE_FILE_NAME);
+
+
+        if(am.equals(null)){
+            System.out.println("am is null");
+        } else{
+            System.out.println("AM NOT NULL");
+        }
+
+        if(pm.equals(null)){
+            System.out.println("pm is null");
+        } else{
+            System.out.println("PM NOT NULL");
+        }
+
 
         jobs = am.getJobs();
         students = pm.getStudents();
@@ -127,7 +143,7 @@ public class ApplyToJob extends AppCompatActivity {
                 //success
                 errorText.setText("");
             }catch (Exception e){
-                //do nothing, already handles inputs in previus try catch blocks
+                //do nothing, already handles inputs in previous try catch blocks
             } finally {
                 errorText.setText(errors);
             }
