@@ -6,6 +6,7 @@
 \usepackage{enumerate} %For fancy enumeration
 \usepackage{hyperref}
 \usepackage{pdfpages}
+\usepackage{float}
 \usepackage[margin=2cm]{geometry} %Nice margin setting
 
 \title{ECSE 321 - Intro to Software Engineering\\Design Specification Document - Deliverable 2}
@@ -51,6 +52,9 @@
 \includepdf[scale=0.5,pages=1]{Architecture/blockDiagram}
 
 \part{Description of the Detailed Design}
+The Domain Model changed significantly since the last Deliverable, and the new domain model may be
+found below.\\
+\includegraphics[scale=0.9, viewport=0 500 900 900]{model/alternateModelDiagram}
 \section{Description}
 \subsection{Detailed Domain Model}
 The Detail Design Diagram consists of the following entities: ApplicationManager, ProfileManager,
@@ -130,6 +134,32 @@ platforms. The desktop has many views because it is meant to be used by Administ
 implement the functionalities possible on all other platforms.
 \section{Detailed Design Diagram}
 \includegraphics[scale=0.6,angle=270]{DetailedDomainModelDiagram}
+\section{Java and Android Controller Class Diagram (Desktop and Mobile)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.95]{./Design/ClassDiagrams/ControllerPackageClassDiagramJava}
+\end{figure}
+\section{PHP Controller Class Diagram (Web)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1.05]{./Design/ClassDiagrams/ControllerPackageClassDiagramPHP}
+\end{figure}
+\section{Java View Class Diagram (Desktop)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{./Design/ClassDiagrams/desktopViewPackageDiagram(A)}
+	\includegraphics[scale=1]{./Design/ClassDiagrams/desktopViewPackageDiagram(B)}
+\end{figure}
+\section{PHP View Class Diagram (Web)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{./Design/ClassDiagrams/WebViewPackageDiagram}
+\end{figure}
+\section{Android View Class Diagram (Android)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{./Design/ClassDiagrams/AndroidViewPackageDiagram}
+\end{figure}
 
 %\subsection{Detailed Domain Model}
 %The three Manager classes were needed in order to give functionality to the user to create the
