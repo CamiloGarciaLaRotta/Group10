@@ -16,7 +16,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:id="@+id/Welcome"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="#000000" />
 
     <TextView
         android:text="@string/power_is_in_your_hands"
@@ -25,7 +26,8 @@
         android:layout_marginTop="14dp"
         android:id="@+id/textView2"
         android:layout_below="@+id/Welcome"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000" />
 
     <Button
         android:layout_width="wrap_content"

@@ -29,7 +29,7 @@ public class ApplyToJob extends AppCompatActivity {
     private EditText usernameField = null;
     private Spinner jobSpinner = null;
     private TextView errorText = null;
-    private String errors;
+    private String errors = "";
 
 
     List<Job> jobs = null;
@@ -108,12 +108,17 @@ public class ApplyToJob extends AppCompatActivity {
         if(v.getId() == R.id.applyButton){
             int index = getStudentIndex(students,usernameField.getText().toString());
             Student student = null;
+            Job job = null;
             try{
                 student = pm.getStudent(index);
             }catch(Exception e){
-                errors += "Student username not Found ";
+                errors += "Student username not found. \n";
             }
-            Job job = am.getJob(jobSpinner.getSelectedItemPosition());
+            try {
+                job = am.getJob(jobSpinner.getSelectedItemPosition());
+            }catch(Exception e){
+                errors += "No job selected. ";
+            }
             try{
                 Application application = new Application(student,job);
                 am.addApplication(application);
@@ -122,7 +127,7 @@ public class ApplyToJob extends AppCompatActivity {
                 //success
                 errorText.setText("");
             }catch (Exception e){
-                errors += e.getMessage();
+                //do nothing, already handles inputs in previus try catch blocks
             } finally {
                 errorText.setText(errors);
             }
