@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TAMAS">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/TAMAS.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

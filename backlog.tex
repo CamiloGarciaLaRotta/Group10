@@ -142,11 +142,15 @@ In the following week, we will create more detailed sequence diagrams going into
 \begin{itemize}
     \item Harley Wiltzer
 	\begin{itemize}
-		\item gg
+		\item Aided in the design of the revamped domain model
+		\item Designed and developed desktop application
+		\item Aided in the design of the mobile application
+		\item Created the Sequence diagram for the Desktop - Apply to Job Use Case
+		\item Helped create the Sequence Diagram for the Desktop - Publish Job Posting Use Case
+		\item Compiled the final report
 	\end{itemize}
     \item Camilo Garcia La Rotta
     \begin{itemize}
-        \item Designed and documented Use Case Diagrams for the Web and Desktop implementation of "Publish Job Posting"
         \item Designed and documented Sequence Diagrams for the Web and Desktop implementation of "Publish Job Posting"
         \item Derived the PHP code implementation of "Publish Job Posting" and "Apply to Job Posting" based on the aforementioned design-level Class Diagram
     \end{itemize}
@@ -182,10 +186,22 @@ In the following week, we will create more detailed sequence diagrams going into
     	\end{itemize}
     	\item The overall structure of the Use Case for deliverable \#2 focused solely on the Profile subclasses Admin and Instructor. To highlight this structure the Use Cases made a deliberate use of Generalization.
         \item The "Publish Job Posting" Sequence diagram had to be clear about the alternative actions based on the approval or disapproval of the Posting instance. As such, an ALT pane was implemented only for the Web Use Case, which didn't necessarily imply the posting would be automatically approved. As opposed to the Desktop application, only used by Admin which ensures the posting is automatically approved at the moment of submitting a publish form.
+		\item It was decided that the Desktop app can handle the creation of all major entities.
+			Starting with no data, the Desktop app has the power to create all necessary actors for
+			all features of the program to be possible.
+		\item For the purpose of Deliverable 2, the mobile app does not have the ability to create
+			student profiles. Students register for jobs by specifying their username, as
+			authentication has not been implemented yet.
+		\item Since the mobile app does not support the creation of Students or Jobs, it was decided
+			that it should programmatically create Students and Jobs if no current persistence XML
+			file is found. This was decided solely for the convenience of the graders of this
+			deliverable. If this is not desired, the grader may input his/her own XML to the
+			appropriate directory.
     \end{itemize}
-    \item \textbf{Sequence Diagram}
+    \item \textbf{Domain Model}
     \begin{itemize}
-        \item gg
+        \item ProfileManager, CourseManager, and ApplicationManager were added to the domain model
+			to assist in the creation and persistence of Profiles, Courses, Jobs, and Applications.
     \end{itemize}
 \end{enumerate}
 
@@ -198,13 +214,16 @@ gg
 \begin{itemize}
     \item Harley Wiltzer
 		\begin{itemize}
-			\item gg
+			\item Domain Model Modification: 2 hours
+			\item Java Desktop App: 9 hours
+			\item Android App: 2 hours
+			\item Sequence Diagrams: 2 hours
 		\end{itemize}
     \item Camilo Garcia La Rotta
     \begin{itemize}
         \item Use Case Diagrams: 3 hours
         \item Sequence Diagrams: 2 hours
-        \item PHP: 
+        \item PHP: 9 hours
     \end{itemize}
     \item Jacob Shnaidman
     \begin{itemize}
