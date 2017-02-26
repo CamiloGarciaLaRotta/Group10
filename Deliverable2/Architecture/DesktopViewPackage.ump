@@ -4,12 +4,20 @@ class RegistrationView{
 	
 	JLabel error;
 	
-	JRadioButton rbStudent, rbInstructor, rbAdmin;
+	JRadioButton rbStudent;
+	JRadioButton rbInstructor;
+	JRadioButton rbAdmin;
 	ButtonGroup radioGroup;
 	JLabel lRole;
 	
-	JLabel lFirst, lLast, lUser, lPass;
-	JTextField tfFirst, tfLast, tfUser, tfPass;
+	JLabel lFirst;
+	JLabel lLast;
+	JLabel lUser;
+	JLabel lPass;
+	JTextField tfFirst;
+	JTextField tfLast;
+	JTextField tfUser;
+	JTextField tfPass;
 	JButton submit;
 	
 	JTextArea taReqs;
