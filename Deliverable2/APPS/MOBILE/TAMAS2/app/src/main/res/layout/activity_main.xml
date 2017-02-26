@@ -30,7 +30,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="130dp"
         android:id="@+id/button"
         android:text="@string/create_job_application"
         style="@android:style/Widget.Button"
@@ -45,20 +45,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/BrowseButton"
         style="@android:style/Widget.Button"
-        android:layout_marginBottom="83dp"
+        android:layout_marginBottom="18dp"
         android:enabled="false"
         android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="@string/edit_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="66dp"
-        android:enabled="false"
-        android:id="@+id/EditProfile"
-        style="@android:style/Widget.Button"
-        android:layout_above="@+id/BrowseButton"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -66,12 +55,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Login"
-        android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/EditProfile"
         android:enabled="false"
-        android:layout_alignEnd="@+id/EditProfile"
-        android:layout_marginTop="56dp"
-        style="@android:style/Widget.Button" />
+        style="@android:style/Widget.Button"
+        android:layout_marginBottom="59dp"
+        android:layout_alignBottom="@+id/EditProfile"
+        android:layout_alignRight="@+id/EditProfile"
+        android:layout_alignEnd="@+id/EditProfile" />
+
+    <Button
+        android:text="@string/edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:id="@+id/EditProfile"
+        style="@android:style/Widget.Button"
+        android:layout_marginBottom="6dp"
+        android:layout_above="@+id/BrowseButton"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
