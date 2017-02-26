@@ -69,17 +69,65 @@ below.
 		the Profile class.
 	\item CourseManager creates and manages Course entities.
 \end{itemize}
+\subsection{Controller Classes}
 In total there will be three controller classes in the Controller Packages with an additional class
 for input exceptions or input validation. Each controller class has an associated Manager class, and
 is in charge of utilizing the manager class safely so that appropriate data is guaranteed to be
 entered into the persistence layer.\\
 The Controller classes serve the purpose of isolating the model from the input, keeping in mind the
-philosophies of the Model-View-Controller paradigm. \\\\
+philosophies of the Model-View-Controller paradigm.
+\subsection{View Classes}
 Finally, there are multiple View classes, dependent on the application platform, that act as
 boundary classes. These classes are in charge of gathering user input in a user-friendly manner. The
-Web and Mobile applications have one and two Views, respectively. The Desktop application has five
-Views.
+Web and Mobile applications have four and two Views, respectively, and the Desktop application has
+five Views.\\
+The View classes are listed by platform below:
+\subsubsection{Current Desktop Views}
+\begin{enumerate}
+	\item \texttt{MenuView}: Allows user to select which functionality to perform
+	\item \texttt{RegisterView}: Allows user to enter profile information to create a
+		\texttt{Student}, \texttt{Instructor}, or \texttt{Administrator}
+	\item \texttt{CreateCourseView}: Allows user to enter data to create a \texttt{Course} given a specific
+		\texttt{Instructor}
+	\item \texttt{PublishJobView}: Allows user to enter information required for creating a
+		\texttt{Job}
+	\item \texttt{ApplicationView}: Allows user to create an \texttt{Application}
+\end{enumerate}
+\subsubsection{Current Mobile Views}
+\begin{enumerate}
+	\item \texttt{MainActivity}: Allows user to select which functionality to perform (analogous to
+		\texttt{MenuView})
+	\item \texttt{ApplyToJob}: Allows user to create an \texttt{Application} (analogous to
+		\texttt{ApplicationView})
+\end{enumerate}
+\subsubsection{Current Web Views}
+\begin{enumerate}
+	\item \texttt{index}: Allows user to select which functionality to perform (analogous to
+		\texttt{MenuView})
+	\item \texttt{createCourse}: Allows user to enter data to create a \texttt{Course} (analogous to
+		\texttt{CreateCourseView})
+	\item \texttt{createInstructor}: Allows user to enter data to create an \texttt{Instructor}
+		(analogous to \texttt{RegisterView}). This View is temporary and will only be used for this
+		Deliverable, as it does not satisfy the requirements of the project.
+	\item \texttt{job}: Allows user to submit data to publish a \texttt{Job} (analogous to
+		\texttt{PublishJobView})
+\end{enumerate}
 \section{Rationale}
+The program was designed this way so as to follow the principles of the Model-View-Controller design
+pattern. As discussed previously, this allowed for the effective isolation of the user input and the
+domain model. The Controller classes, along with the \texttt{PersistenceXStream} class, allow for
+persistence to be carried out in a safe manner. The Controller classes are designed in such a way
+that by using them to create their associated objects, the created objects will automatically be
+stored within the persistence layer assuming they were created successfully. To avoid storing faulty
+objects, the \texttt{InputException}, as well as several validation classes in PHP, were created. As
+such, the Controller classes throw exceptions when unworthy data is passed. The ultimate benefit to
+using this design is that the persistence is taken care of at the level of the controller classes,
+so the programmer needn't worry about it when designing the Views. With this foundation, the model
+may be altered reliably.\\\\
+By perusing the list of Views, it is clear that the mobile and web Views are very similar to the
+desktop Views in terms of their purposes. This was done to create consistent interfaces across the
+platforms. The desktop has many views because it is meant to be used by Administrators, who can
+implement the functionalities possible on all other platforms.
 
 %\subsection{Detailed Domain Model}
 %The three Manager classes were needed in order to give functionality to the user to create the
