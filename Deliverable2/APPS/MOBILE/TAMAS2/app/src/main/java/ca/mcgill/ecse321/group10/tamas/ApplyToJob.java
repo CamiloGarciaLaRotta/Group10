@@ -129,6 +129,7 @@ public class ApplyToJob extends AppCompatActivity {
 
     public void ApplyToJobClicked(View v){
         if(v.getId() == R.id.applyButton){
+            errors = "";
             String username = usernameField.getText().toString();
             System.out.println(username);
             int index = getStudentIndex(students,username);
