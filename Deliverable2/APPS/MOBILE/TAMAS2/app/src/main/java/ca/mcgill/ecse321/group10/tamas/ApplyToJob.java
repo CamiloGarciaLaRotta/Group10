@@ -1,5 +1,9 @@
 package ca.mcgill.ecse321.group10.tamas;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +27,7 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 public class ApplyToJob extends AppCompatActivity {
 
 
-
+    private static int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE;
     private ApplicationManager am;
     private ProfileManager pm;
     private EditText usernameField = null;
@@ -47,35 +51,38 @@ public class ApplyToJob extends AppCompatActivity {
         usernameField = (EditText) findViewById(R.id.usernameField);
         errorText = (TextView) findViewById(R.id.errors);
 
-        String rootPath = "/sdcard/Download";
-//        String rootPath = "getFilesDir().getAbsolutePath()";
+//        String rootPath = "/data/XML";
+        String rootPath = getFilesDir().getAbsolutePath();
+
 
         APPLICATION_FILE_NAME = rootPath + "/applications.xml";
         PROFILE_FILE_NAME = rootPath + "/profiles.xml";
+
+        int permissionCheck = ContextCompat.checkSelfPermission(ApplyToJob.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE); // -1 = denied, 0 = granted
+
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED){
+
+            //request permission
+            ActivityCompat.requestPermissions(ApplyToJob.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+
+
+        }
+
 
 
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_NAME);
         am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_NAME,PROFILE_FILE_NAME);
 
 
-        if(am.equals(null)){
-            System.out.println("am is null");
-        } else{
-            System.out.println("AM NOT NULL");
-        }
-
-        if(pm.equals(null)){
-            System.out.println("pm is null");
-        } else{
-            System.out.println("PM NOT NULL");
-        }
 
 
         jobs = am.getJobs();
         students = pm.getStudents();
 
-        System.out.println(PROFILE_FILE_NAME);
-        System.out.println(APPLICATION_FILE_NAME);
 
 
         //get string of student and job names
@@ -111,7 +118,7 @@ public class ApplyToJob extends AppCompatActivity {
 
     private static int getStudentIndex(List<Student> students, String name){
         for (int i = 0; i< students.size(); i++){
-            if(students.get(i).getUsername() == name){
+            if(students.get(i).getUsername().equals(name)){
                 return i;
             }
 
@@ -122,7 +129,9 @@ public class ApplyToJob extends AppCompatActivity {
 
     public void ApplyToJobClicked(View v){
         if(v.getId() == R.id.applyButton){
-            int index = getStudentIndex(students,usernameField.getText().toString());
+            String username = usernameField.getText().toString();
+            System.out.println(username);
+            int index = getStudentIndex(students,username);
             Student student = null;
             Job job = null;
             try{
@@ -138,8 +147,11 @@ public class ApplyToJob extends AppCompatActivity {
             try{
                 Application application = new Application(student,job);
                 am.addApplication(application);
-                String msg = student.getUsername() + " has applied to " + job.toString() + ". Good luck!";
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                String msg = student.getUsername() + " has applied to\n" + job.getCourse().getClassName() +
+                        ": " + job.getId() + " - " + job.getPositionFullName() + ".\nGood luck!";
+                Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
+                toast.setGravity(0,0,15);
+                toast.show();
                 //success
                 errorText.setText("");
             }catch (Exception e){
@@ -150,5 +162,27 @@ public class ApplyToJob extends AppCompatActivity {
 
         }
     }
+
+    //handles user response to requesting permissions
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+//            if(requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//
+//                    //permission granted
+//
+//
+//                } else {
+//                    Toast.makeText(ApplyToJob.this,"The Application will not work without permissions",Toast.LENGTH_LONG);
+//                }
+//                return;
+//            }
+//
+//            // other 'case' lines to check for other
+//            // permissions this app might request
+//        }
+
 
 }
