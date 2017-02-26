@@ -169,7 +169,9 @@ In the following week, we will create more detailed sequence diagrams going into
     \begin{itemize}
     	\item Co-designed preliminary Architecture Block Diagram
     	\item Wrote draft for Architecture's Description and Rationale
-    	\item Co-designed Detailed Design Class Diagram
+    	\item Co-designed Detailed Domain Model Diagram
+    	\item Wrote Detailed Design report
+    	\item Made Controller Package Class Diagrams
     \end{itemize}
 \end{itemize}
 
@@ -203,6 +205,11 @@ In the following week, we will create more detailed sequence diagrams going into
         \item ProfileManager, CourseManager, and ApplicationManager were added to the domain model
 			to assist in the creation and persistence of Profiles, Courses, Jobs, and Applications.
     \end{itemize}
+	\item \textbf{Architecture}
+	\begin{itemize}
+		\item The architecture was designed using two different architecture design patterns: a Model/View/Controller pattern and a Layered Architecture patter. The MVC allows one to make changes to a certain component, say the Model component, without affecting the two others. This allows for modular design. The team is also experienced with the MVC pattern, hence another reason why it was chosen.
+		\item Since an authorization and authentication service is required of the system, the architecture consists of an Authorization and Authentication layer above the MVC layer. The user first interacts with the Authorization and Authentication layer, then once access is granted, the user has access to the MVC layer, which is the TAMAS registration system.
+	\end{itemize}
 \end{enumerate}
 
 \subsection{Work Plan}
@@ -247,8 +254,9 @@ In the following Deliverable, thorough testing needs to be completed. The follow
     \end{itemize}
     \item Matthew Lesko
     \begin{itemize}
-    	\item Architecture: 3 hours
-    	\item Detailed Design: 
+    	\item Architecture Block Diagram and Description and Rationale: 3 hours
+    	\item Detailed Domain Model Diagram: 1 hour
+    	\item Detailed Design Report and Class Diagrams: 3 hours
     \end{itemize}
 \end{itemize}
 
