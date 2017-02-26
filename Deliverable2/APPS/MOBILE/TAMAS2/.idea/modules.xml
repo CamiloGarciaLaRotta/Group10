@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/Documents/OneDrive - McGill University/School/321_ECSE/Project/Group10/Deliverable2/APPS/MOBILE/TAMAS2/TAMAS2.iml" filepath="$USER_HOME$/Documents/OneDrive - McGill University/School/321_ECSE/Project/Group10/Deliverable2/APPS/MOBILE/TAMAS2/TAMAS2.iml" />
-      <module fileurl="file://$USER_HOME$/Documents/OneDrive - McGill University/School/321_ECSE/Project/Group10/Deliverable2/APPS/MOBILE/TAMAS2/app/app.iml" filepath="$USER_HOME$/Documents/OneDrive - McGill University/School/321_ECSE/Project/Group10/Deliverable2/APPS/MOBILE/TAMAS2/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../../Intro to Software Engineering/Group10/Deliverable2/APPS/MOBILE/TAMAS2/TAMAS2.iml" filepath="$PROJECT_DIR$/../../../../../../Intro to Software Engineering/Group10/Deliverable2/APPS/MOBILE/TAMAS2/TAMAS2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../../Intro to Software Engineering/Group10/Deliverable2/APPS/MOBILE/TAMAS2/app/app.iml" filepath="$PROJECT_DIR$/../../../../../../Intro to Software Engineering/Group10/Deliverable2/APPS/MOBILE/TAMAS2/app/app.iml" />
     </modules>
   </component>
 </project>

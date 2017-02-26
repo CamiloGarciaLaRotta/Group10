@@ -12,9 +12,11 @@ public class ProfileController {
 	public static String PROFILE_FILE_NAME = "output/profiles.xml";
 	
 	private ProfileManager pm;
+	private String filename;
 	
-	public ProfileController(ProfileManager pm) {
+	public ProfileController(ProfileManager pm, String filename) {
 		this.pm = pm;
+		this.filename = filename;
 	}
 	
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
@@ -31,13 +33,13 @@ public class ProfileController {
 		if(error.length() > 0) throw new InputException(error);
 		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
 		pm.addInstructor(instructor);
-		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
+		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
 	public void addCourseToInstructor(int instructor, Course course) {
 		pm.getInstructor(instructor).addCourse(course);
-		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
+		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
@@ -55,7 +57,7 @@ public class ProfileController {
 		if(error.length() > 0) throw new InputException(error);
 		Admin admin = new Admin(aUsername,aPassword,aFirstName,aLastName);
 		pm.addAdmin(admin);
-		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
+		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
@@ -73,7 +75,7 @@ public class ProfileController {
 		if(error.length() > 0) throw new InputException(error);
 		Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
 		pm.addStudent(student);
-		PersistenceXStream.setFilename(PROFILE_FILE_NAME);
+		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 }

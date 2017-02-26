@@ -237,7 +237,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		String last = tfLast.getText();
 		String user = tfUser.getText();
 		String pass = tfPass.getText();
-		ProfileController pc = new ProfileController(pm);
+		ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 		if(rbStudent.isSelected()) {
 			try {
 				reqs = taReqs.getText();

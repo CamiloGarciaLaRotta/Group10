@@ -15,8 +15,11 @@ public class ApplicationController {
 	public static String APPLICATION_FILE_NAME = "output/applications.xml";
 	
 	private ApplicationManager am;
-	public ApplicationController(ApplicationManager am){
+	private String filename;
+	
+	public ApplicationController(ApplicationManager am, String filename){
 		this.am = am;
+		this.filename = filename;
 	}
 	
 	public void addJobToSystem(Time aStartTime, Time aEndTime, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) throws InputException {
@@ -30,20 +33,20 @@ public class ApplicationController {
 		
 		Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
 		am.addJob(j);
-		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
+		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 	
 	public void modifyJobPosition(int index, Job.Position pos) {
 		am.getJob(index).setPosition(pos);
-		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
+		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 	
 	public void createApplication(Student s, Job j) {
 		Application a = new Application(s,j);
 		am.addApplication(a);
-		PersistenceXStream.setFilename(APPLICATION_FILE_NAME);
+		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 
