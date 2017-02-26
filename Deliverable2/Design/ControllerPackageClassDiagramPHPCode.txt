@@ -1,0 +1,27 @@
+class ApplicationController{
+  PersistenceTAMAS pt;
+  ApplicationManager am;
+  ProfileManager pm;
+  CourseManager cm;
+  void __construct(){}
+  void createJob(){}
+}
+
+class CourseController{
+  PersistenceTAMAS pt;
+  CourseManager cm;
+  void __construct(){}
+  void createCourse(){}
+}
+
+class ProfileManager{
+  PersistenceTAMAS pt;
+  ProfileManager pm;
+  void __construct(){}
+  void createInstructor(){}
+}
+
+class InputValidator{
+  public validate_input(){}
+  public validate_date(){}
+}

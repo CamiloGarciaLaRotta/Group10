@@ -1,0 +1,18 @@
+class ValidateJob{
+	
+}
+class CreateInstructor{
+	
+}
+class CreateCourse{
+	
+}
+class Job{
+	
+}
+class ValidateCourse{
+	
+}
+class ValidateInstructor{
+	
+}
