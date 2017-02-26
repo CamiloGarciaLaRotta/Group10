@@ -1,0 +1,25 @@
+class MainActivity{
+	Button buton;
+
+	protected void onCreate(Bundle savedInstanceState){}
+	public void createJobAppClicked(View v){}
+	private void createDummyData(){}
+
+}
+class ApplyToJob{
+	int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE;
+    ApplicationManager am;
+    ProfileManager pm;
+    EditText usernameField = null;
+    Spinner jobSpinner = null;
+    TextView errorText = null;
+    String errors = "";
+
+
+    List<Job> jobs = null;
+    List<Student> students = null;
+    String APPLICATION_FILE_NAME, PROFILE_FILE_NAME;
+
+    protected void onCreate(Bundle savedInstanceState){}
+    public void usernameClicked(View v){}
+}

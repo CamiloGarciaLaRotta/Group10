@@ -21,33 +21,20 @@
 \tableofcontents
 \section{Description}
 \subsection{Detailed Domain Model}
-The Detail Design Diagram consists of the following entities: ApplicationManager, ProfileManager,
-CourseManager, Application, Profile, Course, Job, Instructor, Admin, Student, Laboratory, and
-Tutorial. It consists of a Controller, called Controller, a Boundary, called View, and a
-Persistence, called Persistence XStream. The Controller uses the entities ApplicationManager,
-ProfileManager, and CourseManager to save, edit, and modify data within the model, which are then
-saved within a persistence layer. The functionalities of the three "Manager" classes are listed
-below.
+The Detail Design Diagram consists of the following entities: ApplicationManager, ProfileManager, CourseManager, Application, Profile, Course, Job, Instructor, Admin, Student, Laboratory, and Tutorial. It consists of a Controller, called Controller, a Boundary, called View, and a Persistence, called Persistence XStream. The Controller uses the entities ApplicationManager, ProfileManager, and CourseManager to save, edit, and modify data within the model, which are then saved within a persistence layer. The functionalities of the three "Manager" classes are listed below.
 \begin{itemize}
-	\item ApplicationManager is in charge of Application, the job application created and submitted
-		by the student for a job. It is associated with Application, Job, and ProfileManager.
-	\item ProfileManager creates Admin, Instructor, and Student entities, all of which inherit from
-		the Profile class.
+	\item ApplicationManager is in charge of Application, the job application created and submitted by the student for a job. It is associated with Application, Job, and ProfileManager.
+	\item ProfileManager creates Admin, Instructor, and Student entities, all of which inherit from the Profile class.
 	\item CourseManager creates Course entities.
 \end{itemize}
-In total there will be three controller classes in the Controller Packages with an additional class
-for input exceptions or input validation. The three controller classes will each use at least one of
-the manager classes.
+In total there will be three controller classes in the Controller Packages with an additional class for input exceptions or input validation. The three controller classes will each use at least one of the manager classes.
+\subsection{Controller Packages}
+There are two controller packages: one for the Desktop (Java) and Mobile (Android) platforms, and one for the Web (PHP) platform. The diagrams under Class Diagrams contain details on the controller classes' attributes and behavior for their respective package. These details include the attributes' names and types and the methods' signatures.
+\subsection{View Packages}
+There are three view packages: one for the Desktop (Java) platform, one for the Mobile (Android) platform, and one for the Web (PHP) platform. The diagrams under Class Diagrams contain details on the view classes' attributes and behavior for their respective package. These details include the attributes' names and types and the methods' signatures.
 \section{Rationale}
 \subsection{Detailed Domain Model}
-The three Manager classes were needed in order to give functionality to the user to create the
-entities associated with the manager classes, except for ApplicationManager creating a
-ProfileManager. The reason ApplicationManager is associated to ProfileManager is because otherwise
-the only way for ApplicationManager to have access to Student is by a direct association to it; this
-would cause a redundancy as now two manager classes are able to create Student entities, which is
-something we want to avoid. Having a separate controller for each manager class allows one to modify
-the functionality of one controller class with its respective manager class without it having to
-affect the other controller classes.
+The three Manager classes were needed in order to give functionality to the user to create the entities associated with the manager classes. Having a separate controller for each manager class allows one to modify the functionality of one controller class with its respective manager class without it having to affect the other controller classes.
 \section{Class Diagrams}
 \subsection{Detailed Domain Model Diagram}
 \begin{figure}[H]
@@ -71,10 +58,10 @@ affect the other controller classes.
 	\includegraphics[scale=1]{./ClassDiagrams/desktopViewPackageDiagram(B).png}
 \end{figure}
 \subsection{PHP View Class Diagram (Web)}
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[]{}
-%\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{./ClassDiagrams/WebViewPackageDiagram.jpg}
+\end{figure}
 \subsection{Android View Class Diagram (Android)}
 %\begin{figure}[H]
 %	\centering
