@@ -58,19 +58,19 @@ public class ApplyToJob extends AppCompatActivity {
         APPLICATION_FILE_NAME = rootPath + "/applications.xml";
         PROFILE_FILE_NAME = rootPath + "/profiles.xml";
 
-        int permissionCheck = ContextCompat.checkSelfPermission(ApplyToJob.this,
-                Manifest.permission.READ_EXTERNAL_STORAGE); // -1 = denied, 0 = granted
+//        int permissionCheck = ContextCompat.checkSelfPermission(ApplyToJob.this,
+//                Manifest.permission.READ_EXTERNAL_STORAGE); // -1 = denied, 0 = granted
+//
 
-
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED){
-
-            //request permission
-            ActivityCompat.requestPermissions(ApplyToJob.this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-
-
-        }
+//        if (permissionCheck != PackageManager.PERMISSION_GRANTED){
+//
+//            //request permission
+//            ActivityCompat.requestPermissions(ApplyToJob.this,
+//                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//
+//
+//        }
 
 
 
