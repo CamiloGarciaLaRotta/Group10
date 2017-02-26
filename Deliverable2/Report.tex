@@ -161,6 +161,37 @@ implement the functionalities possible on all other platforms.
 	\includegraphics[]{./Design/ClassDiagrams/AndroidViewPackageDiagram}
 \end{figure}
 
+\part{Implementation of Prototypes}
+
+\section{Desktop Application}
+The desktop application submitted in this Deliverable contains all functionalities necessary to
+generate the sufficient entities to complete the following required use cases: Apply to Job
+(Desktop), Apply to Job (Mobile), Publish Job Posting (Desktop). This includes the abilities to
+create profiles, create courses, create job postings, and submit job applications. All of the
+mentioned functionalities are persisted, so the XML files that are output may be used as data for
+the other platforms.
+
+\section{Web Application}
+The web application submitted in this Deliverable contains all functionalities required to complete
+the required Publish Job Posting (Web) use case. This means that the web application must be capable
+of creating instructors and creating courses, otherwise the Publish Job use case could not function
+without prior XML data. Although the desktop application can provide this XML data, it was easier in
+the development phase if the web application could do this independently. Therefore, the ability to
+create instructors and create courses is only temporary. Importantly, in publishing a job posting,
+the job data is saved in the persistence layer and may copied to the appropriate directories on the
+other platforms for use.
+
+\section{Mobile Application}
+The mobile application submitted in this Deliverable has the ability to complete the Apply to Job
+Posting (Mobile) use case, given prior XML data. For convenience, the mobile application generates
+sample entities if it is found that there is no data, to make testing and validation easier.
+However, should someone wish to use their own XML data to test the application, this is possible by
+placing the XML files (say, that were generated from the desktop application) in the following
+directory: \texttt{/storage/emulated/0/Android/obb/ca.mcgill.ecse321.group10.tamas/}. This, of
+course, is also the directory of the output persistence of the mobile app. In applying to a job, the
+mobile application saves the \texttt{Application} data to a persistence XML file which can then be
+used on the other platforms.
+
 %\subsection{Detailed Domain Model}
 %The three Manager classes were needed in order to give functionality to the user to create the
 %entities associated with the manager classes, except for ApplicationManager creating a
