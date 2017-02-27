@@ -6,6 +6,7 @@
 \usepackage{enumerate} %For fancy enumeration
 \usepackage{hyperref}
 \usepackage{pdfpages}
+\usepackage{float}
 \usepackage[margin=2cm]{geometry} %Nice margin setting
 
 \title{ECSE 321 - Intro to Software Engineering\\Design Specification Document - Deliverable 2}
@@ -51,6 +52,9 @@
 \includepdf[scale=0.5,pages=1]{Architecture/blockDiagram}
 
 \part{Description of the Detailed Design}
+The Domain Model changed significantly since the last Deliverable, and the new domain model may be
+found below.\\
+\includegraphics[scale=0.9, viewport=0 500 900 900]{model/alternateModelDiagram}
 \section{Description}
 \subsection{Detailed Domain Model}
 The Detail Design Diagram consists of the following entities: ApplicationManager, ProfileManager,
@@ -128,6 +132,104 @@ By perusing the list of Views, it is clear that the mobile and web Views are ver
 desktop Views in terms of their purposes. This was done to create consistent interfaces across the
 platforms. The desktop has many views because it is meant to be used by Administrators, who can
 implement the functionalities possible on all other platforms.
+\section{Detailed Design Diagram}
+\includegraphics[scale=0.6,angle=270]{DetailedDomainModelDiagram}
+\section{Java and Android Controller Class Diagram (Desktop and Mobile)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.95]{./Design/ClassDiagrams/ControllerPackageClassDiagramJava}
+\end{figure}
+\section{PHP Controller Class Diagram (Web)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1.05]{./Design/ClassDiagrams/ControllerPackageClassDiagramPHP}
+\end{figure}
+\section{Java View Class Diagram (Desktop)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{./Design/ClassDiagrams/desktopViewPackageDiagram(A)}
+	\includegraphics[scale=1]{./Design/ClassDiagrams/desktopViewPackageDiagram(B)}
+\end{figure}
+\section{PHP View Class Diagram (Web)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{./Design/ClassDiagrams/WebViewPackageDiagram}
+\end{figure}
+\section{Android View Class Diagram (Android)}
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{./Design/ClassDiagrams/AndroidViewPackageDiagram}
+\end{figure}
+
+\part{Implementation of Prototypes}
+
+\section{Desktop Application}
+The desktop application submitted in this Deliverable contains all functionalities necessary to
+generate the sufficient entities to complete the following required use cases: Apply to Job
+(Desktop), Apply to Job (Mobile), Publish Job Posting (Desktop). This includes the abilities to
+create profiles, create courses, create job postings, and submit job applications. All of the
+mentioned functionalities are persisted, so the XML files that are output may be used as data for
+the other platforms. Below are the sequence diagrams describing the desktop use cases.
+\subsection{Desktop Publish Job Posting Use Case}
+\includegraphics[scale=0.73]{model/SEQUENCE/publish_desktopSequenceAlt}
+\subsection{Desktop Apply to Job Use Case}
+\includegraphics[scale=0.73]{model/SEQUENCE/apply_desktopSequence}
+
+\section{Web Application}
+The web application submitted in this Deliverable contains all functionalities required to complete
+the required Publish Job Posting (Web) use case. This means that the web application must be capable
+of creating instructors and creating courses, otherwise the Publish Job use case could not function
+without prior XML data. Although the desktop application can provide this XML data, it was easier in
+the development phase if the web application could do this independently. Therefore, the ability to
+create instructors and create courses is only temporary. Importantly, in publishing a job posting,
+the job data is saved in the persistence layer and may copied to the appropriate directories on the
+other platforms for use. Following is the sequence diagram describing the required web use case.
+\subsection{Web Publish Job Posting Use Case}
+\includegraphics[scale=0.73]{model/SEQUENCE/publish_webSEQUENCE1}\\
+Continued on next page\dots\newpage
+\includegraphics[scale=0.73]{model/SEQUENCE/publish_webSEQUENCE2}
+
+\section{Mobile Application}
+The mobile application submitted in this Deliverable has the ability to complete the Apply to Job
+Posting (Mobile) use case, given prior XML data. For convenience, the mobile application generates
+sample entities if it is found that there is no data, to make testing and validation easier.
+However, should someone wish to use their own XML data to test the application, this is possible by
+placing the XML files (say, that were generated from the desktop application) in the following
+directory: \texttt{/storage/emulated/0/Android/obb/ca.mcgill.ecse321.group10.tamas/}. This, of
+course, is also the directory of the output persistence of the mobile app. In applying to a job, the
+mobile application saves the \texttt{Application} data to a persistence XML file which can then be
+used on the other platforms. Below is the sequence diagram representing the required mobile use
+case.
+\subsection{Mobile Apply to Job Posting Sequence Diagram}
+\includegraphics[scale=0.90]{model/SEQUENCE/apply_mobileSEQUENCE}
+
+\part{Work Plan From Past and Future Iterations}
+In this section, the updated workplan may be pondered. The full detailed backlog including work
+hours per team member, key decisions, and work history may be seen on the remote git repository's
+root directory in the file called \texttt{backlog.pdf}.
+\subsection{Iteration 1}
+
+In the following week, we will create more detailed sequence diagrams going into the details of the
+implementations on individual platforms. We will then develop prototype source code for the Publish
+Job Posting and Apply for Job use cases for the desktop and mobile applications respectively.
+
+\subsection{Iteration 2}
+
+In the following Deliverable, thorough testing needs to be completed. The following are deadlines
+and the estimated effort it will take to complete these tasks on a scale of 1 to 10.
+
+\begin{itemize}
+	\item March 10 - First iteration of unit tests for Apply to Job and Publish Job posting on web,
+		desktop and mobile. Estimated Effort: 8/10
+	\item March 13 - Second iteration of unit tests for Apply to Job and Publish Job posting on web,
+		desktop and mobile. Estimated Effort: 6/10
+	\item March 13 - First iteration of System and Component tests. Estimated Effort: 6/10
+    \item March 15 - First iteration of Stress Testing and Final iteration of unit tests. Estimated Effort: 6/10
+    \item March 16 - First iteration of Descriptions of all tests done. Estimated Effort: 5/10
+	\item March 10 - Deadline for Deliverable 3, including editing of backlog and update of
+		workplan. Estimated Effort: 4/10
+
+\end{itemize}
 
 %\subsection{Detailed Domain Model}
 %The three Manager classes were needed in order to give functionality to the user to create the
