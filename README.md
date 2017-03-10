@@ -22,6 +22,15 @@ A brief description of each delivery follows.
 	* GitHub usage and Work plan for completed and remaining iterations
 	
 *  __Deliverable #3__
+	* Unit Test Plan:
+		Checklist with classes that need to be tested and which classes do not need to be tested
+	* Integration Strategy:
+		Plan and order in which classes and subsystems that will be tested
+	* System Test Plan:
+		How whole system will be tested
+	* Updated Work Plan:
+		Updated work and remaining work for remaining iterations of implementation
+		
 *  __Deliverable #4__
 *  __Deliverable #5__
 *  __Deliverable #5__
