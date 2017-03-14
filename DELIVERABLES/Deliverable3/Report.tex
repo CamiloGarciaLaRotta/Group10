@@ -21,15 +21,9 @@
 \tableofcontents
 \part{Unit Test Plan}
 \section{Description}
-	In this section we will present an extensive suite of test cases aimed to cover in the most efficient manner possible the Fantasy Basketball system we are to deliver. Following the paradigm of Test-Driven Development, we shall also implement the unit test cases. This will help keep the development of the system on track with the requirements imposed to the team. The test cases will be split into the four main categories of the system:
-    
-	\begin{itemize}
-	    \item \textbf{Global:} Implementation independent tests, common to all platforms
-	    \item \textbf{Desktop:} Administrative specific tests
-	    \item \textbf{Web:} Professor specific tests
-	    \item \textbf{Mobile:} TA/Grader specific tests
-	\end{itemize}
-\section{Global Plan}
+	In this section we will present an extensive suite of test cases aimed to cover in the most efficient manner possible the Fantasy Basketball system we are to deliver. Following the paradigm of Test-Driven Development, we shall also implement the unit test cases. This will help keep the development of the system on track with the requirements imposed to the team. 
+	
+\section{Test Cases}
     All the classes to test will have the following pattern:\\
     
     \textbf{CLASS TO TEST/NOT TO TEST}
@@ -49,9 +43,89 @@
                 \item \textbf{CDN}: test for non-unique, null, empty, not alphabetic and only spaces inputs.
                 \item \textbf{className}: test for null, empty, not numerical and only spaces inputs.
                 \item \textbf{graderTimeBudget/taTimeBudget}: test for null, empty, not numerical and negative inputs.
+                \item \textbf{Jobs}: test for retrieval of job list
             \end{itemize}
-            
         \end{itemize}
+        
+        \item \textbf{Job}
+        \begin{itemize}
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. It encapsulates half of the persistence aspect of the app which is to publish and view job postings.
+            \item \textbf{Test Cases:} 
+            \begin{itemize}
+                \item \textbf{CDN}: test for non-existent, null, empty, only numerical and only spaces inputs.
+                \item \textbf{requirements}: test for null, empty, empty and only spaces inputs.
+                \item \textbf{position}: test for null inputs.
+                \item \textbf{salary}: test for null, empty, not numerical and negative inputs.
+                \item \textbf{day}: test for null, empty and weekend inputs.
+               \item \textbf{startTime/endTime}: test for null, empty and outside of working hours inputs.
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Tutorial}
+        \begin{itemize}
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. Job postings are for either TA/Grader. In the first case, the availabilities of the TA must be compatible with those of the tutorial.
+            \item \textbf{Test Cases:} 
+            \begin{itemize}
+                \item test the same attributes as Course to ensure inheritance was correctly implemented by the UML
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Laboratory}
+        \begin{itemize}
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. Job postings are for either TA/Grader. In the first case, the availabilities of the TA must be compatible with those of the laboratory.
+            \item \textbf{Test Cases:} 
+            \begin{itemize}
+                \item test the same attributes as Course to ensure inheritance was correctly implemented by the UML
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Profile}
+        \begin{itemize}
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. The system requires profile identifiers to discern which methods and attributes each instance has access to.
+            \item \textbf{Test Cases:} 
+            \begin{itemize}
+                \item \textbf{id}:test for non-unique, null, empty, not alphabetic and only spaces inputs.
+                \item \textbf{username}: test for non-unique, null, empty, not alphanumeric and only spaces inputs.
+                \item \textbf{password}: test for invalid difficulty, null and empty inputs.
+                \item \textbf{firstName/lastName}: test for null, empty, not alphabetical and only spaces inputs.
+            \end{itemize}
+        \end{itemize} 
+        
+        \item \textbf{Student}
+        \begin{itemize}
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. The student is the only instance of profile allowed to apply to a job posting.
+            \item \textbf{Test Cases:} 
+            \begin{itemize}
+                \item test the same attributes as Profile to ensure inheritance was correctly implemented by the UML
+                \item \textbf{experience}: test for null, empty and only spaces inputs.
+                \item \textbf{degree}: test for null inputs.
+                \item \textbf{Jobs}: test for retrieval of job list
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Instructor}
+        \begin{itemize}
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. The instructor is the only instance of profile allowed to post jobs.
+            \item \textbf{Test Cases:} 
+            \begin{itemize}
+                \item test the same attributes as Profile to ensure inheritance was correctly implemented by the UML
+                \item \textbf{experience}: test for null, empty and only spaces inputs.
+                \item \textbf{degree}: test for null inputs.
+                \item \textbf{Jobs}: test for retrieval and modification of job list
+                \item \textbf{Application}: test for retrieval of application list
+                \item \textbf{course}: test for retrieval of course list
+            \end{itemize}
+        \end{itemize}
+        
+        \item \textbf{Persistence}
+        \begin{itemize}
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. Without persistence capability the controllers have no data from which to derive the desired outcome
+            \item \textbf{Test Cases:} 
+            \begin{itemize}
+                \item creation, modification and deletion of Course, Job, Application and Profile instances. 
+            \end{itemize}
+        \end{itemize}
+        
     \end{itemize}
     
     \subsection{Classes Not Test}
@@ -59,5 +133,20 @@
         \item hello
     \end{itemize}
     
+    \section{Techniques and Tools}
+    
+    The system is to be designed in a complete Test-Driven Development paradigm. Hence all test cases will be written before the actual controllers are implemented. Furthermore, the order in which the tests will be passed follows the same order as the requirements derived in the Requirements document of deliverable \#1. This will aid the classification and prioritization of each bi-weekly runs' objectives. In parallel to this method, the team will rely heavily on code revisions by the senior members of the team to ensure the code written is up to visual, performance and logical standards. In terms of frequency, individual nightly tests will be ran on all platforms of the system and bi-weekly builds and test will be done every Saturday to ensure the deliverable validates and verifies the given requirements. To facilitate the testing process, the team will use the following tools:
+    
+    \begin{itemize}
+        \item \textbf{Unit Test Framework:} Automated, well documented and supported system to allow a standardized set of tests to be done regardless of the platform. JUnit and PHPUnit will be used.
+        \item \textbf{Test Coverage Tool:} Ensure that the measure to which the tests and actions cover the source code is optimal by function, statement, branch and condition standards. Its outputs will be used during the code revision sessions. EclEmma and PHPUnit will be used for this purposes.
+    \end{itemize}
+    
+    \section{Coverage Statistics}
+    
+    \textbf{TODOOOOOOO}
+    To the extent possible, include a quantification of your testing goal (e.g., N\% statement coverage or M\% branch coverage). 
+    
+    Furthermore, discuss how often your tests are executed, i.e., what triggers your tests to be run? Finally, describe any differences between your desktop/laptop app, mobile app, and web app when it comes to unit testing.
     
 \end{document}
