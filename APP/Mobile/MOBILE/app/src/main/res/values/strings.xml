@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TAMAS</string>
+    <string name="power_is_in_your_hands">Power is in your hands</string>
+    <string name="welcome_to_tamas">Welcome To TAMAS</string>
+    <string name="apply">Apply</string>
+    <string name="usernameHint">Username?</string>
+    <string name="ApplicationErrors"></string>
+    <string name="browse_job_postings">Browse Job Postings</string>
+    <string name="create_job_application">Create Job Application</string>
+    <string name="edit_profile">Edit Profile</string>
+</resources>
