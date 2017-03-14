@@ -117,6 +117,33 @@
             \end{itemize}
         \end{itemize}
         
+        \begin{itemize}
+        	\item \textbf{Application}
+        	\begin{itemize}
+        		\item \textbf{Reason to test:} This class is necessary for the Student to apply for a job. Each application is associated to a student and a job posting; hence one needs to test for different ways a Student can apply to a job.
+        		\item \textbf{Test Cases:} 
+        		\begin{itemize}
+        			\item \textbf{Test Apply for a Job:} test for error if hours are not compatible, test for error if job is null, and test for error if student is null.
+        		\end{itemize}
+        		
+        	\end{itemize}
+        \end{itemize}
+        
+        \begin{itemize}
+        	\item \textbf{Admin}
+        	\begin{itemize}
+        		\item \textbf{Reason to test:} This class is intrinsic to the creation of a course, the creation of a Student and Instructor, and application transaction. Its attributes inherit from profile. They define information about the person that is registering an admin profile; hence it is needed to test for different 
+        		\item \textbf{Test Cases:} 
+        		\begin{itemize}
+        			\item test the same attributes as Profile to ensure inheritance was correctly implemented by the UML
+        			\item \textbf{Instructor Relation}: test create Instructor
+        			\item \textbf{Student Relation:} test create Student
+        			\item \textbf{Application Transaction:} test application transaction between Student and Job Posting
+        		\end{itemize}
+        		
+        	\end{itemize}
+        \end{itemize}
+        
         \item \textbf{Persistence}
         \begin{itemize}
             \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. Without persistence capability the controllers have no data from which to derive the desired outcome
@@ -130,7 +157,24 @@
     
     \subsection{Classes Not Test}
     \begin{itemize}
-        \item hello
+    	\item \textbf{Application Manager}
+    	\begin{itemize}
+    		\item \textbf{Reason to not test:} This class acts as a container for Application and Job. It does not perform any action; hence, there is nothing to test.
+    	\end{itemize}
+    \end{itemize}
+    
+    \begin{itemize}
+    	\item \textbf{Profile Manager}
+    	\begin{itemize}
+    		\item \textbf{Reason to not test:} This class acts as a container for Student, Instructor, and Admin. It does not perform any action; hence, there is nothing to test.
+    	\end{itemize}
+    \end{itemize}
+    
+    \begin{itemize}
+    	\item \textbf{Course Manager}
+    	\begin{itemize}
+    		\item \textbf{Reason to not test:} This class acts as a container for Course. It does not perform any action; hence, there is nothing to test.
+    	\end{itemize}
     \end{itemize}
     
     \section{Techniques and Tools}
