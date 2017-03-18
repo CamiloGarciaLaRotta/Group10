@@ -122,7 +122,6 @@
             \end{itemize}
         \end{itemize}
         
-        \begin{itemize}
         	\item \textbf{Application}
         	\begin{itemize}
         		\item \textbf{Reason to test:} This class is necessary for the Student to apply for a job. Each application is associated to a student and a job posting; hence one needs to test for different Student attributes for different Jobs.
@@ -148,6 +147,7 @@
         	\end{itemize}
         \end{itemize}
         
+        \begin{itemize}
         \item \textbf{Persistence}
         \begin{itemize}
             \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. Without persistence capability the controllers have no data from which to derive the desired outcome
@@ -196,11 +196,15 @@
     To the extent possible, include a quantification of your testing goal (e.g., N\% statement coverage or M\% branch coverage). 
     
     Furthermore, discuss how often your tests are executed, i.e., what triggers your tests to be run? Finally, describe any differences between your desktop/laptop app, mobile app, and web app when it comes to unit testing.
-    
+
+\part{Integration Test Plan}
+%%%%%%%%%%%% ADD INTEGRATION TEST PLAN HERE%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{System Test Plan}
 \section{Description}
 The purpose of system testing is to validate the functionality of the system as a whole. System
-tests are block-box tests, meaning they are done without any concern regarding the code - that is to
+tests are black-box tests, meaning they are done without any concern regarding the code - that is to
 say, only the inputs and outputs are examined.\\\\
 So as to examine the functionality of the system in an organized and systematic fashion, system
 tests will be designed according to the various \textit{use cases} of the system. The use cases
