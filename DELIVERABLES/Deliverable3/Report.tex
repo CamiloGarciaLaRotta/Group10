@@ -197,4 +197,265 @@
     
     Furthermore, discuss how often your tests are executed, i.e., what triggers your tests to be run? Finally, describe any differences between your desktop/laptop app, mobile app, and web app when it comes to unit testing.
     
+\part{System Test Plan}
+\section{Description}
+The purpose of system testing is to validate the functionality of the system as a whole. System
+tests are block-box tests, meaning they are done without any concern regarding the code - that is to
+say, only the inputs and outputs are examined.\\\\
+So as to examine the functionality of the system in an organized and systematic fashion, system
+tests will be designed according to the various \textit{use cases} of the system. The use cases
+provide concrete details concerning how each functionality of the system should behave, and in
+particular how each functionality of the system should react to unexpected or faulty input.\\\\
+The proposed system tests will be discussed below.
+\subsection{Administrator-Specific Actions}
+\begin{enumerate}
+	\item \textbf{Sending Student Enrollment Data and Course List}
+		\begin{enumerate}
+			\item Valid data entered
+			\begin{itemize}
+				\item Enter appropriate data for student enrollment, as well as the course list, in the
+					desktop application. Ensure that the proper XML files are generated.
+			\end{itemize}
+			\item Invalid student enrollment data entered
+			\begin{itemize}
+				\item Enter faulty student enrollment data (by omitting names, for example) and
+					enter correct course list data in the desktop application. Ensure that an error
+					message about invalid student data is made present. Moreover, assert that the
+					corresponding student enrollment XML has not been generated at all, and that the
+					course list XML file has been generated appropriately.
+			\end{itemize}
+			\item Invalid course list data entered
+			\begin{itemize}
+				\item Enter faulty course list data (by omitting required names, or by including
+					non-integral course codes, for example) and enter correct student data in the
+					desktop application. Ensure that an error message about invalid course list data
+					is made present. Moreover, assert that the corresponding course list XML file
+					has not been generated at all, and that the student enrollment XML file has been
+					generated appropriately.
+			\end{itemize}
+		\end{enumerate}
+	\item \textbf{Generating Initial Student Job Placements}
+		\begin{enumerate}
+			\item Valid XML Application file is present
+				\begin{itemize}
+					\item Ensure that the appropriate XML file containing data about student
+						applications is present. Use desktop application to generate default TA
+						placement.
+						\begin{enumerate}
+							\item Verify that an appropriate XML file containing data about the job
+								offerings was generated.
+							\item Verify that initial placement confines to the budget for each
+								department.
+							\item Verify that graduate students were selected with higher priority
+								than undergraduate students.
+							\item Verify that the same student was selected for as many jobs as
+								possible for the same course.
+						\end{enumerate}
+				\end{itemize}
+			\item XML Application file not found or is corrupted
+				\begin{itemize}
+					\item Place invalid XML file (containing syntax errors or type mismatches, for
+						example) in the appropriate location, and attempt to generate default TA
+						placement with the desktop application. Ensure that an error message about
+						the invalidity of the XML file is output, and that no XML file about job
+						offerings has been created.
+				\end{itemize}
+		\end{enumerate}
+	\item \textbf{Accepting or Rejecting Instructor TA Modifications}
+		\begin{enumerate}
+			\item Accepting a modification
+				\begin{itemize}
+					\item Ensure that a list of all instructor modifications is present in the
+						\textit{view proposed modifications} page. Select a modification for
+						viewing, and select to accept the modification.
+						\begin{enumerate}
+							\item Ensure that the original allocations XML file has been overwritten
+								using the data from the modification XML file that is currently
+								active.
+						\end{enumerate}
+				\end{itemize}
+			\item Rejecting a modification
+				\begin{itemize}
+					\item Ensure that a list of all instructor modifications is present in the
+						\textit{view proposed modifications} page. Select a modification for
+						viewing, and choose to reject the modification.
+						\begin{enumerate}
+							\item Ensure that the original allocations XML file has not been
+								modified.
+							\item Ensure that the modifications XML file has been deleted.
+						\end{enumerate}
+				\end{itemize}
+		\end{enumerate}
+	\item \textbf{Send Job Offers}
+		\begin{enumerate}
+			\item Modification XML files present
+				\begin{itemize}
+					\item Ensure that a TA placement modification XML file is present. Attempt
+						sending job offers in the \textit{view allocation} page.
+						\begin{enumerate}
+							\item Ensure that no \texttt{offers.xml} file is generated.
+							\item Ensure that an error message informing the user that there are
+								still outstanding modifications is output.
+						\end{enumerate}
+				\end{itemize}
+			\item No modification XML files are present
+				\begin{itemize}
+					\item Remove all modification XML files, and ensure that initial allocation XML
+						file is present. Attempt sending job offers in the \textit{view allocation}
+						page.
+						\begin{enumerate}
+							\item Ensure that the \texttt{offers.xml} file has been generated with
+								appropriate job offer data corresponding to the TA allocation.
+						\end{enumerate}
+				\end{itemize}
+		\end{enumerate}
+\end{enumerate}
+\subsection{Instructor Use-Cases}
+\begin{enumerate}
+	\item \textbf{Publish Job Posting}
+		\begin{enumerate}
+			\item No course data found
+				\begin{itemize}
+					\item Remove all course data, or delete the \texttt{courses.xml} file. Attempt
+						to open the page containing the \textit{publish job posting} form. Ensure
+						that the page does not open, and an error message informing the user that no
+						courses are available is output.
+				\end{itemize}
+			\item Course and Instructor data present
+				\begin{itemize}
+					\item Ensure the presence of the \texttt{courses.xml} and \texttt{profiles.xml}
+						files, and make sure at least one course is present. Then, open the
+						\textit{publish job posting} form and assert that for the indicated
+						Instructor, all of its courses, and only courses that are being taught by
+						that given professor, are available for selection in the Course list.
+				\end{itemize}
+			\item Valid input entered, no previous XML file found
+				\begin{itemize}
+					\item Specify valid information corresponding to a job posting in the
+						\textit{publish job posting} form, and submit the data. Ensure that a XML
+						file called \texttt{applications.xml} was generated and contains correct
+						data concerning the job postings that were submitted.
+				\end{itemize}
+			\item Valid input entered, with previous XML file in place
+				\begin{itemize}
+					\item With a previously-generated \texttt{applications.xml} in place, attempt
+						submitting a job posting using the \textit{publish job posting} form. Ensure
+						that the XML file has been modified such that the new job postings have been
+						appended after the previous ones (therefore, ensure no data was lost).
+				\end{itemize}
+			\item Type mismatches or empty fields submitted
+				\begin{itemize}
+					\item Attempt submitting a job posting, leaving fields blank or including type
+						mismatches, such as a non-integral input in the Salary field. Ensure that
+						the \texttt{applications.xml} file was not modified (and if it did not
+						previously exist, ensure that it has not been generated).
+				\end{itemize}
+			\item Valid, but unsound data submitted
+				\begin{itemize}
+					\item Attempt submitting a job posting with unsound data, such as a start time
+						that is later than an end time.
+						\begin{enumerate}
+							\item Ensure that the appropriate error message is output.
+							\item Ensure that the \texttt{applications.xml} file was not modified
+								(and if it did not previously exist, ensure that it has not been
+								generated).
+						\end{enumerate}
+				\end{itemize}
+		\end{enumerate}
+	\item \textbf{Modify initial TA allocation}
+		\begin{enumerate}
+			\item No initial allocation data found
+				\begin{itemize}
+					\item Remove XML file with initial allocation data. Attempt to open TA placement
+						modification page. Ensure that the page does not open, and that an error
+						message informing the user that no allocation has been made is output.
+				\end{itemize}
+			\item Valid modifications entered
+				\begin{itemize}
+					\item Enter valid modifications in the modification form, and submit.
+						\begin{enumerate}
+							\item Ensure that the initial allocation XML file has not been
+								modified.
+							\item Ensure that a seperate XML file containing the data about the
+								modifications has been created appropriately.
+						\end{enumerate}
+				\end{itemize}
+			\item Invalid modifications entered
+				\begin{itemize}
+					\item Enter modifications that have empty fields or type mismatches, for
+						example. Attempt submitting modifications.
+						\begin{enumerate}
+							\item Verify that an error message containing the details of the
+								invalidity of the input has been shown.
+							\item Ensure that the initial allocation XML file has not been modified.
+							\item Ensure that no seperate XML files containing modification data
+								have been generated.
+						\end{enumerate}
+				\end{itemize}
+		\end{enumerate}
+	\item \textbf{Evaluate TA/Grader}
+		\begin{enumerate}
+			\item No student XML data found or no TA's associated to current professor.
+				\begin{itemize}
+					\item Remove all student data, or remove job data for a specific professor.
+						Under such professor's account, attempt to open the \textit{evaluate TA}
+						page. Ensure that the page does not open, and that a message informing the
+						user that no TA's are available is output.
+				\end{itemize}
+			\item TA data available
+				\begin{itemize}
+					\item Open the \textit{evaluate TA} page.
+						\begin{enumerate}
+							\item Ensure that only the TA's that worked for courses taught by the
+								selected professor are available for evaluation.
+							\item After submission, ensure that the Student that was evaluated had
+								its \texttt{experience} field modified in the \texttt{profiles.xml}
+								file.
+						\end{enumerate}
+				\end{itemize}
+		\end{enumerate}
+\end{enumerate}
+\subsection{Student Use-Cases}
+\begin{enumerate}
+	\item \textbf{Apply to Job Posting}
+		\begin{enumerate}
+			\item No Job data available
+			\begin{itemize}
+				\item Remove \texttt{applications.xml} file, or ensure that it contains no Job data.
+					Attempt opening the \textit{apply to job posting} page. Ensure that the page
+					does not open and that a message informing the user that Jobs have not been
+					created yet is output.
+			\end{itemize}
+			\item Valid input entered
+			\begin{itemize}
+				\item Ensure that Job data is available. Open \textit{apply to job posting} page and
+					select a Job to apply to. Ensure that all Jobs that were present in the XML data
+					are available in the selection list. Ensure that after submission, the
+					\texttt{applications.xml} file was modified appropriately, and that no data has
+					been lost.
+			\end{itemize}
+		\item Invalid input submitted
+			\begin{itemize}
+				\item Ensure that Job data is available. Open the \textit{apply to job posting} page
+					and select a Job to apply to. Leave Job field blank, and attempt submitting.\
+					\begin{enumerate}
+						\item Ensure that an error message informing the user that no Job was
+							selected has been output.
+						\item Ensure that the \texttt{applications.xml} file has not been modified.
+					\end{enumerate}
+			\end{itemize}
+		\end{enumerate}
+	\item \textbf{Submit Personal Details}
+		\begin{enumerate}
+			\item Open \textit{modify profile} page. Ensure that all current data for the current
+				Student is present in the form. Modify data in the forms and submit. Ensure that the
+				\textit{profiles.xml} file has been modified appropriately.
+		\end{enumerate}
+	\item \textbf{Accept or Reject Job Offerings}
+		\begin{enumerate}
+			\item Open the \textit{job offers} page. Ensure that only jobs offered to the current
+				Student are listed. Attempt accepting a job offer and rejecting a job offer. Ensure
+				that the \texttt{offers.xml} file has been modified accordingly.
+		\end{enumerate}
+\end{enumerate}
 \end{document}
