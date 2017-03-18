@@ -199,6 +199,90 @@
 
 \part{Integration Test Plan}
 %%%%%%%%%%%% ADD INTEGRATION TEST PLAN HERE%%%%%%%%%%%%%%%%%%%%%
+\section{Integration Strategy}
+The strategy of integration will follow a bottom-up approach. The system will first have all the unit tests done for each class. Then the manager classes will integrate the units together into discrete subsystems. Since course manager is going to be used on all platforms, it was decided to test this subsystem first. Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be near 100\% statement and branch coverage. Since our mobile app is only for students, there is no need to test the course manager on the mobile application. Likewise, the web app will not need to test the application manager since the web app is just for teachers. All the tests that follow are done programmatically rather than through a user interface. For example, Applying for a job will involve just creating an instance of an application and attributing it a profile, a job, etc. The system test will test whether the user can create a form and apply through the mobile application, for example.
+ \subsection{Subsystem Testing Diagram}
+    The following diagram shows the subsystems and interactions that will be tested.
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.65]{IntegrationDiagram.png}
+ \end{figure}
+
+\section{Integration Test descriptions}
+\subsection{Subsystem Testing}
+\begin{itemize}
+    \item \textbf{Profile Persistence Subsystem Testing}
+         \begin{itemize}
+             \item \textbf{Reason to test:} These tests will evaluate the relationship between the profiles the persistence layer, this is necessary to ensure that all profile data and associations are properly propagated throughout the system for later use.
+             \item \textbf{Situations:}
+             \begin{itemize}
+                 \item \textbf{Create a profile:} Test to ensure that a profile can properly be created in persistence.
+                 \begin{itemize}
+                     \item Create profile using complete valid profile data and ensure that it is properly persisted and available to other classes.
+                     \item Attempt to create a profile using invalid or incomplete input data, ensure that it is not propagated in the persistence layer.
+                     \item Attempt to create a profile by giving no input data, ensure that this is not propagated in the persistence layer.
+                 \end{itemize}
+                 \item \textbf{Modify a profile:}
+                 \begin{itemize}
+                     \item Modify a profile so that the new profile data is valid, this new profile data should persist.
+                     \item Modify a profile so that the new data is invalid/incomplete, the system should not allow this so the persistence layer will remain unchanged.
+                 \end{itemize}
+                 \item \textbf{Delete a profile:}
+                 \begin{itemize}
+                     \item Deleting a valid profile should remove it's data from the persistence layer.
+                     \item Deleting an invalid/nonexistent profile should be rejected and have no effect on the persistence layer.
+                 \end{itemize}
+             \end{itemize}
+         \end{itemize}
+    \item \textbf{Course Persistence Subsystem Testing}
+         \begin{itemize}
+             \item \textbf{Reason to test:} These tests will evaluate the relationship between the courses, the profiles and the persistence layer this is necessary to ensure that all course data and associations are properly propagated throughout the system.
+             \item \textbf{Situations:}
+             \begin{itemize}
+                 \item \textbf{Create a course} 
+                 \begin{itemize}
+                     \item Create a course using complete valid course data and ensure that it is properly persisted and available to other classes.
+                     \item Attempt to create a course using invalid or incomplete input data, ensure that it is not propagated in the persistence layer.
+                     \item Attempt to create a course by giving no input data, ensure that this is not propagated in the persistence layer.
+                 \end{itemize}
+                 \item \textbf{Modify a course}
+                \begin{itemize}
+                     \item Modify a course so that the new data is valid, this new course data should persist.
+                     \item Modify a  course so that the new data is invalid/incomplete, the system should not allow this so the persistence layer will remain unchanged.
+                 \end{itemize}
+                 \item \textbf{Delete a course}
+                \begin{itemize}
+                    \item Deleting a valid course should remove it's data from the persistence layer.
+                     \item Deleting an invalid/nonexistent course should be rejected and have no effect on the persistence layer.
+                 \end{itemize}
+
+             \end{itemize}
+         \end{itemize}
+
+    \item \textbf{Application Persistence Subsystem Testing}
+         \begin{itemize}
+             \item \textbf{Reason to test:} These tests will evaluate the relationship between the profiles and the jobs that make up the applications and the persistence layer.
+             \item \textbf{Situations:}
+             \begin{itemize}
+                 \item \textbf{Create an application}
+                 \begin{itemize}
+                     \item Create an application using complete valid data and ensure that it is properly persisted and available to other classes.
+                     \item Attempt to create an application using invalid or incomplete input data, ensure that it is not propagated in the persistence layer.
+                     \item Attempt to create an application by giving no input data, ensure that this is not propagated in the persistence layer.
+                 \end{itemize}
+                 \item \textbf{Modify an application}
+                 \begin{itemize}
+                     \item Modify an application so that the new data is valid, this new course data should persist.
+                     \item Modify an application so that the new data is invalid/incomplete, the system should not allow this so the persistence layer will remain unchanged.
+                 \end{itemize}
+                 \item \textbf{Delete an application}
+                 \begin{itemize}
+                    \item Deleting a valid application should remove it's data from the persistence layer.
+                     \item Deleting an invalid/nonexistent application should be rejected and have no effect on the persistence layer.
+                 \end{itemize}
+             \end{itemize}
+         \end{itemize}
+\end{itemize}     
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{System Test Plan}
@@ -468,10 +552,10 @@ an organized scheme to verify that all functionalities of the system are covered
 tests. Given the fact that system tests should be black-box, it only remains to determine if the
 desired use cases of the system are functioning according to the client's requirements.\\\\
 To ensure that all requirements are met, the system tests were divided into categories specified by
-the actor that would use those functionalities. Section \textbf{5.1} shows system tests associated
+the actor that would use those functionalities. Section \textbf{7.1} shows system tests associated
 with the functionalities that only an Administrator would be responsible for. Then, section 
-\textbf{5.2} shows system tests associated with the Instructor's actions. Finally, section
-\textbf{5.3} shows system tests associated with the Student's actions. This categorization made it
+\textbf{7.2} shows system tests associated with the Instructor's actions. Finally, section
+\textbf{7.3} shows system tests associated with the Student's actions. This categorization made it
 much simpler to verify that all functionalities were tested, because it allowed functionalities to
 be listed off as the Use Cases defined in the first Deliverable.\\\\
 It is important to note that all logic-related bugs concerning the fine details of the calculations
@@ -480,7 +564,7 @@ Hence, the goal of the System Test plan is to design a routine that tests the co
 interactions between subsystems that were tested in the Integration Tests. Such communications
 involve mainly the flow of information from the View classes all the way down to the Controller
 classes that store information about the domain entities in the persistence. All tests described in
-section \textbf{5} verify the proper functioning of the input parsing from the Views, and the output
+section \textbf{7} verify the proper functioning of the input parsing from the Views, and the output
 results of the persistence. Once again, everything that happens between the input and the output is
 in a \textit{black-box}, and it is assumed to have been tested in the previous testing schemes.\\\\
 Another important thing to consider when designing these System Tests is that the users will not
@@ -499,7 +583,7 @@ all tests succeed, it can be confided that all user requirements
 are functioning properly. As the project continues, new System Tests may be implemented to reflect
 changes in the user requirements.
 \section{Test Coverage}
-The goal of the System Test Plan described in sectio \textbf{5} is to achieve approximately 100\%
+The goal of the System Test Plan described in sectio \textbf{7} is to achieve approximately 100\%
 branch coverage. Statement coverage is likely to be very high with the compendium of the Integration
 and Unit tests. Given the black-box nature of system testing, the focus should be more on the fact
 that all branches of logic are tested rather than all statements individually.\\\\
