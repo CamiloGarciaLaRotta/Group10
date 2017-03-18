@@ -502,4 +502,132 @@ that all branches of logic are tested rather than all statements individually.\\
 Such test coverage statistics will be achieved by designing a state diagram of the system, and
 ensuring that each state, as well as each state transition, is covered by the tests in section
 \textbf{5}.
+\section{Detailed Descriptions of Two Test Cases}
+The following section will outline two system test cases in such great detail that they could be
+implemented without the authors' assistance. Due to the omnicapable power of the desktop
+application, the following two test cases will be described for testing on the desktop.
+\subsection{The Publish Job Posting Test Case}
+\subsubsection{Setting Up}
+\begin{enumerate}
+	\item Remove prior XML files. If the system is being run from Eclipse, remove all files in the
+		\texttt{output/} directory.
+	\item Open the main menu
+	\item Select ``Publish Job Posting''
+	\item \textbf{Verify that the Publish Job Posting Window does not appear, but rather an error
+		message saying that no instructors or courses are available is displayed.}
+\end{enumerate}
+\subsubsection{Creating Instructor Profiles}
+\begin{enumerate}
+	\item Open the main menu
+	\item Select ``Register Profile''
+	\item Select the Instructor radio button
+	\item In the First Name field, type ``Jim''
+	\item In the Last Name field, type ``Lahey''
+	\item In the Username field, type ``hwn1977''
+	\item In the Password field, type ``pswd''
+	\item Click ``Submit''. A confirmation message saying ``Instructor hwn1977 was created'' should
+		appear, and all fields are reset to blank.
+	\item Now, for First Name, Last Name, Username, and Password, enter ``Randy'', ``Bobandy'',
+		``cheeseburger'',``pswd2'' respectively. Finally, press submit and close the Register
+		Profile window.
+	\item From the main menu, select ``Publish Job Posting''.
+	\item \textbf{Verify that the Publish Job Posting Window does not appear, but rather an error
+		message saying that no courses are available is displayed.}
+\end{enumerate}
+\subsubsection{Creating the Courses}
+\begin{enumerate}
+	\item Open the main menu
+	\item Select ``Create Course''
+	\item The names ``Jim Lahey'' and ``Randy Bobandy'' should now be seen in the list view at the
+		top. Select Jim Lahey.
+	\item In the Course Name field, type ``FACC100 - Trailer Park Supervision''
+	\item In the CDN field, type ``1''
+	\item In the Grader Time Budget field, enter ``19000.0''
+	\item In the TA Time budget field, enter ``14000.0''
+	\item Click ``Create Course''. All data in the fields will be cleared.
+	\item With Jim Lahey still selected, enter the values ``ECSE322 - Fixing Lawnmowers'', ``2'',
+		``20000.0,'', ``15000.0'' into the course name, CDN, grader budget, and TA budget fields,
+		respectively. Click submit.
+	\item Next, select Randy Bobandy from the list at the top of the page.
+	\item Enter the values ``ECSE211 - Dealing with Abuse From an Old Drunk Man'', ``3'',
+		``13'',``8.75'' into the Course Name, CDN, grader budget, and TA budget fields,
+		respectively.
+	\item Click submit and close the Create Course menu.
+\end{enumerate}
+At this stage, enough data has been created to test the Publish Job Posting Use Case. The XML files
+for profiles and courses should already be in the appropriate location.
+\subsubsection{Publishing a Job Posting}
+\begin{enumerate}
+	\item Open the main menu, and select ``Publish Job Posting''
+	\item The names Jim Lahey and Randy Bobandy should be in the top-most list view. Select Jim
+		Lahey.
+	\item \textbf{Verify that ``FACC100 - Trailer Park Supervision'' and ``ECSE322 - Fixing
+			Lawnmowers'' (and no other courses) appear in the list beneath the instructor names.}
+	\item Select FACC100 - Trailer Park Supervision. Click ``Publish Job''.
+	\item \textbf{Verify that an appropriate error message is displayed.}
+	\item \textbf{Verify that, if there is already a \texttt{applications.xml} file, there is no
+	mention of an application for Job with the current course name.}
+	\item Enter ``10.5'' in the salary field, and ``Associate Trailer Park Supervision Experience''
+		in the requirements field. Then, set the end time back by two hours so it is before the
+		start time. Click ``Publish Job''.
+	\item \textbf{Verify that an appropriate error message is displayed.}
+	\item \textbf{Verify that, if there is already a \texttt{applications.xml} file, there is no
+	mention of an Job for the course chosen.}
+	\item Adjust the end time to be after the start time. Press ``Publish Job''.
+	\item \textbf{Verify that the \texttt{applications.xml} file contains the data for a Job for
+		this chosen course. If other Jobs were posted prior to this one, verify that their
+	corresponding data remains in the XML file.}
+	\item Chose Randy Bobandy from the top-most list. \textbf{Verify that ECSE211 - Dealing with
+		Abuse From an Old Drunk Man is the only option in the list below.} 
+	\item Select the ECSE211 option. Click ``Publish Job''.
+	\item Repeat steps 6-11.
+\end{enumerate}
+\subsection{Applying for a Job}
+\subsubsection{Setting up}
+\begin{enumerate}
+	\item Remove prior XML files. If the system is being run from Eclipse, remove all files in the
+		\texttt{output/} directory.
+	\item Open the main menu
+	\item Select ``Create Job Application''
+	\item \textbf{Verify that the Job Application window does not appear, but rather an error
+		message saying that no jobs or students are available is displayed.}
+	\item Repeat the \textit{Creating Instructor Profiles} and \textit{Creating Courses} steps from
+		section \textbf{8.1}.
+	\item Repeat steps 2-3.
+	\item Repeat the \textit{Publishing a Job Posting} steps from section \textbf{8.1}, and repeat
+		steps 2-3.
+\end{enumerate}
+\subsubsection{Creating Students}
+\begin{enumerate}
+	\item Open the main menu. Select ``Register Profile''
+	\item Select the Student radio button.
+	\item Enter the values ``Cosmo'', ``Kramer'', ``kman'', ``pennypacker'' into the First Name,
+		Last Name, Username, and Password fields, respectively.
+	\item Enter ``Golfing'' in the Skills textbox.
+	\item Click ``Submit''. A message saying ``Student kman created'' should be seen at the top of
+		the window, and all fields should be reset.
+	\item Enter ``George'', ``Costanza'', ``vandelay'',``bosco'' into the First Name, Last Name,
+		Username, and Password fields, respectively.
+	\item Enter ``Baseball'' in the Skills textbox.
+	\item Click ``Submit''. A message saying ``Student vandelay created'' should be seen at the top
+		of the window. Close the window.
+\end{enumerate}
+\subsubsection{Creating A Job Application}
+\begin{enumerate}
+	\item From the main menu, select ``Create a Job Application''. The Job Application window should
+		finally instantiate.
+	\item Two lists should be present, one containing the student names, and the other containing
+		the job names. In future versions of the system, students will log in and will not need to
+		select their name from a list. For this version, select any student from the list.
+	\item Without selecting a Job from the list, click ``Apply''.
+	\item \textbf{Verify that an error message saying that no Job was selected is present, and
+			ensure that the \texttt{applications.xml} file has not been modified.}
+	\item Select a Job from the list. Click ``Apply''. A friendly message wishing the given student
+		luck for his application to the selected Job will appear.
+	\item \textbf{Verify that the \texttt{applications.xml} file has included the job application.}
+	\item Repeat steps 5 and 6 with different combinations of students and Jobs.
+	\item \textbf{Verify that no data is lost in the \texttt{applications.xml} file when multiple
+		applications are created. That is to say, make sure the file has persisted all applications and
+	all courses after multiple applications were submitted.}
+\end{enumerate}
 \end{document}
