@@ -458,4 +458,48 @@ The proposed system tests will be discussed below.
 				that the \texttt{offers.xml} file has been modified accordingly.
 		\end{enumerate}
 \end{enumerate}
+\section{Rationale}
+The system tests that were designed, and their classifications by main actors, were done to provide
+an organized scheme to verify that all functionalities of the system are covered by the system
+tests. Given the fact that system tests should be black-box, it only remains to determine if the
+desired use cases of the system are functioning according to the client's requirements.\\\\
+To ensure that all requirements are met, the system tests were divided into categories specified by
+the actor that would use those functionalities. Section \textbf{5.1} shows system tests associated
+with the functionalities that only an Administrator would be responsible for. Then, section 
+\textbf{5.2} shows system tests associated with the Instructor's actions. Finally, section
+\textbf{5.3} shows system tests associated with the Student's actions. This categorization made it
+much simpler to verify that all functionalities were tested, because it allowed functionalities to
+be listed off as the Use Cases defined in the first Deliverable.\\\\
+It is important to note that all logic-related bugs concerning the fine details of the calculations
+carried out by the system should be already covered by the Unit Tests and Integration tests above.
+Hence, the goal of the System Test plan is to design a routine that tests the communications and
+interactions between subsystems that were tested in the Integration Tests. Such communications
+involve mainly the flow of information from the View classes all the way down to the Controller
+classes that store information about the domain entities in the persistence. All tests described in
+section \textbf{5} verify the proper functioning of the input parsing from the Views, and the output
+results of the persistence. Once again, everything that happens between the input and the output is
+in a \textit{black-box}, and it is assumed to have been tested in the previous testing schemes.\\\\
+Another important thing to consider when designing these System Tests is that the users will not
+always enter valid inputs, and illegal actions may be attempted. Therefore, testing the ideal inputs
+only is not a good idea, because it is equally important that the system handles erroneous or
+invalid input properly as well. To take this into account, each System Test Case was examined, and
+possible areas of invalid input were found. Each of those invalid input scenarios is accounted for
+in the System Test plan. Most importantly, it is imperative that submitting erroneous input does not
+affect the current persistence. Although each test case may experience significantly different
+errors, if the persistence is not modified under these conditions, the errors will not affect the
+\textit{bigger picture} of the whole system. Therefore, to complete each test case, any possible
+invalid inputs are isolated, and it is verified that the persistence is not affected by them.\\\\
+By carrying out the tests described in section \textbf{5}, it is ensured that all Use Cases have
+been verified, and all bad behavior on the user's end can be handled reliably. Therefore, assuming
+all tests succeed, it can be confided that all user requirements
+are functioning properly. As the project continues, new System Tests may be implemented to reflect
+changes in the user requirements.
+\section{Test Coverage}
+The goal of the System Test Plan described in sectio \textbf{5} is to achieve approximately 100\%
+branch coverage. Statement coverage is likely to be very high with the compendium of the Integration
+and Unit tests. Given the black-box nature of system testing, the focus should be more on the fact
+that all branches of logic are tested rather than all statements individually.\\\\
+Such test coverage statistics will be achieved by designing a state diagram of the system, and
+ensuring that each state, as well as each state transition, is covered by the tests in section
+\textbf{5}.
 \end{document}
