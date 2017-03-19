@@ -308,14 +308,16 @@ In the following Deliverable, thorough testing needs to be completed. The follow
  \subsection{Key Decisions}
 %
  %\textbf{ADD HERE ALL THE DECISIONS YALL TOOK}
-%
- \begin{enumerate}
+% \begin{enumerate}
     \item \textbf{Unit Test Plan}
     \begin{itemize}
      	\item The main decision was the design of framework of Test Cases. We aimed to have a well structured suite of test cases that could be generalized to the maximum amount of classes. This would minimize the time spent for coding the tests and facilitate the process of verification of such code. The final choice was a set of tests by-attribute rather than by-outcome
 		\item Tested JaCoCo but decided to continue using EclEmma as sole Desktop code coverage tool due to its use for the course ECSE 321
 		\item Tested Selenium but decided to continue using Junit as sole Desktop code coverage tool due to its use for the course ECSE 321
      \end{itemize}
+     \item \textbf{Integration Strategy}
+     \item Decided to use a bottom up approach in our integration strategy
+     \item Decided to focus integration testing on fulfilling functions that incorporate all the relationships between units rather than testing the relationships individually.
      \item \textbf{System Test Plan}
      \begin{itemize}
      	\item Decided to make system tests for each use case
