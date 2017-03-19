@@ -1,3 +1,25 @@
 <cmanager id="1">
-  <courses id="2"/>
+  <courses id="2">
+    <course id="3">
+      <className>FACC100 - Trailer Park Supervision</className>
+      <cdn>1</cdn>
+      <graderTimeBudget>19000.0</graderTimeBudget>
+      <taTimeBudget>14000.0</taTimeBudget>
+      <jobs id="4"/>
+    </course>
+    <course id="5">
+      <className>ECSE322 - Fixing Lawnmowers</className>
+      <cdn>2</cdn>
+      <graderTimeBudget>20000.0</graderTimeBudget>
+      <taTimeBudget>15000.0</taTimeBudget>
+      <jobs id="6"/>
+    </course>
+    <course id="7">
+      <className>ECSE211 - Dealing with Abuse from an Old Drunk Man</className>
+      <cdn>3</cdn>
+      <graderTimeBudget>13.0</graderTimeBudget>
+      <taTimeBudget>8.75</taTimeBudget>
+      <jobs id="8"/>
+    </course>
+  </courses>
 </cmanager>
