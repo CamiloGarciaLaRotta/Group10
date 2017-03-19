@@ -187,7 +187,16 @@
     
     \section{Techniques and Tools}
     
-    The system is to be designed in a complete Test-Driven Development paradigm. Hence all test cases will be written before the actual controllers are implemented. Furthermore, the order in which the tests will be passed follows the same order as the requirements derived in the Requirements document of deliverable \#1. This will aid the classification and prioritization of each bi-weekly runs' objectives. In parallel to this method, the team will rely heavily on code revisions by the senior members of the team to ensure the code written is up to visual, performance and logical standards. In terms of frequency, individual nightly tests will be ran on all platforms of the system and bi-weekly builds and test will be done every Saturday to ensure the deliverable validates and verifies the given requirements. To facilitate the testing process, the team will use the following tools:
+	The system is to be designed in a complete Test-Driven Development paradigm. Hence all test
+	cases will be written before the actual controllers are implemented. Furthermore, the order in
+	which the tests will be passed follows the same order as the requirements derived in the
+	Requirements document of deliverable \#1. This will aid the classification and prioritization of
+	each bi-weekly runs' objectives. In parallel to this method, the team will rely heavily on code
+	revisions by the senior members of the team to ensure the code written is up to visual,
+	performance and logical standards. In terms of frequency, individual nightly tests will be ran
+	on all platforms of the system and bi-weekly builds and test will be done every Saturday to
+	ensure the deliverable validates and verifies the given requirements. To facilitate the testing
+	process, the team will use the following tools:
     
     \begin{itemize}
         \item \textbf{Unit Test Framework:} Automated, well documented and supported system to allow a standardized set of tests to be done regardless of the platform. JUnit and PHPUnit will be used.
@@ -196,23 +205,41 @@
     
     \section{Coverage Statistics}
     
-    \textbf{Coverage on Desktop/Laptop App} 
-   	Since there are unit tests that will not be tested on the mobile and web apps because they have less functionality than the desktop/laptop app, statement coverage and branch coverage will be described for the desktop/laptop platform. 
-   	\begin{itemize}
-   		\item \textbf{Statement Coverage:} The test cases mentioned for the unit test of all the classes to be tested will need to use and test all of their respective methods; hence yielding a 100\% statement coverage. 
-   		\item \textbf{Branch Coverage:} For the sake of simplicity, for any method that returns a String, int, or float, 100\% branch coverage means that it either successfully returns the type or throws an exception. 100\% branch coverage for methods that return a boolean value means that it either returns true or false.
-   		\begin{itemize}
-	   		\item \textbf{Course:} As for methods that return the type Job, the plan is to test for one set of inputs that successfully addJob and for two sets of inputs that fail to do so. The plan is to have 75\% branch coverage for the Course class. 
-	   		\item \textbf{Job:} The plan is to test all methods for their successful return. The Job class has far too many methods to test for 100\% branch coverage. The plan is to test for the correct set of inputs for each method and for the incorrect set of inputs for specific methods that could cause issues. This yields a branch coverage plan of upwards of 50\%, (40\% for the correct input for each method, and 10\% for the incorrect input for specific methods mentioned in the Test Cases). Laboratory and Tutorial will have the same plan and coverage as Job since they inherit from the Job class.
-	   		\item \textbf{Profile:} The plan is to test the correct input for all methods and sets of incorrect inputs that will (null, empty, not long enough passwords) cause issues. The plan is to yield a branch coverage of 75\% and more. Student, Instructor, and Admin will follow the same plan as Profile since they inherit from the Profile class.
-	   		\item \textbf{Application:} The plan is to test sets of correct inputs for each method, and multiple sets of incorrect inputs that will cause issues. Given the small amount of methods to test for this class, the plan is to yield a branch coverage of 75\% and more.
-   		\end{itemize} 
-   	\end{itemize}
-    Since the plan is to implement certain functionalities in a Test Driven Development paradigm, it will be necessary to execute tests before there is even code written for the test. Tests will be executed often during the development of new functionality and during the verification and validation of existing functionality. In other words, JUnit tests will be written and executed before a certain method is written. JUnit tests will be written and executed shortly after test cases are made for a certain method that is already implemented. 
+	Since the plan is to implement certain functionalities in a Test Driven Development paradigm, it
+	will be necessary to execute tests before there is even code written for the test. Tests will be
+	executed often during the development of new functionality and during the verification and
+	validation of existing functionality. In other words, JUnit tests will be written and executed
+	before a certain method is written. JUnit tests will be written and executed shortly after test
+	cases are made for a certain method that is already implemented. 
     
-    The desktop/laptop app has all functionality; hence, all unit tests for all of the classes to be tested will be at least done on this platform. The mobile and web apps have less functionality than the desktop/laptop app; hence, there will be less classes to be tested on these two platforms. 
-    In this situation, the mobile app is implemented for the student's use; hence, there will be no unit testing for the Admin, Instructor, and Course classes on this platform. More specifically, the plan of unit testing the mobile app is to unit test the Student, Application, and Job classes. 
-    The web app is implemented for the instructor's use; hence, there will be no unit testing for the Admin, and Student classes on this platform. More specifically, the plan of unit testing the web app is to unit test the Instructor, Application, Job, and Course classes.
+	The desktop/laptop app has all functionality; hence, all unit tests for all of the classes to be
+	tested will be at least done on this platform. The mobile and web apps have less functionality
+	than the desktop/laptop app; hence, there will be less classes to be tested on these two
+	platforms. 
+	In this situation, the mobile app is implemented for the student's use; hence, there will be no
+	unit testing for the Admin, Instructor, and Course classes on this platform. More specifically,
+	the plan of unit testing the mobile app is to unit test the Student, Application, and Job
+	classes. 
+	The web app is implemented for the instructor's use; hence, there will be no unit testing for
+	the Admin, and Student classes on this platform. More specifically, the plan of unit testing the
+	web app is to unit test the Instructor, Application, Job, and Course classes.\\\\
+	Thus, the goal of the unit tests is to ensure that each minimal unit of the system is
+	functioning correctly, so that these units may serve as a solid foundation for the system.
+	Referring to the rationale of the test plan, it is clear that each class is tested
+	independently, as well as each method within the class. The main goal behind this strategy is to
+	isolate every area where workflow may lead to different logical steps in the methods, and to
+	attempt to examine the behavior at each of these workflows.\\\\
+	So, based on the structure of the unit test plan, it is clear that each logical path of each
+	method is being examined. It can then be concluded that all logical
+	branches of the code have been covered. Of course, as the system evolves, the unit test plan may
+	need to evolve as well for such coverage to be attained. Furthermore, until the system is
+	written to more completion, it will be very difficult to ensure that all branches are guaranteed
+	to be covered. As the system develops, using tools such as EclEmma will aid in discovering holes
+	in branch and statement coverage.\\\\
+	As the system currently stands, however, it is believed that the unit test plan above will cover
+	approximately 100\% of the branches. It is very difficult to predict state coverage statistics
+	at such an early stage in development, but the goal is to have similar statistics for state
+	coverage as well.
 
 \part{Integration Test Plan}
 \section{Description}
