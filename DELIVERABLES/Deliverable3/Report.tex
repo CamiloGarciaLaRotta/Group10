@@ -230,7 +230,9 @@
 	isolate every area where workflow may lead to different logical steps in the methods, and to
 	attempt to examine the behavior at each of these workflows.\\\\
 	So, based on the structure of the unit test plan, it is clear that each logical path of each
-	method is being examined. It can then be concluded that all logical
+	method is being examined. The technique of equivalence partitioning is used to organize all
+	possible equivalent input and output patterns, such that it can be assured that each one is
+	verified accordingly. It can then be concluded that all logical
 	branches of the code have been covered. Of course, as the system evolves, the unit test plan may
 	need to evolve as well for such coverage to be attained. Furthermore, until the system is
 	written to more completion, it will be very difficult to ensure that all branches are guaranteed
@@ -239,7 +241,9 @@
 	As the system currently stands, however, it is believed that the unit test plan above will cover
 	approximately 100\% of the branches. It is very difficult to predict state coverage statistics
 	at such an early stage in development, but the goal is to have similar statistics for state
-	coverage as well.
+	coverage as well. Given the 9 classes to test in the Unit Testing Plan, encompassing 34 test
+	cases that must deal with various different input patterns, it is not unrealistic that 100\% of
+	branches, as well as statements, can be verified by this team.
 
 \part{Integration Test Plan}
 \section{Description}
