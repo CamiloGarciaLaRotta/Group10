@@ -313,10 +313,17 @@ Since our mobile app is only for students, there is no need to test the course m
 \end{itemize}     
 
 \section{Techniques and Tools}
-Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be near 100\% statement and branch coverage. We aim to test the relationship between all the classes.
+Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be
+near 100\% statement and branch coverage. The goal is to test the relationship between all the classes.
 
 \section{Coverage Statistics}
-Since there are 3 classes in each subsystem, and the tests should cover all the relationships between the classes, there should be 3! or 6 relationships in each subsytem totalling to 18 relationships. We decided it would be more efficient not to create a test for every relationship, but to instead test functionality that includes all these relationships within the tests. For example, creating a profile would test the persistence layer as well as the profile class together. When the profile class is attributed a course within this test, it tests the integration between all three classes. For this reason, we aim for 100\% code coverage.
+Since there are 3 classes in each subsystem, and the tests should cover all the relationships
+between the classes, there should be 3! or 6 relationships in each subsytem totalling to 18
+relationships. It was decided that it would be more efficient not to create a test for every relationship,
+but to instead test functionality that includes all these relationships within the tests. For
+example, creating a profile would test the persistence layer as well as the profile class together.
+When the profile class is attributed a course within this test, it tests the integration between all
+three classes. For this reason, we aim for 100\% code coverage.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{System Test Plan}
@@ -638,7 +645,7 @@ Splitting the global actions and logical sequences by plataform we have:
         \item Apply to the postings available to him $\rightarrow$ Tested in section \textbf{10.3-1}
         \item view the attributes to its own available Courses and Profile $\rightarrow$ Tested in section \textbf{10.3-2}
     \end{itemize}
-\end{itemize}\\
+\end{itemize}
 Total number of logical actions: 12\\
 Total number of logical actions tested: 9\\
 Hence, 9/12 $\rightarrow$ 75\% branch coverage at a system test level
