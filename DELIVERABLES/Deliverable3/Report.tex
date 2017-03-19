@@ -220,6 +220,8 @@
     Furthermore, discuss how often your tests are executed, i.e., what triggers your tests to be run? Finally, describe any differences between your desktop/laptop app, mobile app, and web app when it comes to unit testing.
 
 \part{Integration Test Plan}
+\section{Description}
+\textbf{TODO}
 %%%%%%%%%%%% ADD INTEGRATION TEST PLAN HERE%%%%%%%%%%%%%%%%%%%%%
 \section{Integration Strategy}
 The strategy of integration will follow a bottom-up approach. The system will first have all the unit tests done for each class. Then the manager classes will integrate the units together into discrete subsystems. Since course manager is going to be used on all platforms, it was decided to test this subsystem first. Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be near 100\% statement and branch coverage. Since our mobile app is only for students, there is no need to test the course manager on the mobile application. Likewise, the web app will not need to test the application manager since the web app is just for teachers. All the tests that follow are done programmatically rather than through a user interface. For example, Applying for a job will involve just creating an instance of an application and attributing it a profile, a job, etc. The system test will test whether the user can create a form and apply through the mobile application, for example.
@@ -305,6 +307,11 @@ The strategy of integration will follow a bottom-up approach. The system will fi
              \end{itemize}
          \end{itemize}
 \end{itemize}     
+
+\section{Techniques and Tools}
+\textbf{TODO}
+\section{Coverage Statistics}
+\textbf{TODO}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{System Test Plan}
@@ -486,7 +493,7 @@ The proposed system tests will be discussed below.
 						\begin{enumerate}
 							\item Ensure that the initial allocation XML file has not been
 								modified.
-							\item Ensure that a seperate XML file containing the data about the
+							\item Ensure that a separate XML file containing the data about the
 								modifications has been created appropriately.
 						\end{enumerate}
 				\end{itemize}
@@ -498,7 +505,7 @@ The proposed system tests will be discussed below.
 							\item Verify that an error message containing the details of the
 								invalidity of the input has been shown.
 							\item Ensure that the initial allocation XML file has not been modified.
-							\item Ensure that no seperate XML files containing modification data
+							\item Ensure that no separate XML files containing modification data
 								have been generated.
 						\end{enumerate}
 				\end{itemize}
@@ -574,10 +581,10 @@ an organized scheme to verify that all functionalities of the system are covered
 tests. Given the fact that system tests should be black-box, it only remains to determine if the
 desired use cases of the system are functioning according to the client's requirements.\\\\
 To ensure that all requirements are met, the system tests were divided into categories specified by
-the actor that would use those functionalities. Section \textbf{7.1} shows system tests associated
+the actor that would use those functionalities. Section \textbf{10.1} shows system tests associated
 with the functionalities that only an Administrator would be responsible for. Then, section 
-\textbf{7.2} shows system tests associated with the Instructor's actions. Finally, section
-\textbf{7.3} shows system tests associated with the Student's actions. This categorization made it
+\textbf{10.2} shows system tests associated with the Instructor's actions. Finally, section
+\textbf{10.3} shows system tests associated with the Student's actions. This categorization made it
 much simpler to verify that all functionalities were tested, because it allowed functionalities to
 be listed off as the Use Cases defined in the first Deliverable.\\\\
 It is important to note that all logic-related bugs concerning the fine details of the calculations
@@ -586,7 +593,7 @@ Hence, the goal of the System Test plan is to design a routine that tests the co
 interactions between subsystems that were tested in the Integration Tests. Such communications
 involve mainly the flow of information from the View classes all the way down to the Controller
 classes that store information about the domain entities in the persistence. All tests described in
-section \textbf{7} verify the proper functioning of the input parsing from the Views, and the output
+section \textbf{10} verify the proper functioning of the input parsing from the Views, and the output
 results of the persistence. Once again, everything that happens between the input and the output is
 in a \textit{black-box}, and it is assumed to have been tested in the previous testing schemes.\\\\
 Another important thing to consider when designing these System Tests is that the users will not
@@ -599,19 +606,19 @@ affect the current persistence. Although each test case may experience significa
 errors, if the persistence is not modified under these conditions, the errors will not affect the
 \textit{bigger picture} of the whole system. Therefore, to complete each test case, any possible
 invalid inputs are isolated, and it is verified that the persistence is not affected by them.\\\\
-By carrying out the tests described in section \textbf{5}, it is ensured that all Use Cases have
+By carrying out the tests described in section \textbf{6}, it is ensured that all Use Cases have
 been verified, and all bad behavior on the user's end can be handled reliably. Therefore, assuming
 all tests succeed, it can be confided that all user requirements
 are functioning properly. As the project continues, new System Tests may be implemented to reflect
 changes in the user requirements.
-\section{Test Coverage}
-The goal of the System Test Plan described in sectio \textbf{7} is to achieve approximately 100\%
+\section{Coverage Statistics}
+The goal of the System Test Plan described in section \textbf{10} is to achieve approximately 100\%
 branch coverage. Statement coverage is likely to be very high with the compendium of the Integration
 and Unit tests. Given the black-box nature of system testing, the focus should be more on the fact
 that all branches of logic are tested rather than all statements individually.\\\\
 Such test coverage statistics will be achieved by designing a state diagram of the system, and
 ensuring that each state, as well as each state transition, is covered by the tests in section
-\textbf{5}.
+\textbf{6}.
 \section{Detailed Descriptions of Two Test Cases}
 The following section will outline two system test cases in such great detail that they could be
 implemented without the authors' assistance. Due to the omnicapable power of the desktop
@@ -702,9 +709,9 @@ for profiles and courses should already be in the appropriate location.
 	\item \textbf{Verify that the Job Application window does not appear, but rather an error
 		message saying that no jobs or students are available is displayed.}
 	\item Repeat the \textit{Creating Instructor Profiles} and \textit{Creating Courses} steps from
-		section \textbf{8.1}.
+		section \textbf{13.1}.
 	\item Repeat steps 2-3.
-	\item Repeat the \textit{Publishing a Job Posting} steps from section \textbf{8.1}, and repeat
+	\item Repeat the \textit{Publishing a Job Posting} steps from section \textbf{13.1}, and repeat
 		steps 2-3.
 \end{enumerate}
 \subsubsection{Creating Students}
