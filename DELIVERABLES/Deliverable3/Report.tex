@@ -612,13 +612,33 @@ all tests succeed, it can be confided that all user requirements
 are functioning properly. As the project continues, new System Tests may be implemented to reflect
 changes in the user requirements.
 \section{Coverage Statistics}
-The goal of the System Test Plan described in section \textbf{10} is to achieve approximately 100\%
-branch coverage. Statement coverage is likely to be very high with the compendium of the Integration
-and Unit tests. Given the black-box nature of system testing, the focus should be more on the fact
+Given the black-box nature of system testing, the focus should be more on the fact
 that all branches of logic are tested rather than all statements individually.\\\\
-Such test coverage statistics will be achieved by designing a state diagram of the system, and
-ensuring that each state, as well as each state transition, is covered by the tests in section
-\textbf{6}.
+Splitting the global actions and logical sequences by plataform we have:
+\begin{itemize}
+    \item \textbf{Desktop (Admin):}
+    \begin{itemize}
+        \item Create/Delete/Update all Profiles, Jobs and Applications $\rightarrow$ Create and Update tested in section \textbf{10.1-3}
+        \item Publish a job posting as any given Instructor $\rightarrow$ Tested in section \textbf{10.1-2} and \textbf{10.1-4}
+        \item Apply to a job posting as any given Student $\rightarrow$ Tested in section \textbf{10.1-1} 
+        \item View and modify attributes of all available Courses $\rightarrow$ Tested in section \textbf{10.1-1}
+    \end{itemize}
+    \item \textbf{Web (Instructor):}
+        \begin{itemize}
+        \item Create/Publish/Delete his own postings $\rightarrow$ Create and Update tested in section \textbf{10.2-1}
+        \item View the attributes to its own available Courses and Profile
+    \end{itemize}
+    \item \textbf{Mobile (Student):}
+        \begin{itemize}
+        \item Apply to the postings available to him $\rightarrow$ Tested in section \textbf{10.3-1}
+        \item view the attributes to its own available Courses and Profile $\rightarrow$ Tested in section \textbf{10.3-2}
+    \end{itemize}
+\end{itemize}\\
+Total number of logical actions: 12\\
+Total number of logical actions tested: 9\\
+Hence, 9/12 $\rightarrow$ 75\% branch coverage at a system test level
+
+
 \section{Detailed Descriptions of Two Test Cases}
 The following section will outline two system test cases in such great detail that they could be
 implemented without the authors' assistance. Due to the omnicapable power of the desktop
