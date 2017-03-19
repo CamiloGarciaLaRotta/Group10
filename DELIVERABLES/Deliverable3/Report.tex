@@ -618,26 +618,41 @@ Splitting the global actions and logical sequences by platform we have:
 \begin{itemize}
     \item \textbf{Desktop (Admin):}
     \begin{itemize}
-        \item Create/Delete/Update all Profiles, Jobs and Applications $\rightarrow$ Create and Update tested in section \textbf{10.1-3}
+		\item Create/Update all Profiles, Jobs and Applications $\rightarrow$ Tested in section \textbf{10.1-3}
         \item Publish a job posting as any given Instructor $\rightarrow$ Tested in section \textbf{10.1-2} and \textbf{10.1-4}
         \item Apply to a job posting as any given Student $\rightarrow$ Tested in section \textbf{10.1-1} 
-        \item View and modify attributes of all available Courses $\rightarrow$ Tested in section \textbf{10.1-1}
+		\item View and modify attributes of all available Courses $\rightarrow$ Tested in section
+			\textbf{10.1-1}
+		\item View, modify, and reject/accept Instructor modifications to the TA allocations
+			$\rightarrow$ Tested in section \textbf{10.1-3}.
     \end{itemize}
     \item \textbf{Web (Instructor):}
         \begin{itemize}
-        \item Create/Publish/Delete his own postings $\rightarrow$ Create and Update tested in section \textbf{10.2-1}
-        \item View the attributes to its own available Courses and Profile
+        \item Create/Publish his own postings $\rightarrow$ Tested in section \textbf{10.2-1}
+        \item View the attributes to its own available Courses and Profile $\rightarrow$ Tested in
+			section \textbf{10.2-1}.
+		\item View TA allocation and make modifications $\rightarrow$ Tested in section
+			\textbf{10.2-2}.
+		\item Send feedback for TA's that worked for their courses $\rightarrow$ Tested in section
+			\textbf{10.2-3}.
     \end{itemize}
     \item \textbf{Mobile (Student):}
         \begin{itemize}
         \item Apply to the postings available to him $\rightarrow$ Tested in section \textbf{10.3-1}
-        \item view the attributes to its own available Courses and Profile $\rightarrow$ Tested in section \textbf{10.3-2}
+		\item view the attributes to its own available Courses and Profile $\rightarrow$ Tested in
+			section \textbf{10.3-2}
     \end{itemize}
 \end{itemize}
-Total number of logical actions: 12\\
-Total number of logical actions tested: 9\\
-Hence, 9/12 $\rightarrow$ 75\% branch coverage at a system test level
-
+Total number of logical actions: 16\\
+Total number of logical actions tested: 16\\
+Note that the logical actions tested consider the fact that the action was tested on a plethora of
+edge conditions, such that all alternative workflows are tested. Refer to section \textbf{10} to
+clear any skepticism.\\\\
+From the thoroguh enumeration above, it is clear that all use cases of the system (as well as all of
+their alternative workflows) are examined by the System Test Plan. Therefore, it is expected to have
+close to 100\% test coverage at the system level. Of course, as time passes, there is always the
+possibility that the client will wish to modify some of the requirements, at which point the System
+Test Plan, as well as the coverage statistics, may change.
 
 \section{Detailed Descriptions of Two Test Cases}
 The following section will outline two system test cases in such great detail that they could be
