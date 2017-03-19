@@ -41,14 +41,17 @@
     \begin{itemize}
         \item \textbf{Course}
         \begin{itemize}
-            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. Its attributes TA/Grader time budget define how many students can apply to the position. Less relative to the application, but still needed for the correct behaviour of the process is the fact that the student must have experience in the given course in order to apply for a position as TA/Grader for it.
+            \item \textbf{Reason to test:} This class is intrinsic to the job posting and application transaction. Its attributes TA/Grader time budget define how many students can apply to the position. Less relative to the application, but still needed for the correct behavior of the process is the fact that the student must have experience in the given course in order to apply for a position as TA/Grader for it.
             \item \textbf{Test Cases:} 
             \begin{itemize}
                 \item \textbf{className}: test for null, empty, only numerical and only spaces inputs.
                 \item \textbf{CDN}: test for non-unique, null, empty, not alphabetic and only spaces inputs.
                 \item \textbf{className}: test for null, empty, not numerical and only spaces inputs.
                 \item \textbf{graderTimeBudget/taTimeBudget}: test for null, empty, not numerical and negative inputs.
-                \item \textbf{Jobs}: test for retrieval of job list
+                \item \textbf{addJob:} test for null, and empty inputs for addJob. test for Time inputs for startTime and endTime, strictly alphabetical input for Day, and Requirements, default instructor input for Instructor, and strictly numerical input for salary.
+                \item \textbf{addJobAt and addOrMoveJobAt:} test for adding job at a null position, moving existing Job at an incrementally higher and at an incrementally smaller position than it is already at, and at a position that is already occupied.
+                \item \textbf{Retrieval:} test for successful retrieval of non-null className, CDN, number of and minimum number of jobs, Grader Time Budget, Job, List of Job objects, and Ta Time Budget.
+                \item \textbf{Delete and Removal:} test for successful and failure of removal of a Job object, and successful and failure of deletion of a Course object.
             \end{itemize}
         \end{itemize}
         
@@ -63,6 +66,7 @@
                 \item \textbf{salary}: test for null, empty, not numerical and negative inputs.
                 \item \textbf{day}: test for null, empty and weekend inputs.
                \item \textbf{startTime/endTime}: test for null, empty and outside of working hours inputs.
+               \item \textbf{Retrieval:} test for successful retrieval for all getter methods.
             \end{itemize}
         \end{itemize}
         
@@ -146,42 +150,6 @@
         		
         	\end{itemize}
         \end{itemize}
-    
-    	\begin{itemize}
-    		\item \textbf{Application Manager}
-    		\begin{itemize}
-    			\item \textbf{Reason to test:} This class acts as a container for Application and Job. It is necessary to test that it can correctly get and set Application and Job attributes from within the persistence layer.
-    			\item \textbf{Test Cases:} 
-    			\begin{itemize}
-    				\item test to successfully retrieve correct attributes for Application and Job from within the persistence layer: Instantiate one ApplicationManager that sets attributes for two new instances of the Application and Job classes, then instantiate another ApplicationManager that gets the same attributes from the same Application and Job objects. assertEquals these attributes to ensure they were correctly saved.
-    			\end{itemize}
-    			
-    		\end{itemize}
-    	\end{itemize}
-    
-    	\begin{itemize}
-    		\item \textbf{Profile Manager}
-    		\begin{itemize}
-    			\item \textbf{Reason to test:} This class acts as a container for Student, Instructor, and Admin. It is necessary to test that it can correctly get and set Student, Instructor and Admin attributes from within the persistence layer.
-    			\item \textbf{Test Cases:} 
-    			\begin{itemize}
-    				\item test to successfully retrieve correct attributes for Student, Instructor, and Admin from within the persistence layer: Instantiate one ProfileManager that sets attributes for instances of the Student, Instructor, and Admin classes, then instantiate another ProfileManager that gets the same attributes from the same Student, Instructor, and Admin objects. assertEquals these attributes to ensure they were correctly saved.
-    			\end{itemize}
-    			
-    		\end{itemize}
-    	\end{itemize}
-    
-    	\begin{itemize}
-    		\item \textbf{Course Manager}
-    		\begin{itemize}
-    			\item \textbf{Reason to test:} This class acts as a container for Course. It is necessary to test that it can correctly get and set Course attributes from within the persistence layer.
-    			\item \textbf{Test Cases:} 
-    			\begin{itemize}
-    				\item test to successfully retrieve correct attributes for Course from within the persistence layer: Instantiate one CourseManager that sets attributes for a new Course object, then instantiate another CourseManager that gets the same attributes from the same Course object. assertEquals these attributes to ensure they were correctly saved.
-    			\end{itemize}
-    			
-    		\end{itemize}
-    	\end{itemize}
         
         \begin{itemize}
         \item \textbf{Persistence}
@@ -197,9 +165,23 @@
     
     \subsection{Classes to Not Test}
     \begin{itemize}
-    	\item \textbf{No Classes to Not Test}
+    	\item \textbf{Application Manager}
     	\begin{itemize}
-    		\item \textbf Every class is tested
+    		\item \textbf{Reason to not test:} This class acts as a container for Application and Job classes. There is no unit test to be done on the ApplicationManager class. Testing for persistence of this manager class and its relation to Application and Job are not to be done with unit tests.
+    	\end{itemize}
+    \end{itemize}
+    
+    \begin{itemize}
+    	\item \textbf{Profile Manager}
+    	\begin{itemize}
+    		\item \textbf{Reason to not test:} This class acts as a container for Student, Instructor and Admin classes. There is no unit test to be done on the ProfileManager class. Testing for persistence of this manager class and its relation to Student, Instructor and Admin are not to be done with unit tests.
+    	\end{itemize}
+    \end{itemize}
+    
+    \begin{itemize}
+    	\item \textbf{Course Manager}
+    	\begin{itemize}
+    		\item \textbf{Reason to not test:} This class acts as a container for Course class. There is no unit test to be done on the CourseManager class. Testing for persistence of this manager class and its relation to Course are not to be done with unit tests.
     	\end{itemize}
     \end{itemize}
     
@@ -214,10 +196,23 @@
     
     \section{Coverage Statistics}
     
-    \textbf{TODOOOOOOO}
-    To the extent possible, include a quantification of your testing goal (e.g., N\% statement coverage or M\% branch coverage). 
+    \textbf{Coverage on Desktop/Laptop App} 
+   	Since there are unit tests that will not be tested on the mobile and web apps because they have less functionality than the desktop/laptop app, statement coverage and branch coverage will be described for the desktop/laptop platform. 
+   	\begin{itemize}
+   		\item \textbf{Statement Coverage:} The test cases mentioned for the unit test of all the classes to be tested will need to use and test all of their respective methods; hence yielding a 100\% statement coverage. 
+   		\item \textbf{Branch Coverage:} For the sake of simplicity, for any method that returns a String, int, or float, 100\% branch coverage means that it either successfully returns the type or throws an exception. 100\% branch coverage for methods that return a boolean value means that it either returns true or false.
+   		\begin{itemize}
+	   		\item \textbf{Course:} As for methods that return the type Job, the plan is to test for one set of inputs that successfully addJob and for two sets of inputs that fail to do so. The plan is to have 75\% branch coverage for the Course class. 
+	   		\item \textbf{Job:} The plan is to test all methods for their successful return. The Job class has far too many methods to test for 100\% branch coverage. The plan is to test for the correct set of inputs for each method and for the incorrect set of inputs for specific methods that could cause issues. This yields a branch coverage plan of upwards of 50\%, (40\% for the correct input for each method, and 10\% for the incorrect input for specific methods mentioned in the Test Cases). Laboratory and Tutorial will have the same plan and coverage as Job since they inherit from the Job class.
+	   		\item \textbf{Profile:} The plan is to test the correct input for all methods and sets of incorrect inputs that will (null, empty, not long enough passwords) cause issues. The plan is to yield a branch coverage of 75\% and more. Student, Instructor, and Admin will follow the same plan as Profile since they inherit from the Profile class.
+	   		\item \textbf{Application:} The plan is to test sets of correct inputs for each method, and multiple sets of incorrect inputs that will cause issues. Given the small amount of methods to test for this class, the plan is to yield a branch coverage of 75\% and more.
+   		\end{itemize} 
+   	\end{itemize}
+    Since the plan is to implement certain functionalities in a Test Driven Development paradigm, it will be necessary to execute tests before there is even code written for the test. Tests will be executed often during the development of new functionality and during the verification and validation of existing functionality. In other words, JUnit tests will be written and executed before a certain method is written. JUnit tests will be written and executed shortly after test cases are made for a certain method that is already implemented. 
     
-    Furthermore, discuss how often your tests are executed, i.e., what triggers your tests to be run? Finally, describe any differences between your desktop/laptop app, mobile app, and web app when it comes to unit testing.
+    The desktop/laptop app has all functionality; hence, all unit tests for all of the classes to be tested will be at least done on this platform. The mobile and web apps have less functionality than the desktop/laptop app; hence, there will be less classes to be tested on these two platforms. 
+    In this situation, the mobile app is implemented for the student's use; hence, there will be no unit testing for the Admin, Instructor, and Course classes on this platform. More specifically, the plan of unit testing the mobile app is to unit test the Student, Application, and Job classes. 
+    The web app is implemented for the instructor's use; hence, there will be no unit testing for the Admin, and Student classes on this platform. More specifically, the plan of unit testing the web app is to unit test the Instructor, Application, Job, and Course classes.
 
 \part{Integration Test Plan}
 \section{Description}
@@ -313,17 +308,10 @@ Since our mobile app is only for students, there is no need to test the course m
 \end{itemize}     
 
 \section{Techniques and Tools}
-Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be
-near 100\% statement and branch coverage. The goal is to test the relationship between all the classes.
+Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be near 100\% statement and branch coverage. The goal is to test the relationship between all the classes.
 
 \section{Coverage Statistics}
-Since there are 3 classes in each subsystem, and the tests should cover all the relationships
-between the classes, there should be 3! or 6 relationships in each subsytem totalling to 18
-relationships. It was decided that it would be more efficient not to create a test for every relationship,
-but to instead test functionality that includes all these relationships within the tests. For
-example, creating a profile would test the persistence layer as well as the profile class together.
-When the profile class is attributed a course within this test, it tests the integration between all
-three classes. For this reason, we aim for 100\% code coverage.
+Since there are 3 classes in each subsystem, and the tests should cover all the relationships between the classes, there should be 3! or 6 relationships in each subsytem totaling to 18 relationships. It was decided that it would be more efficient not to create a test for every relationship, but to instead test functionality that includes all these relationships within the tests. For example, creating a profile would test the persistence layer as well as the profile class together. When the profile class is attributed a course within this test, it tests the integration between all three classes. For this reason, we aim for 100\% code coverage.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{System Test Plan}
