@@ -247,50 +247,75 @@
 
 \part{Integration Test Plan}
 \section{Description}
-\textbf{The integration testing is meant to test the relationships between units that form subsystems. The aim is to test all the relationships between classes that form subsystems. Since the managers control all the interactions between classes, they are the classes that will be tested in the integration testing.}
+\textbf{The integration testing is meant to test the relationships between units that form
+subsystems. The aim is to test all the relationships between classes that form subsystems. Since the
+Controller classes control all the interactions between classes, they are the classes that will be tested in
+the integration testing.}
 %%%%%%%%%%%% ADD INTEGRATION TEST PLAN HERE%%%%%%%%%%%%%%%%%%%%%
 \section{Integration Strategy}
 
-The strategy of integration will follow a bottom-up approach. The system will first have all the unit tests done for each class. Then the manager classes will integrate the units together into discrete subsystems. Since course manager is going to be used on all platforms, it was decided to test this subsystem first. The other subsystems can be tested in parallel on their individual platforms.
+The strategy of integration will follow a bottom-up approach. The system will first have all the
+unit tests done for each class. Then the controller classes will integrate the units together into
+discrete subsystems. Since course controller is going to be used on all platforms, it was decided to
+test this subsystem first. The other subsystems can be tested in parallel on their individual
+platforms.
  \subsection{Subsystem Testing Diagram}
-    The following diagram shows the subsystems and interactions that will be tested. The arrows show how each of the orange units relate to the manager subsystems. 
+	The following diagram shows the subsystems and interactions that will be tested. The arrows show
+	how each of the orange units relate to the controller subsystems. 
  \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.65]{IntegrationDiagram.png}
  \end{figure}
  \subsection{Platform Integration}
  
-Since our mobile app is only for students, there is no need to test the course manager on the mobile application. Likewise, the web app will not need to test the application manager since the web app is just for teachers. All the tests that follow are done programmatically rather than through a user interface. For example, Applying for a job will involve just creating an instance of an application and attributing it a profile, a job, etc. The system test will test whether the user can create a form and apply through the mobile application, for example.
+Since our mobile app is only for students, there is no need to test the course controller on the mobile
+application. Likewise, the web app will not need to test the application controller since the web app
+is just for teachers. All the tests that follow are done programmatically rather than through a user
+interface. For example, Applying for a job will involve just creating an instance of an application
+and attributing it a profile, a job, etc. The system test will test whether the user can create a
+form and apply through the mobile application, for example.
  
 \section{Integration Test descriptions}
 \subsection{Subsystem Testing}
 \begin{itemize}
     \item \textbf{Profile Persistence Subsystem Testing}
          \begin{itemize}
-             \item \textbf{Reason to test:} These tests will evaluate the relationship between the profiles the persistence layer, this is necessary to ensure that all profile data and associations are properly propagated throughout the system for later use.
+			 \item \textbf{Reason to test:} These tests will evaluate the relationship between the
+				 profiles the persistence layer, this is necessary to ensure that all profile data
+				 and associations are properly propagated throughout the system for later use.
              \item \textbf{Situations:}
              \begin{itemize}
-                 \item \textbf{Create a profile:} Test to ensure that a profile can properly be created in persistence.
+				 \item \textbf{Create a profile:} Test to ensure that a profile can properly be
+					 created in persistence.
                  \begin{itemize}
-                     \item Create profile using complete valid profile data (including the courses the profile is involved in) and ensure that it is properly persisted and available to other classes.
-                     \item Attempt to create a profile using invalid or incomplete input data, ensure that it is not propagated in the persistence layer.
-                     \item Attempt to create a profile by giving no input data, ensure that this is not propagated in the persistence layer.
+					 \item Create profile using complete valid profile data (including the courses
+						 the profile is involved in) and ensure that it is properly persisted and
+						 available to other classes.
+					 \item Attempt to create a profile using invalid or incomplete input data,
+						 ensure that it is not propagated in the persistence layer.
+					 \item Attempt to create a profile by giving no input data, ensure that this is
+						 not propagated in the persistence layer.
                  \end{itemize}
                  \item \textbf{Modify a profile:}
                  \begin{itemize}
-                     \item Modify a profile so that the new profile data is valid, this new profile data should persist.
-                     \item Modify a profile so that the new data is invalid/incomplete, the system should not allow this so the persistence layer will remain unchanged.
+					 \item Modify a profile so that the new profile data is valid, this new profile
+						 data should persist.
+					 \item Modify a profile so that the new data is invalid/incomplete, the system
+						 should not allow this so the persistence layer will remain unchanged.
                  \end{itemize}
                  \item \textbf{Delete a profile:}
                  \begin{itemize}
                      \item Deleting a valid profile should remove it's data from the persistence layer.
-                     \item Deleting an invalid/nonexistent profile should be rejected and have no effect on the persistence layer.
+					 \item Deleting an invalid/nonexistent profile should be rejected and have no
+						 effect on the persistence layer.
                  \end{itemize}
              \end{itemize}
          \end{itemize}
     \item \textbf{Course Persistence Subsystem Testing}
          \begin{itemize}
-             \item \textbf{Reason to test:} These tests will evaluate the relationship between the courses, the profiles and the persistence layer this is necessary to ensure that all course data and associations are properly propagated throughout the system.
+			 \item \textbf{Reason to test:} These tests will evaluate the relationship between the
+				 courses, the profiles and the persistence layer this is necessary to ensure that
+				 all course data and associations are properly propagated throughout the system.
              \item \textbf{Situations:}
              \begin{itemize}
                  \item \textbf{Create a course} 
@@ -342,7 +367,13 @@ Since our mobile app is only for students, there is no need to test the course m
 Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be near 100\% statement and branch coverage. The goal is to test the relationship between all the classes.
 
 \section{Coverage Statistics}
-Since there are 3 classes in each subsystem, and the tests should cover all the relationships between the classes, there should be 3! or 6 relationships in each subsytem totaling to 18 relationships. It was decided that it would be more efficient not to create a test for every relationship, but to instead test functionality that includes all these relationships within the tests. For example, creating a profile would test the persistence layer as well as the profile class together. When the profile class is attributed a course within this test, it tests the integration between all three classes. For this reason, we aim for 100\% code coverage.
+Since there are 3 classes in each subsystem, and the tests should cover all the relationships
+between the classes, there should be 3! or 6 relationships in each subsytem totaling to 18
+relationships. It was decided that it would be more efficient not to create a test for every
+relationship, but to instead test functionality that includes all these relationships within the
+tests. For example, creating a profile would test the persistence layer as well as the profile class
+together. When the profile class is attributed a course within this test, it tests the integration
+between all three classes. For this reason, we aim for 100\% code coverage.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{System Test Plan}
