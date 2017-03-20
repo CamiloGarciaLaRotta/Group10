@@ -26,7 +26,21 @@
 	In this section we will present an extensive suite of test cases aimed to cover in the most
 	efficient manner possible the Teaching Assistant Management System (TAMAS) we are to deliver. Following the
 	paradigm of Test-Driven Development, we shall also implement the unit test cases. This will help
-	keep the development of the system on track with the requirements imposed to the team. 
+	keep the development of the system on track with the requirements imposed to the team. \\\\
+	To produce high confidence in test results, it is important that the unit tests are designed in
+	a systematic manner that organizes the test cases in such a way that it is clear that all
+	branches in logic are covered. To achieve this, the technique of equivalence partitioning will
+	be exploited. This involves dissecting each test subject into its equivalent input and output
+	partitions, which gives a great foundation concerning how and which unit tests should be
+	written.\\\\
+	It is when the system requires new functionality that the writing and running of
+	tests will be triggered. These tests are designed to fail at first, since they will be written
+	before the code which they attempt to test, as per the philosophy of the Test Driven Development
+	paradigm. The new code will be implemented in order to ensure that these tests pass; further
+	following the
+	Test Driven Development framework. Another trigger for the execution of tests is to reach full
+	statement and branch coverage for the system if it is not already so. Finally, regular
+	systematic tests will be executed to ensure that no editing has caused any unforeseen bugs.
 	
 \section{Test Cases}
     All the classes to test will have the following pattern:\\
@@ -203,7 +217,6 @@
     	\item \textbf{Test Coverage Tool:} Ensure that the measure to which the tests and actions cover the source code is optimal by function, statement, branch and condition standards. Its outputs will be used during the code revision sessions. The following tools will be used for these purposes. The tools used for coverage analysis include: EclEmma for Eclipse for the Desktop/Laptop Platform, jacoco Gradle plugin for the mobile platform, and PHPUnit for the web platform.
     \end{itemize}
     
-    It is when the system requires new functionality which triggers the writing and running of tests. These tests are designed to fail since there is no code actually written for those tests. The new code will be implemented in order to ensure that these tests pass; this follows the test-driven-development framework. Another trigger for the execution of tests is to reach full statement and branch coverage for the system if it is not already so.
     
     \section{Differences in Unit Testing for the Three Platforms}
     
