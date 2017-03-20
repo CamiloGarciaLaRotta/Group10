@@ -273,33 +273,28 @@
     
 \part{Integration Test Plan}
 \section{Description}
-The integration testing is meant to test the relationships between units that form
-subsystems. The aim is to test all the relationships between classes that form subsystems. Since the
-Controller classes control all the interactions between classes, they are the classes that will be tested in
-the integration testing.
+The integration phase is meant to test the relationships between units that form
+subsystems. The aim is to test all the relationships between classes that form subsystems. Hence, tests will be conducted on the Controller classes to ensure they can access and modify data of unitary classes and on Manager classes to validate the relationships with their linked classes.
 %%%%%%%%%%%% ADD INTEGRATION TEST PLAN HERE%%%%%%%%%%%%%%%%%%%%%
 \section{Integration Strategy}
 
-The strategy of integration will follow a bottom-up approach. The system will first have all the
-unit tests done for each class. Then the controller classes will integrate the units together into
-discrete subsystems. Since course controller is going to be used on all platforms, it was decided to
-test this subsystem first. The other subsystems can be tested in parallel on their individual
-platforms.
+We will follow a bottom-up testing pattern by using the discrete tested units obtained during the preceding phase in order to obtain discrete tested subsystems. The strategy begins by validating the controller classes' relationships with the its neighbouring classes. We choose to test the Controller class first as it is the most computationally heavy family of classes. The precise order in which the classes will be tested is addressed in section \textbf{7.1}. The platform-dependent tests criteria will be addressed in section \textbf{7.2}.
  \subsection{Subsystem Testing Diagram}
+    To be more precise, the Manager and Controller tests will follow the same chronological sequence as the Unit test cases. Firstly the Course and Profile Manager and related Controllers will be tested, as their linked unitary classes are the least interconnected with other Controller and Managers.Application manager and Controller will follow.  
 	The following diagram shows the subsystems and interactions that will be tested. The arrows show
 	how each of the orange units relate to the controller subsystems. 
  \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.65]{IntegrationDiagram.png}
+    \includegraphics[scale = 0.60]{IntegrationDiagram.png}
  \end{figure}
  \subsection{Platform Integration}
- 
-Since our mobile app is only for students, there is no need to test the course controller on the mobile
-application. Likewise, the web app will not need to test the application controller since the web app
-is just for teachers. All the tests that follow are done programmatically rather than through a user
-interface. For example, Applying for a job will involve just creating an instance of an application
-and attributing it a profile, a job, etc. The system test will test whether the user can create a
-form and apply through the mobile application, for example.
+
+We shall discuss the differences and similarities of the integration testing phase for each target plataform:
+\begin{itemize}
+    \item \textbf{Desktop:} All controller and Manager classes must be tested as this is the administrative application. Moreover, this the Desktop platform should be the first discrete system to validate being as the Mobile platform depends directly on its model and controllers
+    \item \textbf{Mobile:} Tests regarding the application to a job won't be tested inside the Application controller and manager
+    \item \textbf{Web:} Tests regarding the creation and publication of a job posting won't be tested inside the Application controller and manager
+\end{itemize}
  
 \section{Integration Test descriptions}
 \subsection{Subsystem Testing}
@@ -390,7 +385,7 @@ form and apply through the mobile application, for example.
 \end{itemize}     
 
 \section{Techniques and Tools}
-Using EclEmma, we aspire to have near 100\% code coverage. This would imply that there should be near 100\% statement and branch coverage. The goal is to test the relationship between all the classes.
+Standardizing the tools used during the Unit Testing phase, EclEmma and the PHPUnit-Junit suite will be used to measure code coverage and develop the test cases respectively. The metrics on the prospective coverage are given in section \textbf{10}. At this stage of the development the chosen heuristic is to follow the logical sequence of tasks an administrator performs during a black-box test and develop the cases from there. An example of this method would be: In order to test that Application Manager can store properly a list of job postings, the system administration must first create a dummy course and instructor. The first conclusion is that we must then firs test the Course manager and Profile manager. This chain of dependencies is the framework upon the integration tests are built upon.
 
 \section{Coverage Statistics}
 Since there are 3 classes in each subsystem, and the tests should cover all the relationships
@@ -400,7 +395,6 @@ relationship, but to instead test functionality that includes all these relation
 tests. For example, creating a profile would test the persistence layer as well as the profile class
 together. When the profile class is attributed a course within this test, it tests the integration
 between all three classes. For this reason, we aim for 100\% code coverage.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{System Test Plan}
 \section{Description}
