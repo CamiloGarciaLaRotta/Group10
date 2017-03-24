@@ -27,6 +27,9 @@ class CourseController{
 		if((!is_numeric($graderTimeBudget)) || (!is_numeric($TATimeBudget))) {
 			$error .= ("Time budget must be a non null Integer!<br> ");
 		}
+		if(($graderTimeBudget < 0) || ($TATimeBudget < 0)) {
+			$error .= ("Time budget must be a positive Integer!<br> ");
+		}
 		
 		if(strlen($error) > 0) {
 			throw new Exception($error);
@@ -37,6 +40,35 @@ class CourseController{
 				
 			//4. Write all the data
 			$this->pt->writeCourseDataToStore($this->cm);
+		}
+	}
+
+	public function deleteCourse($CDN) {
+		
+		$error = "";
+		if(!is_numeric($CDN)) {
+			$error .= ("CDN must be a non null Integer!<br> ");
+		}
+		
+		if(strlen($error) > 0) {
+			throw new Exception($error);
+		} else {
+			// find course to delete
+			$courseToDel = null;
+			$courses = $this->cm->getCourses();
+			foreach ($courses as $c){
+				if($c->getCdn() == $CDN){
+					$courseToDel = $c;
+					break;
+				}
+			}
+			
+			if(!$courseToDel) {
+				$error = "No course found with CDN ".$CDN;
+				throw new Exception($error);
+			} else {
+				$this->cm->removeCourse($courseToDel);
+			}
 		}
 	}
 

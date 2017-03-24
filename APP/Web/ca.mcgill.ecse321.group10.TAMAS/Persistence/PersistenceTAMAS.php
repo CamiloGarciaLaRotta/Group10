@@ -5,9 +5,9 @@ class PersistenceTAMAS {
 	private $filenamePM;
 	private $filenameCM;
 	
-	function __construct($filenameAM = '../output/applications.txt',
-						$filenamePM = '../output/profiles.txt',
-						$filenameCM = '../output/courses.txt') {
+	function __construct($filenameAM =  __DIR__.'\..\output\applications.txt',
+						$filenamePM =  __DIR__.'\..\output\profiles.txt',
+						$filenameCM =  __DIR__.'\..\output\courses.txt') {
 		$this->filenameAM = $filenameAM;
 		$this->filenamePM = $filenamePM;
 		$this->filenameCM = $filenameCM;
