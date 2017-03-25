@@ -128,7 +128,6 @@ public class TestCourse {
 			assertEquals(0,cm.numberOfCourses());
 		}
 	}
-	/*
 	@Test
 	public void testCourseCdnNonUnique() {
 		assertEquals(0,cm.numberOfCourses());
@@ -150,7 +149,6 @@ public class TestCourse {
 		// Make sure course with identical cdn does not get saved
 		assertEquals(1,cm.numberOfCourses());
 	}
-	*/
 	/*
 	@Test
 	public void testCourseCdnNull() {
