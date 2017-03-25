@@ -26,6 +26,13 @@ class ProfileController{
 		if($uName==null || strlen($uName) == 0){
 			$error .= ("Username name cannot be empty!<br>");
 		} 
+		$Instructors = $this->pm->getInstructors();
+		foreach($Instructors as $i) {
+			if($i->getUsername() == $aUsername) {
+				$error .= ("Username must be unique!<br>");
+				break;
+			}
+		}
 		if($pass==null || strlen($pass) == 0){
 			$error .= ("Password name cannot be empty!<br>");
 		} 

@@ -167,5 +167,32 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		// validate stored data
 		$this->assertEquals($error, "No course found with CDN 123");
 	}
+	
+	public function testRepeatedCDN() {
+		
+		$this->assertCount(0, $this->cm->getCourses());
+		
+		$className = "MATH 363";
+		$CDN = 999;
+		$graderTime = 99;
+		$TATime = 9;
+		
+		$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+		
+		$className = "COMP 251";
+		$CDN = 999;
+		$graderTime = 10;
+		$TATime = 100;
+		
+		$error = "";
+		
+		// validate empty course name
+		try {
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+		} catch(Exception $e) {
+			$error =  $e->getMessage();
+		}
+		$this->assertEquals("CDN must be unique!<br> ", $error);
+	}
 }
 ?>
