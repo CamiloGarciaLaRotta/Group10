@@ -1,0 +1,273 @@
+\documentclass[12pt]{report}
+
+\usepackage{amsmath,amssymb,amsfonts} %In case we need math stuff
+\usepackage{graphicx} %For inserting images and stuff
+\usepackage{listings} %For inserting code snippets
+\usepackage{enumerate} %For fancy enumeration
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage[margin=2cm]{geometry} %Nice margin setting
+
+\renewcommand*\thesection{\arabic{section}}
+
+\title{ECSE 321 - Intro to Software Engineering\\Design Specification Document - Deliverable 3}
+\author{Harley Wiltzer\\Camilo Garcia La Rotta\\Jake Shnaidman\\Robert Attard\\Matthew Lesko}
+\date{March 19, 2017}
+
+\begin{document}
+\pagenumbering{gobble} %No page number on title page
+\maketitle
+\newpage
+\pagenumbering{arabic} %Arabic numeral page numbers on regular pages
+\tableofcontents
+\part{Unit Tests}
+\section{Course Unit Test}
+	\textbf{METHOD UNDER TEST: Constructor} \newline
+	\text{*Note:} For cases in which a message, stating for a wrong input, is output from the system, then the changes/creations/deletions of objects should not persist.\newline
+	\textbf{Test Cases For: className Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | }
+			\hline
+			Test Cases for Constructor & className Input & cdn Input & TimeBudget Input \\ \hline
+			Test Case no.1 & null & 101 & 10.00 \\ \hline
+			Test Case no.2 & "" & 101 & 10.00  \\ \hline
+			Test Case no.3 & "1234567890" & 101 & 10.00  \\ \hline
+			Test Case no.4 & " " & 101 & 10.00 \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases for Constructor & Expected Output \\ \hline
+			Test Case no.1 & Course name cannot be empty! \\ \hline
+			Test Case no.2 & Course name cannot be empty! \\ \hline
+			Test Case no.3 &  (className gets saved in persistence layer) \\ \hline
+			Test Case no.4 & Course name cannot be empty! \\ \hline
+			
+		\end{tabular}
+	\end{flushleft}
+
+	\textbf{Test Cases For: cdn Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | }
+			\hline
+			Test Cases for Constructor & className Input & cdn Input & TimeBudget Input \\ \hline
+			Test Case no.5 & ECSE & 101 and 101 & 10.00 \\ \hline
+			Test Case no.6 & ECSE & null & 10.00 \\ \hline
+			Test Case no.7 & ECSE & -1 & 10.00 \\ \hline
+			Test Case no.8 & ECSE & "one hundred and one" & 10.00 \\ \hline
+			Test Case no.9 & ECSE & " " & 10.00 \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases for Constructor & Expected Output \\ \hline
+			Test Case no.5 & Cannot input Non-Unique CDN! \\ \hline
+			Test Case no.6 & Cannot input empty CDN! \\ \hline
+			Test Case no.7 & CDN must be positive! \\ \hline
+			Test Case no.8 & Cannot input alphabetical characters for CDN!  \\ \hline
+			Test Case no.9 & Cannot input empty CDN!  \\ \hline			
+		\end{tabular}
+	\end{flushleft}
+
+	\textbf{Test Cases For: graderTimeBudget/taTimeBudget Inputs} 
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | }
+			\hline
+			Test Cases for Constructor & className Input & cdn Input & TimeBudget Input \\ \hline
+			Test Case no.10 & ECSE & 101 & null \\ \hline
+			Test Case no.11 & ECSE & 101 & "" \\ \hline
+			Test Case no.12 & ECSE & 101 & "ten" \\ \hline
+			Test Case no.13 & ECSE & 101 & -10.00 \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases for Constructor & Expected Output \\ \hline
+			Test Case no.10 & Cannot input empty TimeBudget! \\ \hline
+			Test Case no.11 & Cannot input empty TimeBudget! \\ \hline
+			Test Case no.12 & Cannot input alphabetical characters for TimeBudget!  \\ \hline
+			Test Case no.13 & Grader Budget must be positive! TA Budget must be positive!    \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\newpage
+	\textbf{METHOD UNDER TEST: addJob} \newline
+	\textbf{Test Cases For: addJob Inputs} 
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | l | l | l | }
+			\hline
+			Test Cases & startTime & endTime & Day & Salary & Requirements & Instructor \\ \hline
+			Test Case no.14 & null & null & null & null & null & null \\ \hline
+			Test Case no.15 & 10:00 & 15:00 & Monday & 15.00 & Bachelors & Default Instructor \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.14 & Invalid Input for Job! \\ \hline
+			Test Case no.15 & (Job gets saved in persistence layer) \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+	\textbf{METHOD UNDER TEST: addJobAt} \newline
+	\textbf{Test Cases For: addJobAt Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | l | }
+			\hline
+			Test Cases & Job1 Input & Index1 Input & Job2 Input & Index2 Input \\ \hline
+			Test Case no.16 & Job1 & null & Job2 & null \\ \hline
+			Test Case no.17 & Job1 & 1 & Job2 & 1 \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.16 & Cannot add Job at null index! \\ \hline
+			Test Case no.17 & Cannot add Job at occupied index! \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+	\textbf{METHOD UNDER TEST: addOrMoveJobAt} \\
+	\textbf{Test Cases For: addOrMoveJobAt Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | }
+			\hline
+			Test Cases & Job Input & Index Input & New Index Input \\ \hline
+			Test Case no.18 & Job & 1 & 2 \\ \hline
+			Test Case no.19 & Job & 1 & 0 \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.18 & (Job gets moved to a new index successfully) \\ \hline
+			Test Case no.19 & (Job gets moved to a new index successfully) \\ \hline
+		\end{tabular}
+	\end{flushleft}
+\newpage
+\section{Job Unit Test}
+	\textbf{*Note:} Since the Classes Tutorial and Laboratory inherit from the Job class; the test cases for these two classes will be identical to the Job Class. The inputs aCourse and aInstructor are simply valid Course and Instructor inputs. \\
+	\textbf{METHOD UNDER TEST: Constructor} \newline
+	\textbf{Test Cases For: startTime and endTime Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | l | l | l | l | }
+			\hline
+			Test Cases & startTime & endTime & Day & Salary & Requirements & Course & Instructor \\ \hline
+			Test Case no.1 & null & null & Monday & 10.00 & Bachelors & aCourse & aInstructor \\ \hline
+			Test Case no.2 & "" & "" & Monday & 10.00 & Bachelors & aCourse & aInstructor \\ \hline
+			Test Case no.3 & 10:00 & 9:00 & Monday & 10.00 & Bachelors & aCourse & aInstructor \\ \hline
+			Test Case no.4 & 21:00 & 22:00 & Monday & 10.00 & Bachelors & aCourse & aInstructor \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.1 & Input Time cannot be empty! \\ \hline
+			Test Case no.2 & Input Time cannot be empty! \\ \hline
+			Test Case no.3 & startTime cannot be before endTime! \\ \hline
+			Test Case no.4 & Times cannot be outside working hours! \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+	\textbf{Test Cases For: Requirements Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | l | l | l | l | }
+			\hline
+			Test Cases & startTime & endTime & Day & Salary & Requirements & Course & Instructor \\ \hline
+			Test Case no.5 & 10:00 & 12:00 & Monday & 10.00 & null & aCourse & aInstructor \\ \hline
+			Test Case no.6 & 10:00 & 12:00 & Monday & 10.00 & "" & aCourse & aInstructor \\ \hline
+			Test Case no.7 & 10:00 & 12:00 & Monday & 10.00 & " " & aCoursee & aInstructor \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.5 & Requirements cannot be empty! \\ \hline
+			Test Case no.6 & Requirements cannot be empty! \\ \hline
+			Test Case no.7 & Requirements cannot be empty! \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+	\textbf{Test Cases For: Course and Instructor Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | l | l | l | l | }
+			\hline
+			Test Cases & startTime & endTime & Day & Salary & Requirements & Course & Instructor \\ \hline
+			Test Case no.8 & 10:00 & 12:00 & Monday & 10.00 & PHD Student & null & aInstructor \\ \hline
+			Test Case no.9 & 10:00 & 12:00 & Monday & 10.00 & PHD Student & aCourse & null \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.8 & Invalid Course Input! \\ \hline
+			Test Case no.9 & Invalid Instructor Input! \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+	\newpage
+	\textbf{Test Cases For: Salary Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | l | l | l | l | }
+			\hline
+			Test Cases & startTime & endTime & Day & Salary & Requirements & Course & Instructor \\ \hline
+			Test Case no.10 & 10:00 & 12:00 & Monday & null & PHD Student & aCourse & aInstructor \\ \hline
+			Test Case no.11 & 10:00 & 12:00 & Monday & " " & PHD Student & aCourse & aInstructor \\ \hline
+			Test Case no.12 & 10:00 & 12:00 & Monday & "ten10" & PHD Student & aCourse & aInstructor \\ \hline
+			Test Case no.13 & 10:00 & 12:00 & Monday & -10 & PHD Student & aCourse & aInstructor \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.10 & Salary cannot be empty! \\ \hline
+			Test Case no.11 & Salary cannot be empty! \\ \hline
+			Test Case no.12 & Salary cannot have alphabetical characters! \\ \hline
+			Test Case no.13 & Salary cannot be negative! \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+	\textbf{Test Cases For: Day Inputs}
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | l | l | l | l | l | l | }
+			\hline
+			Test Cases & startTime & endTime & Day & Salary & Requirements & Course & Instructor \\ \hline
+			Test Case no.14 & 10:00 & 12:00 & null & 10.00 & PHD Student & aCourse & aInstructor \\ \hline
+			Test Case no.15 & 10:00 & 12:00 & Saturday & 10.00 & PHD Student & aCourse & aInstructor \\ \hline
+		\end{tabular}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		\begin{tabular}{ | l | l | }
+			\hline
+			Test Cases & Expected Output \\ \hline
+			Test Case no.14 & Date cannot be empty! \\ \hline
+			Test Case no.15 & Date cannot be a weekend day! \\ \hline
+		\end{tabular}
+	\end{flushleft}
+
+\newpage
+\section{Profile}
+
+\end{document}
