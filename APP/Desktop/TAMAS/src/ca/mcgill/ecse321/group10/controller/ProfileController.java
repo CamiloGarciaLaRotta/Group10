@@ -52,10 +52,12 @@ public class ProfileController {
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
+		else{
 		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
 		pm.addInstructor(instructor);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
+		}
 	}
 	
 	public void addCourseToInstructor(int instructor, Course course) {
@@ -78,12 +80,13 @@ public class ProfileController {
 		if( !this.isUsernameUnique(aUsername) ){
 			error += ("Username is taken") + " ";
 		}
-		
 		if(error.length() > 0) throw new InputException(error);
+		else{
 		Admin admin = new Admin(aUsername,aPassword,aFirstName,aLastName);
 		pm.addAdmin(admin);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
+		}
 	}
 	
 	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience)  throws InputException{
@@ -101,10 +104,12 @@ public class ProfileController {
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
+		else{
 		Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
 		pm.addStudent(student);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
+		}
 	}
 	
 	public void removeInstructorFromSystem(String username){
