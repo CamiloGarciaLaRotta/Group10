@@ -29,9 +29,51 @@
 \part{Build}
 \section{Description}
 The build pipeline is responsible for the successful and efficient building of the source code and
-automated testing.
+automated testing. As the system evolves, the processes required to carry out certain tasks like
+compiling the code, creating executables, and running tests will evolve as well, and will ultimately
+become more complex as time fades away. For this reason, it is important to design a robust automated
+build system that provides the developers with the power to do any of the aforementioned tasks by
+running simple build commands.\\\\
+Of course, such power does not come from nothing; in fact, the developers must actively maintain
+this build system such that it is always kept up to date with the rest of the system. Fortunately,
+certain tools exist for creating such build systems that will significantly aid in the process.
+These tools will be discussed in the \hyperref[s:build-tools]{Tools} section.
 \section{Tools}
+\label{s:build-tools}
+Although designing a Monad in Haskell for automating build procedures sounds very interesting, such
+a task would be a rather horrendous decision. Given the plethora of tools available that can already
+be used to aid in the development of build systems, it is much preferred to use tools that have
+already been tested and have already been shown to be efficient rather than developing one anew.\\\\
+Firstly, designing and implementing build scripts, the Apache Ant tool will be used. A major
+convenience of this tool is that it has support for both Java and PHP languages, which cover 100\%
+of the languages used to implement the TAMAS system. Ant provides the ability to design multiple
+\textit{build targets}, which are basically sets of building instructions that can be chosen and
+sequenced when the build is invoked. If implemented properly, this would allow the code from
+multiple platforms to be compiled individually or all at once, it would allow tests to be run
+automatically (and perhaps different sets of tests depending on the user's choice), and would allow
+executable files to be generated at will. Ultimately, Ant would provide the ability to create a
+unified build suite for compilation, testing, packaging and friends, maximizing the convenience and
+effectiveness of the developers in the build phase.\\\\
+Furthermore, the Travis CI tool will be used for automated testing with Git integration. When synced
+with Github, Travis CI can automatically run tests and communicate test results automatically
+whenever a new commit is pushed. The Travis functionality is itself governed by a build file, which
+will take advantage of the Ant build file that will be in the Git repository. Travis CI will be
+incredible for ensuring that the entire development team is always up to date and informed
+concerning the latest effectiveness of the code.
 \section{Design}
+This section will discuss the various design decisions made concerning the design of the build
+system, and will provide a high level view of the build system implementation.
+\subsection{Concerning the unification of the application platforms}
+The first design decision made after deciding to use Apache Ant was to make one master build system
+for all platforms of the application. Although all three application platforms serve different
+purposes, and to the end user all platforms are literally separate, it would behoove the development
+team to be able to manage the build procedures for all three with the same build script. This way,
+should they find it appropriate, the developers may test code for more than one platform at once,
+for example. It is projected that this will make the build process much more efficient. Of course,
+the build system will be robust enough to give the user control over which platforms to target when
+the build is invoked. Of course, this design choice was made possible thanks to only the magic
+offered by Apache's Ant tool, which supports the testing protocols and compilers used for all
+platforms in this system.
 \section{Rationale}
 \part{Deployment}
 \section{Description}
