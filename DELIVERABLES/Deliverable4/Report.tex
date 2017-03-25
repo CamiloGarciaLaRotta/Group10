@@ -77,6 +77,7 @@ platforms in this system.
 \section{Rationale}
 \part{Deployment}
 \section{Description}
+Software deployment concerns all the tasks that cover the process of making a system available for public use.
 This phase will be be activated once the integrated code has tested and approved by the preceding phase. At this moment the code is ready to be released to the public, In the case of the Desktop application through a web market or physical mean,for the Mobile application through the Android marketplace or an APK sharing forum and for the web application through a a production server, such as a hosting web server to ensure its availability on the web. In this section we will go through the tools, design choices and specificities of each platform's deployment phase.
 
 \section{Tools}
@@ -116,20 +117,20 @@ The Deployment phase can be split into a set of well delimited activities which 
         \item \textbf{Mobile:} The android APK handler will receive the new APK and release a notification to all users who have the older version installed.
         \item \textbf{Web:} Through a blue-green deployment procedure, one of the servers web daemon will he halted, the necessary configuration or script files updated and the service restarted. Once the application is up online again without problem the green server will be taken down to pass through the same procedure. Hence no downtime will be perceivable client-side
     \end{itemize}
-    \item \textbf{Version Tracking:} In order to provide a broader coverage of our application for the customers, an archive website will be kept from where all past versions of the application can be stored and retrieved from. This log of past versions will be linked to the GitHub repository containing the open-source code of the application. 
+    \item \textbf{Version Tracking:} In order to provide a broader coverage of our application for the customers, an archive website will be kept from where all past versions of the application can be stored and retrieved from. This log of past versions will be linked to the GitHub repository containing the open-source code of the application. In addition to this link, GitHub provides the functionality of publishing a compressed archive version of the current code. This useful feauture will be used to maintain an accessible, visible release of the latest and past versions of the application in all its target states.
     \item \textbf{Monitoring:} Based on the aforementioned monitoring tools, we would keep an extensive log of the current amount of installed applications on all platforms, including their up-time, their error-logs and their amount of transactions. This would help identify and prioritize the requirements for the next iteration of development. In this section of the deployment phase we enter a more continuous analysis of the production application's state. Log analysis tools such as loggly, Splunk, logstash among others would help retrieve useful, tangible metrics on the deployed applications.
 \end{itemize}
 \section{Rationale}
+\textbf{Why all this process:} As with any phase of the Release pipeline, the design choices for the Deployment are based on the goal of achieving an automated release where the versioning, archiving and delivery of the application produces minimal errors, if not none.\\\\
+\textbf{Desktop Deployment:} LESKO\\\\
+\textbf{Mobile Deployment:} LESKO\\\\
+\textbf{Web Deployment:} Choosing approaches such as the blue-green technique for the web application can be backed by security reasons: 
+\begin{itemize}
+    \item Disaster Recovery in case a major bug went undetected through the Integration and Build Phases.
+    \item Reducing, or even nullifying the downtime of a web service to the clients
+    \item Being able to mantain multiple versions of an application on separate web-servers to ensure a broader support of client-side configurations
+\end{itemize}\\\\
+\textbf{Monitoring:} The main difference with the other two phases comes from the support tasks related with the monitoring of the delivered applications. It is a continuous process that's doesn't stop since the first public release of the application is made. This part of the Deployment is intrinsic to discover faults or new requirements that appears with the continuous use of the application. As such, the usage analysis tools for big log files comes as a natural automatisation step. The metrics gathered by these applications, as well as by the Android marketplace and GitHub itself ensure a better understanding of the usage, improvements and fall-pits of the product as sa whole.
 
-% Software training and support is important, as software is only effective if it is used correctly.[6] .[7]
-
-% Maintaining and enhancing software to cope with newly discovered faults or requirements can take substantial time and effort, as missed requirements may force redesign of the software
-
-% Software deployment is all of the activities that make a software system available for use.
-
-% The general deployment process consists of several interrelated activities with possible transitions between them. These activities can occur at the producer side or at the consumer side or both. Because every software system is unique, the precise processes or procedures within each activity can hardly be defined. Therefore, "deployment" should be interpreted as a general process that has to be customized according to specific requirements or characteristics. A brief description of each activity will be presented later.
-
-TODO : talk bout metrics, monitoring, why deployment phase important :
-\url{https://zachholman.com/posts/deploying-software#goals}
 
 \end{document}
