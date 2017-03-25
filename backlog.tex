@@ -389,6 +389,8 @@ In the following Deliverable, a formal release pipeline plan will be published. 
      	\item Unit Test Plan Involvement: 5 Hours
      \end{itemize}
  \end{itemize}
+ 
+ \newpage
 
  \section{Deliverable 4}
 
@@ -403,7 +405,11 @@ In the following Deliverable, a formal release pipeline plan will be published. 
  	\end{itemize}
      \item Camilo Garcia La Rotta
      \begin{itemize}
-         \item gg
+         \item Wrote the description of all the deployment phase sections
+         \item Wrote the Design section of the deployment phase
+         \item wrote the Rational section of the deployment phase
+         \item wrote PHPUnit test cases for Course, Job and Profile classes
+         \item Fixed bugs found in the Controller classes while writing the unit test cases
      \end{itemize}
      \item Jacob Shnaidman
  		\begin{itemize}
@@ -424,13 +430,13 @@ In the following Deliverable, a formal release pipeline plan will be published. 
  %\textbf{ADD HERE ALL THE DECISIONS YALL TOOK}
 
  \begin{enumerate}
-     \item \textbf{Use Cases}
+     \item \textbf{Unit test cases}
      \begin{itemize}
-     	\item gg
+     	\item During the coding of the test cases we realized the uniqueness of the CDN and username attribute of Course and Profile classes was not being handled by the model natively. Thus, we had to make sure the respective controllers made the verification before submitting any modification to the model and to the persistence.
      \end{itemize}
-     \item \textbf{Sequence Diagram}
+     \item \textbf{Deployment Phase}
      \begin{itemize}
-         \item gg
+     	\item Ensuring that the delivery of the product to different platforms worked without manual input by any of the developers proved to be hard to achieve with a single delivery tool. We decided instead to use plataform specific tools which would save configuration scripts to handle each plataform while allowing the team to use a more appropriate tool for each target plataform. For further details please refer to the report of Deliverable \#4. 
      \end{itemize}
  \end{enumerate}
 
@@ -447,7 +453,9 @@ In the following Deliverable, a formal release pipeline plan will be published. 
  		\end{itemize}
      \item Camilo Garcia La Rotta
      \begin{itemize}
-         \item gg
+         \item PHPUnit test cases: 3 hours
+         \item PHP Controller fixes: 1.5 hours
+         \item Deployment phase documentation: 4 hours
      \end{itemize}
      \item Jacob Shnaidman
      \begin{itemize}
