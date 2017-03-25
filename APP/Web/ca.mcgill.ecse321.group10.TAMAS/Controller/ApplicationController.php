@@ -27,62 +27,58 @@ class ApplicationController{
 							$aRequirements, $aCDN, $anInstructor) {
 		//Validate primitive var input
 		$error = "";
+		
+		if(strtotime($starttime) > strtotime($endtime)) {
+			$error .= ("end time cannot be before event start time!<br>");
+		}
 		$requirements = InputValidator::validate_input($aRequirements);
-
 		if($requirements==null || strlen($requirements) == 0){
 			$error .= ("Requirements cannot be empty!<br>");
 		} 
 		if(!is_numeric($aSalary)) {
-			$error .= ("Salary must be a non null Integer!<br>");
+			$error .= ("Salary must be a non null Number!<br>");
 		}
+		if($aSalary < 0) {
+			$error .= ("Salary must be a positive Number!<br> ");
+		}
+		if(!is_numeric($aCDN)) {
+			$error .= ("CDN must be a non null Integer!<br>");
+		}
+		if($CDN < 0) {
+			$error .= ("CDN must be a positive Integer!<br> ");
+		}
+		$myInstructor = null;
+		foreach ($this->pm->getInstructors() as $instructor){
+			if(strcmp($instructor->getUsername(), $anInstructor)==0){
+				$myInstructor = $instructor;
+				break;
+			}
+		}
+		if ($myInstructor == null) $error .= ("Instructor was not found!<br>");
+		// Find the event
+		$myCourse = null;
+		foreach ($this->cm->getCourses() as $course){
+			if(strcmp($course->getCdn(), $aCDN) ==0){
+				$myCourse = $course;
+				break;
+			}
+		}
+		if ($myCourse == null) $error .= ("Course was not found!<br>");
 		
 		if(strlen($error) > 0) {
 			throw new Exception($error);
 		} else {
-			// validate reference var input
-			$myInstructor = NULL;
-			foreach ($this->pm->getInstructors() as $instructor){
-				if(strcmp($instructor->getUsername(), $anInstructor)==0){
-					$myInstructor = $instructor;
-					break;
-				}
+			try {
+				$myJob = new Job($startTime, $endTime, $aDay, 
+						$aSalary, $requirements, $myCourse, $myInstructor);
+				$myJob->setPosition($aPosition);
+				$this->am->addJob($myJob);
+			} catch (Exception $e){
+				echo $e->getMessage();
 			}
-			// Find the event
-			$myCourse = NULL;
-			foreach ($this->cm->getCourses() as $course){
-				if(strcmp($course->getCdn(), $aCDN) ==0){
-					$myCourse = $course;
-					break;
-				}
-			}
-			
-			// Register for the event
-			if ($myInstructor != NULL && $myCourse != NULL){
-				// TODO here is where the fatal error on line 101 of applicationmanager originates.
-				// it implies that myJob wasnt correctly instanciated as a new Job.
-				// but no exception is catched from the constuctor of Job
-				try {
-					$myJob = new Job($startTime, $endTime, $aDay, 
-							$aSalary, $requirements, $myCourse, $myInstructor);
-					$myJob->setPosition($aPosition);
-					$this->am->addJob($myJob);
-				} catch (Exception $e){
-					echo $e->getMessage();
-				}
-				
-				
-				
-				// Write all the data
-				$this->pt->writeApplicationDataToStore($this->am);
-			} else {
-				if($myInstructor == NULL){
-					$error .= "Instructor not found!<br>";
-				}
-				if ($myCourse == NULL){
-					$error .= "Course not found!<br>";
-				}
-				throw new Exception(trim($error));
-			}
+						
+			// Write all the data
+			$this->pt->writeApplicationDataToStore($this->am);
 		}
 	}
 

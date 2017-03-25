@@ -96,7 +96,21 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($instructor, $this->am->getJob_index(1)->getInstructor());
 	}
 	
-	
+	public function testInvalidJob() {
+		
+		$this->assertEquals(0, $this->am->numberOfJobs());
+		
+		$startTime = "9:00";
+		$endTime = "11:30";
+		$day = "Monday";
+		$position = "PositionTA";
+		$salary = 80.30;
+		$requirements = "None";
+		$course = new Course("MATH 363", 3700, 10, 20);
+		$instructor = new Instructor("PGuardiola", "123", "Pep", "Guardiola");
+		
+		$job = new Job($startTime, $endTime, $day, $salary, $requirements, $course, $instructor);
+	}
 	
 }
 ?>

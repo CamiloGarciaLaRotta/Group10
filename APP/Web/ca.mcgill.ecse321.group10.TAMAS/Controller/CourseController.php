@@ -24,6 +24,9 @@ class CourseController{
 		if(!is_numeric($CDN)) {
 			$error .= ("CDN must be a non null Integer!<br> ");
 		} 
+		if($CDN < 0) {
+			$error .= ("CDN must be a positive Integer!<br> ");
+		} 
 		$courses = $this->cm->getCourses();
 		foreach($courses as $c) {
 			if($c->getCdn() == $CDN){
