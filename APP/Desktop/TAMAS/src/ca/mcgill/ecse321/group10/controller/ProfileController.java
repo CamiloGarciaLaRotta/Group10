@@ -1,10 +1,6 @@
 package ca.mcgill.ecse321.group10.controller;
 
-import ca.mcgill.ecse321.group10.TAMAS.model.Admin;
-import ca.mcgill.ecse321.group10.TAMAS.model.Course;
-import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
-import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
-import ca.mcgill.ecse321.group10.TAMAS.model.Student;
+import ca.mcgill.ecse321.group10.TAMAS.model.*;
 import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ProfileController {
@@ -19,6 +15,28 @@ public class ProfileController {
 		this.filename = filename;
 	}
 	
+	private boolean isUsernameUnique(String username){
+		boolean unique = true;
+		
+		for (Student student: pm.getStudents()){
+			if (student.getUsername() == username){
+				unique = false;
+			}
+		}
+		for (Instructor instructor: pm.getInstructors()){
+			if (instructor.getUsername() == username){
+				unique = false;
+			}
+		}
+		for(Admin admin: pm.getAdmins()){
+			if(admin.getUsername() == username){
+				unique = false;
+			}
+		}
+		
+		return unique;
+	}
+	
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
 		if(aUsername == null || aUsername.trim().length() == 0) {
@@ -30,11 +48,16 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Instructor first and last names cannot be empty") + " ";
 		}
+		if( !this.isUsernameUnique(aUsername) ){
+			error += ("Username is taken") + " ";
+		}
 		if(error.length() > 0) throw new InputException(error);
+		else{
 		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
 		pm.addInstructor(instructor);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
+		}
 	}
 	
 	public void addCourseToInstructor(int instructor, Course course) {
@@ -54,11 +77,16 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Admin first and last names cannot be empty") + " ";
 		}
+		if( !this.isUsernameUnique(aUsername) ){
+			error += ("Username is taken") + " ";
+		}
 		if(error.length() > 0) throw new InputException(error);
+		else{
 		Admin admin = new Admin(aUsername,aPassword,aFirstName,aLastName);
 		pm.addAdmin(admin);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
+		}
 	}
 	
 	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience)  throws InputException{
@@ -72,10 +100,53 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Student first and last names cannot be empty") + " ";
 		}
+		if( !this.isUsernameUnique(aUsername) ){
+			error += ("Username is taken") + " ";
+		}
 		if(error.length() > 0) throw new InputException(error);
+		else{
 		Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
 		pm.addStudent(student);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
+		}
 	}
+	
+	public void removeInstructorFromSystem(String username){
+		for (Instructor teacher:pm.getInstructors()){
+			if(teacher.getUsername() == username){
+				pm.removeInstructor(teacher);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(pm);
+			}
+		}
+	}
+	
+	public void removeStudentFromSystem(String username){
+		for (Student student:pm.getStudents()){
+			if(student.getUsername() == username){
+				pm.removeStudent(student);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(pm);
+			}
+		}
+	}
+	
+	public void removeAdminFromSystem(String username){
+		for (Admin admin:pm.getAdmins()){
+			if(admin.getUsername() == username){
+				pm.removeAdmin(admin);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(pm);
+			}
+		}
+	}
+	
+	//Followed remove implementation based off of the add implementation
+	public void RemoveCourseFromInstructor(int instructor, Course course) {
+		pm.getInstructor(instructor).addCourse(course);
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(pm);
+	}
+	
 }
