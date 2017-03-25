@@ -127,4 +127,31 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		}
 		$this->assertEquals($error, "Password name cannot be empty!<br>");
 	}
+	
+	public function testRepeatedUsername() {
+		
+		$this->assertCount(0, $this->pm->getInstructors());
+		
+		$firstName = "Diego";
+		$lastName = "Costa";
+		$username = "DCosta";
+		$password = "passw0rd";
+		
+		$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		
+		$firstName = "Didier";
+		$lastName = "Costa";
+		$username = "DCosta";
+		$password = "1234";
+		
+		$error = "";
+		
+		try {
+			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "Username must be unique!<br>");
+		
+	}
 }

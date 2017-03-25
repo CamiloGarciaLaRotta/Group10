@@ -24,6 +24,13 @@ class CourseController{
 		if(!is_numeric($CDN)) {
 			$error .= ("CDN must be a non null Integer!<br> ");
 		} 
+		$courses = $this->cm->getCourses();
+		foreach($courses as $c) {
+			if($c->getCdn() == $CDN){
+				$error .= ("CDN must be unique!<br> ");
+				break;
+			}
+		}
 		if((!is_numeric($graderTimeBudget)) || (!is_numeric($TATimeBudget))) {
 			$error .= ("Time budget must be a non null Integer!<br> ");
 		}
