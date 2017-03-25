@@ -36,21 +36,39 @@
 This phase will be be activated once the integrated code has tested and approved by the preceding phase. At this moment the code is ready to be released to the public, In the case of the Desktop application through a web market or physical mean,for the Mobile application through the Android marketplace or an APK sharing forum and for the web application through a a production server, such as a hosting web server to ensure its availability on the web. In this section we will go through the tools, design choices and specificities of each platform's deployment phase.
 
 \section{Tools}
-Within the paradigm of automatizing and avoiding manual repetitive tasks that is applied throughout the release pipeline, we look now at tools which can help with the process of deployment. These tools must be able to transfer the binaries, libraries and all other required file for the proper function of the product to each plataform in a seameless, errorless automated way. All while monitoring the process, gathering metrics which can help troubleshoot any errors or improve future deployments.
+Within the paradigm of automatizing and avoiding manual repetitive tasks that is applied throughout the release pipeline, we look now at tools which can help with the process of deployment. These tools must be able to transfer the binaries, libraries and all other required file for the proper function of the product to each platform in a seamless, error-less automated way. All while monitoring the process, gathering metrics which can help troubleshoot any errors or improve future deployments.
 
-TODO ADD TOOLS FOR EACH PLATAFORM HERE WITH EXPLANATION
+TODO ADD TOOLS FOR EACH PLATAFORM HERE WITH EXPLANATION (for web check out IIS web deploy as an example)
 
 \section{Design}
 The Deployment phase can be split into a set of well delimited activities which cover the entirety of the process. In this section we will describe them with relation to each available platform of the product.
 
 \begin{itemize}
-    \item \textbf{Release}
-    \item \textbf{Install/Activate}
-    \item \textbf{Desactivate}
-    \item \textbf{Uninstall}
-    \item \textbf{Built-in Update}
-    \item \textbf{Version Tracking}
-    \item \textbf{Adapt}
+    \item \textbf{Release:}
+    Once the approved code is received from the Build Phase, the global repository containing the three platform specific applications will be tagged with an incremental numerical ID which helps mark the end of the addition of a concrete sequence of fixes and upgrades to the existent applications. 
+    
+    The sub-repositories containing only each target platform application will then be delegated to its specific tool (addressed in the \textbf{Tools} section) for it to be deployed to the client. We will discuss this process for each platform:
+    \begin{itemize}
+        \item \textbf{Desktop:} LESKO
+        \item \textbf{Mobile:} LESKO
+        \item \textbf{Web:} Because of the small size of our product, all the required libraries and executable can be found under the sub-repository containing the web application. It suffices to transfer this folder to the web server's repository. It can be achieved through the web deployment tools explained in the previous section LESKOOOO
+    \end{itemize}
+    \item \textbf{Install/Activate:}
+    This activity is related only to \textbf{Desktop} and \textbf{Mobile} targets, as the \textbf{Web} application is accessed through the web and doesn't host any permanent or temporary files client-side.
+    
+    \begin{itemize}
+        \item \textbf{Desktop:} The \texttt{.jar} file can be placed anywhere the client wants. To avoid the need to handle OS specific file system architectures and scripting languages, once the executable is downloaded by the client the .jar will reside in the default download folder. From this point, it suffices for the client to run the executable through the method of his choice (Command Line of GUI) to access the application.
+        \item \textbf{Mobile:} Once the client downloads the APK the Android application handler will automatically decompress it and install it. The client requires no further action in order to access the now installed application.
+    \end{itemize}
+    \item \textbf{Uninstall/Deactivate:} In the given case that one of our platforms stops being supported by the development team, a deactivation process starts. This process involves notifying the client of the end of support followed by the deactivation/uninstall of the application module.
+        \begin{itemize}
+        \item \textbf{Desktop:} LESKO
+        \item \textbf{Mobile:} LESKO
+        \item \textbf{Web:} The simplest target to deactivate, we only require to stop the web server daemon or the physical server itself.
+    \end{itemize}
+    \item \textbf{Built-in Update:}
+    \item \textbf{Version Tracking:}
+    \item \textbf{Adapt:}
 \end{itemize}
 \section{Rationale}
 
