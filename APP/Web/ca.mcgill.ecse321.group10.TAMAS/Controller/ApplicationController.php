@@ -24,7 +24,7 @@ class ApplicationController{
 	}
 	
 	public function createJob($startTime, $endTime, $aDay, $aPosition, $aSalary, 
-							$aRequirements, $aCourse, $anInstructor) {
+							$aRequirements, $aCDN, $anInstructor) {
 		//Validate primitive var input
 		$error = "";
 		$requirements = InputValidator::validate_input($aRequirements);
@@ -50,7 +50,7 @@ class ApplicationController{
 			// Find the event
 			$myCourse = NULL;
 			foreach ($this->cm->getCourses() as $course){
-				if(strcmp($course->getCdn(), $aCourse) ==0){
+				if(strcmp($course->getCdn(), $aCDN) ==0){
 					$myCourse = $course;
 					break;
 				}
