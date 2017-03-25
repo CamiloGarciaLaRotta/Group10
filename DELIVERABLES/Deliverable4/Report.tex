@@ -68,9 +68,14 @@ The Deployment phase can be split into a set of well delimited activities which 
         \item \textbf{Mobile:} LESKO
         \item \textbf{Web:} The simplest target to deactivate, we only require to stop the web server daemon or the physical server itself.
     \end{itemize}
-    \item \textbf{Built-in Update:}
-    \item \textbf{Version Tracking:}
-    \item \textbf{Adapt:}
+    \item \textbf{Update:} Following the same logic of a full release, a subtag (i.e. x.1) would be given to the global repository containing the updates applications. 
+    \begin{itemize}
+        \item \textbf{Desktop:} The old \texttt{.jar} must be overwritten with the new compiled executable. If the user desires to keep an older version of the application, he simply needs to store the file under different name. Multiple versions can work concurrently.
+        \item \textbf{Mobile:} The android APK handler will receive the new APK and release a notification to all users who have the older version installed.
+        \item \textbf{Web:} Through a blue-green deployment procedure, one of the servers web daemon will he halted, the necessary configuration or script files updated and the service restarted. Once the application is up online again without problem the green server will be taken down to pass through the same procedure. Hence no downtime will be perceivable client-side
+    \end{itemize}
+    \item \textbf{Version Tracking:} In order to provide a broader coverage of our application for the customers, an archive website will be kept from where all past versions of the application can be stored and retrieved from. This log of past versions will be linked to the GitHub repository containing the open-source code of the application. 
+    \item \textbf{Monitoring:} Based on the aforementioned monitoring tools, we would keep an extensive log of the current amount of installed applications on all platforms, including their up-time, their error-logs and their amount of transactions. This would help identify and prioritize the requirements for the next iteration of development. In this section of the deployment phase we enter a more continuous analysis of the production application's state. Log analysis tools such as loggly, Splunk, logstash among others would help retrieve useful, tangible metrics on the deployed applications.
 \end{itemize}
 \section{Rationale}
 
