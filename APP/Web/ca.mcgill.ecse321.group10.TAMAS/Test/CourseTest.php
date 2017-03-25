@@ -19,13 +19,12 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		//start with a clean persistent file
 		$this->cm->delete();
 		$this->pt->writeCourseDataToStore($this->cm);
-		
-		
-		
 	}
 	
 	protected function tearDown(){
-	
+		//end with a clean persistent file
+		$this->cm->delete();
+		$this->pt->writeCourseDataToStore($this->cm);
 	}
 	
 	// attempt to create 2 different courses

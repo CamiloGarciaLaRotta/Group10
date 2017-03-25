@@ -6,23 +6,77 @@ require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
 
 class ProfileTest extends PHPUnit_Framework_TestCase {
 
-	protected $cc;
+	protected $pc;
 	protected $pt;
-	protected $cm;
+	protected $pm;
 
 	protected function setUp(){
 
-		$this->cc = new CourseController();
+		$this->pc = new ProfileController();
 		$this->pt = new PersistenceTAMAS();
-		$this->cm = $this->pt->loadCourseManagerFromStore();
+		$this->pm = $this->pt->loadProfileManagerFromStore();
 
 		//start with a clean persistent file
-		$this->cm->delete();
-		$this->pt->writeCourseDataToStore($this->cm);
+		$this->pm->delete();
+		$this->pt->writeProfileDataToStore($this->pm);
 
 	}
 
 	protected function tearDown(){
+		//end with a clean persistent file
+		$this->pm->delete();
+		$this->pt->writeProfileDataToStore($this->pm);
+	}
+	
+	// attempt to create two different instructors
+	public function testCreateUsers() {
+		
+		$this->assertEquals(0, $this->pm->numberOfInstructors());
+		
+		$firstName = "Diego";
+		$lastName = "Costa";
+		$username = "DCosta";
+		$password = "passw0rd";
+		
+		try {
+			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		} catch (Exception $e) {
+			echo $e->getMessage();
+			$this->fail();
+		}
+		
+		// validate stored data
+		$this->pm = $this->pt->loadProfileManagerFromStore();
+		//$this->assertEquals(1, $this->pm->numberOfInstructors());
+		$this->assertCount(1, $this->pm->getInstructors());
+		$this->assertEquals("Diego", $this->pm->getInstructor_index(0)->getFirstName());
+		$this->assertEquals("Costa", $this->pm->getInstructor_index(0)->getLastName());
+		$this->assertEquals("DCosta", $this->pm->getInstructor_index(0)->getUsername());
+		$this->assertEquals("passw0rd", $this->pm->getInstructor_index(0)->getPassword());
 
+		$firstName = "Didier";
+		$lastName = "Drogba";
+		$username = "DDrogba";
+		$password = "1234";
+		
+		try {
+			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		} catch (Exception $e) {
+			echo $e->getMessage();
+			$this->fail();
+		}
+		
+		// validate stored data
+		$this->pm = $this->pt->loadProfileManagerFromStore();
+		$this->assertEquals(2, $this->pm->numberOfInstructors());
+		$this->assertEquals("Didier", $this->pm->getInstructor_index(1)->getFirstName());
+		$this->assertEquals("Drogba", $this->pm->getInstructor_index(1)->getLastName());
+		$this->assertEquals("DDrogba", $this->pm->getInstructor_index(1)->getUsername());
+		$this->assertEquals("1234", $this->pm->getInstructor_index(1)->getPassword());
+		
+		// validate that different IDs where given
+		$this->assertTrue($this->pm->getInstructor_index(0)->getId() != $this->pm->getInstructor_index(1)->getId());
+		
+		
 	}
 }
