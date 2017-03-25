@@ -166,6 +166,41 @@ The following section will outline the build targets for the web application. No
 		This target will be included if it is found to be convenient. It will call a script that
 		starts the XAMPP server and opens the \texttt{index.php} file in a browser.
 \end{enumerate}
+\subsubsection{Mobile}
+Finally, the build system design targets related to the mobile platform will be shown. Note that
+some of these targets depend on Desktop targets: this is because the Mobile application is heavily
+dependent on the logic and model of the Desktop application.
+\begin{enumerate}
+	\item \texttt{init-mobile}\\
+		Creates the directories requisite for the remainder of the mobile build targets.
+	\item \texttt{build-mobile}\\
+		Compiles the source code from the \texttt{APP/Mobile/MOBILE/app/src} directory, places
+		compiled class files in \texttt{APP/build/mobile-classes}.\\
+		Depends on \texttt{init-mobile,export-desktop}.
+	\item \texttt{export-mobile}\\
+		Builds the APK file and places it in \texttt{APP/build/apk}.\\
+		Depends on \texttt{build-mobile}.
+	\item \texttt{clean-mobile}\\
+		Removes all created directories and files (directories and files suffixed by an asterisk in
+		the \hyperref[s:build-dirtree]{directory map}) from within the \texttt{APP/mobile-classes}
+		directory.
+	\item \texttt{install-mobile}\\
+		Calls a script to install the apk file onto the connected mobile device, or to run the apk
+		on a virtual device if no physical device is connected.\\
+		Depends on \texttt{export-mobile}.
+\end{enumerate}
+\subsubsection{Convenience Targets}
+The following targets were designed merely for the convenience of the developers. 
+\begin{enumerate}
+	\item \texttt{clean-all}\\
+		Calls \texttt{clean-desktop,clean-mobile}.
+	\item \texttt{build-all}\\
+		Calls \texttt{build-desktop,build-mobile}.
+	\item \texttt{export-all}\\
+		Calls \texttt{export-desktop, export-web, export-mobile}.
+	\item \texttt{pandemonium}\\
+		Calls \texttt{clean-all, run-desktop, run-web, install-mobile}.
+\end{enumerate}
 \section{Rationale}
 \part{Deployment}
 \section{Description}
