@@ -8,3 +8,7 @@ backlog.synctex.gz
 
 *.metadata
 *.settings
+*.classpath
+*.recommenders
+APP/Desktop/TAMAS/bin/.gitignore
+APP/Desktop/RemoteSystemsTempFiles/

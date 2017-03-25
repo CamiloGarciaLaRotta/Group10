@@ -24,7 +24,7 @@ public class CourseController {
 		if(aCdn < 0) error += "CDN must be positive! ";
 		if(aGraderTimeBudget < 0) error +=  "Grader Budget must be positive! ";
 		if(aTaTimeBudget < 0) error += "TA Budget must be positive! ";
-		if (!(courseCdnIsUnique(aCdn))) error += "CDN must be unique! ";
+		if (courseCdnAlreadyExists(aCdn)) error += "CDN must be unique! ";
 		if(error.length() > 0) throw new InputException(error);
 		Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget);
 		cm.addCourse(c);
@@ -32,11 +32,13 @@ public class CourseController {
 		PersistenceXStream.saveToXMLwithXStream(cm);
 	}
 	// This will check to see if the course being saved has a unique CDN
-	public boolean courseCdnIsUnique(int aCdn) {
-		
+	// ONLY USE IT BEFORE YOU ACTUALLY CREATE THE COURSE
+	// USE IT NOWHERE BUT HERE
+	private boolean courseCdnAlreadyExists(int aCdn) {
+
 		for (int i = 0; i < cm.numberOfCourses(); i++) {
-			if (aCdn == cm.getCourse(i).getCdn()) return false;
+			if (aCdn == cm.getCourse(i).getCdn()) return true;
 		}
-		return true;
+		return false;
 	}
 }
