@@ -78,4 +78,41 @@ public class ProfileController {
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
+	
+	public void removeInstructorFromSystem(String username){
+		for (Instructor teacher:pm.getInstructors()){
+			if(teacher.getUsername() == username){
+				pm.removeInstructor(teacher);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(pm);
+			}
+		}
+	}
+	
+	public void removeStudentFromSystem(String username){
+		for (Student student:pm.getStudents()){
+			if(student.getUsername() == username){
+				pm.removeStudent(student);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(pm);
+			}
+		}
+	}
+	
+	public void removeAdminFromSystem(String username){
+		for (Admin admin:pm.getAdmins()){
+			if(admin.getUsername() == username){
+				pm.removeAdmin(admin);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(pm);
+			}
+		}
+	}
+	
+	//Followed remove implementation based off of the add implementation
+	public void RemoveCourseFromInstructor(int instructor, Course course) {
+		pm.getInstructor(instructor).addCourse(course);
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(pm);
+	}
 }
