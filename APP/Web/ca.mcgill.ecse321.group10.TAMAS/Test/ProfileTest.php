@@ -29,7 +29,7 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	// attempt to create two different instructors
-	public function testCreateUsers() {
+	public function testCreateInstructors() {
 		
 		$this->assertEquals(0, $this->pm->numberOfInstructors());
 		
@@ -76,7 +76,55 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		
 		// validate that different IDs where given
 		$this->assertTrue($this->pm->getInstructor_index(0)->getId() != $this->pm->getInstructor_index(1)->getId());
+	}
+	
+	// attempt to create instructor with various invalid parameters
+	public function testCreateInvalidInstructor() {
+	
+		$this->assertEquals(0, $this->pm->numberOfInstructors());
+	
+		$firstName = "  ";
+		$lastName = "Costa";
+		$username = "DCosta";
+		$password = "passw0rd";
 		
+		$error = "";
+	
+		try {
+			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "First name name cannot be empty!<br>");
 		
+		$firstName = "Diego";
+		$lastName = "  ";
+		
+		try {
+			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "Last name name cannot be empty!<br>");
+		
+		$lastName = "Costa";
+		$username = "   ";
+		
+		try {
+			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "Username name cannot be empty!<br>");
+		
+		$username = "DCosta";
+		$password = "   ";
+		
+		try {
+			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "Password name cannot be empty!<br>");
 	}
 }
