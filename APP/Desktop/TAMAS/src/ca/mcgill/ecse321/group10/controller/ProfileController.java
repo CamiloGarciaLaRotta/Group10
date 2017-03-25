@@ -1,10 +1,6 @@
 package ca.mcgill.ecse321.group10.controller;
 
-import ca.mcgill.ecse321.group10.TAMAS.model.Admin;
-import ca.mcgill.ecse321.group10.TAMAS.model.Course;
-import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
-import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
-import ca.mcgill.ecse321.group10.TAMAS.model.Student;
+import ca.mcgill.ecse321.group10.TAMAS.model.*;
 import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ProfileController {
@@ -19,6 +15,28 @@ public class ProfileController {
 		this.filename = filename;
 	}
 	
+	private boolean isUsernameUnique(String username){
+		boolean unique = true;
+		
+		for (Student student: pm.getStudents()){
+			if (student.getUsername() == username){
+				unique = false;
+			}
+		}
+		for (Instructor instructor: pm.getInstructors()){
+			if (instructor.getUsername() == username){
+				unique = false;
+			}
+		}
+		for(Admin admin: pm.getAdmins()){
+			if(admin.getUsername() == username){
+				unique = false;
+			}
+		}
+		
+		return unique;
+	}
+	
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
 		if(aUsername == null || aUsername.trim().length() == 0) {
@@ -29,6 +47,9 @@ public class ProfileController {
 		}
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Instructor first and last names cannot be empty") + " ";
+		}
+		if( !this.isUsernameUnique(aUsername) ){
+			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
 		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
@@ -54,6 +75,10 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Admin first and last names cannot be empty") + " ";
 		}
+		if( !this.isUsernameUnique(aUsername) ){
+			error += ("Username is taken") + " ";
+		}
+		
 		if(error.length() > 0) throw new InputException(error);
 		Admin admin = new Admin(aUsername,aPassword,aFirstName,aLastName);
 		pm.addAdmin(admin);
@@ -71,6 +96,9 @@ public class ProfileController {
 		}
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Student first and last names cannot be empty") + " ";
+		}
+		if( !this.isUsernameUnique(aUsername) ){
+			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
 		Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
@@ -115,4 +143,5 @@ public class ProfileController {
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
+	
 }
