@@ -13,16 +13,12 @@ import ca.mcgill.ecse321.group10.controller.*;
 public class ProfileControllerTest {
 	private ProfileController pc;
 	private ProfileManager pm;
-	private static String outputFile;
+	private static String outputFile = "output" + File.separator + "tests" + File.separator + "testProfileController";;
 	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		outputFile = "test" + File.separator + "testProfileController";
-		PersistenceXStream.initializeProfileManager(outputFile);
-	}
 
 	@Before
 	public void setUp() throws Exception {
+		PersistenceXStream.initializeProfileManager(outputFile);
 		pm = new ProfileManager();
 		pc = new ProfileController(pm, outputFile);
 		
