@@ -27,8 +27,11 @@ public class ApplicationController {
 		if(aInstructor == null) error += "Instructor must be defined! ";
 		if(aCourse == null) error += "Course must be defined! ";
 		//if(aEndTime.getTime() - aStartTime.getTime() < 0) error += "Start time cannot be after end time! ";
-		if(aStartTime.after(aEndTime)) error += "Start time cannot be after end time!";
+		if(aStartTime == null || aEndTime == null) error += "Start or End Time(s) cannot be empty! ";
+		else if (aStartTime.after(aEndTime)) error += "Start time cannot be after end time! ";
 		if(aSalary < 0) error += "Salary must be positive! ";
+		if(day == null) error += "Day must be specified! ";
+		else if(day.equals("Saturday") || day.equals("Sunday")) error += "Day must be a work day! ";
 		if(error.length() > 0) throw new InputException(error);
 		else{
 		Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);

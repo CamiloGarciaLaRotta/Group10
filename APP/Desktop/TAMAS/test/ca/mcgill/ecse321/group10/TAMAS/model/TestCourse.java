@@ -27,7 +27,7 @@ public class TestCourse {
     private String error;
     private Instructor aInstructor = new Instructor("6matty9", "yahboy69", "Matthew", "Lesko");
     
-    InputException e;
+    private InputException e;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
