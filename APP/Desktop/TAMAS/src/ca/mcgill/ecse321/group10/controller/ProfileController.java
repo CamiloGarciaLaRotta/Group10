@@ -15,26 +15,25 @@ public class ProfileController {
 		this.filename = filename;
 	}
 	
-	private boolean isUsernameTaken(String username){
-		boolean taken = true;
+	private boolean isUsernameFree(String username){
 		
 		for (Student student: pm.getStudents()){
 			if (student.getUsername() == username){
-				taken = false;
+				return false;
 			}
 		}
 		for (Instructor instructor: pm.getInstructors()){
 			if (instructor.getUsername() == username){
-				taken = false;
+				return false;
 			}
 		}
 		for(Admin admin: pm.getAdmins()){
 			if(admin.getUsername() == username){
-				taken = false;
+				return false;
 			}
 		}
 		
-		return taken;
+		return true;
 	}
 	
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
@@ -48,7 +47,7 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Instructor first and last names cannot be empty") + " ";
 		}
-		if( !this.isUsernameTaken(aUsername) ){
+		if( !this.isUsernameFree(aUsername) ){
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
@@ -77,7 +76,7 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Admin first and last names cannot be empty") + " ";
 		}
-		if( !this.isUsernameTaken(aUsername) ){
+		if( !this.isUsernameFree(aUsername) ){
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
@@ -100,7 +99,7 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Student first and last names cannot be empty") + " ";
 		}
-		if( !this.isUsernameTaken(aUsername) ){
+		if( !this.isUsernameFree(aUsername) ){
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
