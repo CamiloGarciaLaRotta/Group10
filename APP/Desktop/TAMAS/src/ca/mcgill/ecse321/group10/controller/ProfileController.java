@@ -15,26 +15,26 @@ public class ProfileController {
 		this.filename = filename;
 	}
 	
-	private boolean isUsernameUnique(String username){
-		boolean unique = true;
+	private boolean isUsernameTaken(String username){
+		boolean taken = true;
 		
 		for (Student student: pm.getStudents()){
 			if (student.getUsername() == username){
-				unique = false;
+				taken = false;
 			}
 		}
 		for (Instructor instructor: pm.getInstructors()){
 			if (instructor.getUsername() == username){
-				unique = false;
+				taken = false;
 			}
 		}
 		for(Admin admin: pm.getAdmins()){
 			if(admin.getUsername() == username){
-				unique = false;
+				taken = false;
 			}
 		}
 		
-		return unique;
+		return taken;
 	}
 	
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
@@ -48,7 +48,7 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Instructor first and last names cannot be empty") + " ";
 		}
-		if( !this.isUsernameUnique(aUsername) ){
+		if( !this.isUsernameTaken(aUsername) ){
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
@@ -77,7 +77,7 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Admin first and last names cannot be empty") + " ";
 		}
-		if( !this.isUsernameUnique(aUsername) ){
+		if( !this.isUsernameTaken(aUsername) ){
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);
@@ -100,7 +100,7 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("Student first and last names cannot be empty") + " ";
 		}
-		if( !this.isUsernameUnique(aUsername) ){
+		if( !this.isUsernameTaken(aUsername) ){
 			error += ("Username is taken") + " ";
 		}
 		if(error.length() > 0) throw new InputException(error);

@@ -19,28 +19,30 @@ public class ProfileControllerTest {
 	public static void setUpBeforeClass() throws Exception {
 		outputFile = "test" + File.separator + "testProfileController";
 		PersistenceXStream.initializeProfileManager(outputFile);
-		
 	}
 
 	@Before
 	public void setUp() throws Exception {
 		pm = new ProfileManager();
 		pc = new ProfileController(pm, outputFile);
+		
+		assertTrue(pm.getAdmins().size() == 0);
+		assertTrue(pm.getStudents().size() == 0);
+		assertTrue(pm.getInstructors().size() == 0);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		pm.delete();
-		assert (pm.getAdmins().size() == 0);
-		assert (pm.getInstructors().size() == 0);
-		assert (pm.getStudents().size() == 0);
+		File f = new File(outputFile);
+		f.delete();
+		assertTrue(pm.getAdmins().size() == 0);
+		assertTrue(pm.getInstructors().size() == 0);
+		assertTrue(pm.getStudents().size() == 0);
 	}
 
 	@Test
 	public void testCreateProfileValid() throws InputException {
-		assert(pm.getAdmins().size() == 0);
-		assert(pm.getStudents().size() == 0);
-		assert(pm.getInstructors().size() == 0);
 		
 		pc.addInstructorToSystem("Boogie", "Goodman", "Joseph", "Stalin");
 		pc.addAdminToSystem("MartinLutherKing", "Was not a man", "Of Tolerance", "But Social Revolution");
@@ -56,22 +58,19 @@ public class ProfileControllerTest {
 
 	@Test
 	public void testCreateProfileInvalid(){
-		assert(pm.getAdmins().size() == 0);
-		assert(pm.getStudents().size() == 0);
-		assert(pm.getInstructors().size() == 0);
 		
 		try {
 			pc.addInstructorToSystem(null, "eh", "guy", "Jones");
 		} catch (InputException e) {
 			pm = (ProfileManager) PersistenceXStream.loadFromXMLwithXStream();
-			assertEquals(pm.getInstructors().size(), 0);
+			assertEquals(0, pm.getInstructors().size());
 		}
 		
 		try {
 			pc.addAdminToSystem("", "eh", "guy", "Jones");
 		} catch (InputException e) {
 			pm = (ProfileManager) PersistenceXStream.loadFromXMLwithXStream();
-			assert(pm.getAdmins().size() == 0);
+			assertTrue(pm.getAdmins().size() == 0);
 		}
 		
 

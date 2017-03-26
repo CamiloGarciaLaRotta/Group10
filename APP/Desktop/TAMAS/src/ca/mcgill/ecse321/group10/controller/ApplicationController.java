@@ -30,11 +30,12 @@ public class ApplicationController {
 		if(aStartTime.after(aEndTime)) error += "Start time cannot be after end time!";
 		if(aSalary < 0) error += "Salary must be positive! ";
 		if(error.length() > 0) throw new InputException(error);
-		
+		else{
 		Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
 		am.addJob(j);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
+		}
 	}
 	
 	public void modifyJobPosition(int index, Job.Position pos) {
