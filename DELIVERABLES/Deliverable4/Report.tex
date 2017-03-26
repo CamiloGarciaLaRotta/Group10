@@ -190,6 +190,7 @@ dependent on the logic and model of the Desktop application.
 		Depends on \texttt{export-mobile}.
 \end{enumerate}
 \subsubsection{Convenience Targets}
+\label{s:build-convenience}
 The following targets were designed merely for the convenience of the developers. 
 \begin{enumerate}
 	\item \texttt{clean-all}\\
@@ -198,10 +199,42 @@ The following targets were designed merely for the convenience of the developers
 		Calls \texttt{build-desktop,build-mobile}.
 	\item \texttt{export-all}\\
 		Calls \texttt{export-desktop, export-web, export-mobile}.
+	\item \texttt{test-all}\\
+		Calls \texttt{build-all, test-desktop, test-web}.
+	\item \texttt{start-fresh}\\
+		Removes all XML persistence files and calls \texttt{clean-all, build-all, test-all, export-all}.
 	\item \texttt{pandemonium}\\
 		Calls \texttt{clean-all, run-desktop, run-web, install-mobile}.
 \end{enumerate}
 \section{Rationale}
+This section will attempt to explain the design choices that have been made. Though this be madness,
+yet there is method in't.\\\\
+The build system was designed to encapsulate each of the repetitive processes that may be automated
+to save the developers trouble and keep the build process organized. As described above, build
+targets for all three platforms are included in the same build script, so as to simplify the
+automated build process for the developer.\\\\
+The most intense platform to build is Desktop, and that comes as no surprise - the Desktop
+application is used as a library for the Mobile application, and it also must be compiled unlike the
+PHP application. Included in the Desktop build suite are an initialization routine, a compilation
+routine, a testing routine, an exporting routine, a clean-up routine, and of course an execution
+routine. This dismembers the build process into many parts, making the exact build procedure very
+flexible. For example, the developer may compile code with \texttt{ant build-desktop}, or make a
+\textit{clean build} by running \texttt{ant clean-desktop build-desktop}. A nice build process with
+automated testing may be achieved with \texttt{ant build-desktop test-desktop}.\\\\
+The build systems behave very similarly for the other platforms. As described previously, the Web
+build system does not require a ``build'' target because the code does not get compiled.
+Furthermore, the Web build system does not create an executable file in its ``export'' target, but
+rather a zip file for packaging purposes (also, a website is not executed like an application).\\
+On the other hand, the Mobile build system does not include any testing targets, because its logic
+will all be tested within the Desktop system. Furthermore, instead of \textit{running} the
+application, like in the Desktop's and Web's \texttt{run} targets, the Mobile system simply installs
+the application on a device.\\\\
+Finally, it is likely that the developers may need to build all systems at once. For this reason,
+the \hyperref[s:build-convenience]{Convenience Targets} were conceived. Should the developer wish to
+do a clean build and test everything, for example, this can be done with \texttt{ant start-fresh}.
+If the developer wishes to compile everything, that may be done with \texttt{ant build-all}. All
+targets listed in the Convenience Targets section were designed \textit{only} for convenience and
+are not crucial to the build system.
 \part{Deployment}
 \section{Description}
 Software deployment concerns all the tasks that cover the process of making a system available for public use.
