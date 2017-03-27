@@ -584,24 +584,7 @@ public class TestJob {
 		assertEquals(aCourse,am.getJob(0).getCourse());
 		assertEquals(aInstructor,am.getJob(0).getInstructor());
 	}
-/*
-	@Test
-	public void testGetStudent() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public void testGetStudents() {
-		fail("Not yet implemented");
-	}
-*/
-	
-/*
-	@Test
-	public void testIndexOfStudent() {
-		fail("Not yet implemented");
-	}
-*/
 	@Test
 	public void testNumberOfStudents_HasStudents() {
 		assertEquals(0,am.numberOfJobs());
@@ -626,32 +609,90 @@ public class TestJob {
 		// No students; hence false
 		assertFalse(am.getJob(0).hasStudents());
 	}
-/*
+
 	@Test
 	public void testGetApplication() {
-		fail("Not yet implemented");
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		String aDay2 = "Tuesday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			ac.addJobToSystem(aStartTime, aEndTime, aDay2, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(2,am.numberOfJobs());
+		// Add student to a job
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		
+		// THE REASON FOR 2 JOBS FOR 2 APPLICATIONS: Each application NEEDS a job
+		// Make new application; apply aStudent to am.getJob(0)
+		Application aApplication = am.getJob(0).addApplication(aStudent);
+		Application aApplication2 = am.getJob(1).addApplication(aStudent);
+		
+		// Make sure getApplication(index i) returns correct application
+		assertEquals(aApplication,am.getJob(0).getApplication(0));
+		assertEquals(aApplication2,am.getJob(1).getApplication(0));
+
 	}
 
 	@Test
 	public void testGetApplications() {
-		fail("Not yet implemented");
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		String aDay2 = "Tuesday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			ac.addJobToSystem(aStartTime, aEndTime, aDay2, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(2,am.numberOfJobs());
+		// Add student to a job
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		
+		// THE REASON FOR 2 JOBS FOR 2 APPLICATIONS: Each application NEEDS a job
+		// Make new application; apply aStudent to am.getJob(0)
+		Application aApplication = am.getJob(0).addApplication(aStudent);
+		Application aApplication2 = am.getJob(1).addApplication(aStudent);
+		
+		// test getApplications works
+		am.getJob(0).getApplications();
 	}
 
-	@Test
-	public void testNumberOfApplications() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public void testHasApplications() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIndexOfApplication() {
-		fail("Not yet implemented");
-	}
-*/
 	@Test
 	public void testSetCourse_SetInstructor() {
 		assertEquals(0,am.numberOfJobs());
@@ -731,18 +772,29 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(1,am.numberOfJobs());
 		assertTrue(am.getJob(0).addStudent(aStudent));
+		// 1 Student
+		assertEquals(1,am.getJob(0).numberOfStudents());
+		// Make sure it has students
+		assertTrue(am.getJob(0).hasStudents());
+		// Make sure the instances of Student are identical
 		assertEquals(aStudent,am.getJob(0).getStudent(0));
 		
 		// Adding the same student returns false
 		assertFalse(am.getJob(0).addStudent(aStudent));
 		// Adding the same student will return false
 		assertFalse(am.getJob(0).addStudentAt(aStudent, 0));
+		// Still 1 student
+		assertEquals(1,am.getJob(0).numberOfStudents());
 		// Adding different student will return true
 		assertTrue(am.getJob(0).addStudentAt(aStudent2, -1));
+		// Now 2 students
+		assertEquals(2,am.getJob(0).numberOfStudents());
 		// Remove aStudent returns true
 		assertTrue(am.getJob(0).removeStudent(aStudent));
 		// Removing the same student returns false
 		assertFalse(am.getJob(0).removeStudent(aStudent));
+		// Now 1 student
+		assertEquals(1,am.getJob(0).numberOfStudents());
 		
 		// This tests for another branch in the addStudentAt method (specifically the conditional with index>numberOfStudents)
 		assertTrue(am.getJob(0).addStudentAt(aStudent, am.getJob(0).numberOfStudents()));
@@ -779,43 +831,313 @@ public class TestJob {
 		}
 		// Job gets saved
 		assertEquals(1,am.numberOfJobs());
-		// Student hasen't been added, hence returns false
-		assertFalse(am.getJob(0).addOrMoveStudentAt(aStudent, 1));
+		// Student hasn't been added, adds student and returns true
+		assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent, 0));
+		// Tests for the branch if (index < 0)
+		assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent,-1));
+		
+		assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent2, am.getJob(0).numberOfStudents()));
 	}
+	
 
 	@Test
-	public void testAddApplicationStudent() {
-		fail("Not yet implemented");
+	public void testGetStudents() {
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(1,am.numberOfJobs());
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		assertTrue(am.getJob(0).hasStudents());
+		am.getJob(0).getStudents();
 	}
-
+	
 	@Test
-	public void testAddApplicationApplication() {
-		fail("Not yet implemented");
+	public void testAddApplication() {
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		String aDay2 = "Tuesday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			ac.addJobToSystem(aStartTime, aEndTime, aDay2, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(2,am.numberOfJobs());
+		// Add student to a job
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		
+		// THE REASON FOR 2 JOBS FOR 2 APPLICATIONS: Each application NEEDS a job
+		// Make new application; apply aStudent to am.getJob(0)
+		Application aApplication = am.getJob(0).addApplication(aStudent);
+		Application aApplication2 = am.getJob(1).addApplication(aStudent);
+		
+		// Make sure getApplication
+		assertEquals(aApplication,am.getJob(0).getApplication(0));
+		assertEquals(aApplication2,am.getJob(1).getApplication(0));
+		
+		// Application already exists for this job
+		assertFalse(am.getJob(0).addApplication(aApplication));
+		// Add the application that is for aJob2 to aJob
+		assertTrue(am.getJob(0).addApplication(aApplication2));
 	}
 
 	@Test
 	public void testRemoveApplication() {
-		fail("Not yet implemented");
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		String aDay2 = "Tuesday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			ac.addJobToSystem(aStartTime, aEndTime, aDay2, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(2,am.numberOfJobs());
+		// Add student to a job
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		// Make new application; apply aStudent to am.getJob(0)
+		Application aApplication = am.getJob(0).addApplication(aStudent);
+		Application aApplication2 = am.getJob(1).addApplication(aStudent);
+		// Application already exists for this job
+		assertFalse(am.getJob(0).addApplication(aApplication));
+		// Add the application that is for aJob2 to aJob
+		assertTrue(am.getJob(0).addApplication(aApplication2));
+		// Remove aApplication for Job1; always returns false since an application always needs a job
+		assertFalse(am.getJob(0).removeApplication(aApplication));
 	}
 
 	@Test
 	public void testAddApplicationAt() {
-		fail("Not yet implemented");
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		String aDay2 = "Tuesday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			ac.addJobToSystem(aStartTime, aEndTime, aDay2, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(2,am.numberOfJobs());
+		// Add student to a job
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		
+		// Make new application; apply aStudent to am.getJob(0)
+		Application aApplication = am.getJob(0).addApplication(aStudent);
+		Application aApplication2 = am.getJob(1).addApplication(aStudent);
+		Application aApplication3 = am.getJob(1).addApplication(aStudent);
+		
+		// Make sure it has applications
+		assertTrue(am.getJob(0).hasApplications());
+		
+		// Add aApplication2 to aJob at index am.getJob(0).numberOfApplications()
+		assertTrue(am.getJob(0).addApplicationAt(aApplication2, am.getJob(0).numberOfApplications()));
+		// Adding the same application will return false (get another branch)
+		assertFalse(am.getJob(0).addApplicationAt(aApplication2, 1));
+		// Adding an application at a negative index (for branch coverage)
+		assertTrue(am.getJob(0).addApplicationAt(aApplication3,-1));
 	}
 
 	@Test
 	public void testAddOrMoveApplicationAt() {
-		fail("Not yet implemented");
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		String aDay2 = "Tuesday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			ac.addJobToSystem(aStartTime, aEndTime, aDay2, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(2,am.numberOfJobs());
+		// Add student to a job
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		
+		// Make new application; apply aStudent to am.getJob(0)
+		Application aApplication = am.getJob(0).addApplication(aStudent);
+		Application aApplication2 = am.getJob(1).addApplication(aStudent);
+		Application aApplication3 = am.getJob(1).addApplication(aStudent);
+		
+		// Make sure it has applications
+		assertTrue(am.getJob(0).hasApplications());
+		
+		// Add aApplication2 to aJob at index am.getJob(0).numberOfApplications()
+		assertTrue(am.getJob(0).addOrMoveApplicationAt(aApplication2, am.getJob(0).numberOfApplications()));
+		// Make sure it is at the correct index
+		assertEquals(1,am.getJob(0).indexOfApplication(aApplication2));
+		// Moving the same application will return true
+		assertTrue(am.getJob(0).addOrMoveApplicationAt(aApplication2, 0));
+		// Adding an application at a negative index (for branch coverage)
+		assertTrue(am.getJob(0).addOrMoveApplicationAt(aApplication3,-1));
 	}
 
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		String aDay2 = "Tuesday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			ac.addJobToSystem(aStartTime, aEndTime, aDay2, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(2,am.numberOfJobs());
+		// Add student to a job
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		// Make new application; apply aStudent to am.getJob(0)
+		Application aApplication = am.getJob(0).addApplication(aStudent);
+		Application aApplication2 = am.getJob(1).addApplication(aStudent);
+		
+		// Make sure it has applications
+		assertTrue(am.getJob(0).hasApplications());
+		// Application already exists for this job
+		assertFalse(am.getJob(0).addApplication(aApplication));
+		// Add the application that is for aJob2 to aJob
+		assertTrue(am.getJob(0).addApplication(aApplication2));
+		
+		// delete applications and students 
+		am.getJob(0).delete();
+		// Make sure there are 0 students and applicants
+		assertEquals(0,am.getJob(0).numberOfApplications());
+		assertEquals(0,am.getJob(0).numberOfStudents());
+		
+		// Make sure it has no applications
+		assertFalse(am.getJob(0).hasApplications());
 	}
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		assertEquals(0,am.numberOfJobs());
+		
+		aStartTime = (Time.valueOf("10:00:00"));	// 10:00 AM
+		aEndTime = (Time.valueOf("11:00:00"));		// 11:00 AM
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		
+		//public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience) Student Constructor
+		String studUsername = "student69";
+		String studPassword = "1234"; 
+		String aExperience = "Lawn mowing and TV watching";
+		
+		// First name (Matthew) and last name (Lesko) is the same everywhere 
+		// Degree set to UNDEGRAD by default
+		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
+		
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+		
+		try {
+			ac.addJobToSystem(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+		}
+		catch (InputException e) {
+		}
+		// Job gets saved
+		assertEquals(1,am.numberOfJobs());
+		assertTrue(am.getJob(0).addStudent(aStudent));
+		// 1 Student
+		assertEquals(1,am.getJob(0).numberOfStudents());
+		
+		assertEquals(am.getJob(0).toString(),am.getJob(0).toString());
 	}
 
 }
