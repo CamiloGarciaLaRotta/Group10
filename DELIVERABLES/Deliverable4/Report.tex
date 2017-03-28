@@ -43,12 +43,39 @@ As one does in test-driven development, tests were written before the code was i
 \subsection{Slack}
 Slack was not only used to aid communication across our team, but was integrated with Github to notify all of our team members of commits made. This made it easy to keep track of progress which was made which was important when pipelines had dependencies.
 \section{Design}
+This section specifies our team's design choices.
 
 \subsection{Naming Conventions}
+Our team came to decisions on certain naming conventions to keep our code consistent across platforms. This choice also makes it easier to read code written by other team members since the style remained consistent. This also made the code easier to interpret because it formalized the expectations of methods and variables. \\
+
+\textbf{ \hyperref[s:integration-rationale]{The following lists are enumerated to link to the respective subsections to the Rationale section of the document}}
+
+\begin{enumerate}
+    \item By convention, all variables are listed at the top of a class if it is used throughout the class
+    \item It was decided to keep method names as short as possible
+    \item It was decided to keep the code split into three modules: Model, Persistence and Controller in all platforms
+    \item W
+\end{enumerate}
+
+
+
+
 
 \subsection{Tools}
 
 \section{Rationale}
+\label{s:integration-rationale}
+This section specifies the rationale for our team's design choices.
+
+\subsection{Naming Conventions}
+\begin{enumerate}
+    \item We decided to list all the variables at the top of classes and not create a separate class for variables because we don't have many variables that are used across classes.
+\end{enumerate}
+
+\subsection{Tools}
+
+
+
 \part{Build}
 \section{Description}
 The build pipeline is responsible for the successful and efficient building of the source code and
