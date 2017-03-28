@@ -27,14 +27,27 @@
 The integration pipeline is responsible for maintaining the integrity of the source code throughout the development phase. Without proper integration, mistakes from one software developer can propagate into other people's work. Like an infectious disease, bugs can propagate. Infected code (Code that has bugs) that is shared can easily go unnoticed and affect larger systems where it can become even harder to notice. The goal of the integration pipeline is to reduce the amount of mistakes that will be integrated into the project and to keep track of all changes. The tools used for this purpose is discussed in the \hyperref[s:integration-tools]{Tools} section.
 \section{Tools}
 \label{s:integration-tools}
-The tools used for the integration pipeline include but are not limited to: Git, Github, TravisCI, JUnit, PHPUnit, and Slack.
+This section describes the tools that were used in the integration pipeline. The tools used for the integration pipeline include but are not limited to: Git, Github, TravisCI, JUnit, PHPUnit, and Slack.
 
 \subsection{Git/Github}
 Git is the name of the version control system that is used to track the changes of our source code. Github is the website that is used to host the source code. \\\\
 The Git tool allows us to see how changes are made to the source code by our team members. Very importantly, it keeps our software developers accountable for the code that they write by keeping history of their contributions. Indeed, you can pinpoint the exact moment where software developers have made terrible mistakes. In these cases where the code has been rendered properly damaged, git allows you to revert to earlier stages in development before the mistake was made. Git also allows our members to work on code simultaneously which improves our productivity!\\\\
 Github allows our team to not only seamlessly share our code, but provides shelter for our code. Github is reliable website to host our repositories and keep it safe from accidental deletion or accident.
 
+\subsection{TravisCI}
+
+\subsection{JUnit/PHPUnit}
+JUnit and PHPUnit were used to throughly test our code. By ensuring that code is tested properly before being shared, it mitigated the amount of mistakes that were committed to our group's source code.\\\\
+As one does in test-driven development, tests were written before the code was implemented. This kept our code on Github dependable.
+
+\subsection{Slack}
+Slack was not only used to aid communication across our team, but was integrated with Github to notify all of our team members of commits made. This made it easy to keep track of progress which was made which was important when pipelines had dependencies.
 \section{Design}
+
+\subsection{Naming Conventions}
+
+\subsection{Tools}
+
 \section{Rationale}
 \part{Build}
 \section{Description}
