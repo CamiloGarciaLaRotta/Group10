@@ -270,4 +270,24 @@
 \newpage
 \section{Profile}
 
+\part{Integration Tests}
+The integration tests are split into two parts. One part is the Java which tests the functionality of the controllers that operate in the Desktop and Mobile application in order to test the integration of multiple entity classes. The other is the PHP which tests how numerous classes can be integrated together. 
+
+\section{Java}
+All together, the Java code has tested that all classes function harmoniously as they are needed to within our Mobile and Desktop application.
+
+\subsection{Profile Controller}
+This controller tests the integration of the profile class with the courses class as well as persistence and profile manager class. This test achieved 100\% code coverage using ECLEmma. \\\\
+It tested for null and empty input in all fields within the controller and ensured that it was handled. It also ensured that profiles that had incorrect input were not added to the system (were not persisted in the XML)
+
+\subsection{Course Controller}
+This controller tests the integration of the course class with the course controller, course manager and persistence. This test achieved 99.2\% code coverage. \\\\
+It tested for null and empty input in all String fields in the controller and ensured that it was handled. It also checked to see that CDNs, and time budgets could not be negative. Most importantly, the integration test ensured that exceptional input did not propagate into the persistence layer.
+
+\subsection{Application Controller}
+This controller tests the integration of the application class with the application controller, application manager, profile manager, profile controller, persistence, course class, profile class, and job class. This test achieved 100\% code coverage \\\\
+It tested that null and empty input in all String fields in the controller as well as negative salaries were handled by exceptions. It also tested that these errors did not propagate into persistence. 
+
+\section{PHP}
+
 \end{document}
