@@ -19,26 +19,26 @@ class CourseController{
 		$error = "";
 		$name = InputValidator::validate_input($course_name);
 		if($name==null || strlen($name) == 0){
-			$error .= ("Course name cannot be empty!<br> ");
+			$error .= ("Course name cannot be empty!<br><br>");
 		} 
 		if(!is_numeric($CDN)) {
-			$error .= ("CDN must be a non null Integer!<br> ");
+			$error .= ("CDN must be a non null Integer!<br><br>");
 		} 
 		if($CDN < 0) {
-			$error .= ("CDN must be a positive Integer!<br> ");
+			$error .= ("CDN must be a positive Integer!<br><br>");
 		} 
 		$courses = $this->cm->getCourses();
 		foreach($courses as $c) {
 			if($c->getCdn() == $CDN){
-				$error .= ("CDN must be unique!<br> ");
+				$error .= ("CDN must be unique!<br><br>");
 				break;
 			}
 		}
 		if((!is_numeric($graderTimeBudget)) || (!is_numeric($TATimeBudget))) {
-			$error .= ("Time budget must be a non null Integer!<br> ");
+			$error .= ("Time budget must be a non null Integer!<br><br>");
 		}
 		if(($graderTimeBudget < 0) || ($TATimeBudget < 0)) {
-			$error .= ("Time budget must be a positive Integer!<br> ");
+			$error .= ("Time budget must be a positive Integer!<br><br>");
 		}
 		
 		if(strlen($error) > 0) {
@@ -57,7 +57,7 @@ class CourseController{
 		
 		$error = "";
 		if(!is_numeric($CDN)) {
-			$error .= ("CDN must be a non null Integer!<br> ");
+			$error .= ("CDN must be a non null Integer!<br><br>");
 		}
 		
 		if(strlen($error) > 0) {
@@ -74,7 +74,7 @@ class CourseController{
 			}
 			
 			if(!$courseToDel) {
-				$error = "No course found with CDN ".$CDN;
+				$error = "No course found with CDN ".$CDN."<br><br>";
 				throw new Exception($error);
 			} else {
 				$this->cm->removeCourse($courseToDel);

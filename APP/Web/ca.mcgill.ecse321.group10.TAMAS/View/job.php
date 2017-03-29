@@ -14,6 +14,11 @@ $timezone = date_default_timezone_set('America/New_York');
 require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
 require_once __DIR__.'\..\Model\ApplicationManager.php';
 require_once __DIR__.'\..\Model\Application.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\Profile.php';
+require_once __DIR__.'\..\Model\Instructor.php';
+require_once __DIR__.'\..\Model\CourseManager.php';
+require_once __DIR__.'\..\Model\Course.php';
 
 
 session_start();
@@ -21,6 +26,8 @@ session_start();
 //Retrieve the data from the model
 $pt = new PersistenceTAMAS();
 $am = $pt->loadApplicationManagerFromStore();
+$pm = $pt->loadProfileManagerFromStore();
+$cm = $pt->loadCourseManagerFromStore();
 ?>
 <main class="job">
 	<span class="intro">
@@ -44,12 +51,21 @@ $am = $pt->loadApplicationManagerFromStore();
 	</span>
 	<div class="actions">
 		<form action='validateJob.php' method='post'>
-			Instructor Username<input type="text" name="job_instructorUsername" required/><br><br>
-			Course CDN<input type ="text" name="job_courseCDN" required/><br><br>
+			
+			Instructor Username<select name='job_instructorUsername'>
+				<?php foreach ($pm->getInstructors() as $instructor){?>
+					<option><?php echo $instructor->getUsername() ?></option>
+				<?php }?>
+			</select><br><br>
+			Course CDN<br><select name='job_courseCDN'>
+				<?php foreach ($cm->getCourses() as $course){?>
+					<option><?php echo $course->getCdn() ?></option>
+				<?php }?>
+			</select><br><br>		
 			Position<br>
 			<input type="radio" name="job_position" value="PositionTA" required> TA
 			<input type="radio" name="job_position" value="PositionGRADER" required> Grader<br><br>
-			Requirements<input type ="text" name="job_requirements" required/><br><br>		<!-- TODO MAKE REQUIREMENTS INPUT TEXT LARGER -->
+			Requirements<textarea class="text" cols="20" rows ="5" name="job_requirements" maxlength="100" reqired></textarea><br><br>	
 			Salary<input type ="text" name="job_salary" required/><br><br>
 			Day<select name="job_day">
 				<option value="monday">Monday</option>
@@ -67,22 +83,5 @@ $am = $pt->loadApplicationManagerFromStore();
 		</form>
 	</div>
 </main>
-
-
-<!-- Leaving her ejust to facilitate its implementation in future deliverables -->
-<!-- <form action='validateJob.php' method='post'> -->
-<!-- 	<p> -->
-<!-- 		Select the Job ID to delete:   -->
-<!-- 			<select name='jobspinner'> -->
-			<?php
-// 			foreach ($am->getJobs() as $job){
-// 				echo "<option>" . $job->getId() . "</option>";
-// 			}
-// 			?>
-<!-- 			</select> -->
-<!-- 		<input type ='submit' value='Delete' /><input type ='submit' value='Publish' /> -->
-<!-- 	</p> -->
-<!-- </form> -->
-
 </body>
 </html>

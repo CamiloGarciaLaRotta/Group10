@@ -29,23 +29,23 @@ class ApplicationController{
 		$error = "";
 		
 		if(strtotime($startTime) > strtotime($endTime)) {
-			$error .= ("end time cannot be before event start time!<br>");
+			$error .= ("end time cannot be before event start time!<br><br>");
 		}
 		$requirements = InputValidator::validate_input($aRequirements);
 		if($requirements==null || strlen($requirements) == 0){
-			$error .= ("Requirements cannot be empty!<br>");
+			$error .= ("Requirements cannot be empty!<br><br>");
 		} 
 		if(!is_numeric($aSalary)) {
-			$error .= ("Salary must be a non null Number!<br>");
+			$error .= ("Salary must be a non null Number!<br><br>");
 		}
 		if($aSalary < 0) {
-			$error .= ("Salary must be a positive Number!<br> ");
+			$error .= ("Salary must be a positive Number!<br><br>");
 		}
 		if(!is_numeric($aCDN)) {
-			$error .= ("CDN must be a non null Integer!<br>");
+			$error .= ("CDN must be a non null Integer!<br><br>");
 		}
 		if($aCDN < 0) {
-			$error .= ("CDN must be a positive Integer!<br> ");
+			$error .= ("CDN must be a positive Integer!<br><br>");
 		}
 		$myInstructor = null;
 		foreach ($this->pm->getInstructors() as $instructor){
@@ -54,7 +54,7 @@ class ApplicationController{
 				break;
 			}
 		}
-		if ($myInstructor == null) $error .= ("Instructor was not found!<br>");
+		if ($myInstructor == null) $error .= ("Instructor was not found!<br><br>");
 		// Find the event
 		$myCourse = null;
 		foreach ($this->cm->getCourses() as $course){
@@ -63,7 +63,7 @@ class ApplicationController{
 				break;
 			}
 		}
-		if ($myCourse == null) $error .= ("Course was not found!<br>");
+		if ($myCourse == null) $error .= ("Course was not found!<br><br>");
 		
 		if(strlen($error) > 0) {
 			throw new Exception($error);

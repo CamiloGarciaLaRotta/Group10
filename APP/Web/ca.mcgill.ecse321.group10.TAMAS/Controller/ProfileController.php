@@ -24,23 +24,23 @@ class ProfileController{
 		$lName = InputValidator::validate_input($aLastName);
 
 		if($uName==null || strlen($uName) == 0){
-			$error .= ("Username name cannot be empty!<br>");
+			$error .= ("Username name cannot be empty!<br><br>");
 		} 
 		$Instructors = $this->pm->getInstructors();
 		foreach($Instructors as $i) {
 			if($i->getUsername() == $aUsername) {
-				$error .= ("Username must be unique!<br>");
+				$error .= ("Username must be unique!<br><br>");
 				break;
 			}
 		}
 		if($pass==null || strlen($pass) == 0){
-			$error .= ("Password name cannot be empty!<br>");
+			$error .= ("Password name cannot be empty!<br><br>");
 		} 
 		if($fName==null || strlen($fName) == 0){
-			$error .= ("First name name cannot be empty!<br>");
+			$error .= ("First name name cannot be empty!<br><br>");
 		} 
 		if($lName==null || strlen($lName) == 0){
-			$error .= ("Last name name cannot be empty!<br>");
+			$error .= ("Last name name cannot be empty!<br><br>");
 		} 
 		
 		if(strlen($error) > 0) {
