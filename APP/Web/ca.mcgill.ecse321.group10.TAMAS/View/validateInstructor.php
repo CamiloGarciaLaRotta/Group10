@@ -10,7 +10,7 @@ try {
 	$_SESSION['successProfile'] = "";
 
 	// validate <datalist>
-	$instructor_name = isset($_POST['instructor_name']) ? $_POST['instructor_name'] : '';
+	$instructor_username = isset($_POST['instructor_username']) ? $_POST['instructor_username'] : '';
 	$instructor_password = isset($_POST['instructor_password']) ? $_POST['instructor_password'] : '';
 	$instructor_fName = isset($_POST['instructor_fName']) ? $_POST['instructor_fName'] : '';
 	$instructor_lName = isset($_POST['instructor_lName']) ? $_POST['instructor_lName'] : '';
@@ -20,7 +20,7 @@ try {
 
 }
 catch (Exception $e) {
-	$_SESSION['errorInstructor'] = $e->getMessage();
+	$_SESSION['errorProfile'] = $e->getMessage();
 }
 
 if ($_SESSION['errorProfile'] == "") {

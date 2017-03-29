@@ -28,7 +28,7 @@ class ApplicationController{
 		//Validate primitive var input
 		$error = "";
 		
-		if(strtotime($starttime) > strtotime($endtime)) {
+		if(strtotime($startTime) > strtotime($endTime)) {
 			$error .= ("end time cannot be before event start time!<br>");
 		}
 		$requirements = InputValidator::validate_input($aRequirements);
@@ -44,7 +44,7 @@ class ApplicationController{
 		if(!is_numeric($aCDN)) {
 			$error .= ("CDN must be a non null Integer!<br>");
 		}
-		if($CDN < 0) {
+		if($aCDN < 0) {
 			$error .= ("CDN must be a positive Integer!<br> ");
 		}
 		$myInstructor = null;

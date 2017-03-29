@@ -22,14 +22,14 @@ try {
 	$job_instructorUsername = isset($_POST['job_instructorUsername']) ? $_POST['job_instructorUsername'] : '';
 	
 	
-	switch($_POST['submit']) {
-		//case 'Create':
-		case 'Publish': 
+	// switch($_POST['submit']) {
+	// 	//case 'Create':
+	// 	case 'Publish': 
 			$ac->createJob($job_start,$job_end,
 					$job_day, $job_position,
 					$job_salary, $job_requirements,
 					$job_courseCDN, $job_instructorUsername);
-			break;
+			// break;
 	
 // LEFT EHRE FOR FUTURE IMPLEMENTATIONS
 // 		case 'Delete': 
@@ -49,8 +49,6 @@ try {
 				
 // 			$ac->publishJob($jobID);
 // 			break;
-	
-	}	
 } catch (Exception $e) {
 	$_SESSION['errorJob'] = $e->getMessage();
 }
@@ -64,6 +62,6 @@ if ($_SESSION['errorJob'] == "") {
 DOCTYPE html>
 <html>
 	<head>
-<!-- 		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/job.php"/> -->
+ 		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/job.php"/> 
 	</head>
 </html>

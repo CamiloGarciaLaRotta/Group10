@@ -7,6 +7,17 @@
 	    <link href="style.css" rel="stylesheet">
 	</head>
 	<body>
+		<?php
+		session_start();
+
+		// initialize all prompts
+		$_SESSION['errorCourse'] = "";
+		$_SESSION['successCourse'] = "";
+		$_SESSION['errorProfile'] = "";
+		$_SESSION['successProfile'] = "";
+		$_SESSION['errorJob'] = "";
+		$_SESSION['successJob'] = "";
+		?>
 		<main>
 			<span class="intro">
 				<h3>TAMAS</h3>

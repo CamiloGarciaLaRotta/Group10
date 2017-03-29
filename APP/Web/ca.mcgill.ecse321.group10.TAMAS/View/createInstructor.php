@@ -29,16 +29,16 @@ $pm = $pt->loadProfileManagerFromStore();
 		<br>
 		<p class="error">
 			<?php
-			if(isset($_SESSION['errorCourse']) && !empty($_SESSION['errorCourse'])){
-				echo $_SESSION["errorCourse"];
+			if(isset($_SESSION['errorProfile']) && !empty($_SESSION['errorProfile'])){
+				echo $_SESSION["errorProfile"];
 			}
 			?>
 		</p>
 		<br>
 		<p class="success">
 			<?php
-			if(isset($_SESSION['successCourse']) && !empty($_SESSION['successCourse'])){
-				echo $_SESSION["successCourse"];
+			if(isset($_SESSION['successProfile']) && !empty($_SESSION['successProfile'])){
+				echo $_SESSION["successProfile"];
 			}
 			?>
 		</p>
