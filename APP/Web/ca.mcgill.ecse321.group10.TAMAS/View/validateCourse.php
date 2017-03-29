@@ -6,13 +6,10 @@ session_start();
 $cc = new CourseController();
 
 try {
-// 	echo '<pre>';
-// print_r($_POST); // for viewing it as an array
-// var_dump($_POST); // for viewing all info of the array
-// echo '</pre>';
-// die();
 	$_SESSION['errorCourse'] = "";
 	$_SESSION['successCourse'] = "";
+
+	// validate data
 	$course_name = isset($_POST['course_name']) ? $_POST['course_name'] : '';
 	$course_CDN = isset($_POST['course_CDN']) ? $_POST['course_CDN'] : '';
 	$course_graderBudget = isset($_POST['course_graderBudget']) ? $_POST['course_graderBudget'] : '';

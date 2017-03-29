@@ -43,10 +43,10 @@ $cm = $pt->loadCourseManagerFromStore();
 	</span>
 	<div class="actions">
 		<form action='validateCourse.php' method='post'>
-			Course Name <input type ="text" name="course_name" required />
-			CDN <input type ="text" name="course_CDN" required/>
-			Grader Time Budget <input type="text" name="course_graderBudget" required/>
-			TA Time Budget <input type ="text" name="course_TABudget" required/><br>
+			Course Name<input type ="text" name="course_name" required /><br><br>
+			CDN<input type ="text" name="course_CDN" required/><br><br>
+			Grader Time Budget<input type="text" name="course_graderBudget" required/><br><br>
+			TA Time Budget<input type ="text" name="course_TABudget" required/><br>
 			<br><input type= "submit" value="Create Course"/>
 		</form>
 		<form action="../index.php">

@@ -1,11 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8">
-<title> Manage Job Postings </title>
-<style>
-.error {color: #FF0000;}
-</style>
+	<meta charset="UTF-8">
+	<title> Manage Job Postings </title>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
 </head>
 <body>
 <?php
@@ -23,43 +22,52 @@ session_start();
 $pt = new PersistenceTAMAS();
 $am = $pt->loadApplicationManagerFromStore();
 ?>
+<main class="job">
+	<span class="intro">
+		<h3>Job Form</h3>
+		<br>
+		<p class="error">
+			<?php
+			if(isset($_SESSION['errorJob']) && !empty($_SESSION['errorJob'])){
+				echo $_SESSION["errorJob"];
+			}
+			?>
+		</p>
+		<br>
+		<p class="success">
+			<?php
+			if(isset($_SESSION['successJob']) && !empty($_SESSION['successJob'])){
+				echo $_SESSION["successJob"];
+			}
+			?>
+		</p>
+	</span>
+	<div class="actions">
+		<form action='validateJob.php' method='post'>
+			Instructor Username<input type="text" name="job_instructorUsername" required/><br><br>
+			Course CDN<input type ="text" name="job_courseCDN" required/><br><br>
+			Position<br>
+			<input type="radio" name="job_position" value="PositionTA" required> TA
+			<input type="radio" name="job_position" value="PositionGRADER" required> Grader<br><br>
+			Requirements<input type ="text" name="job_requirements" required/><br><br>		<!-- TODO MAKE REQUIREMENTS INPUT TEXT LARGER -->
+			Salary<input type ="text" name="job_salary" required/><br><br>
+			Day<select name="job_day">
+				<option value="monday">Monday</option>
+				<option value="tuesday">Tuesday</option>
+				<option value="wednesday">Wednesday</option>
+				<option value="thursday">Thursday</option>
+				<option value="friday">Friday</option>
+			</select><br><br>
+			Start Time<input type= "time" name="job_start" value="03:20" /><br><br>
+			End Time<input type= "time" name="job_end" value="04:20" /><br><br>
+			<br><input type= "submit" name="submit" value="Publish"/>
+		</form>
+		<form action="../index.php">
+			<input type="submit" value="Back" />
+		</form>
+	</div>
+</main>
 
-<p><span class ="error">
-	<?php
-	if(isset($_SESSION['errorJob']) && !empty($_SESSION['errorJob'])){
-		echo $_SESSION["errorJob"];
-	}
-	?>
-</span></p>
-
-<form action='validateJob.php' method='post'>
-	<p>Job Application Form:</p>
-	<p>
-		Course CDN: <input type ="text" name="job_courseCDN" required/>
-		Requirements: <input type ="text" name="job_requirements" required/>				<!-- TODO MAKE REQUIREMENTS INPUT TEXT LARGER -->
-		Start Time: <input type= "time" name="job_start" value="03:20" />
-		Day:<select name="job_day">
-			<option value="monday">Monday</option>
-			<option value="tuesday">Tuesday</option>
-			<option value="wednesday">Wednesday</option>
-			<option value="thursday">Thursday</option>
-			<option value="friday">Friday</option>
-		</select><br>
-				Instructor Username: <input type="text" name="job_instructorUsername" required/>
-Salary: <input type ="text" name="job_salary" required/>
-		
-		End Time: <input type= "time" name="job_end" value="04:20" />
-		  <input type="radio" name="job_position" value="PositionTA" required> TA
-		  <input type="radio" name="job_position" value="PositionGRADER" required> Grader<br>
-	</p>
-	<p><input type= "submit" name="submit" value="Publish"/></p>
-</form>
-
-<br>
-
-<form action="../index.php">
-		    <input type="submit" value="Back" />
-</form><br>
 
 <!-- Leaving her ejust to facilitate its implementation in future deliverables -->
 <!-- <form action='validateJob.php' method='post'> -->
