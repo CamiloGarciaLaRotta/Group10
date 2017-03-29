@@ -9,15 +9,27 @@ $ac =new ApplicationController();
 try {
 
 	$_SESSION['errorJob'] = "";
+	$_SESSION['successJob'] = "";
+
+	// validate data
+	$job_start = isset($_POST['job_start']) ? $_POST['job_start'] : '';
+	$job_end = isset($_POST['job_end']) ? $_POST['job_end'] : '';
+	$job_day = isset($_POST['job_day']) ? $_POST['job_day'] : '';
+	$job_position = isset($_POST['job_position']) ? $_POST['job_position'] : '';
+	$job_salary = isset($_POST['job_salary']) ? $_POST['job_salary'] : '';
+	$job_requirements = isset($_POST['job_requirements']) ? $_POST['job_requirements'] : '';
+	$job_courseCDN = isset($_POST['job_courseCDN']) ? $_POST['job_courseCDN'] : '';
+	$job_instructorUsername = isset($_POST['job_instructorUsername']) ? $_POST['job_instructorUsername'] : '';
 	
-	switch($_POST['submit']) {
-		//case 'Create':
-		case 'Publish': 
-			$ac->createJob($_POST['job_start'],$_POST['job_end'],
-					$_POST['job_day'], $_POST['job_position'],
-					$_POST['job_salary'], $_POST['job_requirements'],
-					$_POST['job_courseCDN'], $_POST['job_instructorUsername']);
-			break;
+	
+	// switch($_POST['submit']) {
+	// 	//case 'Create':
+	// 	case 'Publish': 
+			$ac->createJob($job_start,$job_end,
+					$job_day, $job_position,
+					$job_salary, $job_requirements,
+					$job_courseCDN, $job_instructorUsername);
+			// break;
 	
 // LEFT EHRE FOR FUTURE IMPLEMENTATIONS
 // 		case 'Delete': 
@@ -37,10 +49,12 @@ try {
 				
 // 			$ac->publishJob($jobID);
 // 			break;
-	
-	}	
 } catch (Exception $e) {
 	$_SESSION['errorJob'] = $e->getMessage();
+}
+
+if ($_SESSION['errorJob'] == "") {
+	$_SESSION['successJob'] = "Succesfully published Job";
 }
 ?>
 
@@ -48,6 +62,6 @@ try {
 DOCTYPE html>
 <html>
 	<head>
-<!-- 		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/job.php"/> -->
+ 		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/job.php"/> 
 	</head>
 </html>

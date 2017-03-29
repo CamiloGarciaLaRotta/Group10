@@ -1,0 +1,77 @@
+* {
+	margin:0;
+	padding:0;
+}
+body{
+	font-family: 'Ubuntu', sans-serif;
+	width:100%;
+	height:100%;
+	background-color:#476da3;
+}
+.error {
+	color: #FF0000;
+}
+.success {
+	color: forestgreen;
+}
+.course{
+	height: 350px;
+}
+.instructor{
+	height: 350px;
+}
+.job{
+	height: 575px;
+}
+main{
+	position:fixed;
+	width: 500px;
+	height: 180px;
+	top: 50%;
+	left: 50%;
+	margin-top: -300px; /* Negative half of height. */
+	margin-left: -250px; /* Negative half of width. */
+	background-color:#cecdca;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+main > * {
+	height:100%;
+	float:left;
+	width:30%;
+	padding:10%;
+}
+.intro{
+	display: inline-block;
+}
+.actions{
+	display: inline-block;
+	text-align:center;
+}
+input[type=submit] {
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom:5px;
+    padding:5px 15px; 
+    background:#FDE9A4; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+input[type=submit]:hover {
+    padding:5px 15px; 
+    background:#fff; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+input[type=submit]:active {
+    padding:5px 15px; 
+    background:#ddd; 
+    border:1 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}

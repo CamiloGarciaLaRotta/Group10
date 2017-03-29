@@ -12,3 +12,4 @@ backlog.synctex.gz
 APP/Desktop/TAMAS/bin/.gitignore
 APP/Desktop/RemoteSystemsTempFiles/
 APP/Desktop/TAMAS/output
+APP/Web/.metadata/*
