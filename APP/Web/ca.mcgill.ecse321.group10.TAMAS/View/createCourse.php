@@ -1,11 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8">
-<title> Create Course </title>
-<style>
-.error {color: #FF0000;}
-</style>
+	<meta charset="UTF-8">
+	<title> Create Course </title>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
 </head>
 <body>
 <?php
@@ -22,30 +21,30 @@ session_start();
 $pt = new PersistenceTAMAS();
 $cm = $pt->loadCourseManagerFromStore();
 ?>
-
-<p><span class ="error">
-	<?php
-	if(isset($_SESSION['errorCourse']) && !empty($_SESSION['errorCourse'])){
-		echo $_SESSION["errorCourse"];
-	}
-	?>
-</span></p>
-
-<form action='validateCourse.php' method='post'>
-	<p>Course Form:</p>
-	<p>
-		Course Name: <input type ="text" name="course_name" required />
-		Grader Time Budget <input type="text" name="course_graderBudget" required/><br>
-		CDN <input type ="text" name="course_CDN" required/>
-		TA Time Budget <input type ="text" name="course_TABudget" required/><br>
-	</p>
-	<p><input type= "submit" value="Create Course"/></p>
-</form>
-
-<br>
-
-<form action="../index.php">
+<main class="course">
+	<span class="intro">
+		<h3>Course Form</h3>
+		<p></p>
+		<p class="error">
+			<?php
+			if(isset($_SESSION['errorCourse']) && !empty($_SESSION['errorCourse'])){
+				echo $_SESSION["errorCourse"];
+			}
+			?>
+		</p>
+	</span>
+	<div class="actions">
+		<form action='validateCourse.php' method='post'>
+			Course Name <input type ="text" name="course_name" required />
+			CDN <input type ="text" name="course_CDN" required/>
+			Grader Time Budget <input type="text" name="course_graderBudget" required/>
+			TA Time Budget <input type ="text" name="course_TABudget" required/><br>
+			<br><input type= "submit" value="Create Course"/>
+		</form>
+		<form action="../index.php">
 		    <input type="submit" value="Back" />
-</form><br>
+		</form>
+	</div>
+</main>
 </body>
 </html>
