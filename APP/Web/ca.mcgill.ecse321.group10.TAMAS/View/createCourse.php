@@ -24,11 +24,19 @@ $cm = $pt->loadCourseManagerFromStore();
 <main class="course">
 	<span class="intro">
 		<h3>Course Form</h3>
-		<p></p>
+		<br>
 		<p class="error">
 			<?php
 			if(isset($_SESSION['errorCourse']) && !empty($_SESSION['errorCourse'])){
 				echo $_SESSION["errorCourse"];
+			}
+			?>
+		</p>
+		<br>
+		<p class="success">
+			<?php
+			if(isset($_SESSION['successCourse']) && !empty($_SESSION['successCourse'])){
+				echo $_SESSION["successCourse"];
 			}
 			?>
 		</p>
