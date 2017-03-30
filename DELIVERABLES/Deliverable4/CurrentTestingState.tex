@@ -289,5 +289,6 @@ This controller tests the integration of the application class with the applicat
 It tested that null and empty input in all String fields in the controller as well as negative salaries were handled by exceptions. It also tested that these errors did not propagate into persistence. 
 
 \section{PHP}
-
+\subsection{Job Integration}
+	Given that the web client is inteded to be used by an instructor, the integration testing relates the job class to all the other classes in various scenarios and use-cases by utilising their controllers. While the unit test for profile and course used some implementation of their respective controllers, here we try to use only the controllers as much as possible for all interactions with the job class and the application controller, which handles the operations needed for the job class to be created and used. 
 \end{document}
