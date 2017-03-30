@@ -41,6 +41,9 @@ TravisCI is a continuous integration service that reacts to each new version of 
 JUnit and PHPUnit testing frameworks were used throughout development to throughly test our code. By ensuring that code is tested properly while it is being written and before being shared, it serves to minimize the amount of mistakes that are committed to our group's source code.\\\\
 As one does in test-driven development, tests were written before the code was implemented. This kept our code on Github dependable.
 
+\subsection{EclEmma}
+EclEmma is an eclipse plug-in and was used in conjunction with JUnit to determine code coverage for the tests that were written so that the team could implement more tests so the maximum amount of coverage could be achieved. 
+
 \subsection{Slack}
 Slack is a powerful communication tool that allows us to be able to keep the communication seperated to each different task, and boasts many $3^{\text{rd}}$ party integrations. Slack was not only used to aid communication across our team, but was integrated with Github to notify all of our team members of commits made. This made it easy to keep track of the progress made, which was important when certain elements within the pipelines had dependencies.
 \section{Design}
@@ -65,6 +68,7 @@ Our team came to decisions on certain naming conventions to keep our code consis
     \item Git/GitHub
     \item TravisCI
     \item JUnit/PHPUnit
+    \item EclEmma
     \item Slack
 \end{enumerate}
 
@@ -80,7 +84,7 @@ This section specifies the rationale for our team's design choices. The enumerat
     \item Having method signatures followed by a bracket rather than have the opening bracket on the following line kept the code consistent which made it easier to track whether or not code has syntax errors
 \end{enumerate}
 
-\subsection{Tools Used} Here we will discuss why each tool was chosen both with respect to what it offers or what its competitors offer.
+\subsection{Tools Used} Here we will discuss why each tool was chosen:
 \begin{enumerate}
     \item \textbf{Git/GitHub}\\\\
     	Git was chosen becauuse of it's almost universal use for project source-code version control, no real alternative was considered because of how ubiquitous and industry-standard Git is.\\
@@ -92,6 +96,9 @@ This section specifies the rationale for our team's design choices. The enumerat
     
     \item \textbf{JUnit/PHPUnit}\\\\
     	JUnit and PHPUnit were chosen as the desired testing methods because we were shown in class how useful they were for full-scale testing and flexibility compared to just running tests within a main method. 
+
+    \item \textbf{EclEmma}\\\\
+    	EclEmma was chosen as our designated test coverage analysis tool because it was simple enough to implement quickly and because the results can be easily read. It was also introduced to us in class and so as we were already familiar with it, it made sense that EclEmma was the coverage tool that we would implement.
     \item \textbf{Slack}\\\\
     	Slack was chosen over something like facebook messenger because of the utility and focus that it provides to group conversations. Being able to seperate each kind of task to a seperate conversation definitely made organisation and teamwork simpler and more reliable. The added funcitonality of plug-ins for slack also make a variety of tasks simpler and less time-consuming.
 \end{enumerate}
