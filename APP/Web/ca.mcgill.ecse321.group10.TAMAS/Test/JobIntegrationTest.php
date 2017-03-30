@@ -106,14 +106,6 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		//make the job, catch the error that should be thrown
 		
 	}
-	
-	//create a job with an invalid instructor
-	public function testCreateJobInvalidInstructor(){
-		
-		//make a valid course
-		$this->cc->createCourse("MATH 363",1, 40, 60);
-		
-		//make the job, catch the error that should be thrown
 		
 	}
 	
@@ -189,7 +181,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	//create a job with an invalid position
-	public function testCreateJobNoPosition(){
+	public function testCreateJobInvalidPosition(){
 		
 		//make a valid instructor using the controller
 		

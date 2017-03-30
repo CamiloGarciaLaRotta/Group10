@@ -290,5 +290,10 @@ It tested that null and empty input in all String fields in the controller as we
 
 \section{PHP}
 \subsection{Job Integration}
-	Given that the web client is inteded to be used by an instructor, the integration testing relates the job class to all the other classes in various scenarios and use-cases by utilising their controllers. While the unit test for profile and course used some implementation of their respective controllers, here we try to use only the controllers as much as possible for all interactions with the job class and the application controller, which handles the operations needed for the job class to be created and used. 
+	Given that the web client is inteded to be used by an instructor, the integration testing relates the job class to all the other classes in various scenarios and use-cases by utilising their controllers. While the unit test for profile and course used some implementation of their respective controllers, here we try to use only the controllers as much as possible for all interactions with the job class and the application controller, which handles the operations needed for the job class to be created and used.
+
+\subsection{Test Cases}
+	The integration testing for the application controller and job class run through various input cases. These include creating a valid job with the controller, creating a job with no linked course, creating a job with an invalid course CDN, creating a job with no instructor, and the various combinations of remaining inputs for start and end time, salary and position.\\
+
+	As of yet integration testing for the web client is not complete and no coverage metrics can be generated. Ideally, after testing all possible use cases that apply to the web client (the model generated code that may not be used), coverage should be around 90\%.\\
 \end{document}
