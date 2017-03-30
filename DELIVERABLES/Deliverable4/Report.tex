@@ -32,16 +32,17 @@ This section describes the tools that were used in the integration pipeline. The
 \subsection{Git/Github}
 Git is the name of the version control system that is used to track the changes of our source code. Github is the website that is used to host the source code. \\\\
 The Git tool allows us to see how changes are made to the source code by our team members. Very importantly, it keeps our software developers accountable for the code that they write by keeping history of their contributions. Indeed, you can pinpoint the exact moment where software developers have made terrible mistakes. In these cases where the code has been rendered properly damaged, git allows you to revert to earlier stages in development before the mistake was made. Git also allows our members to work on code simultaneously which improves our productivity!\\\\
-Github allows our team to not only seamlessly share our code, but provides shelter for our code. Github is reliable website to host our repositories and keep it safe from accidental deletion or accident.
+Github allows our team to not only seamlessly share our code, but provides shelter for our code. Github, as a reliable  and very commonly used website, serves to host our repositories and keep it safe from accidental deletion or accident.
 
 \subsection{TravisCI}
+TravisCI is a continuous integration service that reacts to each new version of source code pushed onto Github. When the software detects that a new version of the source code has been added to github, it automatically tries to build the project and run tests. This is useful as testing automation ensures that no code that is pushed onto the repository goes untested, and can immediately bring problems to light if implemented correctly.
 
 \subsection{JUnit/PHPUnit}
-JUnit and PHPUnit were used to throughly test our code. By ensuring that code is tested properly before being shared, it mitigated the amount of mistakes that were committed to our group's source code.\\\\
+JUnit and PHPUnit testing frameworks were used throughout development to throughly test our code. By ensuring that code is tested properly while it is being written and before being shared, it serves to minimize the amount of mistakes that are committed to our group's source code.\\\\
 As one does in test-driven development, tests were written before the code was implemented. This kept our code on Github dependable.
 
 \subsection{Slack}
-Slack was not only used to aid communication across our team, but was integrated with Github to notify all of our team members of commits made. This made it easy to keep track of progress which was made which was important when pipelines had dependencies.
+Slack is a powerful communication tool that allows us to be able to keep the communication seperated to each different task, and boasts many $3^{\text{rd}}$ party integrations. Slack was not only used to aid communication across our team, but was integrated with Github to notify all of our team members of commits made. This made it easy to keep track of the progress made, which was important when certain elements within the pipelines had dependencies.
 \section{Design}
 \label{s:integration-design}
 This section specifies our team's design choices.\\
@@ -49,7 +50,7 @@ This section specifies our team's design choices.\\
 \textbf{ \hyperref[s:integration-rationale]{The following sections contain lists that are enumerated to link to the respective subsections to the Rationale section of the document}}
 
 \subsection{Naming Conventions}
-Our team came to decisions on certain naming conventions to keep our code consistent across platforms. This choice also makes it easier to read code written by other team members since the style remained consistent. This also made the code easier to interpret because it formalized the expectations of methods and variables. \\
+Our team came to decisions on certain naming conventions to keep our code consistent across platforms. This choice also makes it easier to read code written by other team members since the style remained consistent. This way the code was easier to interpret because it formalized the expectations of methods and variables. \\
 
 
 \begin{enumerate}
@@ -59,13 +60,12 @@ Our team came to decisions on certain naming conventions to keep our code consis
     \item It was decided to have method signatures followed by an open bracket on the same line
 \end{enumerate}
 
-
-
-
-
-\subsection{Tools}
+\subsection{Tools} The tools utilized for integration, as described above, are:
 \begin{enumerate}
-    
+    \item Git/GitHub
+    \item TravisCI
+    \item JUnit/PHPUnit
+    \item Slack
 \end{enumerate}
 
 \section{Rationale}
@@ -80,12 +80,27 @@ This section specifies the rationale for our team's design choices. The enumerat
     \item Having method signatures followed by a bracket rather than have the opening bracket on the following line kept the code consistent which made it easier to track whether or not code has syntax errors
 \end{enumerate}
 
-\subsection{Tools}
+\subsection{Tools Used} Here we will discuss why each tool was chosen both with respect to what it offers or what its competitors offer.
 \begin{enumerate}
+    \item \textbf{Git/GitHub}\\\\
+    	Git was chosen becauuse of it's almost universal use for project source-code version control, no real alternative was considered because of how ubiquitous and industry-standard Git is.\\
+
+    	While there are other websites used for hosting repositories, GitHub is well known and respected as a good platform. Added to this, the repository is provided / is monitored by those in charge of ECSE 321 and we were not given a choice. Had this not been the case, we still would have used GitHub because of it's reliability and many integrations with software like Slack and TravisCI.
+
+    \item \textbf{TravisCI}\\\\
+    	TravisCI was chosen because of the utility it provides in automated testing. Even if one of the team members forgets to test code before committing and pushing it, this software ensures that it is tested. For the security it provides us in terms of not having to worry about whether the code was tested or not, it is worth implementing and was thus chosen.
     
+    \item \textbf{JUnit/PHPUnit}\\\\
+    	JUnit and PHPUnit were chosen as the desired testing methods because we were shown in class how useful they were for full-scale testing and flexibility compared to just running tests within a main method. 
+    \item \textbf{Slack}\\\\
+    	Slack was chosen over something like facebook messenger because of the utility and focus that it provides to group conversations. Being able to seperate each kind of task to a seperate conversation definitely made organisation and teamwork simpler and more reliable. The added funcitonality of plug-ins for slack also make a variety of tasks simpler and less time-consuming.
 \end{enumerate}
 
-
+\subsection{Tools Considered But Not Used}
+\begin{enumerate}
+	\item \textbf{Trello}\\\\
+		Team management software like Trello (and it's competitors) allow users to create lists and have cards to show a variety of different things relating to group workflow. Such software sees a lot of use in industry for large-scale projects requiring multiple teams. However because of the scale and the way the project was structured, it was determined that such a software was overkill and not entirely necessary. Though the learning-curve to be able use the software for those unfamiliar with it is relatively small,it was not worth the risk introducing a new variable into the management of the project and potentially causing extra confusion and taking time off other tasks.
+\end{enumerate}
 
 \part{Build}
 \section{Description}
