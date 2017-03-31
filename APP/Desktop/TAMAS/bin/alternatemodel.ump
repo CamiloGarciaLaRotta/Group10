@@ -19,6 +19,7 @@ class Job{
   }
   immutable double salary;
   immutable requirements;
+  lazy Boolean offerSent;
 }
 
 class Tutorial {

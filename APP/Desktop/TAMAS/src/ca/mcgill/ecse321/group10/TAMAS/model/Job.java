@@ -6,8 +6,8 @@ import java.sql.Time;
 import java.util.*;
 
 // line 11 "../../../../../../alternatemodel.ump"
-// line 92 "../../../../../../alternatemodel.ump"
-// line 126 "../../../../../../alternatemodel.ump"
+// line 93 "../../../../../../alternatemodel.ump"
+// line 127 "../../../../../../alternatemodel.ump"
 public class Job
 {
 
@@ -27,6 +27,7 @@ public class Job
   private String day;
   private double salary;
   private String requirements;
+  private boolean offerSent;
 
   //Autounique Attributes
   private int id;
@@ -52,6 +53,7 @@ public class Job
     day = aDay;
     salary = aSalary;
     requirements = aRequirements;
+    offerSent = false;
     id = nextId++;
     boolean didAddCourse = setCourse(aCourse);
     if (!didAddCourse)
@@ -96,6 +98,14 @@ public class Job
     return wasSet;
   }
 
+  public boolean setOfferSent(boolean aOfferSent)
+  {
+    boolean wasSet = false;
+    offerSent = aOfferSent;
+    wasSet = true;
+    return wasSet;
+  }
+
   public Time getStartTime()
   {
     return startTime;
@@ -121,9 +131,19 @@ public class Job
     return requirements;
   }
 
+  public boolean getOfferSent()
+  {
+    return offerSent;
+  }
+
   public int getId()
   {
     return id;
+  }
+
+  public boolean isOfferSent()
+  {
+    return offerSent;
   }
 
   public String getPositionFullName()
@@ -440,7 +460,8 @@ public class Job
             "id" + ":" + getId()+ "," +
             "day" + ":" + getDay()+ "," +
             "salary" + ":" + getSalary()+ "," +
-            "requirements" + ":" + getRequirements()+ "]" + System.getProperties().getProperty("line.separator") +
+            "requirements" + ":" + getRequirements()+ "," +
+            "offerSent" + ":" + getOfferSent()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "course = "+(getCourse()!=null?Integer.toHexString(System.identityHashCode(getCourse())):"null") + System.getProperties().getProperty("line.separator") +

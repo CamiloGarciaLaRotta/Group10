@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.sql.Time;
 import java.util.*;
 
-// line 28 "../../../../../../alternatemodel.ump"
-// line 102 "../../../../../../alternatemodel.ump"
+// line 29 "../../../../../../alternatemodel.ump"
+// line 103 "../../../../../../alternatemodel.ump"
 public class Laboratory extends Job
 {
 

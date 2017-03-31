@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 import java.sql.Time;
 
-// line 32 "../../../../../../alternatemodel.ump"
-// line 107 "../../../../../../alternatemodel.ump"
+// line 33 "../../../../../../alternatemodel.ump"
+// line 108 "../../../../../../alternatemodel.ump"
 public class Instructor extends Profile
 {
 

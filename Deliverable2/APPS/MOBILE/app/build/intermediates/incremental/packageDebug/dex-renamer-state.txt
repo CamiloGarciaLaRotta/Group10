@@ -1,0 +1,7 @@
+#Sun Feb 26 13:00:34 GMT 2017
+base.0=/home/harwiltz/ise/MOBILE/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5ebad9270735ba1a976cc10a7e34636725ed7fb5
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/harwiltz/ise/MOBILE/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d37999c1c5d57361f6bdb7383131c5dfbf42dd9c/classes.dex
+base.1=/home/harwiltz/ise/MOBILE/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d37999c1c5d57361f6bdb7383131c5dfbf42dd9c
+file.0=/home/harwiltz/ise/MOBILE/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5ebad9270735ba1a976cc10a7e34636725ed7fb5/classes.dex
