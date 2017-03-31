@@ -75,13 +75,14 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="TAMAS" depends="build">
+    <target name="TAMAS" depends="test">
         <java classname="ca.mcgill.ecse321.group10.application.TAMAS" failonerror="true" fork="yes">
             <classpath refid="TAMAS.classpath"/>
         </java>
     </target>
 
 	<target name="test" depends="build">
+		<echo message=">>>>> STARTING UNIT TESTS..."/>
 		<junit printsummary="yes" haltonfailure="true" fork="yes">
 			<classpath>
 				<path refid="TAMAS.classpath"/>
@@ -90,6 +91,17 @@
 			<formatter type="xml"/>
 			<batchtest todir="${junit.output.dir}">
 				<fileset dir="test" includes="**/*Test*.java" excludes="**/AllTests.java"/>
+			</batchtest>
+		</junit>
+		<echo message=">>>>> STARTING UNIT TESTS..."/>
+		<junit printsummary="yes" haltonfailure="true" fork="yes">
+			<classpath>
+				<path refid="TAMAS.classpath"/>
+				<pathelement location="bin"/>
+			</classpath>
+			<formatter type="xml"/>
+			<batchtest todir="${junit.output.dir}">
+				<fileset dir="Integration Tests" includes="**/*Test*.java" excludes="**/AllTests.java"/>
 			</batchtest>
 		</junit>
 	</target>

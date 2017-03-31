@@ -14,6 +14,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
+import ca.mcgill.ecse321.group10.controller.InputException;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
 import widgets.ThemedPanel;
@@ -98,7 +99,11 @@ public class ApplicationView extends JFrame{
 			Student student = pm.getStudent(studentList.getSelectedIndex());
 			Job job = am.getJob(jobList.getSelectedIndex());
 			ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
-			ac.createApplication(student, job);
+			try {
+				ac.createApplication(student, job);
+			}catch (InputException e) {
+				
+			}
 			String msg = student.getUsername() + " has applied to " + jobList.getSelectedValue().toString() + ". Good luck!";
 			message.setText(msg);
 			pack();

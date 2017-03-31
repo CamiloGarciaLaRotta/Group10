@@ -23,17 +23,17 @@ public class ApplicationControllerTest {
 	private ApplicationManager am;
 	private ProfileController pc;
 	private ProfileManager pm;
-	private static String outputFile1 = "output" + File.separator + "tests" + File.separator + "testApplicationController";
-	private static String outputFile2 = "output" + File.separator + "tests" + File.separator + "testProfileController";;
+	private static String outputFile1 = "output" + File.separator + "testApplicationController";
+	private static String outputFile2 = "output" + File.separator + "testProfileController";
 	private static Time timeBefore = new Time(10);
 	private static Time timeAfter = new Time(100);
 
 
 	@Before
 	public void setUp() throws Exception {
-		PersistenceXStream.initializeProfileManager(outputFile2);
-		PersistenceXStream.initializeApplicationManager(outputFile1, outputFile2);
-		am = new ApplicationManager();
+		pm = PersistenceXStream.initializeProfileManager(outputFile2);
+		am = PersistenceXStream.initializeApplicationManager(outputFile1, outputFile2);
+//		am = new ApplicationManager();
 		ac = new ApplicationController(am, outputFile1);
 		assertEquals(0,am.getApplications().size());
 	}
@@ -75,20 +75,20 @@ public class ApplicationControllerTest {
 		
 		try {
 			ac.addJobToSystem(timeBefore, timeAfter, "Monday", 1000, "None", null, aInstructor);
-		} catch (InputException e) {
+		} catch (Exception e) {
 			am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,am.getApplications().size());
 		}
 		
 		try {
 			ac.addJobToSystem(timeBefore, timeAfter, "Monday", 1000, "None", aCourse, null);
-		} catch (InputException e) {
+		} catch (Exception e) {
 			am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,am.getApplications().size());
 		}
 		try {
 			ac.addJobToSystem(timeAfter, timeBefore, "Monday", -1000, "None", aCourse, aInstructor);
-		} catch (InputException e) {
+		} catch (Exception e) {
 			am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,am.getApplications().size());
 		}
