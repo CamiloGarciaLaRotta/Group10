@@ -30,7 +30,7 @@ public class ApplicationView extends JFrame{
 	private JLabel lStudent;
 	private JLabel lJob;
 	private JButton apply;
-	private JLabel message;
+	private ThemedLabel message;
 	
 	public ApplicationView(ApplicationManager am, ProfileManager pm) {
 		this.am = am;
@@ -86,13 +86,23 @@ public class ApplicationView extends JFrame{
 	}
 	
 	private void applyPressed() {
-		Student student = pm.getStudent(studentList.getSelectedIndex());
-		Job job = am.getJob(jobList.getSelectedIndex());
-		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
-		ac.createApplication(student, job);
-		String msg = student.getUsername() + " has applied to " + jobList.getSelectedValue().toString() + ". Good luck!";
-		message.setText(msg);
-		pack();
+		String error = "";
+		if(studentList.getSelectedIndex() == -1) error += "Student must be selected!";
+		if(jobList.getSelectedIndex() == -1) error += "Job must be selected!";
+		if(error.length() != 0) {
+			message.setType(ThemedLabel.LabelType.Error);
+			message.setText(error);
+		}
+		else {
+			message.setType(ThemedLabel.LabelType.Success);
+			Student student = pm.getStudent(studentList.getSelectedIndex());
+			Job job = am.getJob(jobList.getSelectedIndex());
+			ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+			ac.createApplication(student, job);
+			String msg = student.getUsername() + " has applied to " + jobList.getSelectedValue().toString() + ". Good luck!";
+			message.setText(msg);
+			pack();
+		}
 	}
 
 }
