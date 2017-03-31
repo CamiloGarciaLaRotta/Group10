@@ -26,6 +26,7 @@ public class MenuView extends JFrame{
 	private JButton publishButton;
 	private JButton profileButton;
 	private JButton courseButton;
+	private JButton hireButton;
 	
 	private ApplicationManager am;
 	private ProfileManager pm;
@@ -45,6 +46,7 @@ public class MenuView extends JFrame{
 		publishButton = new JButton();
 		profileButton = new JButton();
 		courseButton = new JButton();
+		hireButton = new JButton();
 		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Main Control Center");
@@ -54,6 +56,7 @@ public class MenuView extends JFrame{
 		publishButton.setText("Publish Job Posting");
 		profileButton.setText("Register Profile");
 		courseButton.setText("Create Course");
+		hireButton.setText("Hire Applicants");
 		
 		profileButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -89,6 +92,17 @@ public class MenuView extends JFrame{
 			}
 		});
 		
+		hireButton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				if(am.getApplications().size() > 0) {
+					new HireView(am,pm).setVisible(true);
+					error.setText("");
+				}
+				else error.setText("No applications have been made.");
+				pack();
+			}
+		});
+		
 		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
@@ -98,6 +112,7 @@ public class MenuView extends JFrame{
 		panel.add(courseButton);
 		panel.add(publishButton);
 		panel.add(applicationButton);
+		panel.add(hireButton);
 		
 		this.add(panel);
 		this.setSize(new Dimension(X_SIZE,Y_SIZE));
