@@ -12,6 +12,8 @@ import javax.swing.WindowConstants;
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
+import widgets.ThemedLabel;
+import widgets.ThemedPanel;
 
 public class MenuView extends JFrame{
 	
@@ -37,8 +39,8 @@ public class MenuView extends JFrame{
 	}
 	
 	private void initComponents() {
-		greeting = new JLabel();
-		error = new JLabel();
+		greeting = new ThemedLabel("");
+		error = new ThemedLabel("",ThemedLabel.LabelType.Error);
 		applicationButton = new JButton();
 		publishButton = new JButton();
 		profileButton = new JButton();
@@ -87,7 +89,7 @@ public class MenuView extends JFrame{
 			}
 		});
 		
-		JPanel panel = new JPanel();
+		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		panel.add(greeting);

@@ -18,7 +18,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -30,6 +29,12 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
 import ca.mcgill.ecse321.group10.controller.InputException;
+import widgets.Constants;
+import widgets.ThemedLabel;
+import widgets.ThemedList;
+import widgets.ThemedRadioButton;
+import widgets.ThemedSpinner;
+import widgets.ThemedTextField;
 
 public class PublishJobView extends JFrame{
 
@@ -72,19 +77,19 @@ public class PublishJobView extends JFrame{
 	private void initComponents() {
 		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Publish Job Posting");
-		lStart = new JLabel("Start Time: ");
-		lEnd = new JLabel("End Time: ");
-		lSalary = new JLabel("Salary: ");
-		lReqs = new JLabel("Requirements: ");
-		tfSalary = new JTextField();
-		tfReqs = new JTextField();
-		errorLabel = new JLabel();
+		lStart = new ThemedLabel("Start Time: ");
+		lEnd = new ThemedLabel("End Time: ");
+		lSalary = new ThemedLabel("Salary: ");
+		lReqs = new ThemedLabel("Requirements: ");
+		tfSalary = new ThemedTextField();
+		tfReqs = new ThemedTextField();
+		errorLabel = new ThemedLabel("", ThemedLabel.LabelType.Error);
 		publish = new JButton("Publish Job");
 		
-		lPos = new JLabel("Position type: ");
-		rbTA = new JRadioButton("TA");
+		lPos = new ThemedLabel("Position type: ");
+		rbTA = new ThemedRadioButton("TA");
 		rbTA.setSelected(true);
-		rbGrader = new JRadioButton("Grader");
+		rbGrader = new ThemedRadioButton("Grader");
 		typeGroup = new ButtonGroup();
 		typeGroup.add(rbTA);
 		typeGroup.add(rbGrader);
@@ -98,13 +103,12 @@ public class PublishJobView extends JFrame{
 		for(int c = 0; c < instructorNames.length; c++) {
 			instructorNames[c] = pm.getInstructor(c).getFirstName() + " " + pm.getInstructor(c).getLastName();
 		}
-		instructorList = new JList(instructorNames);
+		instructorList = new ThemedList(instructorNames);
 		instructorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		instructorList.setLayoutOrientation(JList.VERTICAL);
 		instructorScroller = new JScrollPane(instructorList);
-		String [] courseNames = {};
 		courseListModel = new DefaultListModel();
-		courseList = new JList(courseListModel);
+		courseList = new ThemedList(courseListModel);
 		courseList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		courseList.setLayoutOrientation(JList.VERTICAL);
 		courseScroller = new JScrollPane(courseList);
@@ -112,9 +116,7 @@ public class PublishJobView extends JFrame{
 		instructorList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				if(e.getValueIsAdjusting()) return;
-				String[] courseNames;
-				if(instructorList.getSelectedIndex() == -1) courseNames = new String[0];
-				else {
+				if(instructorList.getSelectedIndex() != -1) {
 					courseListModel.clear();
 					List<Course> courses = pm.getInstructor(instructorList.getSelectedIndex()).getCourses();
 					for(int c = 0;c < courses.size(); c++) {
@@ -124,20 +126,25 @@ public class PublishJobView extends JFrame{
 			}
 		});
 		
-		jStartTime = new JSpinner(new SpinnerDateModel());
+		jStartTime = new ThemedSpinner(new SpinnerDateModel());
 		JSpinner.DateEditor startEditor = new JSpinner.DateEditor(jStartTime, "HH:mm");
+		startEditor.setBackground(Constants.tfBgColor);
+		startEditor.setBackground(Constants.tfFgColor);
 		jStartTime.setEditor(startEditor);
 		
-		jEndTime = new JSpinner(new SpinnerDateModel());
+		jEndTime = new ThemedSpinner(new SpinnerDateModel());
 		JSpinner.DateEditor endEditor = new JSpinner.DateEditor(jEndTime, "HH:mm");
+		endEditor.setBackground(Constants.tfBgColor);
+		endEditor.setBackground(Constants.tfFgColor);
 		jEndTime.setEditor(endEditor);
 		
 		String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
-		jDay = new JSpinner(new SpinnerListModel(days));
+		jDay = new ThemedSpinner(new SpinnerListModel(days));
 		
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
 	    getContentPane().setLayout(layout);
+	    getContentPane().setBackground(Constants.bgColor);
 	    layout.setAutoCreateGaps(true);
 	    layout.setAutoCreateContainerGaps(true);
 	    layout.setHorizontalGroup(

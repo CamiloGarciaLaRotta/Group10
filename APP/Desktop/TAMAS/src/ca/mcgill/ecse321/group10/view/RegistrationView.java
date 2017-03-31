@@ -14,6 +14,11 @@ import javax.swing.SwingConstants;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
+import widgets.Constants;
+import widgets.ThemedLabel;
+import widgets.ThemedRadioButton;
+import widgets.ThemedTextArea;
+import widgets.ThemedTextField;
 
 public class RegistrationView extends JFrame implements java.awt.event.ActionListener{
 	
@@ -46,25 +51,25 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 	private void initComponents() {
 		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Register a Profile");
-		error = new JLabel();
-		rbStudent = new JRadioButton();
-		rbInstructor = new JRadioButton();
-		rbAdmin = new JRadioButton();
+		error = new ThemedLabel("",ThemedLabel.LabelType.Error);
+		rbStudent = new ThemedRadioButton();
+		rbInstructor = new ThemedRadioButton();
+		rbAdmin = new ThemedRadioButton();
 		radioGroup = new ButtonGroup();
-		lRole = new JLabel();
-		lFirst = new JLabel();
-		lLast = new JLabel();
-		lUser = new JLabel();
-		lPass = new JLabel();
-		tfFirst = new JTextField();
-		tfLast = new JTextField();
-		tfUser = new JTextField();
-		tfPass = new JTextField();
+		lRole = new ThemedLabel("");
+		lFirst = new ThemedLabel("");	
+		lLast = new ThemedLabel("");
+		lUser = new ThemedLabel("");
+		lPass = new ThemedLabel("");
+		tfFirst = new ThemedTextField();
+		tfLast = new ThemedTextField();
+		tfUser = new ThemedTextField();
+		tfPass = new ThemedTextField();
 		submit = new JButton();
 		
-		lReqs = new JLabel("Skills: ");
+		lReqs = new ThemedLabel("Skills: ");
 		lReqs.setVisible(false);
-		taReqs = new JTextArea();
+		taReqs = new ThemedTextArea();
 		taReqs.setRows(5);
 		reqScroller = new JScrollPane(taReqs);
 		taReqs.setText(reqs);
@@ -95,6 +100,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
+		getContentPane().setBackground(Constants.bgColor);
 	    layout.setAutoCreateGaps(true);
 	    layout.setAutoCreateContainerGaps(true);
 	    

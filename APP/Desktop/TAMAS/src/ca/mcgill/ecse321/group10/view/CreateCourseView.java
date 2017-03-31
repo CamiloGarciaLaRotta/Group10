@@ -9,13 +9,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.CourseController;
 import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
+import widgets.Constants;
+import widgets.ThemedLabel;
+import widgets.ThemedList;
+import widgets.ThemedTextField;
 
 public class CreateCourseView extends JFrame{
 	
@@ -51,19 +54,19 @@ public class CreateCourseView extends JFrame{
 		for(int c = 0; c < instructorNames.length; c++) {
 			instructorNames[c] = pm.getInstructor(c).getFirstName() + " " + pm.getInstructor(c).getLastName();
 		}
-		instructorList = new JList(instructorNames);
+		instructorList = new ThemedList(instructorNames);
 		instructorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		instructorList.setLayoutOrientation(JList.VERTICAL);
 		listScroller = new JScrollPane(instructorList);
 		
-		lName = new JLabel();
-		lCode = new JLabel();
-		lGraderBudget = new JLabel();
-		lTABudget = new JLabel();
-		tfName = new JTextField();
-		tfCode = new JTextField();
-		tfGraderBudget = new JTextField();
-		tfTABudget = new JTextField();
+		lName = new ThemedLabel("");
+		lCode = new ThemedLabel("");
+		lGraderBudget = new ThemedLabel("");
+		lTABudget = new ThemedLabel("");
+		tfName = new ThemedTextField();
+		tfCode = new ThemedTextField();
+		tfGraderBudget = new ThemedTextField();
+		tfTABudget = new ThemedTextField();
 		create = new JButton();
 		
 		create.addActionListener(new java.awt.event.ActionListener(){
@@ -72,8 +75,7 @@ public class CreateCourseView extends JFrame{
 			}
 		});
 		
-		errorLabel = new JLabel();
-		errorLabel.setText("");
+		errorLabel = new ThemedLabel("",ThemedLabel.LabelType.Error);
 		
 		lName.setText("Course Name: ");
 		lCode.setText("CDN: ");
@@ -83,6 +85,7 @@ public class CreateCourseView extends JFrame{
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
+		getContentPane().setBackground(Constants.bgColor);
 	    layout.setAutoCreateGaps(true);
 	    layout.setAutoCreateContainerGaps(true);
 	    

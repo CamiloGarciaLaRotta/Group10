@@ -8,13 +8,15 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.WindowConstants;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
+import widgets.ThemedLabel;
+import widgets.ThemedList;
+import widgets.ThemedPanel;
 
 public class ApplicationView extends JFrame{
 	
@@ -44,7 +46,7 @@ public class ApplicationView extends JFrame{
 		for(int c = 0; c < studentNames.length; c++) {
 			studentNames[c] = pm.getStudent(c).getUsername();
 		}
-		studentList = new JList(studentNames);
+		studentList = new ThemedList(studentNames);
 		studentList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		studentList.setLayoutOrientation(JList.VERTICAL);
 		studentScroller = new JScrollPane(studentList);
@@ -53,15 +55,15 @@ public class ApplicationView extends JFrame{
 		for(int c = 0; c < jobNames.length; c++) {
 			jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
 		}
-		jobList = new JList(jobNames);
+		jobList = new ThemedList(jobNames);
 		jobList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jobList.setLayoutOrientation(JList.VERTICAL);
 		jobScroller = new JScrollPane(jobList);
 		
-		lStudent = new JLabel("Find your username below:");
-		lJob = new JLabel("Choose job:");
+		lStudent = new ThemedLabel("Find your username below:");
+		lJob = new ThemedLabel("Choose job:");
 		
-		message = new JLabel();
+		message = new ThemedLabel("",ThemedLabel.LabelType.Success);
 		
 		apply = new JButton("Apply");
 		
@@ -71,7 +73,7 @@ public class ApplicationView extends JFrame{
 			}
 		});
 		
-		JPanel panel = new JPanel();
+		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		panel.add(message);
 		panel.add(lStudent);

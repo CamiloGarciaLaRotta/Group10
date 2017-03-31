@@ -34,10 +34,10 @@ public class ApplicationController {
 		else if(day.equals("Saturday") || day.equals("Sunday")) error += "Day must be a work day! ";
 		if(error.length() > 0) throw new InputException(error);
 		else{
-		Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
-		am.addJob(j);
-		PersistenceXStream.setFilename(filename);
-		PersistenceXStream.saveToXMLwithXStream(am);
+			Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
+			am.addJob(j);
+			PersistenceXStream.setFilename(filename);
+			PersistenceXStream.saveToXMLwithXStream(am);
 		}
 	}
 	
