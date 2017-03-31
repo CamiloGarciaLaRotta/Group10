@@ -54,7 +54,8 @@ public class TestApplication {
 
 	@Before
 	public void setUp() throws Exception {
-		am = new ApplicationManager();
+//		am = new ApplicationManager();
+		am = PersistenceXStream.initializeApplicationManager(ApplicationController.APPLICATION_FILE_NAME,ProfileController.PROFILE_FILE_NAME);
 		ApplicationController ac = new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME);
 
 	}
@@ -67,16 +68,19 @@ public class TestApplication {
 	@Test
 	public void testApplicationValidJobAndStudent() {
 		
+		ApplicationController ac = new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME);
 		assertEquals(0, am.numberOfApplications());
 		
 		try{
 			ac.createApplication(aStudent, aJob);
 		}
-		catch(RuntimeException e){
-
+		catch(Exception e){
+			System.out.println("WTF");
+		}
+		finally {
+			assertEquals(1, am.getApplications().size());
 		}
 		
-		assertEquals(1, am.numberOfApplications());
 		
 		//assert ID
 		
@@ -95,7 +99,7 @@ public class TestApplication {
 		try{
 			ac.createApplication(null,aJob);
 		}
-		catch(RuntimeException e){
+		catch(Exception e){
 		}
 		
 		assertEquals(0, am.numberOfApplications());
@@ -110,7 +114,7 @@ public class TestApplication {
 		try{
 			ac.createApplication(aStudent,null);
 		}
-		catch(RuntimeException e){
+		catch(Exception e){
 		}
 		
 		assertEquals(0, am.numberOfApplications());		

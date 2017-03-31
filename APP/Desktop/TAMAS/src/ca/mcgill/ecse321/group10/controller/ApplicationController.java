@@ -47,7 +47,8 @@ public class ApplicationController {
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
 	
-	public void createApplication(Student s, Job j) {
+	public void createApplication(Student s, Job j) throws InputException{
+		if(s == null || j == null) throw new InputException("Student or job are null");
 		Application a = new Application(s,j);
 		am.addApplication(a);
 		PersistenceXStream.setFilename(filename);
