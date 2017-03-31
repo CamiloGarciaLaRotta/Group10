@@ -131,12 +131,14 @@ public class PublishJobView extends JFrame{
 		startEditor.setBackground(Constants.tfBgColor);
 		startEditor.setBackground(Constants.tfFgColor);
 		jStartTime.setEditor(startEditor);
+		jStartTime.setValue(new Time(0));
 		
 		jEndTime = new ThemedSpinner(new SpinnerDateModel());
 		JSpinner.DateEditor endEditor = new JSpinner.DateEditor(jEndTime, "HH:mm");
 		endEditor.setBackground(Constants.tfBgColor);
 		endEditor.setBackground(Constants.tfFgColor);
 		jEndTime.setEditor(endEditor);
+		jEndTime.setValue(new Time(3600));
 		
 		String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 		jDay = new ThemedSpinner(new SpinnerListModel(days));
@@ -229,8 +231,8 @@ public class PublishJobView extends JFrame{
 		tfSalary.setText("");
 		tfReqs.setText("");
 		jDay.setValue("Monday");
-		jStartTime.setValue(new java.util.Date());
-		jEndTime.setValue(new java.util.Date());
+		jStartTime.setValue(new Time(0));
+		jEndTime.setValue(new Time(3600000));
 		rbGrader.setSelected(false);
 		rbTA.setSelected(true);
 		pack();
