@@ -19,6 +19,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
+import ca.mcgill.ecse321.group10.controller.ProfileController;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
 import widgets.ThemedPanel;
@@ -98,6 +99,10 @@ public class OffersView extends JFrame{
 		panel.add(buttonPanel);
 		lStudent.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lOffers.setAlignmentX(Component.LEFT_ALIGNMENT);
+		message.setAlignmentX(Component.LEFT_ALIGNMENT);
+		cbStudent.setAlignmentX(Component.LEFT_ALIGNMENT);
+		offerScroller.setAlignmentX(Component.LEFT_ALIGNMENT);
+		buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(panel);
 		//this.setVisible(true);
 		this.setMinimumSize(new Dimension(350,400));
@@ -149,6 +154,7 @@ public class OffersView extends JFrame{
 			}
 		}
 		currentStudent.removeJob(currentJob);
+		new ProfileController(pm,ProfileController.PROFILE_FILE_NAME).persist();
 		refreshOfferList();
 	}
 	
