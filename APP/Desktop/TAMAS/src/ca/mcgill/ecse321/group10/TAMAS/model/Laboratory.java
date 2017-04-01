@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.util.*;
 
 // line 29 "../../../../../../alternatemodel.ump"
-// line 103 "../../../../../../alternatemodel.ump"
+// line 104 "../../../../../../alternatemodel.ump"
 public class Laboratory extends Job
 {
 

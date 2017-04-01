@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.group10.TAMAS.model;
 
 // line 58 "../../../../../../alternatemodel.ump"
-// line 133 "../../../../../../alternatemodel.ump"
+// line 134 "../../../../../../alternatemodel.ump"
 public class Application
 {
 
@@ -17,6 +17,9 @@ public class Application
   //------------------------
   // MEMBER VARIABLES
   //------------------------
+
+  //Application Attributes
+  private boolean offerAccepted;
 
   //Autounique Attributes
   private int id;
@@ -47,6 +50,19 @@ public class Application
   //------------------------
   // INTERFACE
   //------------------------
+
+  public boolean setOfferAccepted(boolean aOfferAccepted)
+  {
+    boolean wasSet = false;
+    offerAccepted = aOfferAccepted;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean getOfferAccepted()
+  {
+    return offerAccepted;
+  }
 
   public int getId()
   {
@@ -116,7 +132,8 @@ public class Application
   {
     String outputString = "";
     return super.toString() + "["+
-            "id" + ":" + getId()+ "]" + System.getProperties().getProperty("line.separator") +
+            "id" + ":" + getId()+ "," +
+            "offerAccepted" + ":" + getOfferAccepted()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "student = "+(getStudent()!=null?Integer.toHexString(System.identityHashCode(getStudent())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "jobs = "+(getJobs()!=null?Integer.toHexString(System.identityHashCode(getJobs())):"null")
      + outputString;

@@ -3,8 +3,8 @@
     <application id="3">
       <id>1</id>
       <student id="4">
-        <username>Randinator</username>
-        <password>shdjkfds</password>
+        <username>randinator</username>
+        <password>dfhjks</password>
         <firstName>Randy</firstName>
         <lastName>Bobandy</lastName>
         <id>3</id>
@@ -22,7 +22,7 @@
               <day>Monday</day>
               <salary>12.0</salary>
               <requirements></requirements>
-              <offerSent>false</offerSent>
+              <offerSent>true</offerSent>
               <id>2</id>
               <position>GRADER</position>
               <course id="11">
@@ -37,13 +37,13 @@
                     <day>Monday</day>
                     <salary>12.0</salary>
                     <requirements></requirements>
-                    <offerSent>true</offerSent>
+                    <offerSent>false</offerSent>
                     <id>1</id>
                     <position>TA</position>
                     <course reference="11"/>
                     <instructor id="16">
                       <username>theliquor</username>
-                      <password>sdhjkfds</password>
+                      <password>hjkdfs</password>
                       <firstName>Jim</firstName>
                       <lastName>Lahey</lastName>
                       <id>1</id>
@@ -66,18 +66,17 @@
                               <position>TA</position>
                               <course reference="18"/>
                               <instructor reference="16"/>
-                              <students id="23"/>
-                              <applications id="24">
-                                <application id="25">
+                              <applications id="23">
+                                <application id="24">
                                   <id>3</id>
                                   <student reference="4"/>
                                   <jobs reference="20"/>
                                 </application>
                               </applications>
                             </job>
-                            <job id="26">
-                              <startTime id="27">02:30:00</startTime>
-                              <endTime id="28">04:00:00</endTime>
+                            <job id="25">
+                              <startTime id="26">02:30:00</startTime>
+                              <endTime id="27">04:00:00</endTime>
                               <day>Monday</day>
                               <salary>12.0</salary>
                               <requirements></requirements>
@@ -86,28 +85,154 @@
                               <position>GRADER</position>
                               <course reference="18"/>
                               <instructor reference="16"/>
-                              <students id="29"/>
-                              <applications id="30">
-                                <application id="31">
+                              <applications id="28">
+                                <application id="29">
                                   <id>4</id>
                                   <student reference="4"/>
-                                  <jobs reference="26"/>
+                                  <jobs reference="25"/>
+                                </application>
+                                <application id="30">
+                                  <id>5</id>
+                                  <student id="31">
+                                    <username>elongatedalien</username>
+                                    <password>dhsjkdf</password>
+                                    <firstName>Trevor</firstName>
+                                    <lastName>Lahey</lastName>
+                                    <id>4</id>
+                                    <experience></experience>
+                                    <degree>UNDERGRAD</degree>
+                                    <jobs id="32"/>
+                                    <applications id="33">
+                                      <application reference="30"/>
+                                      <application id="34">
+                                        <id>6</id>
+                                        <student reference="31"/>
+                                        <jobs id="35">
+                                          <startTime id="36">02:30:00</startTime>
+                                          <endTime id="37">04:00:00</endTime>
+                                          <day>Monday</day>
+                                          <salary>12.0</salary>
+                                          <requirements></requirements>
+                                          <offerSent>false</offerSent>
+                                          <id>5</id>
+                                          <position>TA</position>
+                                          <course id="38">
+                                            <className>ECSE221</className>
+                                            <cdn>3</cdn>
+                                            <graderTimeBudget>12.0</graderTimeBudget>
+                                            <taTimeBudget>2.0</taTimeBudget>
+                                            <jobs id="39">
+                                              <job reference="35"/>
+                                              <job id="40">
+                                                <startTime id="41">02:30:00</startTime>
+                                                <endTime id="42">04:00:00</endTime>
+                                                <day>Monday</day>
+                                                <salary>12.0</salary>
+                                                <requirements></requirements>
+                                                <offerSent>false</offerSent>
+                                                <id>6</id>
+                                                <position>GRADER</position>
+                                                <course reference="38"/>
+                                                <instructor id="43">
+                                                  <username>aviato</username>
+                                                  <password>dfhjksdf</password>
+                                                  <firstName>Erlich</firstName>
+                                                  <lastName>Bachmann</lastName>
+                                                  <id>2</id>
+                                                  <courses id="44">
+                                                    <course reference="38"/>
+                                                    <course id="45">
+                                                      <className>ECSE414</className>
+                                                      <cdn>4</cdn>
+                                                      <graderTimeBudget>12.0</graderTimeBudget>
+                                                      <taTimeBudget>12.0</taTimeBudget>
+                                                      <jobs id="46">
+                                                        <job id="47">
+                                                          <startTime id="48">02:30:00</startTime>
+                                                          <endTime id="49">04:00:00</endTime>
+                                                          <day>Monday</day>
+                                                          <salary>12.0</salary>
+                                                          <requirements></requirements>
+                                                          <offerSent>false</offerSent>
+                                                          <id>7</id>
+                                                          <position>TA</position>
+                                                          <course reference="45"/>
+                                                          <instructor reference="43"/>
+                                                          <applications id="50">
+                                                            <application id="51">
+                                                              <id>8</id>
+                                                              <student reference="31"/>
+                                                              <jobs reference="47"/>
+                                                            </application>
+                                                          </applications>
+                                                        </job>
+                                                        <job id="52">
+                                                          <startTime id="53">02:30:00</startTime>
+                                                          <endTime id="54">04:00:00</endTime>
+                                                          <day>Monday</day>
+                                                          <salary>12.0</salary>
+                                                          <requirements></requirements>
+                                                          <offerSent>false</offerSent>
+                                                          <id>8</id>
+                                                          <position>GRADER</position>
+                                                          <course reference="45"/>
+                                                          <instructor reference="43"/>
+                                                          <applications id="55">
+                                                            <application id="56">
+                                                              <id>9</id>
+                                                              <student reference="31"/>
+                                                              <jobs reference="52"/>
+                                                            </application>
+                                                          </applications>
+                                                        </job>
+                                                      </jobs>
+                                                    </course>
+                                                  </courses>
+                                                  <applications id="57"/>
+                                                  <jobs id="58">
+                                                    <job reference="35"/>
+                                                    <job reference="40"/>
+                                                    <job reference="47"/>
+                                                    <job reference="52"/>
+                                                  </jobs>
+                                                </instructor>
+                                                <applications id="59">
+                                                  <application id="60">
+                                                    <id>7</id>
+                                                    <student reference="31"/>
+                                                    <jobs reference="40"/>
+                                                  </application>
+                                                </applications>
+                                              </job>
+                                            </jobs>
+                                          </course>
+                                          <instructor reference="43"/>
+                                          <applications id="61">
+                                            <application reference="34"/>
+                                          </applications>
+                                        </jobs>
+                                      </application>
+                                      <application reference="60"/>
+                                      <application reference="51"/>
+                                      <application reference="56"/>
+                                    </applications>
+                                  </student>
+                                  <jobs reference="25"/>
                                 </application>
                               </applications>
                             </job>
                           </jobs>
                         </course>
                       </courses>
-                      <applications id="32"/>
-                      <jobs id="33">
+                      <applications id="62"/>
+                      <jobs id="63">
                         <job reference="13"/>
                         <job reference="8"/>
                         <job reference="20"/>
-                        <job reference="26"/>
+                        <job reference="25"/>
                       </jobs>
                     </instructor>
-                    <students id="34"/>
-                    <applications id="35">
+                    <applications id="64">
                       <application reference="3"/>
                     </applications>
                   </job>
@@ -115,160 +240,34 @@
                 </jobs>
               </course>
               <instructor reference="16"/>
-              <students id="36"/>
-              <applications id="37">
+              <applications id="65">
                 <application reference="7"/>
               </applications>
             </jobs>
           </application>
-          <application reference="25"/>
-          <application reference="31"/>
-          <application id="38">
-            <id>5</id>
-            <student reference="4"/>
-            <jobs id="39">
-              <startTime id="40">02:30:00</startTime>
-              <endTime id="41">04:00:00</endTime>
-              <day>Monday</day>
-              <salary>12.0</salary>
-              <requirements></requirements>
-              <offerSent>false</offerSent>
-              <id>5</id>
-              <position>TA</position>
-              <course id="42">
-                <className>ECSE221</className>
-                <cdn>3</cdn>
-                <graderTimeBudget>12.0</graderTimeBudget>
-                <taTimeBudget>2.0</taTimeBudget>
-                <jobs id="43">
-                  <job reference="39"/>
-                  <job id="44">
-                    <startTime id="45">02:30:00</startTime>
-                    <endTime id="46">04:00:00</endTime>
-                    <day>Monday</day>
-                    <salary>12.0</salary>
-                    <requirements></requirements>
-                    <offerSent>false</offerSent>
-                    <id>6</id>
-                    <position>GRADER</position>
-                    <course reference="42"/>
-                    <instructor id="47">
-                      <username>aviato</username>
-                      <password>shdj</password>
-                      <firstName>Erlich</firstName>
-                      <lastName>Bachman</lastName>
-                      <id>2</id>
-                      <courses id="48">
-                        <course reference="42"/>
-                        <course id="49">
-                          <className>ECSE414</className>
-                          <cdn>4</cdn>
-                          <graderTimeBudget>12.0</graderTimeBudget>
-                          <taTimeBudget>12.0</taTimeBudget>
-                          <jobs id="50">
-                            <job id="51">
-                              <startTime id="52">02:30:00</startTime>
-                              <endTime id="53">04:00:00</endTime>
-                              <day>Monday</day>
-                              <salary>12.0</salary>
-                              <requirements></requirements>
-                              <offerSent>false</offerSent>
-                              <id>7</id>
-                              <position>TA</position>
-                              <course reference="49"/>
-                              <instructor reference="47"/>
-                              <students id="54"/>
-                              <applications id="55">
-                                <application id="56">
-                                  <id>7</id>
-                                  <student id="57">
-                                    <username>elongatedalien</username>
-                                    <password>dfhjkslfs</password>
-                                    <firstName>Trevor</firstName>
-                                    <lastName>Lahey</lastName>
-                                    <id>4</id>
-                                    <experience></experience>
-                                    <degree>UNDERGRAD</degree>
-                                    <jobs id="58"/>
-                                    <applications id="59">
-                                      <application reference="56"/>
-                                      <application id="60">
-                                        <id>8</id>
-                                        <student reference="57"/>
-                                        <jobs id="61">
-                                          <startTime id="62">02:30:00</startTime>
-                                          <endTime id="63">04:00:00</endTime>
-                                          <day>Monday</day>
-                                          <salary>12.0</salary>
-                                          <requirements></requirements>
-                                          <offerSent>false</offerSent>
-                                          <id>8</id>
-                                          <position>GRADER</position>
-                                          <course reference="49"/>
-                                          <instructor reference="47"/>
-                                          <students id="64"/>
-                                          <applications id="65">
-                                            <application reference="60"/>
-                                          </applications>
-                                        </jobs>
-                                      </application>
-                                    </applications>
-                                  </student>
-                                  <jobs reference="51"/>
-                                </application>
-                              </applications>
-                            </job>
-                            <job reference="61"/>
-                          </jobs>
-                        </course>
-                      </courses>
-                      <applications id="66"/>
-                      <jobs id="67">
-                        <job reference="39"/>
-                        <job reference="44"/>
-                        <job reference="51"/>
-                        <job reference="61"/>
-                      </jobs>
-                    </instructor>
-                    <students id="68"/>
-                    <applications id="69">
-                      <application id="70">
-                        <id>6</id>
-                        <student reference="4"/>
-                        <jobs reference="44"/>
-                      </application>
-                    </applications>
-                  </job>
-                </jobs>
-              </course>
-              <instructor reference="47"/>
-              <students id="71"/>
-              <applications id="72">
-                <application reference="38"/>
-              </applications>
-            </jobs>
-          </application>
-          <application reference="70"/>
+          <application reference="24"/>
+          <application reference="29"/>
         </applications>
       </student>
       <jobs reference="13"/>
     </application>
     <application reference="7"/>
-    <application reference="25"/>
-    <application reference="31"/>
-    <application reference="38"/>
-    <application reference="70"/>
-    <application reference="56"/>
+    <application reference="24"/>
+    <application reference="29"/>
+    <application reference="30"/>
+    <application reference="34"/>
     <application reference="60"/>
+    <application reference="51"/>
+    <application reference="56"/>
   </applications>
-  <jobs id="73">
+  <jobs id="66">
     <job reference="13"/>
     <job reference="8"/>
     <job reference="20"/>
-    <job reference="26"/>
-    <job reference="39"/>
-    <job reference="44"/>
-    <job reference="51"/>
-    <job reference="61"/>
+    <job reference="25"/>
+    <job reference="35"/>
+    <job reference="40"/>
+    <job reference="47"/>
+    <job reference="52"/>
   </jobs>
 </amanager>

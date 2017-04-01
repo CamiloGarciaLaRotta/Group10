@@ -59,6 +59,7 @@ class Application {
   autounique id;
   *-<@> 1 Student student;
   *-<@> 1 Job jobs;
+  lazy boolean offerAccepted;
 }
 
 class ApplicationManager {
