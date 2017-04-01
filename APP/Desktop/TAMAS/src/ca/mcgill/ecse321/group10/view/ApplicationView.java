@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
@@ -18,6 +19,7 @@ import ca.mcgill.ecse321.group10.controller.InputException;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
 import widgets.ThemedPanel;
+import widgets.ThemedTextArea;
 
 public class ApplicationView extends JFrame{
 	
@@ -30,8 +32,11 @@ public class ApplicationView extends JFrame{
 	private JScrollPane jobScroller;
 	private JLabel lStudent;
 	private JLabel lJob;
+	private JLabel lInfo;
 	private JButton apply;
 	private ThemedLabel message;
+	private JTextArea taInfo;
+	private JScrollPane infoScroller;
 	
 	public ApplicationView(ApplicationManager am, ProfileManager pm) {
 		this.am = am;
@@ -61,6 +66,12 @@ public class ApplicationView extends JFrame{
 		jobList.setLayoutOrientation(JList.VERTICAL);
 		jobScroller = new JScrollPane(jobList);
 		
+		jobList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+			public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+				refreshInfo();
+			}
+		});
+		
 		lStudent = new ThemedLabel("Find your username below:");
 		lJob = new ThemedLabel("Choose job:");
 		
@@ -74,6 +85,13 @@ public class ApplicationView extends JFrame{
 			}
 		});
 		
+		lInfo = new ThemedLabel("Job Description:");
+		taInfo = new ThemedTextArea();
+		taInfo.setEditable(false);
+		infoScroller = new JScrollPane(taInfo);
+		
+		refreshInfo();
+		
 		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		panel.add(message);
@@ -81,6 +99,8 @@ public class ApplicationView extends JFrame{
 		panel.add(studentScroller);
 		panel.add(lJob);
 		panel.add(jobScroller, null);
+		panel.add(lInfo);
+		panel.add(infoScroller);
 		panel.add(apply);
 		add(panel);
 		pack();
@@ -108,6 +128,18 @@ public class ApplicationView extends JFrame{
 			message.setText(msg);
 			pack();
 		}
+	}
+	
+	private void refreshInfo() {
+		String info = "";
+		if(jobList.getSelectedIndex() == -1) return;
+		Job j = am.getJob(jobList.getSelectedIndex());
+		info += "*" + j.getCourse().getClassName() + " " + j.getPositionFullName() + "*\n";
+		info += "Course taught by Prof. " + j.getInstructor().getFirstName() + " " + j.getInstructor().getLastName() + "\n\n";
+		info += "Salary: $" + j.getSalary() + "/h\n";
+		info += "Hours: " + j.getDay() + "s from " + j.getStartTime().toString() + " to " + j.getEndTime().toString() + "\n";
+		taInfo.setText(info);
+		pack();
 	}
 
 }
