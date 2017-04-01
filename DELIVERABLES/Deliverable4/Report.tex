@@ -25,7 +25,7 @@
 \part{Integration}
 \section{Description}
 The integration pipeline is responsible for maintaining the integrity of the source code throughout the development phase. Without proper integration, mistakes from one software developer can propagate into other people's work. Like an infectious disease, bugs can propagate. Infected code (Code that has bugs) that is shared can easily go unnoticed and affect larger systems where it can become even harder to notice. The goal of the integration pipeline is to reduce the amount of mistakes that will be integrated into the project and to keep track of all changes. The tools used for this purpose is discussed in the \hyperref[s:integration-tools]{Tools} section.
-\section{Tools Used}
+\section{Tools}
 \label{s:integration-tools}
 This section describes the tools that were used in the integration pipeline. The tools used for the integration pipeline include but are not limited to: Git, Github, TravisCI, JUnit, PHPUnit, and Slack.
 
@@ -61,8 +61,6 @@ Our team came to decisions on certain naming conventions to keep our code consis
     \item It was decided to keep method names as short as possible
     \item It was decided to keep the code split into three modules: Model, Persistence and Controller in all platforms
     \item It was decided to have method signatures followed by an open bracket on the same line
-    \item Managers and Controllers were named with two letters for brevity
-    \item Although somewhat standard, we emphasized that all variables and methods that do not need to be accessed outside of the class it's declared in must be declared private
 \end{enumerate}
 
 \subsection{Tools} The tools utilized for integration, as described above, are:
@@ -84,11 +82,9 @@ This section specifies the rationale for our team's design choices. The enumerat
     \item Keeping method names as short as possible allowed for code to remain concise where possible
     \item Splitting code into three modules made it easier to know where to find classes within the projects
     \item Having method signatures followed by a bracket rather than have the opening bracket on the following line kept the code consistent which made it easier to track whether or not code has syntax errors
-    \item Since Managers and Controllers were a large part of how our application works and everyone knew what they were, it was convenient to keep the names short. eg: pm - profile manager, ac - application controller
-    \item We decided to enforce the idea that methods and variables should default to private to keep people from using code that they didn't write from another class where it might break something. There are people in our group who have only taken comp 202, so we wanted to be explicit here. 
 \end{enumerate}
 
-\subsection{Tools} Here we will discuss why each tool was chosen:
+\subsection{Tools Used} Here we will discuss why each tool was chosen:
 \begin{enumerate}
     \item \textbf{Git/GitHub}\\\\
     	Git was chosen becauuse of it's almost universal use for project source-code version control, no real alternative was considered because of how ubiquitous and industry-standard Git is.\\
@@ -107,7 +103,7 @@ This section specifies the rationale for our team's design choices. The enumerat
     	Slack was chosen over something like facebook messenger because of the utility and focus that it provides to group conversations. Being able to seperate each kind of task to a seperate conversation definitely made organisation and teamwork simpler and more reliable. The added funcitonality of plug-ins for slack also make a variety of tasks simpler and less time-consuming.
 \end{enumerate}
 
-\section{Tools Considered But Not Used}
+\subsection{Tools Considered But Not Used}
 \begin{enumerate}
 	\item \textbf{Trello}\\\\
 		Team management software like Trello (and it's competitors) allow users to create lists and have cards to show a variety of different things relating to group workflow. Such software sees a lot of use in industry for large-scale projects requiring multiple teams. However because of the scale and the way the project was structured, it was determined that such a software was overkill and not entirely necessary. Though the learning-curve to be able use the software for those unfamiliar with it is relatively small,it was not worth the risk introducing a new variable into the management of the project and potentially causing extra confusion and taking time off other tasks.
