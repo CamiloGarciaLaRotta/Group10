@@ -24,7 +24,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 	
 	private ProfileManager pm;
 	
-	JLabel error;
+	ThemedLabel error;
 	
 	JRadioButton rbStudent, rbInstructor, rbAdmin;
 	ButtonGroup radioGroup;
@@ -244,6 +244,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		String user = tfUser.getText();
 		String pass = tfPass.getText();
 		ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
+		error.setType(ThemedLabel.LabelType.Success);
 		if(rbStudent.isSelected()) {
 			try {
 				reqs = taReqs.getText();
@@ -252,6 +253,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 				reqs = "";
 				taReqs.setText("");
 			} catch (InputException e) {
+				error.setType(ThemedLabel.LabelType.Error);
 				error.setText(e.getMessage());
 				problem = true;
 			}
@@ -262,6 +264,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 				pc.addInstructorToSystem(user, pass, first, last);
 				error.setText("Instructor " + user + " created.");
 			} catch (InputException e) {
+				error.setType(ThemedLabel.LabelType.Error);
 				error.setText(e.getMessage());
 				problem = true;
 			}
@@ -272,12 +275,14 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 				pc.addAdminToSystem(user, pass, first, last);
 				error.setText("Admin " + user + " created.");
 			} catch (InputException e) {
+				error.setType(ThemedLabel.LabelType.Error);
 				error.setText(e.getMessage());
 				problem = true;
 			}
 			refreshData();
 		}
 		else {
+			error.setType(ThemedLabel.LabelType.Error);
 			error.setText("Please chose profile type");
 			problem = true;
 		}
