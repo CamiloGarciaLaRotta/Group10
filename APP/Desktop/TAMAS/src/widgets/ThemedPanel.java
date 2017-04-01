@@ -10,5 +10,10 @@ public class ThemedPanel extends JPanel{
 		super();
 		setBackground(new Color(0x44,0x44,0x77));
 	}
+	
+	public ThemedPanel(Color c) {
+		super();
+		setBackground(c);
+	}
 
 }
