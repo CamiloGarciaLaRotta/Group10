@@ -605,9 +605,9 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(1,am.numberOfJobs());
 		// No students assigned to Job; hence 0
-		assertEquals(0,am.getJob(0).numberOfStudents());
+		//assertEquals(0,am.getJob(0).numberOfStudents());
 		// No students; hence false
-		assertFalse(am.getJob(0).hasStudents());
+		//assertFalse(am.getJob(0).hasStudents());
 	}
 
 	@Test
@@ -639,7 +639,7 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
 		// THE REASON FOR 2 JOBS FOR 2 APPLICATIONS: Each application NEEDS a job
 		// Make new application; apply aStudent to am.getJob(0)
@@ -681,7 +681,7 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
 		// THE REASON FOR 2 JOBS FOR 2 APPLICATIONS: Each application NEEDS a job
 		// Make new application; apply aStudent to am.getJob(0)
@@ -737,7 +737,7 @@ public class TestJob {
 	@Test
 	public void testMinimumNumberOfStudentsAndApplicants() {
 		// Both are a minimum of 0, the methods work and both return 0
-		assertEquals(0,Job.minimumNumberOfStudents());
+		//assertEquals(0,Job.minimumNumberOfStudents());
 		assertEquals(0,Job.minimumNumberOfApplications());
 	}
 
@@ -771,34 +771,34 @@ public class TestJob {
 		}
 		// Job gets saved
 		assertEquals(1,am.numberOfJobs());
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// 1 Student
-		assertEquals(1,am.getJob(0).numberOfStudents());
+		//assertEquals(1,am.getJob(0).numberOfStudents());
 		// Make sure it has students
-		assertTrue(am.getJob(0).hasStudents());
+		//assertTrue(am.getJob(0).hasStudents());
 		// Make sure the instances of Student are identical
-		assertEquals(aStudent,am.getJob(0).getStudent(0));
+		//assertEquals(aStudent,am.getJob(0).getStudent(0));
 		
 		// Adding the same student returns false
-		assertFalse(am.getJob(0).addStudent(aStudent));
+		//assertFalse(am.getJob(0).addStudent(aStudent));
 		// Adding the same student will return false
-		assertFalse(am.getJob(0).addStudentAt(aStudent, 0));
+		//assertFalse(am.getJob(0).addStudentAt(aStudent, 0));
 		// Still 1 student
-		assertEquals(1,am.getJob(0).numberOfStudents());
+		//assertEquals(1,am.getJob(0).numberOfStudents());
 		// Adding different student will return true
-		assertTrue(am.getJob(0).addStudentAt(aStudent2, -1));
+		//assertTrue(am.getJob(0).addStudentAt(aStudent2, -1));
 		// Now 2 students
-		assertEquals(2,am.getJob(0).numberOfStudents());
+		//assertEquals(2,am.getJob(0).numberOfStudents());
 		// Remove aStudent returns true
-		assertTrue(am.getJob(0).removeStudent(aStudent));
+		//assertTrue(am.getJob(0).removeStudent(aStudent));
 		// Removing the same student returns false
-		assertFalse(am.getJob(0).removeStudent(aStudent));
+		//assertFalse(am.getJob(0).removeStudent(aStudent));
 		// Now 1 student
-		assertEquals(1,am.getJob(0).numberOfStudents());
+		//assertEquals(1,am.getJob(0).numberOfStudents());
 		
 		// This tests for another branch in the addStudentAt method (specifically the conditional with index>numberOfStudents)
-		assertTrue(am.getJob(0).addStudentAt(aStudent, am.getJob(0).numberOfStudents()));
-		assertTrue(am.getJob(0).removeStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudentAt(aStudent, am.getJob(0).numberOfStudents()));
+		//assertTrue(am.getJob(0).removeStudent(aStudent));
 	}
 	
 	@Test
@@ -832,11 +832,11 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(1,am.numberOfJobs());
 		// Student hasn't been added, adds student and returns true
-		assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent, 0));
+		//assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent, 0));
 		// Tests for the branch if (index < 0)
-		assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent,-1));
+		//assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent,-1));
 		
-		assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent2, am.getJob(0).numberOfStudents()));
+		//assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent2, am.getJob(0).numberOfStudents()));
 	}
 	
 
@@ -866,9 +866,9 @@ public class TestJob {
 		}
 		// Job gets saved
 		assertEquals(1,am.numberOfJobs());
-		assertTrue(am.getJob(0).addStudent(aStudent));
-		assertTrue(am.getJob(0).hasStudents());
-		am.getJob(0).getStudents();
+		//assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).hasStudents());
+		//am.getJob(0).getStudents();
 	}
 	
 	@Test
@@ -900,7 +900,7 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
 		// THE REASON FOR 2 JOBS FOR 2 APPLICATIONS: Each application NEEDS a job
 		// Make new application; apply aStudent to am.getJob(0)
@@ -946,7 +946,7 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// Make new application; apply aStudent to am.getJob(0)
 		Application aApplication = am.getJob(0).addApplication(aStudent);
 		Application aApplication2 = am.getJob(1).addApplication(aStudent);
@@ -987,7 +987,7 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
 		// Make new application; apply aStudent to am.getJob(0)
 		Application aApplication = am.getJob(0).addApplication(aStudent);
@@ -1034,7 +1034,7 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
 		// Make new application; apply aStudent to am.getJob(0)
 		Application aApplication = am.getJob(0).addApplication(aStudent);
@@ -1083,7 +1083,7 @@ public class TestJob {
 		// Job gets saved
 		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// Make new application; apply aStudent to am.getJob(0)
 		Application aApplication = am.getJob(0).addApplication(aStudent);
 		Application aApplication2 = am.getJob(1).addApplication(aStudent);
@@ -1099,7 +1099,7 @@ public class TestJob {
 		am.getJob(0).delete();
 		// Make sure there are 0 students and applicants
 		assertEquals(0,am.getJob(0).numberOfApplications());
-		assertEquals(0,am.getJob(0).numberOfStudents());
+		//assertEquals(0,am.getJob(0).numberOfStudents());
 		
 		// Make sure it has no applications
 		assertFalse(am.getJob(0).hasApplications());
@@ -1133,9 +1133,9 @@ public class TestJob {
 		}
 		// Job gets saved
 		assertEquals(1,am.numberOfJobs());
-		assertTrue(am.getJob(0).addStudent(aStudent));
+		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// 1 Student
-		assertEquals(1,am.getJob(0).numberOfStudents());
+		//assertEquals(1,am.getJob(0).numberOfStudents());
 		
 		assertEquals(am.getJob(0).toString(),am.getJob(0).toString());
 	}

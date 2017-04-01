@@ -230,7 +230,7 @@ public class HireView extends JFrame{
 					break;
 				}
 			}
-			//new ProfileController(pm, ProfileController.PROFILE_FILE_NAME).persist();
+			new ProfileController(pm, ProfileController.PROFILE_FILE_NAME).persist();
 			message.setType(ThemedLabel.LabelType.Success);
 			message.setText("Job offer sent!");
 		}

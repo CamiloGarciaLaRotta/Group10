@@ -1,0 +1,79 @@
+<pmanager id="1">
+  <students id="2">
+    <student id="3">
+      <username>Randinator</username>
+      <password>shdjkfds</password>
+      <firstName>Randy</firstName>
+      <lastName>Bobandy</lastName>
+      <id>3</id>
+      <experience></experience>
+      <degree>UNDERGRAD</degree>
+      <jobs id="4"/>
+      <applications id="5"/>
+    </student>
+    <student id="6">
+      <username>elongatedalien</username>
+      <password>dfhjkslfs</password>
+      <firstName>Trevor</firstName>
+      <lastName>Lahey</lastName>
+      <id>4</id>
+      <experience></experience>
+      <degree>UNDERGRAD</degree>
+      <jobs id="7"/>
+      <applications id="8"/>
+    </student>
+  </students>
+  <instructors id="9">
+    <instructor id="10">
+      <username>theliquor</username>
+      <password>sdhjkfds</password>
+      <firstName>Jim</firstName>
+      <lastName>Lahey</lastName>
+      <id>1</id>
+      <courses id="11">
+        <course id="12">
+          <className>FACC100</className>
+          <cdn>1</cdn>
+          <graderTimeBudget>12.0</graderTimeBudget>
+          <taTimeBudget>12.0</taTimeBudget>
+          <jobs id="13"/>
+        </course>
+        <course id="14">
+          <className>CCOM206</className>
+          <cdn>2</cdn>
+          <graderTimeBudget>12.0</graderTimeBudget>
+          <taTimeBudget>12.0</taTimeBudget>
+          <jobs id="15"/>
+        </course>
+      </courses>
+      <applications id="16"/>
+      <jobs id="17"/>
+    </instructor>
+    <instructor id="18">
+      <username>aviato</username>
+      <password>shdj</password>
+      <firstName>Erlich</firstName>
+      <lastName>Bachman</lastName>
+      <id>2</id>
+      <courses id="19">
+        <course id="20">
+          <className>ECSE221</className>
+          <cdn>3</cdn>
+          <graderTimeBudget>12.0</graderTimeBudget>
+          <taTimeBudget>2.0</taTimeBudget>
+          <jobs id="21"/>
+        </course>
+        <course id="22">
+          <className>ECSE414</className>
+          <cdn>4</cdn>
+          <graderTimeBudget>12.0</graderTimeBudget>
+          <taTimeBudget>12.0</taTimeBudget>
+          <jobs id="23"/>
+        </course>
+      </courses>
+      <applications id="24"/>
+      <jobs id="25"/>
+    </instructor>
+  </instructors>
+  <admins id="26"/>
+</pmanager>

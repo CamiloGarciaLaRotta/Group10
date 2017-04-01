@@ -105,4 +105,11 @@
 			</batchtest>
 		</junit>
 	</target>
+
+	<target name="backupxml">
+		<mkdir dir=".output"/>
+		<copy file="output/applications.xml" todir=".output"/>
+		<copy file="output/profiles.xml" todir=".output"/>
+		<copy file="output/courses.xml" todir=".output"/>
+	</target>
 </project>

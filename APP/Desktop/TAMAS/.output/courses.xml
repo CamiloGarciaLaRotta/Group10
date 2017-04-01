@@ -1,0 +1,32 @@
+<cmanager id="1">
+  <courses id="2">
+    <course id="3">
+      <className>FACC100</className>
+      <cdn>1</cdn>
+      <graderTimeBudget>12.0</graderTimeBudget>
+      <taTimeBudget>12.0</taTimeBudget>
+      <jobs id="4"/>
+    </course>
+    <course id="5">
+      <className>CCOM206</className>
+      <cdn>2</cdn>
+      <graderTimeBudget>12.0</graderTimeBudget>
+      <taTimeBudget>12.0</taTimeBudget>
+      <jobs id="6"/>
+    </course>
+    <course id="7">
+      <className>ECSE221</className>
+      <cdn>3</cdn>
+      <graderTimeBudget>12.0</graderTimeBudget>
+      <taTimeBudget>2.0</taTimeBudget>
+      <jobs id="8"/>
+    </course>
+    <course id="9">
+      <className>ECSE414</className>
+      <cdn>4</cdn>
+      <graderTimeBudget>12.0</graderTimeBudget>
+      <taTimeBudget>12.0</taTimeBudget>
+      <jobs id="10"/>
+    </course>
+  </courses>
+</cmanager>

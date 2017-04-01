@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
+/*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
@@ -141,42 +141,17 @@ public class Student extends Profile
     boolean wasAdded = false;
     if (jobs.contains(aJob)) { return false; }
     jobs.add(aJob);
-    if (aJob.indexOfStudent(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aJob.addStudent(this);
-      if (!wasAdded)
-      {
-        jobs.remove(aJob);
-      }
-    }
+    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removeJob(Job aJob)
   {
     boolean wasRemoved = false;
-    if (!jobs.contains(aJob))
+    if (jobs.contains(aJob))
     {
-      return wasRemoved;
-    }
-
-    int oldIndex = jobs.indexOf(aJob);
-    jobs.remove(oldIndex);
-    if (aJob.indexOfStudent(this) == -1)
-    {
+      jobs.remove(aJob);
       wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aJob.removeStudent(this);
-      if (!wasRemoved)
-      {
-        jobs.add(oldIndex,aJob);
-      }
     }
     return wasRemoved;
   }
@@ -287,12 +262,7 @@ public class Student extends Profile
 
   public void delete()
   {
-    ArrayList<Job> copyOfJobs = new ArrayList<Job>(jobs);
     jobs.clear();
-    for(Job aJob : copyOfJobs)
-    {
-      aJob.removeStudent(this);
-    }
     while (applications.size() > 0)
     {
       Application aApplication = applications.get(applications.size() - 1);

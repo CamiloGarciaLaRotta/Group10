@@ -60,6 +60,8 @@ public abstract class PersistenceXStream {
     	setAlias("profile",Profile.class);
     	setAlias("pmanager",ProfileManager.class);
     	setAlias("course",Course.class);
+    	setAlias("job", Job.class);
+        setAlias("application", Application.class);
     	
     	File file = new File(fileName);
     	if(file.exists()) {
