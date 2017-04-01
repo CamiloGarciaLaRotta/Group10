@@ -104,11 +104,16 @@ public class ProfileController {
 		}
 		if(error.length() > 0) throw new InputException(error);
 		else{
-		Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
-		pm.addStudent(student);
+			Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
+			pm.addStudent(student);
+			PersistenceXStream.setFilename(filename);
+			PersistenceXStream.saveToXMLwithXStream(pm);
+		}
+	}
+	
+	public void persist() {
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
-		}
 	}
 //	
 //	public void removeInstructorFromSystem(String username){

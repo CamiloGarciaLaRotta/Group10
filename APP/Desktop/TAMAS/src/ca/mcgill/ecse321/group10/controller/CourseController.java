@@ -27,10 +27,10 @@ public class CourseController {
 		if (courseCdnAlreadyExists(aCdn)) error += "CDN must be unique! ";
 		if(error.length() > 0) throw new InputException(error);
 		else{
-		Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget);
-		cm.addCourse(c);
-		PersistenceXStream.setFilename(filename);
-		PersistenceXStream.saveToXMLwithXStream(cm);
+			Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget);
+			cm.addCourse(c);
+			PersistenceXStream.setFilename(filename);
+			PersistenceXStream.saveToXMLwithXStream(cm);
 		}
 	}
 	// This will check to see if the course being saved has a unique CDN

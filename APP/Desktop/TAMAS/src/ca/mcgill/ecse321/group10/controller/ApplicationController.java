@@ -54,5 +54,10 @@ public class ApplicationController {
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
+	
+	public void persist() {
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(am);
+	}
 
 }
