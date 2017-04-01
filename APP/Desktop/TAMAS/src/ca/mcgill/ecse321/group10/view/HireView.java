@@ -1,6 +1,8 @@
 package ca.mcgill.ecse321.group10.view;
 
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -186,7 +188,8 @@ public class HireView extends JFrame{
 				hirePerson();
 			}
 		});
-		
+		hireButton.setPreferredSize(new Dimension(this.getWidth()/2,40));
+
 		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		panel.add(message);
@@ -198,8 +201,17 @@ public class HireView extends JFrame{
 		panel.add(applicantScroller);
 		panel.add(hireButton);
 		panel.setMinimumSize(new Dimension(200,400));
+		
+		message.setAlignmentX(Component.LEFT_ALIGNMENT);
+		lInstructor.setAlignmentX(Component.LEFT_ALIGNMENT);
+		cbInstructor.setAlignmentX(Component.LEFT_ALIGNMENT);
+		lJob.setAlignmentX(Component.LEFT_ALIGNMENT);
+		cbJob.setAlignmentX(Component.LEFT_ALIGNMENT);
+		lApplicant.setAlignmentX(Component.LEFT_ALIGNMENT);
+		applicantScroller.setAlignmentX(Component.LEFT_ALIGNMENT);
+		hireButton.setAlignmentX(Component.LEFT_ALIGNMENT);		
 		this.add(panel);
-		this.setVisible(true);
+		//this.setVisible(true);
 		this.setMinimumSize(new Dimension(200,400));
 		pack();
 	}
@@ -274,6 +286,7 @@ public class HireView extends JFrame{
 			applicantList.setModel(model);
 			applicantList.setEnabled(true);
 		}
+		hireButton.setMinimumSize(new Dimension(this.getWidth(),40));
 		pack();
 	}
 }
