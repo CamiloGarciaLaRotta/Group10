@@ -48,7 +48,7 @@ $pm = $pt->loadProfileManagerFromStore();
 			Username<input type ="text" name="instructor_username" required/><br><br>
 			Password<input type="password" name="instructor_password" required/><br><br>
 			First Name<input type ="text" name="instructor_fName" required/><br><br>
-			Last Name<input type ="text" name="instructor_lName" required/><br<br>
+			Last Name<input type ="text" name="instructor_lName" required/><br><br>
 			<br><br><input type= "submit" value="Create Instructor"/>
 		</form>
 		<form action="../index.php">
