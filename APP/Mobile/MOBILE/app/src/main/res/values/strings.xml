@@ -8,4 +8,5 @@
     <string name="browse_job_postings">Browse Job Postings</string>
     <string name="create_job_application">Create Job Application</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="login">Login</string>
 </resources>

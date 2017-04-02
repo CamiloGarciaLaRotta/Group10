@@ -4,6 +4,7 @@
     android:id="@+id/activity_apply_to_job"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,47 +12,47 @@
     tools:context="ca.mcgill.ecse321.group10.tamas.ApplyToJob">
 
     <Button
-        android:text="@string/apply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
         android:id="@+id/applyButton"
         style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="ApplyToJobClicked"/>
+        android:layout_marginBottom="82dp"
+        android:onClick="ApplyToJobClicked"
+        android:text="@string/apply" />
 
     <EditText
+        android:id="@+id/usernameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="34dp"
-        android:id="@+id/usernameField"
-        android:textAlignment="center"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:ems="10"
         android:hint="@string/usernameHint"
-        android:onClick="usernameClicked"/>
+        android:inputType="textPersonName"
+        android:onClick="usernameClicked"
+        android:textAlignment="center" />
 
     <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:id="@+id/spinner"
-        android:layout_below="@+id/usernameField"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/usernameField"
+        android:layout_marginTop="49dp" />
 
     <TextView
-        android:text="@string/ApplicationErrors"
+        android:id="@+id/errors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/errors"
-        android:textAlignment="center"
-        android:textColor="#F00"
-        android:layout_marginTop="14dp"
         android:layout_below="@+id/usernameField"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/ApplicationErrors"
+        android:textAlignment="center"
+        android:textColor="#F00" />
 
 </RelativeLayout>
