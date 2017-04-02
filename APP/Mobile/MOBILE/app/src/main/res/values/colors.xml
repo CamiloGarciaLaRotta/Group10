@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background">#486da2</color>
+    <color name="buttonBackground">#fbe9a3</color>
+    <color name="GreyRectangle">#cecdc9</color>
+
     <color name="colorPrimary">#476da3</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>

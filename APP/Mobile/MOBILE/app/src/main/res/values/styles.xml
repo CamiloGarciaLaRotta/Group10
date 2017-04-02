@@ -6,6 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
 
+        <item name="android:actionBarStyle">@style/customActionBar</item>
+    </style>
+    
+    <style name="customActionBar" parent="@android:style/Widget.ActionBar" >
+        <item name="android:background">
+            @color/background
+        </item>
+    </style>
 </resources>
