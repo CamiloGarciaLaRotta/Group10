@@ -370,6 +370,7 @@ tested extensively since its failures, as it is a dependency for several other u
 error was resolved, no other errors have been noticed.
 
 \section{The Apply to Job Posting Use Case}
+\label{s:nine}
 \textbf{Goal: To ensure that students may apply to the job postings that were posted.}
 \subsection*{Process}
 This use case was very simple to test, since there are very few ways in which input can be invalid.
@@ -386,4 +387,115 @@ configurations, and a correct confirmation message was output for the valid inpu
 Furthermore, persistence was only generated when valid input was submitted. Moreover, it was noticed
 that by observing the job data in the job description text area, all job data appears to be correct,
 further emphasizing the validity of the Publish Job Posting Use Case implementation.
+\subsection*{Conclusion}
+The ApplicationView showed only correct behaviour throughout its vast amount of tests. Therefore it
+is believed to be functioning properly, and Students can reliably apply to Jobs.
+
+\section{The Hire Applicants Use Case}
+This use case was slightly difficult to test, because at this stage the XML persistence files were
+rather large, and in order to preserve efficiency, only a small amount of the XML is changed when
+hiring an applicant.\\\\
+\textbf{Goal: To ensure that instructors may choose to hire only students that have applied to the
+jobs that the particular instructor has posted. Furthermore, it was imperative to ensure that only
+one student may be hired for each job posting.}
+\subsection*{Process}
+Similarly to the \hyperref[s:nine]{Apply to Job Posting Use Case}, the amount of erroneous input
+data is very small, since users are constrained to choose values from a list. In fact, due to the
+use of the \texttt{JComboBox} widget, there was only one list to choose from, making only two input
+classes: one where no student is selected, and one with valid data. Due to the intended
+functionality of the HireView, once a student is hired the list of students should be cleared
+immediately and disabled (so as to ensure that only one student is hired). Therefore, if a user is
+even capable of hiring two students for the same job, the test has already failed. The test process
+included attempting to hire an unselected student (and verifying that no persistence was made) and
+attempting to hire a student. When a student has successfully been hired, the persistence should
+show that the Job's \texttt{offerSent} property should be set to true, and that the Job should be
+included in the Student's jobs list.
+\subsection*{Results}
+Unfortunately, these tests did not pass on the first shot, though this was due entirely to a logical
+error in the HireView class. Thankfully, persisting faulty data never occurred, rather the problem
+was that the data that was persisted did not correspond to the data seen on the view. This was
+actually due to a simple array-indexing flaw, that was fixed immediately. Upon fixing the logical
+error, all tests passed - that is to say, only valid inputs were accepted (and corresponding
+error/confirmation messages appeared), and the persistence worked exactly as expected. Furthermore,
+upon clicking the Hire button, the list of students for the current Job clears, and that state
+persists.
+\subsection*{Conclusion}
+After fixing a slight logical error, the HireView has only shown flawless functionality, and it is
+believed to be valid.
+
+\section{The Simplified Accept or Reject Job Offers Use Case}
+This use case was strategically implemented before the Admin's Modify Job Placement Use Case, so as
+to make system and integration testing easier.\\\\
+\textbf{Goal: To ensure that Students may view all pending Job offers, and reliably accept or reject
+them.}
+\subsection*{Process}
+Once again, there is only one source of potential error in the OfferView, so only two input classes
+exist. As usual, both input classes were tested, and it was verified that persistence was only
+modified in the case of valid input. In the Accept/Reject Job Offers behaviour, the only changes to
+persistence are that the Application that the student has an accepted from will have its
+\texttt{offerAccepted} field set to true, and once the student accepts or rejects a job offer, the
+corresponding Job should be removed from its jobs list (and thus from the OfferView's offers list).
+\subsection*{Results}
+All tests were passed. It was noted that after clicking accept or reject, the selected job was
+removed from the list on the OfferView. This \textit{does not} imply that the change was persisted,
+so this was examined by verifying the XML and by restarting the application and verifying that the
+offers list remained as it was before restarting. Furthermore, it was ensured that the
+\texttt{offerAccepted} field in the corresponding Applications were set when a job offer was
+accepted. All XML proved to be correct.
+\subsection*{Conclusion}
+Based on the functionalities that were tested, due to the lack of any failures after numerous tests
+(and given such a small range of invalid input), it is believed that the Accept or Reject Job Offers
+use case has been implemented correctly.\\
+However, it is important to note that not all behaviors of this use case were tested, as they have
+not been implemented yet. For example, when a Student chooses to reject a job offer, that Job's
+\texttt{offerSent} should be set back to false to allow for its professor to hire someone else.
+Therefore, for the sake of clarity, the Apply/Reject Job Offers Use Case has not been fully
+implemented, but the parts that have been implemented are functioning correctly. Remaining
+behaviours of this use case will be tested in further system tests later on in development, as those
+behaviours are implemented.
+
+\section{The Simplified Modify Job Placement Use Case}
+\textbf{Goal: to ensure that the Admin user can remove job offers, save changes to job placements,
+	and send job offers. To ensure that Students may only see job offers after the Admin has sent
+them.}
+\subsection*{Process}
+The View associated to this use case, ApproveOffersView, once again only allowed one class of
+invalid inputs, since there was one list to choose job offers from. However, there were three
+buttons that implemented interesting behavior. Fortunately, only one of these buttons acted based on
+the input, and the behaviour of that button does not invoke any persistence! This made testing
+slightly easier, because it was guaranteed that no invalid input could be persisted assuming the
+aforementioned button was functioning. This button is the Remove button, which removes a job offer.
+As a consequence, the job of the offer should be removed from the student's jobs list, and its
+\texttt{offerSent} field should be set back to false to allow the instructor to hire someone else.
+However, \textit{these changes should not persist}, at least not yet. Next, the Save button was
+tested, which simply persists the current states of the ApplicationManager and ProfileManager, thus
+effectively revoking the job offers that were made. This was tested by verifying the persistence of
+the value mentioned above. Finally, the Approve button was tested. This button modifies an integer
+value in persistence, and allows the OffersView to be opened by a student. This was tested by first
+making changes to the job offers and saving them, followed by attempting to open the OffersView,
+which should fail and output an error message on the MenuView. Then, the ApproveOffersView was
+opened yet again, and Approve was selected. Following this, the OffersView was opened, followed by
+restarting the application and attempting to open it yet again. Of course, upon opening the
+OffersView, it was verified that the modifications to the job offers had taken effect.
+\subsection*{Results}
+Surprisingly, all results passed without any trouble. It was seen that the OffersView can be opened
+only after the Admin has approved the job placements, which implies that students may only accept
+job offers after the Admins have approved of them. Furthermore, the job placement modifications were
+shown to be consistent, which implies that both the Remove and Save buttons are functioning as
+intended.
+\subsection*{Conclusion}
+Considering the intended behaviour of this use case, it is believed that the implementation is
+functioning properly, as no tests have been shown to fail. However, it is important to know that it
+is planned to improve the robustness of this use case in the near future. Of particular note, it is
+intended to give more flexibility to the modification of job placements, rather than just removing
+them. Thus, it cannot be said that the Modify Job Placement Use Case is completely functional, as it
+has not been implemented in its entirety yet. However, the simplified (and still useful) Modify Job
+Placement Use Case has been shown to behave only successfully, and it is considered to be functional
+in its current state. As more features are added to this use case, further system tests will be
+carried out.\\\\
+The system tests decribed above account for all system tests that have been done before Saturday,
+April 1, 2017. Furthermore, these system tests account for all use cases that have been implemented
+in the Desktop application by that date. As mentioned previously, further system tests will be
+created as the remainder of the use cases of the application are implemented on the various
+platforms.
 \end{document}
