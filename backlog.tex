@@ -401,7 +401,13 @@ In the following Deliverable, a formal release pipeline plan will be published. 
  \begin{itemize}
      \item Harley Wiltzer
  	\begin{itemize}
- 		\item gg
+ 		\item Wrote the entire Build Pipeline
+		\item Edited the Integration Pipeline and wrote the Integration Process sections
+		\item Designed and carried out all System Tests
+		\item Themed the Desktop Application to make it consistent with the Web Application
+		\item Implemented the ``Hire Applicant'', ``Modify Job Placement'', and ``Accept/Reject Job
+			Offers'' Use Cases for the Desktop Application
+		\item Began developing the build system
  	\end{itemize}
      \item Camilo Garcia La Rotta
      \begin{itemize}
@@ -438,10 +444,23 @@ In the following Deliverable, a formal release pipeline plan will be published. 
      \begin{itemize}
      	\item During the coding of the test cases we realized the uniqueness of the CDN and username attribute of Course and Profile classes was not being handled by the model natively. Thus, we had to make sure the respective controllers made the verification before submitting any modification to the model and to the persistence.
      \end{itemize}
+	 \item \textbf{Build System}
+		 \begin{itemize}
+			 \item Decided to have one unified build script that can build targets for all platforms
+			 \item Designed the intended file structure of the overall system
+		 \end{itemize}
      \item \textbf{Deployment Phase}
      \begin{itemize}
      	\item Ensuring that the delivery of the product to different platforms worked without manual input by any of the developers proved to be hard to achieve with a single delivery tool. We decided instead to use platform specific tools which would save configuration scripts to handle each platform while allowing the team to use a more appropriate tool for each target platform For further details please refer to the report of Deliverable \#4. 
      \end{itemize}
+	\item \textbf{Desktop Application}
+		\begin{itemize}
+			\item Added the \texttt{offerSent} property to the Job class and the
+				\texttt{offerAccepted} property to the Application class in the domain model, to
+				allow persistence for job offers and acceptances.
+			\item Added another persistence file to store global variables to be persisted. This
+				allows the persistence of the Administrators choice to send job offers.
+		\end{itemize}
  \end{enumerate}
 
  \subsection{Work Plan}
@@ -453,7 +472,12 @@ In the following Deliverable, a formal release pipeline plan will be published. 
  \begin{itemize}
      \item Harley Wiltzer
  		\begin{itemize}
- 			\item gg
+ 			\item System Tests: 2 hours
+			\item Build Pipline: 4 hours
+			\item Desktop Application Theming: 1 hour
+			\item Edits to the Integration Pipeline: 0.5 hours
+			\item Implementation of three Use Cases for the Desktop Application: 6 hours
+			\item Progress on the build system: 2 hours
  		\end{itemize}
      \item Camilo Garcia La Rotta
      \begin{itemize}
