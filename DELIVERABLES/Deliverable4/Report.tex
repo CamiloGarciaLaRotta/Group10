@@ -24,7 +24,13 @@
 \tableofcontents
 \part{Integration}
 \section{Description}
-The integration pipeline is responsible for maintaining the integrity of the source code throughout the development phase. Without proper integration, mistakes from one software developer can propagate into other people's work. Like an infectious disease, bugs can propagate. Infected code (Code that has bugs) that is shared can easily go unnoticed and affect larger systems where it can become even harder to notice. The goal of the integration pipeline is to reduce the amount of mistakes that will be integrated into the project and to keep track of all changes. The tools used for this purpose is discussed in the \hyperref[s:integration-tools]{Tools} section.
+The integration pipeline is responsible for maintaining the integrity of the source code throughout
+the development phase. Without proper integration, mistakes from one software developer can
+propagate into other people's work. Like an infectious disease, bugs can propagate. Infected code
+(Code that has bugs) that is shared can easily go unnoticed and affect larger systems where it can
+become even harder to notice. The goal of the integration pipeline is to reduce the amount of
+mistakes that will be integrated into the project and to keep track of all changes. The tools used
+for this purpose are discussed in the \hyperref[s:integration-tools]{Tools} section.
 
 \section{Tools Used During Integration}
 \label{s:integration-tools}
@@ -34,75 +40,175 @@ This section describes the tools that were used in the integration pipeline. The
 
 Git is the name of the version control system that is used to track the changes of our source code. Github is the website that is used to host the source code. \\
 
-The Git tool allows us to see how changes are made to the source code by our team members. Very importantly, it keeps our software developers accountable for the code that they write by keeping history of their contributions. Indeed, you can pinpoint the exact moment where software developers have made terrible mistakes. In these cases where the code has been rendered properly damaged, git allows you to revert to earlier stages in development before the mistake was made. Git also allows our members to work on code simultaneously which improves our productivity!\\
+The Git tool allows us to see how changes are made to the source code by our team members. Very
+importantly, it keeps our software developers accountable for the code that they write by keeping
+history of their contributions. Indeed, you can pinpoint the exact moment where software developers
+have made terrible mistakes. In these cases where the code has been rendered properly damaged, git
+allows you to revert to earlier stages in development before the mistake was made. Git also allows
+our members to work on code simultaneously which improves our productivity!\\
 
-Github allows our team to not only seamlessly share our code, but provides shelter for our code. Github, as a reliable  and very commonly used website, serves to host our repositories and keep it safe from accidental deletion or accident.\\
+Github allows our team to not only seamlessly share our code, but provides shelter for our code.
+Github, as a reliable  and very commonly used website, serves to host our repositories and keep it
+safe from accidental deletion.\\
 
-Git was chosen becauuse of it's almost universal use for project source-code version control, no real alternative was considered because of how ubiquitous and industry-standard Git is.\\
+Git was chosen because of its almost universal use for project source-code version control, no
+real alternative was considered because of how ubiquitous and industry-standard Git is.\\
 
-While there are other websites used for hosting repositories, GitHub is well known and respected as a good platform. Added to this, the repository is provided / is monitored by those in charge of ECSE 321 and we were not given a choice. Had this not been the case, we still would have used GitHub because of it's reliability and many integrations with software like Slack and TravisCI.
+While there are other websites used for hosting repositories, GitHub is well known and respected as
+a good platform. Added to this, the repository is provided / is monitored by those in charge of ECSE
+321 and we were not given a choice. Had this not been the case, we still would have used GitHub
+because of it's reliability and many integrations with software like Slack and TravisCI.
 
 \subsection{TravisCI}
-TravisCI is a continuous integration service that reacts to each new version of source code pushed onto Github. When the software detects that a new version of the source code has been added to github, it automatically tries to build the project and run tests. This is useful as testing automation ensures that no code that is pushed onto the repository goes untested, and can immediately bring problems to light if implemented correctly.\\
+TravisCI is a continuous integration service that reacts to each new version of source code pushed
+onto Github. When the software detects that a new version of the source code has been added to
+github, it automatically tries to build the project and run tests. This is useful as testing
+automation ensures that no code that is pushed onto the repository goes untested, and can
+immediately bring problems to light if implemented correctly.\\
 
-TravisCI was chosen because of the utility it provides in automated testing. Even if one of the team members forgets to test code before committing and pushing it, this software ensures that it is tested. For the security it provides us in terms of not having to worry about whether the code was tested or not, it is worth implementing and was thus chosen.
+TravisCI was chosen because of the utility it provides in automated testing. Even if one of the team
+members forgets to test code before committing and pushing it, this software ensures that it is
+tested automatically. For the security it provides us in terms of not having to worry about whether
+the code was tested or not, it is worth implementing and was thus chosen.
 
 \subsection{JUnit/PHPUnit}
-JUnit and PHPUnit testing frameworks were used throughout development to throughly test our code. By ensuring that code is tested properly while it is being written and before being shared, it serves to minimize the amount of mistakes that are committed to our group's source code.\\
+JUnit and PHPUnit testing frameworks were used throughout development to throughly test our code. By
+ensuring that code is tested properly while it is being written and before being shared, it serves
+to minimize the amount of mistakes that are committed to our group's source code. These adheres to
+the Test-Driven Development paradigm that was chosen to be followed for the purpose of this
+application.
 
-As one does in test-driven development, tests were written before the code was implemented. This kept our code on Github dependable.\\
+As one does in test-driven development, tests were written before the code was implemented. This
+provided the team with clear, good insight concerning which functionalities are still required to be
+implemented or fixed.\\
 
-JUnit and PHPUnit were chosen as the desired testing methods because we were shown in class how useful they were for full-scale testing and flexibility compared to just running tests within a main method. 
+JUnit and PHPUnit were chosen as the desired testing methods because we were shown in class how
+useful they were for full-scale testing and flexibility compared to just running tests within a main
+method. 
 
 \subsection{EclEmma}
 EclEmma is an eclipse plug-in and was used in conjunction with JUnit to determine code coverage for the tests that were written so that the team could implement more tests so the maximum amount of coverage could be achieved. \\
 
-EclEmma was chosen as our designated test coverage analysis tool because it was simple enough to implement quickly and because the results can be easily read. It was also introduced to us in class and so as we were already familiar with it, it made sense that EclEmma was the coverage tool that we would implement.
+EclEmma was chosen as our designated test coverage analysis tool because it was simple enough to
+implement quickly and because the results can be easily read. It was also introduced to us in class
+and so as we were already familiar with it, so it made sense that EclEmma was the coverage tool that we
+would implement.
 
 \subsection{Slack}
-Slack is a powerful communication tool that allows us to be able to keep the communication seperated to each different task, and boasts many $3^{\text{rd}}$ party integrations. Slack was not only used to aid communication across our team, but was integrated with Github to notify all of our team members of commits made. This made it easy to keep track of the progress made, which was important when certain elements within the pipelines had dependencies.\\
+Slack is a powerful communication tool that allows the team to be able to keep the communication seperate
+for each different task, and boasts many $3^{\text{rd}}$ party integrations. Slack was not only used
+to aid communication across our team, but was integrated with Github to notify all of our team
+members of commits made. This made it easy to keep track of the progress made, which was important
+when certain elements within the pipelines had dependencies.\\
 
-Slack was chosen over something like facebook messenger because of the utility and focus that it provides to group conversations. Being able to seperate each kind of task to a seperate conversation definitely made organisation and teamwork simpler and more reliable. The added funcitonality of plug-ins for slack also make a variety of tasks simpler and less time-consuming.
+Slack was chosen over something like Facebook Messenger because of the utility and focus that it
+provides to group conversations. Being able to seperate each kind of task to a seperate conversation
+definitely made organisation and teamwork simpler and more reliable. The added funcitonality of
+plug-ins for slack also make a variety of tasks simpler and less time-consuming.
 
 \section{Tools Considered But Not Used}
 	\subsection{Trello}
-		Team management software like Trello (and it's competitors) allow users to create lists and have cards to show a variety of different things relating to group workflow. Such software sees a lot of use in industry for large-scale projects requiring multiple teams. However because of the scale and the way the project was structured, it was determined that such a software was overkill and not entirely necessary. Though the learning-curve to be able use the software for those unfamiliar with it is relatively small,it was not worth the risk introducing a new variable into the management of the project and potentially causing extra confusion and taking time off other tasks.
-
+		Team management software like Trello (and it's competitors) allow users to create lists and
+		have cards to show a variety of different things relating to group workflow. Such software
+		sees a lot of use in industry for large-scale projects requiring multiple teams. However
+		because of the scale and the way the project was structured, it was determined that such a
+		software was overkill and not entirely necessary. Though the learning-curve to be able use
+		the software for those unfamiliar with it is relatively small,it was not worth the risk
+		introducing a new variable into the management of the project and potentially causing extra
+		confusion and taking time off other tasks.
+	\subsection{Subversion}
+	Subversion (SVN) is another commonly-used version control system and a rival to Git. Although it
+	is far less complex than Git and much easier to learn, SVN faces some serious problems that
+	would inhibit the productivity of the team, which lead to its dismissal from this project. Most
+	relevantly, SVN only allows modification of code when connected to the repository, and local
+	repositories do not exist in SVN. This means that if a team member has no internet connection,
+	it would be impossible for him to work on the code. This is a severe inconvenience, as there are
+	many situations in which code development has been done without internet connection, which has
+	sped-up the development process considerably. On the other hand, Git features local
+	repositories, so the user can edit code and commit it to his local repository and finally push
+	the code to the remote when internet connection has been established.
 
 \section{Design}
 \label{s:integration-design}
 This section specifies our team's design choices.\\
 
-\textbf{ \hyperref[s:integration-rationale]{The following sections contain lists that are enumerated to link to the respective subsections to the Rationale section of the document}}
+\textbf{ \hyperref[s:integration-rationale]{The following sections contain lists that are enumerated
+to link to the respective subsections to the Rationale section of the document}}
 
 \subsection{Naming Conventions}
-Our team came to decisions on certain naming conventions to keep our code consistent across platforms. This choice also makes it easier to read code written by other team members since the style remained consistent. This way the code was easier to interpret because it formalized the expectations of methods and variables. \\
+Our team came to decisions on certain naming conventions to keep our code consistent across
+platforms. This choice also makes it easier to read code written by other team members since the
+style remained consistent. This way the code was easier to interpret because it formalized the
+expectations of methods and variables. \\
 
 
 \begin{enumerate}
     \item By convention, all variables are listed at the top of a class if it is used throughout the class
-    \item It was decided to keep method names as short as possible
-    \item It was decided to keep the code split into three modules: Model, Persistence and Controller in all platforms
+    \item It was decided to keep method names as descriptive as possible
+	\item It was decided to keep the code split into three modules: Model, View and
+		Controller in all platforms
     \item It was decided to have method signatures followed by an open bracket on the same line
-    \item Managers and Controllers were named with two letters for brevity
-    \item Although somewhat standard, we emphasized that all variables and methods that do not need to be accessed outside of the class it's declared in must be declared private
+    \item Manager and Controller variables were named with two letters for brevity
+	\item Although somewhat standard, we emphasized that all variables and methods that do not need
+		to be accessed outside of the class it's declared in must be declared private
 \end{enumerate}
+
+\subsection{The Integration Process}
+It is important in the integration phase to ensure that all team members have a consistent
+understanding of the state of the code in the repository. Tools like Ant and TravisCI were used
+extensively to achieve this. It was decided as a team that code should only be pushed to the
+repository once it has been compiled, run, and has passed its corresponding tests. An exception to
+this rule is that if a developer requires assistance on a piece of code, he may push it (assuming it
+compiles) so long as he leaves a detailed report of its failures in the Git repository and in the
+commit message. It is also expected that the developer gives a summary of what needs to be done in
+Slack. Also, of important note, it is expected that the developer \textit{must} push his code after
+it has been successfully compiled and it has passed all tests.\\
+Furthermore, adhering to the rules of Test-Driven Development, the team members are expected to
+always write unit tests for new features before implementing the features themselves in the code.
 
 \section{Rationale}
 \label{s:integration-rationale}
-This section specifies the rationale for our team's design choices. The enumerated lists correspond to the \hyperref[s:integration-design]{Design section}
+This section specifies the rationale for our team's design choices. The enumerated lists correspond
+to the \hyperref[s:integration-design]{Design section}
 
 \subsection{Naming Conventions}
 \begin{enumerate}
-    \item We decided to list all the variables at the top of classes and not create a separate class for variables because we don't have many variables that are used across classes.
-    \item Keeping method names as short as possible allowed for code to remain concise where possible
+	\item We decided to list all the variables at the top of classes and not create a separate class
+		for variables because we don't have many variables that are used across classes.
+    \item Keeping method names as descriptive as possible allowed for code to be easily understood,
+		making it far more productive for other team members to use and integrate into the system
     \item Splitting code into three modules made it easier to know where to find classes within the projects
-    \item Having method signatures followed by a bracket rather than have the opening bracket on the following line kept the code consistent which made it easier to track whether or not code has syntax errors
-    \item Since Managers and Controllers were a large part of how our application works and everyone knew what they were, it was convenient to keep the names short. eg: pm - profile manager, ac - application controller
-    \item We decided to enforce the idea that methods and variables should default to private to keep people from using code that they didn't write from another class where it might break something. There are people in our group who have only taken comp 202, so we wanted to be explicit here. 
+	\item Having method signatures followed by a bracket rather than have the opening bracket on the
+		following line kept the code consistent which made it easier to track whether or not code
+		has syntax errors
+	\item Since Managers and Controllers were a large part of how our application works and everyone
+		knew what they were, it was convenient to keep the names short. eg: pm - profile manager, ac
+		- application controller
+	\item We decided to enforce the idea that methods and variables should default to private to
+		keep people from using code that they didn't write from another class where it might break
+		something. There are people in our group who have only taken comp 202, so we wanted to be
+		explicit here. 
 \end{enumerate}
 
+\subsection{The Integration Process}
+\label{s:integrationprocessrationale}
+The integration process was designed this way by the team to reduce confusion between team members.
+This process of integration guarantees a certain quality of code to the developers, so that when the
+pull from the Git repository they understand which code can be used reliably, and which code still
+needs work. The use of TravisCI will help to enforce the rule that only code that has passed its
+corresponding tests should be pushed, because TravisCI will automatically run the tests.
+Furthermore, with a convenient build system described in \hyperref[p:build]{the next part of this
+report}, testing code throughout the development phase will not be a hassle. As described later,
+this build system requires code to be tested before any executable is created as well, which will
+further convince the developers to test the code.\\\\
+Finally, it is also important for the developers to be constantly pushing their working and tested
+code. Not only does pushing the code to the Git repository create a reliable backup, but it also
+keeps the team up to date with the progress that has been made. If certain code is a dependency of
+another feature, it is obviously important that this code is submitted as soon as possible, so
+another developer make work on another feature promptly.
+
 \part{Build}
+\label{p:build}
 \section{Description}
 The build pipeline is responsible for the successful and efficient building of the source code and
 automated testing. As the system evolves, the processes required to carry out certain tasks like
@@ -178,6 +284,7 @@ that are generated by the build system.\\\\\
 	.4 src/.
 	.4 test/.
 	.5 reports*/.
+	.4 output/.
 	.2 Web/.
 	.3 ca.mcgill.ecse321.group10.TAMAS/.
 	.4 index.php.
@@ -186,6 +293,7 @@ that are generated by the build system.\\\\\
 	.4 Controller/.
 	.4 Test/.
 	.5 reports*/.
+	.4 output/.
 	.2 Mobile/.
 	.3 MOBILE/.
 	.4 app/.
@@ -214,7 +322,7 @@ The build targets intended for the desktop system will be enumerated below.
 	\item \texttt{export-desktop}\\
 		Makes executable JAR archive with the class files in \texttt{APP/build/desktop-classes}
 		directory, and places JAR in \texttt{APP/build/jar}.\\
-		Depends on \texttt{build-desktop}.
+		Depends on \texttt{test-desktop}.
 	\item \texttt{clean-desktop}\\
 		Recursively removes all directories and files suffixed with an asterisk under the
 		\texttt{APP/DESKTOP} directory and \texttt{build/desktop-classes} directory.
@@ -236,7 +344,8 @@ The following section will outline the build targets for the web application. No
 		the \texttt{APP/Web/ca.mcgill.ecse321.grouip10.TAMAS/Test/reports} directory.\\
 		Depends on \texttt{init-web}.
 	\item \texttt{export-web}\\
-		Makes a zip archive of the PHP files and stores it in \texttt{APP/build/web}.
+		Makes a zip archive of the PHP files and stores it in \texttt{APP/build/web}.\\
+		Depends on \texttt{test-web}
 	\item \texttt{run-web}\\
 		This target will be included if it is found to be convenient. It will call a script that
 		starts the XAMPP server and opens the \texttt{index.php} file in a browser.
@@ -309,7 +418,15 @@ the \hyperref[s:build-convenience]{Convenience Targets} were conceived. Should t
 do a clean build and test everything, for example, this can be done with \texttt{ant start-fresh}.
 If the developer wishes to compile everything, that may be done with \texttt{ant build-all}. All
 targets listed in the Convenience Targets section were designed \textit{only} for convenience and
-are not crucial to the build system.
+are not crucial to the build system.\\\\
+Finally, it is important to note how the developers should make use of this build system. As
+discussed in the \hyperref[s:integrationprocessrationale]{integration process}, developers are
+expected to frequently run tests on their code to ensure that the code that is being pushed to the
+repository functions according to the unit tests. Therefore, it is imperative for the developers to
+run the source code using this build system with \texttt{ant run-}, for example, which will only
+deploy code that has passed its tests. This build system provides a simple, yet robust way for the
+developers to keep themselves updated on the validity and reliability of their code, which will
+considerably enhance both the integration and deployment processes.
 \part{Deployment}
 \section{Description}
 Software deployment concerns all the tasks that cover the process of making a system available for public use.
