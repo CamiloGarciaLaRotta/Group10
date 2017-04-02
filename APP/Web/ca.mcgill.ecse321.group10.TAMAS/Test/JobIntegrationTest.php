@@ -107,7 +107,6 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		
 	}
 		
-	}
 	
 	//create a job with invalid start time
 	public function testCreateJobInvalidStartTime(){
