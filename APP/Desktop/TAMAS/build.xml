@@ -93,7 +93,7 @@
 				<fileset dir="test" includes="**/*Test*.java" excludes="**/AllTests.java"/>
 			</batchtest>
 		</junit>
-		<echo message=">>>>> STARTING UNIT TESTS..."/>
+		<echo message=">>>>> STARTING INTEGRATION TESTS..."/>
 		<junit printsummary="yes" haltonfailure="true" fork="yes">
 			<classpath>
 				<path refid="TAMAS.classpath"/>

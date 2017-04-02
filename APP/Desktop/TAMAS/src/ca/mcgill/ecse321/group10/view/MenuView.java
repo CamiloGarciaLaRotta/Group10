@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.group10.view;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.WindowConstants;
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
+import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 import widgets.Constants;
 import widgets.ThemedLabel;
 import widgets.ThemedPanel;
@@ -32,6 +34,7 @@ public class MenuView extends JFrame{
 	private JButton courseButton;
 	private JButton hireButton;
 	private JButton offerButton;
+	private JButton approveButton;
 	
 	private JButton studentButton;
 	private JButton instructorButton;
@@ -69,6 +72,7 @@ public class MenuView extends JFrame{
 		courseButton = new JButton();
 		hireButton = new JButton();
 		offerButton = new JButton();
+		approveButton = new JButton();
 		
 		adminButton = new ThemedTabButton();
 		instructorButton = new ThemedTabButton();
@@ -84,6 +88,7 @@ public class MenuView extends JFrame{
 		courseButton.setText("Create Course");
 		hireButton.setText("Hire Applicants");
 		offerButton.setText("View Job Offers");
+		approveButton.setText("Manage Job Offers");
 		
 		adminButton.setText("Admin");
 		instructorButton.setText("Instructor");
@@ -143,8 +148,20 @@ public class MenuView extends JFrame{
 		
 		offerButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				if(am.getApplications().size() != 0) {
+				ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+				if(constants.get(0) != 0) {
 					new OffersView(am,pm).setVisible(true);
+					error.setText("");
+				}
+				else error.setText("Admins have not approved of job offers yet.");
+				pack();
+			}
+		});
+		
+		approveButton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				if(am.getApplications().size() != 0) {
+					new ApproveOffersView(am,pm).setVisible(true);
 					error.setText("");
 				}
 				else error.setText("No applications have been made yet.");
@@ -199,6 +216,7 @@ public class MenuView extends JFrame{
 		panel.add(tabs);
 		pAdmin.add(profileButton);
 		pAdmin.add(courseButton);
+		pAdmin.add(approveButton);
 		pInstructor.add(publishButton);
 		pStudent.add(applicationButton);
 		pInstructor.add(hireButton);
@@ -218,6 +236,7 @@ public class MenuView extends JFrame{
 		applicationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		publishButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		courseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		approveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		refresh();
 		pack();

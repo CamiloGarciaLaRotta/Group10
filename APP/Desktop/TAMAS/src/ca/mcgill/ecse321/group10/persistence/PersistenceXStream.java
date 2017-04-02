@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -22,6 +23,26 @@ public abstract class PersistenceXStream {
 
     private static XStream xstream = new XStream();
     private static String filename = "data.xml";
+    
+    public static ArrayList<Integer> initializeConstants(String fileName) {
+    	ArrayList<Integer> constants;
+    	setFilename(fileName);
+    	File file = new File(fileName);
+    	if(file.exists()) {
+    		constants = (ArrayList<Integer>) loadFromXMLwithXStream();
+    	} else  {
+    		try {
+    			file.createNewFile();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    			System.exit(1);
+    		}
+    		constants = new ArrayList<Integer>();
+    		constants.add(0);
+    		saveToXMLwithXStream(constants);
+    	}
+    	return constants;
+    }
 
     public static ApplicationManager initializeApplicationManager(String fileName, String profileFileName) {
         // Initialization for persistence
