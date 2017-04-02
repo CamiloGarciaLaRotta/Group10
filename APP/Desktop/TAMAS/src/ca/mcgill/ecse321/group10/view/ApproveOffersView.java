@@ -52,12 +52,13 @@ public class ApproveOffersView extends JFrame{
 		students = new ArrayList<Student>();
 		lCurrent = new ThemedLabel("Current Job Offers:");
 		offersList = new ThemedList(new String[0]);
-		refreshList();
 		offerScroller = new JScrollPane(offersList);
 		approveButton = new JButton("Approve");
 		removeButton = new JButton("Remove");
 		exitButton = new JButton("Exit");
 		saveButton = new JButton("Save Changes");
+		
+		refreshList();
 		
 		exitButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -90,6 +91,7 @@ public class ApproveOffersView extends JFrame{
 				constants.set(0, 1);
 				PersistenceXStream.setFilename("output/constants.xml");
 				PersistenceXStream.saveToXMLwithXStream(constants);
+				refreshList();
 			}
 		});
 		
@@ -111,6 +113,16 @@ public class ApproveOffersView extends JFrame{
 	
 	private void refreshList() {
 		listModel = new DefaultListModel<String>();
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		if(constants.get(0) == 1) {
+			approveButton.setEnabled(false);
+			saveButton.setEnabled(false);
+			removeButton.setEnabled(false);
+			listModel.addElement("Offers already sent");
+			offersList.setEnabled(false);
+			offersList.setModel(listModel);
+			pack();
+		}
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			Student curStudent = pm.getStudent(c);
 			for(int j = 0; j < curStudent.getJobs().size(); j++) {

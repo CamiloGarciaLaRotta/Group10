@@ -296,4 +296,94 @@ It tested that null and empty input in all String fields in the controller as we
 	The integration testing for the application controller and job class run through various input cases. These include creating a valid job with the controller, creating a job with no linked course, creating a job with an invalid course CDN, creating a job with no instructor, and the various combinations of remaining inputs for start and end time, salary and position.\\
 
 	As of yet integration testing for the web client is not complete and no coverage metrics can be generated. Ideally, after testing all possible use cases that apply to the web client (the model generated code that may not be used), coverage should be around 90\%.\\
+\part{System Tests}
+System tests have been carried out incrementally as new use cases for the system have been added.
+Since the desktop app is the most mature of the three platforms in development, it has experienced
+by far the most system testing, as it currently implements approximately twice as many use cases as
+the other platforms combined. Therefore, the system tests for the desktop app will be described
+below, and will be structured by the use cases that they examine.
+
+\section{The Register Profile Use Case}
+\label{s:six}
+\textbf{Goal: To ensure that profiles are created properly using the RegisterView}
+\subsection*{Process}
+This use case was tested by entering various inputs to the RegisterView class, observing the output
+messages on the view, and verifying the persisted XML upon completion. Inputs were decided according
+to equivalence partitioning, so an input was tested for each class of error that can occur from user
+input, and of course a valid input was tested as well.
+\subsection*{Results}
+All tests were passed successfully. Invalid input test cases all showed proper error messages on the
+view, and proper input test cases showed correct confirmation messages. Furthermore, it was noted
+that XML was only generated when proper input was submitted.
+\subsection*{Conclusion}
+The RegisterView UI functions correctly, and reliably registers profiles to the system with proper
+persistence.
+
+\section{The Upload Course Data Use Case}
+\textbf{Goal: To ensure that courses are created properly using the CourseView}
+\subsection*{Process}
+The process followed a very similar strategy to that of the system test described in
+\hyperref[s:six]{section 6}. Equivalence classes were chosen as test cases, and XML output as well
+as messages on the UI were verified.
+\subsection*{Results}
+All tests were passed successfully. XML was created only when valid input was passed in, and all UI
+messages reflected the validity and errors of the input.
+\subsection*{Conclusion}
+The CourseView UI functions correctly, and reliably uploads course data to the system with proper
+persistence.
+
+\section{The Publish Job Posting Use Case}
+\textbf{Goal: To ensure that instructors may publish jobs for the courses that they teach, and to
+verify that only sane job postings are processed.}
+\subsection*{Process}
+This is the first system test that depends on the functioning of other use cases. Given the results
+of the previous system tests, there was confidence that the behavior of the current use case will
+not be hindered by its dependencies. It was first verified that the instructor may only choose to
+select courses that the profile is said to teach for the job posting. Then, it was verified that
+upon selecting a different professor, the list of courses to choose from updates (with a correct
+list of courses) immediately. Furthermore, aside from plain empty text fields, the PublishJobView
+has several input fields that can be erroneous due to incorrect input types, and even correct input
+types that represent non-sensical data. For example, the time budget fields must be integral types,
+and the start time of the job must occur before the end time. Therefore, configurations where the
+end time occurs before the start time were tested, and configurations where time budgets with
+non-integral time budgets were tested, along with the usual tests of empty fields and valid input.
+Furthermore, it was verified that XML was only generated upon \textit{strictly valid} input, that is
+to say, input that has correctly-typed and non-empty fields \textit{and} only logically-sane inputs.
+Finally, the application was closed and restarted. Then, the ApplicationView was opened to ensure that
+the job postings were present in the list,
+which would confirm that the persistence is functioning in such a way that its stored data may be
+retrieved Finally, the ApplicationView was opened to ensure that the job postings were present in
+the list, which would confirm that the persistence is functioning in such a way that its stored data
+may be retrieved.
+\subsection*{Results}
+Unfortunately, not all test were passed immediately. It was noticed that it was possible to submit
+job postings with start times that occur after end times, which is undesirable. After many tests,
+the testers realized that by \textit{nudging} the start time field, or simply changing its value and
+returning it to its initial value, the error vanished. Thus, the PublishJobView was modified to
+explicitly set the values of the start time and end time fields whenever the view refreshes. This
+ultimately solved the error. Otherwise, all other functionalities were successful, and XML was only
+being generated when the system interpreted that the input data was valid.
+\subsection*{Conclusion}
+Although there was a slight failure early in testing, it appears to have been resolved, and
+currently the Publish Job Posting Use Case is considered to be functional. This use case has been
+tested extensively since its failures, as it is a dependency for several other use cases. Since the
+error was resolved, no other errors have been noticed.
+
+\section{The Apply to Job Posting Use Case}
+\textbf{Goal: To ensure that students may apply to the job postings that were posted.}
+\subsection*{Process}
+This use case was very simple to test, since there are very few ways in which input can be invalid.
+In fact, the only inputs are the selections from two lists, which may be null. Therefore, there
+were four test cases, including one where the student list had no selection, one where the job list
+had no selection, one where neither list had a selection, and of course one where both lists had a
+selected value. It was ensured that proper error or confirmation messages were excreted upon each
+submission of input, and of course XML persistence was verified. In the process, the Publish Job
+Posting Use Case was also examined, as upon selecting jobs from the list the job's data appears in a
+text area, so job data was observed as a testament to the persistence in PublishJobView.
+\subsection*{Results}
+All tests were passed. Appropriate error messages were output for all erroneous input
+configurations, and a correct confirmation message was output for the valid input class.
+Furthermore, persistence was only generated when valid input was submitted. Moreover, it was noticed
+that by observing the job data in the job description text area, all job data appears to be correct,
+further emphasizing the validity of the Publish Job Posting Use Case implementation.
 \end{document}

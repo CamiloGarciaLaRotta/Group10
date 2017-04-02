@@ -104,12 +104,14 @@ public class MenuView extends JFrame{
 		profileButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				profilePressed();
+				refresh();
 			}
 		});
 		
 		courseButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				coursePressed();
+				refresh();
 			}
 		});
 		
@@ -120,6 +122,7 @@ public class MenuView extends JFrame{
 					error.setText("");
 				}
 				else error.setText("No courses are available. Please create a course.");
+				refresh();
 				pack();
 			}
 		});
@@ -131,6 +134,7 @@ public class MenuView extends JFrame{
 					error.setText("");
 				}
 				else error.setText("No jobs available.");
+				refresh();
 				pack();
 			}
 		});
@@ -142,6 +146,7 @@ public class MenuView extends JFrame{
 					error.setText("");
 				}
 				else error.setText("No applications have been made yet.");
+				refresh();
 				pack();
 			}
 		});
@@ -154,6 +159,7 @@ public class MenuView extends JFrame{
 					error.setText("");
 				}
 				else error.setText("Admins have not approved of job offers yet.");
+				refresh();
 				pack();
 			}
 		});
@@ -165,6 +171,7 @@ public class MenuView extends JFrame{
 					error.setText("");
 				}
 				else error.setText("No applications have been made yet.");
+				refresh();
 				pack();
 			}
 		});
@@ -263,6 +270,11 @@ public class MenuView extends JFrame{
 			instructorButton.setEnabled(true);
 			studentButton.setEnabled(false);
 			break;
+		}
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		if(constants.get(0) == 1) {
+			approveButton.setText("Job offers already sent...");
+			approveButton.setEnabled(false);
 		}
 	}
 	
