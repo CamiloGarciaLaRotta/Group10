@@ -23,13 +23,16 @@ class ApplicationController{
 		$this->cm = $this->pt->loadCourseManagerFromStore();
 	}
 	
-	public function createJob($startTime, $endTime, $aDay, $aPosition, $aSalary, 
+	public function createJob($job_time, $aDay, $aPosition, $aSalary, 
 							$aRequirements, $aCDN, $anInstructor) {
 		//Validate primitive var input
 		$error = "";
 		
-		if(strtotime($startTime) > strtotime($endTime)) {
-			$error .= ("end time cannot be before event start time!<br><br>");
+		if(!is_numeric($job_time)) {
+			$error .= ("Time Budget must be a non null Number!<br><br>");
+		}
+		if($job_time < 0) {
+			$error .= ("Time Budget must be a positive Number!<br><br>");
 		}
 		$requirements = InputValidator::validate_input($aRequirements);
 		if($requirements==null || strlen($requirements) == 0){
@@ -69,7 +72,7 @@ class ApplicationController{
 			throw new Exception($error);
 		} else {
 			try {
-				$myJob = new Job($startTime, $endTime, $aDay, 
+				$myJob = new Job($job_time, $aDay, 
 						$aSalary, $requirements, $myCourse, $myInstructor);
 				$myJob->setPosition($aPosition);
 				$this->am->addJob($myJob);

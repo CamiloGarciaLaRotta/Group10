@@ -10,8 +10,7 @@ class Course {
 
 class Job{
   autounique id;
-  Time startTime;
-  Time endTime;
+  Float timeBudget;
   day;
   position {
 	  TA{}

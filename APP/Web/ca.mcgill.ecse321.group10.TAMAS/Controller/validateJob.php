@@ -12,8 +12,7 @@ try {
 	$_SESSION['successJob'] = "";
 
 	// validate data
-	$job_start = isset($_POST['job_start']) ? $_POST['job_start'] : '';
-	$job_end = isset($_POST['job_end']) ? $_POST['job_end'] : '';
+	$job_time = isset($_POST['job_time']) ? $_POST['job_time'] : '';
 	$job_day = isset($_POST['job_day']) ? $_POST['job_day'] : '';
 	$job_position = isset($_POST['job_position']) ? $_POST['job_position'] : '';
 	$job_salary = isset($_POST['job_salary']) ? $_POST['job_salary'] : '';
@@ -24,12 +23,10 @@ try {
 	// switch($_POST['submit']) {
 	// 	//case 'Create':
 	// 	case 'Publish': 
-			$ac->createJob($job_start,$job_end,
-					$job_day, $job_position,
+			$ac->createJob($job_time, $job_day, $job_position,
 					$job_salary, $job_requirements,
 					$job_courseCDN, $job_instructorUsername);
-			// break;
-	
+
 // LEFT EHRE FOR FUTURE IMPLEMENTATIONS
 // 		case 'Delete': 
 // 			$job = NULL;

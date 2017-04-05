@@ -1,16 +1,24 @@
 <?php
-require_once __DIR__.'\..\Controller\InputValidator.php';
+require_once __DIR__.'\.\InputValidator.php';
 require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\ApplicationManager.php';
+require_once __DIR__.'\..\Model\Application.php';
+require_once __DIR__.'\..\Model\Job.php';
+require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__.'\..\Model\Profile.php';
+require_once __DIR__.'\..\Model\Instructor.php';
 require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
 
 class CourseController{
 	private $pt;
 	private $cm;
+	private $am;
 				
 	public function __construct(){
 		$this->pt = new PersistenceTAMAS();
 		$this->cm = $this->pt->loadCourseManagerFromStore();
+		$this->am = $this->pt->loadApplicationManagerFromStore();
 	}
 	
 	public function createCourse($course_name, $CDN, 
@@ -82,8 +90,12 @@ class CourseController{
 		}
 	}
 	
-	public function getBudget($CDN) {
-		$budget = "";
+	public function getRemainingBudget($CDN) {
+
+		$remainingTATime = 0;
+		$remainingGraderTime = 0;
+		
+		// get course budget
 		$course = null;
 		$courses = $this->cm->getCourses();
 		foreach ($courses as $c){
@@ -92,12 +104,23 @@ class CourseController{
 				break;
 			}
 		}
-			
-		$budget .= $course->getTaTimeBudget();
-		$budget .= ',';
-		$budget .= $course->getGraderTimeBudget();
 		
-		return $budget;
+		$remainingTATime = $course->getTaTimeBudget();
+		$remainingGraderTime = $course->getGraderTimeBudget();
+		
+		// get application allocated budget
+		$jobs = $this->am->getJobs();
+		foreach($jobs as $j){
+			if($j->getCourse()->getCdn() == $CDN){
+				if($j->getPosition()=="PositionTA") {
+					$remainingTATime -= $j->getTimeBudget();
+				} else {
+					$remainingGraderTime -= $j->getTimeBudget();
+				}
+			}
+		}
+		
+		return $remainingTATime .",".$remainingGraderTime;
 	}
 
 }

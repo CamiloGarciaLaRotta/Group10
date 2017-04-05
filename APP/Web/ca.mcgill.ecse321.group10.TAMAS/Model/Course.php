@@ -133,9 +133,9 @@ class Course
     return 0;
   }
 
-  public function addJobVia($aStartTime, $aEndTime, $aDay, $aSalary, $aRequirements, $aInstructor)
+  public function addJobVia($aTimeBudget, $aDay, $aSalary, $aRequirements, $aInstructor)
   {
-    return new Job($aStartTime, $aEndTime, $aDay, $aSalary, $aRequirements, $this, $aInstructor);
+    return new Job($aTimeBudget, $aDay, $aSalary, $aRequirements, $this, $aInstructor);
   }
 
   public function addJob($aJob)
