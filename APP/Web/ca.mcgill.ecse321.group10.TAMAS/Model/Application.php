@@ -15,6 +15,9 @@ class Application
   // MEMBER VARIABLES
   //------------------------
 
+  //Application Attributes
+  private $studentEvaluation;
+
   //Autounique Attributes
   private $id;
 
@@ -26,8 +29,9 @@ class Application
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aStudent, $aJobs)
+  public function __construct($aStudentEvaluation, $aStudent, $aJobs)
   {
+    $this->studentEvaluation = $aStudentEvaluation;
     $this->id = self::$nextId++;
     $didAddStudent = $this->setStudent($aStudent);
     if (!$didAddStudent)
@@ -44,6 +48,19 @@ class Application
   //------------------------
   // INTERFACE
   //------------------------
+
+  public function setStudentEvaluation($aStudentEvaluation)
+  {
+    $wasSet = false;
+    $this->studentEvaluation = $aStudentEvaluation;
+    $wasSet = true;
+    return $wasSet;
+  }
+
+  public function getStudentEvaluation()
+  {
+    return $this->studentEvaluation;
+  }
 
   public function getId()
   {
