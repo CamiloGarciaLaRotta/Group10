@@ -37,8 +37,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		$this->assertEquals(0, $this->am->numberOfJobs());
 		
-		$startTime = "9:00";
-		$endTime = "11:30";
+		$time=20;
 		$day = "Monday";
 		$position = "PositionTA";
 		$salary = 80.30;
@@ -66,8 +65,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($course, $this->am->getJob_index(0)->getCourse());
 		$this->assertEquals($instructor, $this->am->getJob_index(0)->getInstructor());
 		
-		$startTime = "13:00";
-		$endTime = "15:30";
+		$time = 10;
 		$day = "Friday";
 		$position = "PositionGRADER";
 		$salary = 20.00;
@@ -75,7 +73,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		$course = new Course("COMP 551", 2700, 10, 20);
 		$instructor = new Instructor("JMourinho", "456", "Jose", "Mourinho");
 		
-		$job = new Job($startTime, $endTime, $day, $salary, $requirements, $course, $instructor);
+		$job = new Job($time, $day, $salary, $requirements, $course, $instructor);
 		
 		try {
 			$this->am->addJob($job);
