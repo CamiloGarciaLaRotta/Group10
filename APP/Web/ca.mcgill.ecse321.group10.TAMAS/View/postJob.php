@@ -92,7 +92,7 @@ foreach ($profiles as $p){
 			<input type="radio" name="job_position" value="PositionTA" required> TA
 			<input type="radio" name="job_position" value="PositionGRADER" required> Grader<br><br>
 			Requirements<textarea class="text" cols="20" rows ="5" name="job_requirements" maxlength="100" reqired></textarea><br><br>	
-			Salary<input type ="text" name="job_salary" required/><br><br>
+			Hourly Salary<input type ="text" name="job_salary" required/><br><br>
 			Day<select name="job_day">
 				<option value="monday">Monday</option>
 				<option value="tuesday">Tuesday</option>
