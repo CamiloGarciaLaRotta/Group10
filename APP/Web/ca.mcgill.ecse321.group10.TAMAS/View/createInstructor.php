@@ -5,6 +5,11 @@
 	<title> Create Instructor </title>
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
+    <script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../main.js"></script>
 </head>
 <?php
 
@@ -30,6 +35,12 @@ $cm = $pt->loadCourseManagerFromStore();
 }
 ?>
 >
+<header>
+	<label class="switch">
+	  <input type="checkbox" id="chk">
+	  <div class="slider round" id="theme"></div>
+	</label>
+</header>
 <main class="instructor">
 	<span class="intro">
 		<h3>TAMAS</h3>

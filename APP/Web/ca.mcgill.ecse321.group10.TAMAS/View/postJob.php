@@ -48,6 +48,12 @@ foreach ($profiles as $p){
 }
 ?>
 >
+<header>
+	<label class="switch">
+	  <input type="checkbox" id="chk">
+	  <div class="slider round" id="theme"></div>
+	</label>
+</header>
 <main class="job">
 	<span class="intro">
 		<h3>TAMAS</h3>
