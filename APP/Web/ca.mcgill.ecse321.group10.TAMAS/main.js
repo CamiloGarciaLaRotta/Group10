@@ -13,12 +13,24 @@ function handleEvents() {
 	$('#applicationID').on('select', function() {
 		$.ajax({
 			type: 'post',
-			url: '../Controller/getAppContent.php',
+			url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/getAppContent.php',
 			data: "id=" + this.value,
 			success: function(response) {
 				$('#ApplicationInfo').text(response);
 			}
 		});
+	});
+	
+	$("#chk").change(function(){
+		var dark = $(this).is(':checked');
+		if(dark){
+			$('body').addClass("dark")
+			$('.btn').addClass("dark")
+		} else {
+			$('body').removeClass("dark")
+			$('.btn').removeClass("dark")
+		}
+		$.post("/ca.mcgill.ecse321.group10.TAMAS/Controller/validateTheme.php", {"set":dark})
 	});
 }
 
@@ -35,8 +47,22 @@ function updateBudget(cdn) {
 	});
 }
 
+function setSlider() {
+	$.ajax({
+		type: 'post',
+		data: {get: "get"},
+		url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/validateTheme.php',
+		success: function(response) {
+			console.log(response)
+			if(response === "true") $('#chk').prop('checked', true);
+			else  $('#chk').prop('checked', false);
+		}
+	});
+}
+
 $(function() {
 	console.log("Client side active");
-	updateBudget($('#courseCDN').val())
+	if($('main').hasClass("job") || $('main').hasClass("application") ) updateBudget($('#courseCDN').val())
+	setSlider()
 	handleEvents();
 });

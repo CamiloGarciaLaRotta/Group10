@@ -1,3 +1,4 @@
+/* GLOBAL CSS */
 * {
 	margin:0;
 	padding:0;
@@ -66,7 +67,6 @@ input[type=submit] {
     -webkit-border-radius: 5px;
     border-radius: 5px; 
 }
-
 input[type=submit]:hover {
     padding:5px 15px; 
     background:#fff; 
@@ -88,4 +88,77 @@ select {
 }
 textarea {
 	resize:vertical;
+}
+/* THEME TOGGLE CSS */
+.switch {
+  position: fixed;
+  right:0px;
+  width: 40px;
+  height: 24px;
+  margin-top:10px;
+  margin-right:10px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #6d6d6d;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(15px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* DARK COLORS */
+input[type=submit].dark{
+	background:grey;
+}
+input[type=submit]:hover.dark{
+	background:red;
+}
+input[type=submit]:active.dark{
+	background:blue;
+}
+body.dark {
+	background-color:grey;
 }

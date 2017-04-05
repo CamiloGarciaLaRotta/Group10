@@ -6,7 +6,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
 </head>
-<body>
 <?php
 
 $timezone = date_default_timezone_set('America/New_York');
@@ -32,7 +31,12 @@ foreach ($profiles as $p){
 }
 
 ?>
-
+<body 
+<?php if(isset($_SESSION['dark'])) {
+	if($_SESSION['dark']=="true") echo "class=\"dark\"";
+}
+?>
+>
 <main class="profile">
 	<span class="intro">
 		<h3>TAMAS</h3>
@@ -63,10 +67,18 @@ foreach ($profiles as $p){
 			Last Name<input type ="text" value="<?php echo $profile->getLastName();?>" name="lastName" /><br><br>
 			Old Password <input type="password" name="oldPassword" required/><br><br>
 			New Password<input type="password" name="newPassword" required/><br><br>
-			<input type= "submit" value="Update Profile"/>
+			<input type= "submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" value="Update Profile"/>
 		</form>
 		<form action="home.php">
-			<input type="submit" value="Back" />
+			<input type="submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" value="Back" />
 		</form>
 	</div>
 </main>

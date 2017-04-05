@@ -6,7 +6,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
 </head>
-<body>
 <?php
 
 $timezone = date_default_timezone_set('America/New_York');
@@ -25,7 +24,12 @@ $pt = new PersistenceTAMAS();
 $pm = $pt->loadProfileManagerFromStore();
 $cm = $pt->loadCourseManagerFromStore();
 ?>
-
+<body 
+<?php if(isset($_SESSION['dark'])) {
+	if($_SESSION['dark']=="true") echo "class=\"dark\"";
+}
+?>
+>
 <main class="instructor">
 	<span class="intro">
 		<h3>TAMAS</h3>
@@ -59,10 +63,18 @@ $cm = $pt->loadCourseManagerFromStore();
 					<option><?php echo $course->getCdn() ?></option>
 				<?php }?>
 			</select><br><br>	
-			<input type= "submit" value="Create Instructor"/>
+			<input type= "submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" value="Create Instructor"/>
 		</form>
 		<form action="home.php">
-			<input type="submit" value="Back" />
+			<input type="submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" value="Back" />
 		</form>
 	</div>
 </main>

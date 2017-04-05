@@ -11,7 +11,6 @@
   crossorigin="anonymous"></script>
  <script type="text/javascript" src="../main.js"></script>
 </head>
-<body>
 <?php
 
 $timezone = date_default_timezone_set('America/New_York');
@@ -42,6 +41,12 @@ foreach ($profiles as $p){
 	}
 }
 ?>
+<body 
+<?php if(isset($_SESSION['dark'])) {
+	if($_SESSION['dark']=="true") echo "class=\"dark\"";
+}
+?>
+>
 <main class="job">
 	<span class="intro">
 		<h3>TAMAS</h3>
@@ -82,10 +87,18 @@ foreach ($profiles as $p){
 				// TODO DISPLAY ALL APLICATIONS FOR CHOSEN CLASS
 				?>
 			</select><br><br>
-			<br><input id="hire" type="submit" name="hire" value="Hire"/>
+			<br><input id="hire" type="submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" name="hire" value="Hire"/>
 		</form>
 		<form action="home.php">
-			<input type="submit" value="Back" />
+			<input type="submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" value="Back" />
 		</form>
 	</div>
 </main>

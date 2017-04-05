@@ -6,7 +6,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
 </head>
-<body>
 <?php
 
 $timezone = date_default_timezone_set('America/New_York');
@@ -29,6 +28,12 @@ $am = $pt->loadApplicationManagerFromStore();
 $pm = $pt->loadProfileManagerFromStore();
 $cm = $pt->loadCourseManagerFromStore();
 ?>
+<body 
+<?php if(isset($_SESSION['dark'])) {
+	if($_SESSION['dark']=="true") echo "class=\"dark\"";
+}
+?>
+>
 <main class="job">
 	<span class="intro">
 		<h3>Job Form</h3>
@@ -76,10 +81,18 @@ $cm = $pt->loadCourseManagerFromStore();
 			</select><br><br>
 			Start Time<input type= "time" name="job_start" value="03:20" /><br><br>
 			End Time<input type= "time" name="job_end" value="04:20" /><br><br>
-			<br><input type= "submit" name="submit" value="Publish"/>
+			<br><input type= "submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" name="submit" value="Publish"/>
 		</form>
 		<form action="../index.php">
-			<input type="submit" value="Back" />
+			<input type="submit" class="btn <?php 
+	if(isset($_SESSION['dark'])) {
+		if($_SESSION['dark']=="true") echo "dark";
+	}
+	?>" value="Back" />
 		</form>
 	</div>
 </main>
