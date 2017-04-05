@@ -5,6 +5,11 @@
 	<title> Post Job Offer </title>
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
+    <script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	 <script type="text/javascript" src="../main.js"></script>
 </head>
 <body>
 <?php
@@ -42,7 +47,13 @@ foreach ($profiles as $p){
 	<span class="intro">
 		<h3>TAMAS</h3>
 		<h4>Job Form</h4>
-		<br>
+				<br><br>
+		<p id="TAhours"> </p>
+		<br><br>
+		<p id="Graderhours"> </p>
+		<br><br>
+		<hr>
+		<p id="ApplicationInfo"> </p><br><br>
 		<p class="error">
 			<?php
 			if(isset($_SESSION['errorJob']) && !empty($_SESSION['errorJob'])){
@@ -60,8 +71,8 @@ foreach ($profiles as $p){
 		</p>
 	</span>
 	<div class="actions">
-		<form action='../Controller/validateJob.php' method='post'>
-			Course CDN<br><select name='job_courseCDN'>
+		<form action='../Controller/validateJob.php' id="form" method='post'>
+			Course CDN<br><select name='job_courseCDN' id="courseCDN">
 				<?php foreach ($profile->getCourses() as $course){?>
 					<option><?php echo $course->getCdn() ?></option>
 				<?php }?>
