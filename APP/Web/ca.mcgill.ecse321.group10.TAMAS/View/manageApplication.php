@@ -62,7 +62,7 @@ $cm = $pt->loadCourseManagerFromStore();
 		</p>
 	</span>
 	<div class="actions">
-		<form action='validateHire.php' method='post'>
+		<form action='../Controller/validateHire.php' method='post'>
 			
 			Instructor Username
 			<select name='app_instructorUsername'>
@@ -84,7 +84,7 @@ $cm = $pt->loadCourseManagerFromStore();
 			</select><br><br>
 			<br><input id="hire" type="submit" name="hire" value="Hire"/>
 		</form>
-		<form action="../index.php">
+		<form action="home.php">
 			<input type="submit" value="Back" />
 		</form>
 	</div>

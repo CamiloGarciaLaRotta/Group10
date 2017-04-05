@@ -1,5 +1,5 @@
 <?php 
-include __DIR__.'\View\login.php';
+include __DIR__.'\Controller\validateLogin.php';
 
 if (isset($_SESSION['username'])) {
 	header("location: ./View/home.php");
@@ -29,7 +29,7 @@ if (isset($_SESSION['username'])) {
 			</span>
 			<div class="actions">
 				<form action="" method="post">
-				    Username<input type="text" name="username" placeholder="i.e. JamesMcGill" required/><br><br>
+				    Username<input type="text" name="username" placeholder="i.e. JamesMcGill" required autofocus/><br><br>
 					Password<input type="password" name="password" placeholder="*********" required/>
 					<br><br>
 					<input type="submit" name="login" value="Login" />

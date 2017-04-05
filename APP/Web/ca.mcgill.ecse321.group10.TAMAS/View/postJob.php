@@ -51,7 +51,7 @@ $cm = $pt->loadCourseManagerFromStore();
 		</p>
 	</span>
 	<div class="actions">
-		<form action='validateJob.php' method='post'>
+		<form action='../Controller/validateJob.php' method='post'>
 			
 			Instructor Username<select name='job_instructorUsername'>
 				<?php foreach ($pm->getInstructors() as $instructor){?>
@@ -79,7 +79,7 @@ $cm = $pt->loadCourseManagerFromStore();
 			End Time<input type= "time" name="job_end" value="04:20" /><br><br>
 			<br><input type= "submit" name="submit" value="Publish"/>
 		</form>
-		<form action="../index.php">
+		<form action="home.php">
 			<input type="submit" value="Back" />
 		</form>
 	</div>

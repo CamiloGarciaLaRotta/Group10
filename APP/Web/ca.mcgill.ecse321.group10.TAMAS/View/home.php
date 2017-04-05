@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -54,7 +52,7 @@ $_SESSION['successJob'] = "";
 				<form action="./manageApplication.php">
 				    <input type="submit" value="Manage Applications" />
 				</form>
-				<form action="./logout.php">
+				<form action="../Controller/validateLogout.php">
 				    <input type="submit" value="Logout" />
 				</form>
 			</div>
