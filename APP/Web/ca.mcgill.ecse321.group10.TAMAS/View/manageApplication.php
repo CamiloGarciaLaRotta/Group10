@@ -47,7 +47,7 @@ foreach ($profiles as $p){
 }
 ?>
 >
-<main class="job">
+<main class="application">
 	<span class="intro">
 		<h3>TAMAS</h3>
 		<h4>Application Manager</h4>

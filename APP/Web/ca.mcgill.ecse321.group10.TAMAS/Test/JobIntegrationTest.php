@@ -23,9 +23,9 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 	
 	protected function setUp(){
 
-		$ac = new ApplicationController();
-		$pc = new ProfileController();
-		$cc = new CourseController();
+		$this->ac = new ApplicationController();
+		$this->pc = new ProfileController();
+		$this->cc = new CourseController();
 		$this->pt = new PersistenceTAMAS();
 		$this->am = $this->pt->loadApplicationManagerFromStore();
 		$this->pm = $this->pt->loadProfileManagerFromStore();
@@ -54,15 +54,26 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 	//atttempt to create a job posting with appplication controller
 	public function testCreateJobWithController(){
 		
-		//make a valid instructor
-		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo");
-		
-		
 		//make a valid course
-		$this->cc->createCourse("MATH 363",1, 40, 60);
+		$courseName = "Math 363";
+		$CDN =5450;
+		$graderTimeBudget = 40;
+		$TATimeBudget = 60;
 		
+		$this->cc->createCourse($courseName,$CDN,$graderTimeBudget,$TATimeBudget);
+		
+		//make a valid instructor
+		$uName = "TRam";
+		$password = "123";
+		$firstName = "Tony";
+		$lastName = "Ramundo";
+		$cdns=array([5450]);
+		
+		
+		$this->pc->createInstructor($uName,$password,$firstName,$lastName,$cdns);
+		$this->pt->loadProfileManagerFromStore();
 		//make a job with application controller
-		$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None", 1, $this->pm->getInstructors_index(0));
+		$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None", 5450, $this->pm->getInstructor_index(0));
 		
 		
 		
@@ -76,7 +87,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		//$this->assertEquals($this->validCourse, $this->am->getJob_index(0)->getCourse());
 		//$this->assertEquals($this->validInstructor, $this->am->getJob_index(0)->getInstructor());
 	}
-	
+/*
 	//create a job without a course
 	public function testCreateJobNoCourse(){
 		
@@ -190,5 +201,5 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		
 	}
 	
-	
+**/
 }

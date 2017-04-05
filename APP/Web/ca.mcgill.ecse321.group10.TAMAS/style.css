@@ -16,21 +16,24 @@ body{
 	color: forestgreen;
 }
 .course{
-	height: 350px;
+	height: 400px;
 }
 .instructor{
-	height: 350px;
+	height: 530px;
 }
 .job{
-	height: 630px;
+	height: 690px;
+}
+.application{
+	height: 390px;
 }
 .profile {
-	height: 450px;
+	height: 425px;
 }
 main{
 	position:fixed;
 	width: 500px;
-	height: 200px;
+	height: 300px;
 	top: 50%;
 	left: 50%;
 	margin-top: -300px; /* Negative half of height. */
@@ -58,7 +61,7 @@ main > * {
 }
 input[type=submit] {
 	font-family: 'Ubuntu', sans-serif;
-	margin-bottom:5px;
+	margin-bottom:30px;
     padding:5px 15px; 
     background:#FDE9A4; 
     border:0 none;
