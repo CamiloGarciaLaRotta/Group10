@@ -92,7 +92,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
-		$this->assertEquals("Course name cannot be empty!<br> ", $error);
+		$this->assertEquals("Course name cannot be empty!<br><br>", $error);
 	
 	
 		// validate non numerical CDN
@@ -104,7 +104,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
-		$this->assertEquals("CDN must be a non null Integer!<br> ", $error);
+		$this->assertEquals("CDN must be a non null Integer!<br><br>", $error);
 	
 		// validate negativie time
 		$CDN = 1234;
@@ -115,7 +115,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
-		$this->assertEquals("Time budget must be a positive Integer!<br> ", $error);
+		$this->assertEquals("Time budget must be a positive Integer!<br><br>", $error);
 	
 		// validate negativie time
 		$graderTime = 99;
@@ -126,7 +126,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
-		$this->assertEquals("Time budget must be a positive Integer!<br> ", $error);
+		$this->assertEquals("Time budget must be a positive Integer!<br><br>", $error);
 	}
 	
 	// attempt to delete an existent course
@@ -165,7 +165,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		}
 	
 		// validate stored data
-		$this->assertEquals($error, "No course found with CDN 123");
+		$this->assertEquals($error, "No course found with CDN 123<br><br>");
 	}
 	
 	public function testRepeatedCDN() {
@@ -192,7 +192,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
-		$this->assertEquals("CDN must be unique!<br> ", $error);
+		$this->assertEquals("CDN must be unique!<br><br>", $error);
 	}
 }
 ?>
