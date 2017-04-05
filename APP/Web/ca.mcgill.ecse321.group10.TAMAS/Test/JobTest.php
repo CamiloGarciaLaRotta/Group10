@@ -45,7 +45,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		$course = new Course("MATH 363", 3700, 10, 20);
 		$instructor = new Instructor("PGuardiola", "123", "Pep", "Guardiola");
 		
-		$job = new Job($startTime, $endTime, $day, $salary, $requirements, $course, $instructor);
+		$job = new Job($time, $day, $salary, $requirements, $course, $instructor);
 		
 		try {
 			$this->am->addJob($job);
@@ -57,8 +57,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		// validate stored data
 		$this->assertCount(1, $this->am->getJobs());
-		$this->assertEquals($startTime, $this->am->getJob_index(0)->getStartTime());
-		$this->assertEquals($endTime, $this->am->getJob_index(0)->getEndTime());
+		$this->assertEquals($time, $this->am->getJob_index(0)->getTimeBudget());
 		$this->assertEquals($position, $this->am->getJob_index(0)->getPosition());
 		$this->assertEquals($salary, $this->am->getJob_index(0)->getSalary());
 		$this->assertEquals($requirements, $this->am->getJob_index(0)->getRequirements());
@@ -85,8 +84,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		// validate stored data
 		$this->assertCount(2, $this->am->getJobs());
-		$this->assertEquals($startTime, $this->am->getJob_index(1)->getStartTime());
-		$this->assertEquals($endTime, $this->am->getJob_index(1)->getEndTime());
+		$this->assertEquals($time, $this->am->getJob_index(1)->getTimeBudget());
 		$this->assertEquals($position, $this->am->getJob_index(1)->getPosition());
 		$this->assertEquals($salary, $this->am->getJob_index(1)->getSalary());
 		$this->assertEquals($requirements, $this->am->getJob_index(1)->getRequirements());
