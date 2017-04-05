@@ -1,3 +1,10 @@
+<?php 
+include __DIR__.'\View\login.php';
+
+if (isset($_SESSION['username'])) {
+	header("location: ./View/home.php");
+}
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -7,32 +14,25 @@
 	    <link href="style.css" rel="stylesheet">
 	</head>
 	<body>
-		<?php
-		session_start();
-
-		// initialize all prompts
-		$_SESSION['errorCourse'] = "";
-		$_SESSION['successCourse'] = "";
-		$_SESSION['errorProfile'] = "";
-		$_SESSION['successProfile'] = "";
-		$_SESSION['errorJob'] = "";
-		$_SESSION['successJob'] = "";
-		?>
-		<main>
+		<main class="index">
 			<span class="intro">
 				<h3>TAMAS</h3>
-				<p>Welcome back,</p>
-				<p>please select an action professor</p>
+				<h4>Login</h4><br><br>
+				<p>Instructor Platform</p><br><br>
+				<p class="error">
+					<?php
+						if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
+							echo $_SESSION["error"];
+						}
+					?>
+				</p>
 			</span>
 			<div class="actions">
-				<form action="./View/createCourse.php">
-				    <input type="submit" value="Create Course" />
-				</form>
-				<form action="./View/createInstructor.php">
-				    <input type="submit" value="Create Instructor" />
-				</form>
-				<form action="./View/job.php">
-				    <input type="submit" value="Manage Job Postings" />
+				<form action="" method="post">
+				    Username<input type="text" name="username" placeholder="i.e. JamesMcGill" required/><br><br>
+					Password<input type="password" name="password" placeholder="*********" required/>
+					<br><br>
+					<input type="submit" name="login" value="Login" />
 				</form>
 			</div>
 		</main>

@@ -19,6 +19,7 @@ class Job{
   }
   immutable double salary;
   immutable requirements;
+  lazy Boolean offerSent;
 }
 
 class Tutorial {
@@ -43,7 +44,7 @@ class Student {
     UNDERGRAD{}
     GRADUATE{}
   }
-  * -- * Job jobs;
+  0..1 -> * Job jobs;
 }
 
 class Profile {

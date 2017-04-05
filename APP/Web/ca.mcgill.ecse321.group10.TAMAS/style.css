@@ -26,7 +26,7 @@ body{
 main{
 	position:fixed;
 	width: 500px;
-	height: 180px;
+	height: 200px;
 	top: 50%;
 	left: 50%;
 	margin-top: -300px; /* Negative half of height. */
@@ -44,6 +44,10 @@ main > * {
 .intro{
 	display: inline-block;
 }
+
+.intro p {
+	display: inline;
+}
 .actions{
 	display: inline-block;
 	text-align:center;
@@ -54,7 +58,8 @@ input[type=submit] {
     padding:5px 15px; 
     background:#FDE9A4; 
     border:0 none;
-    cursor:pointer;
+    cursor:pointer;  
+    width: 160px;
     -webkit-border-radius: 5px;
     border-radius: 5px; 
 }
@@ -74,4 +79,10 @@ input[type=submit]:active {
     cursor:pointer;
     -webkit-border-radius: 5px;
     border-radius: 5px; 
+}
+select {
+	width: 150px;
+}
+textarea {
+	resize:vertical;
 }

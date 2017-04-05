@@ -13,4 +13,5 @@ APP/Desktop/TAMAS/bin/.gitignore
 APP/Desktop/RemoteSystemsTempFiles/
 APP/Desktop/TAMAS/output
 APP/Web/.metadata/*
-APP/Web/ca.mcgill.ecse321.group10.TAMAS/output/*
+APP/Web/.metadata/.plugins/
+

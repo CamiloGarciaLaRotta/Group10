@@ -1,6 +1,6 @@
 <?php
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
+/*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 class Job
 {
@@ -21,6 +21,7 @@ class Job
   private $day;
   private $salary;
   private $requirements;
+  private $offerSent;
 
   //Autounique Attributes
   private $id;
@@ -33,7 +34,6 @@ class Job
   //Job Associations
   private $course;
   private $instructor;
-  private $students;
   private $applications;
 
   //------------------------
@@ -47,6 +47,7 @@ class Job
     $this->day = $aDay;
     $this->salary = $aSalary;
     $this->requirements = $aRequirements;
+    $this->offerSent = false;
     $this->id = self::$nextId++;
     $didAddCourse = $this->setCourse($aCourse);
     if (!$didAddCourse)
@@ -58,7 +59,6 @@ class Job
     {
       throw new Exception("Unable to create job due to instructor");
     }
-    $this->students = array();
     $this->applications = array();
     $this->setPosition(self::$PositionTA);
   }
@@ -91,6 +91,14 @@ class Job
     return $wasSet;
   }
 
+  public function setOfferSent($aOfferSent)
+  {
+    $wasSet = false;
+    $this->offerSent = $aOfferSent;
+    $wasSet = true;
+    return $wasSet;
+  }
+
   public function getStartTime()
   {
     return $this->startTime;
@@ -116,9 +124,19 @@ class Job
     return $this->requirements;
   }
 
+  public function getOfferSent()
+  {
+    return $this->offerSent;
+  }
+
   public function getId()
   {
     return $this->id;
+  }
+
+  public function isOfferSent()
+  {
+    return $this->offerSent;
   }
 
   public function getPositionFullName()
@@ -160,47 +178,6 @@ class Job
   public function getInstructor()
   {
     return $this->instructor;
-  }
-
-  public function getStudent_index($index)
-  {
-    $aStudent = $this->students[$index];
-    return $aStudent;
-  }
-
-  public function getStudents()
-  {
-    $newStudents = $this->students;
-    return $newStudents;
-  }
-
-  public function numberOfStudents()
-  {
-    $number = count($this->students);
-    return $number;
-  }
-
-  public function hasStudents()
-  {
-    $has = $this->numberOfStudents() > 0;
-    return $has;
-  }
-
-  public function indexOfStudent($aStudent)
-  {
-    $wasFound = false;
-    $index = 0;
-    foreach($this->students as $student)
-    {
-      if ($student->equals($aStudent))
-      {
-        $wasFound = true;
-        break;
-      }
-      $index += 1;
-    }
-    $index = $wasFound ? $index : -1;
-    return $index;
   }
 
   public function getApplication_index($index)
@@ -280,92 +257,6 @@ class Job
     $this->instructor->addJob($this);
     $wasSet = true;
     return $wasSet;
-  }
-
-  public static function minimumNumberOfStudents()
-  {
-    return 0;
-  }
-
-  public function addStudent($aStudent)
-  {
-    $wasAdded = false;
-    if ($this->indexOfStudent($aStudent) !== -1) { return false; }
-    if ($this->indexOfStudent($aStudent) !== -1) { return false; }
-    if ($this->indexOfStudent($aStudent) !== -1) { return false; }
-    $this->students[] = $aStudent;
-    if ($aStudent->indexOfJob($this) != -1)
-    {
-      $wasAdded = true;
-    }
-    else
-    {
-      $wasAdded = $aStudent->addJob($this);
-      if (!$wasAdded)
-      {
-        array_pop($this->students);
-      }
-    }
-    return $wasAdded;
-  }
-
-  public function removeStudent($aStudent)
-  {
-    $wasRemoved = false;
-    if ($this->indexOfStudent($aStudent) == -1)
-    {
-      return $wasRemoved;
-    }
-
-    $oldIndex = $this->indexOfStudent($aStudent);
-    unset($this->students[$oldIndex]);
-    if ($aStudent->indexOfJob($this) == -1)
-    {
-      $wasRemoved = true;
-    }
-    else
-    {
-      $wasRemoved = $aStudent->removeJob($this);
-      if (!$wasRemoved)
-      {
-        $this->students[$oldIndex] = $aStudent;
-        ksort($this->students);
-      }
-    }
-    $this->students = array_values($this->students);
-    return $wasRemoved;
-  }
-
-  public function addStudentAt($aStudent, $index)
-  {  
-    $wasAdded = false;
-    if($this->addStudent($aStudent))
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfStudents()) { $index = $this->numberOfStudents() - 1; }
-      array_splice($this->students, $this->indexOfStudent($aStudent), 1);
-      array_splice($this->students, $index, 0, array($aStudent));
-      $wasAdded = true;
-    }
-    return $wasAdded;
-  }
-
-  public function addOrMoveStudentAt($aStudent, $index)
-  {
-    $wasAdded = false;
-    if($this->indexOfStudent($aStudent) !== -1)
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfStudents()) { $index = $this->numberOfStudents() - 1; }
-      array_splice($this->students, $this->indexOfStudent($aStudent), 1);
-      array_splice($this->students, $index, 0, array($aStudent));
-      $wasAdded = true;
-    } 
-    else 
-    {
-      $wasAdded = $this->addStudentAt($aStudent, $index);
-    }
-    return $wasAdded;
   }
 
   public static function minimumNumberOfApplications()
@@ -456,12 +347,6 @@ class Job
     $placeholderInstructor = $this->instructor;
     $this->instructor = null;
     $placeholderInstructor->removeJob($this);
-    $copyOfStudents = $this->students;
-    $this->students = array();
-    foreach ($copyOfStudents as $aStudent)
-    {
-      $aStudent->removeJob($this);
-    }
     while (count($this->applications) > 0)
     {
       $aApplication = $this->applications[count($this->applications) - 1];

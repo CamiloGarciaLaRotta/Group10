@@ -25,7 +25,8 @@ $pm = $pt->loadProfileManagerFromStore();
 
 <main class="instructor">
 	<span class="intro">
-		<h3>Instructor Form</h3>
+		<h3>TAMAS</h3>
+		<h4>Instructor Form</h4>
 		<br>
 		<p class="error">
 			<?php
@@ -49,7 +50,7 @@ $pm = $pt->loadProfileManagerFromStore();
 			Password<input type="password" name="instructor_password" required/><br><br>
 			First Name<input type ="text" name="instructor_fName" required/><br><br>
 			Last Name<input type ="text" name="instructor_lName" required/><br><br>
-			<br><br><input type= "submit" value="Create Instructor"/>
+			<input type= "submit" value="Create Instructor"/>
 		</form>
 		<form action="../index.php">
 			<input type="submit" value="Back" />

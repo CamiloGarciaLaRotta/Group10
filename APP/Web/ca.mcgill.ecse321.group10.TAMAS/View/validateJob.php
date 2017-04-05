@@ -62,6 +62,6 @@ if ($_SESSION['errorJob'] == "") {
 DOCTYPE html>
 <html>
 	<head>
- 		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/job.php"/> 
+ 		<meta http-equiv = "refresh" content = "0; url=/ca.mcgill.ecse321.group10.TAMAS/View/postJob.php"/> 
 	</head>
 </html>

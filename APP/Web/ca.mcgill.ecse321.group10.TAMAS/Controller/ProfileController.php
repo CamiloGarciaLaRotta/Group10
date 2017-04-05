@@ -54,5 +54,36 @@ class ProfileController{
 			$this->pt->writeProfileDataToStore($this->pm);
 		}
 	}
+	
+	public function validate($aUsername, $aPassword) {
+		// Validate input
+		$error = "";
+		$uName = InputValidator::validate_input($aUsername);
+		$pass = InputValidator::validate_input($aPassword);
+		
+		if($uName==null || strlen($uName) == 0){
+			$error = ("Username name cannot be empty!<br><br>");
+		}
+		if($pass==null || strlen($pass) == 0){
+			$error = ("Password name cannot be empty!<br><br>");
+		}
+		
+		if($uName == "admin" && $pass == "admin") {
+			
+		} else {		
+			$Instructors = $this->pm->getInstructors();
+			$found = FALSE;
+			foreach($Instructors as $i) {
+				if($i->getUsername() == $aUsername && $i->getPassword() == $pass) {
+					$found = TRUE;
+					break;
+				}
+			}
+			if(!$found) $error = ("Couldn't find username/password!<br><br>");
+			if(strlen($error) > 0) {
+				throw new Exception($error);
+			}
+		}
+	}
 }
 ?>

@@ -23,7 +23,8 @@ $cm = $pt->loadCourseManagerFromStore();
 ?>
 <main class="course">
 	<span class="intro">
-		<h3>Course Form</h3>
+		<h3>TAMAS</h3>
+		<h4>Course Form</h4>
 		<br>
 		<p class="error">
 			<?php
@@ -45,8 +46,8 @@ $cm = $pt->loadCourseManagerFromStore();
 		<form action='validateCourse.php' method='post'>
 			Course Name<input type ="text" name="course_name" required /><br><br>
 			CDN<input type ="text" name="course_CDN" required/><br><br>
-			Grader Time Budget<input type="text" name="course_graderBudget" required/><br><br>
-			TA Time Budget<input type ="text" name="course_TABudget" required/><br>
+			TA Time Budget<input type ="text" name="course_TABudget" required/><br><br>
+			Grader Time Budget<input type="text" name="course_graderBudget" required/><br>
 			<br><input type= "submit" value="Create Course"/>
 		</form>
 		<form action="../index.php">

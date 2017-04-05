@@ -1,6 +1,6 @@
 <?php
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
+/*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 class Student extends Profile
 {
@@ -174,45 +174,19 @@ class Student extends Profile
     $wasAdded = false;
     if ($this->indexOfJob($aJob) !== -1) { return false; }
     $this->jobs[] = $aJob;
-    if ($aJob->indexOfStudent($this) != -1)
-    {
-      $wasAdded = true;
-    }
-    else
-    {
-      $wasAdded = $aJob->addStudent($this);
-      if (!$wasAdded)
-      {
-        array_pop($this->jobs);
-      }
-    }
+    $wasAdded = true;
     return $wasAdded;
   }
 
   public function removeJob($aJob)
   {
     $wasRemoved = false;
-    if ($this->indexOfJob($aJob) == -1)
+    if ($this->indexOfJob($aJob) != -1)
     {
-      return $wasRemoved;
-    }
-
-    $oldIndex = $this->indexOfJob($aJob);
-    unset($this->jobs[$oldIndex]);
-    if ($aJob->indexOfStudent($this) == -1)
-    {
+      unset($this->jobs[$this->indexOfJob($aJob)]);
+      $this->jobs = array_values($this->jobs);
       $wasRemoved = true;
     }
-    else
-    {
-      $wasRemoved = $aJob->removeStudent($this);
-      if (!$wasRemoved)
-      {
-        $this->jobs[$oldIndex] = $aJob;
-        ksort($this->jobs);
-      }
-    }
-    $this->jobs = array_values($this->jobs);
     return $wasRemoved;
   }
 
@@ -328,12 +302,7 @@ class Student extends Profile
 
   public function delete()
   {
-    $copyOfJobs = $this->jobs;
     $this->jobs = array();
-    foreach ($copyOfJobs as $aJob)
-    {
-      $aJob->removeStudent($this);
-    }
     while (count($this->applications) > 0)
     {
       $aApplication = $this->applications[count($this->applications) - 1];

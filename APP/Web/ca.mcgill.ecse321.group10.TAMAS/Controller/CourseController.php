@@ -81,6 +81,24 @@ class CourseController{
 			}
 		}
 	}
+	
+	public function getBudget($CDN) {
+		$budget = "";
+		$course = null;
+		$courses = $this->cm->getCourses();
+		foreach ($courses as $c){
+			if($c->getCdn() == $CDN){
+				$course = $c;
+				break;
+			}
+		}
+			
+		$budget .= $course->getTaTimeBudget();
+		$budget .= ',';
+		$budget .= $course->getGraderTimeBudget();
+		
+		return $budget;
+	}
 
 }
 ?>
