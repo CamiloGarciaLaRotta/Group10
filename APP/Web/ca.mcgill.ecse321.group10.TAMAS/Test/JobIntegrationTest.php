@@ -56,7 +56,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		
 		//make a valid course
 		$courseName = "Math 363";
-		$CDN =5450;
+		$CDN = 5450;
 		$graderTimeBudget = 40;
 		$TATimeBudget = 60;
 		
@@ -72,6 +72,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		
 		$this->pc->createInstructor($uName,$password,$firstName,$lastName,$cdns);
 		$this->pt->loadProfileManagerFromStore();
+		
 		//make a job with application controller
 		$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None", 5450, $this->pm->getInstructor_index(0));
 		
@@ -87,51 +88,77 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		//$this->assertEquals($this->validCourse, $this->am->getJob_index(0)->getCourse());
 		//$this->assertEquals($this->validInstructor, $this->am->getJob_index(0)->getInstructor());
 	}
-/*
+
 	//create a job without a course
 	public function testCreateJobNoCourse(){
-		
+		$error="";
 		//make a valid instructor
-		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo");
+		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo",null);
 		
 		//make the job, catch the error that should be thrown
-		
+		try{
+			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",null, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "CDN must be a non null Integer!<br><br>");
 		
 	}
+		
 	//create a job with an invalid course
 	public function testCreateJobInvalidCourse(){
-		
+		$error="";
 		//make a valid instructor
+		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo",null);
 		
 		//make the job, catch the error that should be thrown
+		try{
+			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",-1, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "CDN must be a positive Integer!<br><br>");
 		
 	}
+	
 	
 	
 	//create a job without an instructor
 	public function testCreateJobNoInstructor(){
-		
-		//make a valid course
-		$this->cc->createCourse("MATH 363",1, 40, 60);
+		$error="";
+		//make a valid instructor
+		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo",null);
 		
 		//make the job, catch the error that should be thrown
+		try{
+			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",-1, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "CDN must be a positive Integer!<br><br>");
+		
 		
 	}
 		
 	
 	//create a job with invalid start time
 	public function testCreateJobInvalidStartTime(){
+		$error="";
+		//make a valid instructor
+		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo",null);
 		
-		//make a valid instructor using the controller
-		
-		//make a valid course using the controller
 		
 		//make the job, catch the error that should be thrown
-		
+		try{
+			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "The time budget must be a positive integer!<br><br>");
 		
 		
 	}
-	//create a job with invalid end time
+/*	//create a job with invalid end time
 	public function testCreateJobInvalidEndTime(){
 		
 		//make a valid instructor using the controller

@@ -154,14 +154,18 @@ input:checked + .slider:before {
 }
 /* DARK COLORS */
 input[type=submit].dark{
-	background:grey;
+	background:#1565c0;
+	color:white;
 }
 input[type=submit]:hover.dark{
-	background:red;
+	background:#1976d2;
+	
+	color:white;
 }
 input[type=submit]:active.dark{
-	background:blue;
+	background:#2196f3;
+	color:white;
 }
 body.dark {
-	background-color:grey;
+	background-color:#455A64;
 }
