@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> TAMAS </title>
+<title> Dashboard </title>
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 <link href="../style.css" rel="stylesheet">
 </head>

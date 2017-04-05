@@ -23,6 +23,9 @@ body{
 .job{
 	height: 630px;
 }
+.profile {
+	height: 450px;
+}
 main{
 	position:fixed;
 	width: 500px;

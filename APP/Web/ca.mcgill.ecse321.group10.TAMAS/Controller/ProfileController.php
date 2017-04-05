@@ -69,7 +69,7 @@ class ProfileController{
 		}
 		
 		if($uName == "admin" && $pass == "admin") {
-			
+			// Do nothing for admin
 		} else {		
 			$Instructors = $this->pm->getInstructors();
 			$found = FALSE;
@@ -82,6 +82,62 @@ class ProfileController{
 			if(!$found) $error = ("Couldn't find username/password!<br><br>");
 			if(strlen($error) > 0) {
 				throw new Exception($error);
+			}
+		}
+	}
+	
+	public function updateProfile($aUsername,$aFirstName,
+			$aLastName, $anOldPassword, $aNewPassword) {
+		
+		// Validate input
+		$error = "";
+		$uName = InputValidator::validate_input($aUsername);
+		$fName = InputValidator::validate_input($aFirstName);
+		$lName = InputValidator::validate_input($aLastName);
+		$oldPass = InputValidator::validate_input($anOldPassword);
+		$newPass = InputValidator::validate_input($aNewPassword);
+		
+// 		if((strcmp($fName,"XXX") != 0) && $fName==null || strlen($fName) == 0){
+// 			$error .= ("First name name cannot be empty!<br><br>");
+// 		}
+// 		if($lName != "XXX" && $lName==null || strlen($lName) == 0){
+// 			$error .= ("Last name name cannot be empty!<br><br>");
+// 		}
+// 		if($oldPass != "XXX" && $oldPass==null || strlen($oldPass) == 0){
+// 			$error .= ("Old Password name cannot be empty!<br><br>");
+// 		}
+// 		if($newPass1 != "XXX" && $newPass1==null || strlen($newPass1) == 0){
+// 			$error .= ("First New Password name cannot be empty!<br><br>");
+// 		}
+// 		if($newPass2 != "XXX" && $newPass2==null || strlen($newPass2) == 0){
+// 			$error .= ("Password name cannot be empty!<br><br>");
+// 		}
+// 		if($newPass1 != $newPass2){
+// 			$error .= ("New Passwords don't match!<br><br>");
+// 		}
+		
+		if($uName == "admin" && $pass == "admin") {
+			// Do nothing for admin
+		} else {
+			$Instructors = $this->pm->getInstructors();
+			$profile = null;
+			foreach($Instructors as $i) {
+				if($i->getUsername() == $aUsername) {
+					$profile = $i;
+					break;
+				}
+			}
+			if($profile==null) $error .= ("Invalid password!<br><br>");
+			if(strlen($error) > 0) {
+				throw new Exception($error);
+			} else {
+				if($fName != "XXX") $profile->setFirstName($fName);
+				if($lName != "XXX") $profile->setLastName($lName);
+				if($newPass != "XXX") $profile->setPassword($newPass);
+				
+
+				// Write all the data
+				$this->pt->writeProfileDataToStore($this->pm);
 			}
 		}
 	}
