@@ -84,7 +84,7 @@ input[type=submit]:active {
     border-radius: 5px; 
 }
 select {
-	width: 150px;
+	width: 160px;
 }
 textarea {
 	resize:vertical;

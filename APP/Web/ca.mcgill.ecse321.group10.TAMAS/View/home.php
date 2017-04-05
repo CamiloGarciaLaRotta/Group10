@@ -31,10 +31,6 @@ $_SESSION['successJob'] = "";
 			 	<form action="./createCourse.php">
 			    	<input type="submit" value="Create Course" />
 				</form>
-				<?php }?>
-				<?php 
-				if ($_SESSION['username'] == "admin") {
-				?>
 				<form action="./createInstructor.php">
 				    <input type="submit" value="Create Instructor" />
 				</form>
@@ -45,13 +41,13 @@ $_SESSION['successJob'] = "";
 				<form action="./modifyProfile.php">
 				    <input type="submit" value="Modify Profile" />
 				</form>
-				<?php }?>
 				<form action="./postJob.php">
 				    <input type="submit" value="Post Job" />
 				</form>
 				<form action="./manageApplication.php">
 				    <input type="submit" value="Manage Applications" />
 				</form>
+				<?php }?>
 				<form action="../Controller/validateLogout.php">
 				    <input type="submit" value="Logout" />
 				</form>

@@ -33,6 +33,14 @@ $pt = new PersistenceTAMAS();
 $am = $pt->loadApplicationManagerFromStore();
 $pm = $pt->loadProfileManagerFromStore();
 $cm = $pt->loadCourseManagerFromStore();
+$profile = null;
+$profiles = $pm->getInstructors();
+foreach ($profiles as $p){
+	if($p->getUsername() == $_SESSION['username']) {
+		$profile = $p;
+		break;
+	}
+}
 ?>
 <main class="job">
 	<span class="intro">
@@ -63,16 +71,8 @@ $cm = $pt->loadCourseManagerFromStore();
 	</span>
 	<div class="actions">
 		<form action='../Controller/validateHire.php' method='post'>
-			
-			Instructor Username
-			<select name='app_instructorUsername'>
-				<?php foreach ($pm->getInstructors() as $instructor){?>
-					<option><?php echo $instructor->getUsername() ?></option>
-				<?php }?>
-			</select><br><br>
-			Course CDN<br>
-			<select name='app_courseCDN' id="courseCDN">
-				<?php foreach ($cm->getCourses() as $course){?>
+			Course CDN<br><select name='app_courseCDN' id="courseCDN">
+				<?php foreach ($profile->getCourses() as $course){?>
 					<option><?php echo $course->getCdn() ?></option>
 				<?php }?>
 			</select><br><br>		

@@ -19,8 +19,7 @@ try {
 	$job_salary = isset($_POST['job_salary']) ? $_POST['job_salary'] : '';
 	$job_requirements = isset($_POST['job_requirements']) ? $_POST['job_requirements'] : '';
 	$job_courseCDN = isset($_POST['job_courseCDN']) ? $_POST['job_courseCDN'] : '';
-	$job_instructorUsername = isset($_POST['job_instructorUsername']) ? $_POST['job_instructorUsername'] : '';
-	
+	$job_instructorUsername = $_SESSION['username'];
 	
 	// switch($_POST['submit']) {
 	// 	//case 'Create':

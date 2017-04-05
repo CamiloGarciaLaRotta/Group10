@@ -4,18 +4,22 @@ require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
 require_once __DIR__.'\..\Model\ProfileManager.php';
 require_once __DIR__.'\..\Model\Profile.php';
 require_once __DIR__.'\..\Model\Instructor.php';
+require_once __DIR__.'\..\Model\CourseManager.php';
+require_once __DIR__.'\..\Model\Course.php';
 
 
 class ProfileController{
 	private $pt;
 	private $pm;
+	private $cm;
 	
 	public function __construct(){
 		$this->pt = new PersistenceTAMAS();
 		$this->pm = $this->pt->loadProfileManagerFromStore(); 
+		$this->cm = $this->pt->loadCourseManagerFromStore();
 	}
 	
-	public function createInstructor($aUsername, $aPassword, $aFirstName, $aLastName) {
+	public function createInstructor($aUsername, $aPassword, $aFirstName, $aLastName, $cdns) {
 		// Validate input
 		$error = "";
 		$uName = InputValidator::validate_input($aUsername);
@@ -48,7 +52,15 @@ class ProfileController{
 		} else {
 			// Add the new profile
 			$instructor = new Instructor($uName, $pass, $fName, $lName);
-			$this->pm->addInstructor($instructor);
+			
+			if(!empty($cdns)){
+				$courses = $this->cm->getCourses();
+				foreach($courses as $c){
+					if(in_array($c->getCdn(), $cdns)) $instructor->addCourse($c);
+				}	
+			}
+			
+			$this->pm->addInstructor($instructor);			
 
 			// Write all the data
 			$this->pt->writeProfileDataToStore($this->pm);

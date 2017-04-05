@@ -15,9 +15,9 @@ try {
 	$instructor_fName = isset($_POST['instructor_fName']) ? $_POST['instructor_fName'] : '';
 	$instructor_lName = isset($_POST['instructor_lName']) ? $_POST['instructor_lName'] : '';
 
-	$pc->createInstructor($instructor_username,$instructor_password,
-			$instructor_fName, $instructor_lName);
-
+	$cdns = ($_POST['cdn']);
+	$instructor = $pc->createInstructor($instructor_username,$instructor_password,
+			$instructor_fName, $instructor_lName, $cdns);
 }
 catch (Exception $e) {
 	$_SESSION['errorProfile'] = $e->getMessage();
