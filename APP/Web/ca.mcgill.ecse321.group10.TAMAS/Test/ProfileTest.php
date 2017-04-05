@@ -37,9 +37,9 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Costa";
 		$username = "DCosta";
 		$password = "passw0rd";
-		
+		$CDN = 123;
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName, $CDN);
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			$this->fail();
@@ -58,9 +58,9 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Drogba";
 		$username = "DDrogba";
 		$password = "1234";
-		
+		$CDN = 45678;
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN_B);
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			$this->fail();
@@ -87,45 +87,46 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Costa";
 		$username = "DCosta";
 		$password = "passw0rd";
+		$CDN_C = 54321;
 		
 		$error = "";
 	
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN_C);
 		} catch (Exception $e) {
 			$error = $e->getMessage();
 		}
-		$this->assertEquals($error, "First name name cannot be empty!<br>");
+		$this->assertEquals($error, "First name name cannot be empty!<br><br>");
 		
 		$firstName = "Diego";
 		$lastName = "  ";
 		
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN_C);
 		} catch (Exception $e) {
 			$error = $e->getMessage();
 		}
-		$this->assertEquals($error, "Last name name cannot be empty!<br>");
+		$this->assertEquals($error, "Last name name cannot be empty!<br><br>");
 		
 		$lastName = "Costa";
 		$username = "   ";
 		
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN_C);
 		} catch (Exception $e) {
 			$error = $e->getMessage();
 		}
-		$this->assertEquals($error, "Username name cannot be empty!<br>");
+		$this->assertEquals($error, "Username name cannot be empty!<br><br>");
 		
 		$username = "DCosta";
 		$password = "   ";
 		
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN_C);
 		} catch (Exception $e) {
 			$error = $e->getMessage();
 		}
-		$this->assertEquals($error, "Password name cannot be empty!<br>");
+		$this->assertEquals($error, "Password name cannot be empty!<br><br>");
 	}
 	
 	public function testRepeatedUsername() {
@@ -136,22 +137,24 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Costa";
 		$username = "DCosta";
 		$password = "passw0rd";
+		$CDN_D = 789;
 		
-		$this->pc->createInstructor($username, $password, $firstName, $lastName);
+		$this->pc->createInstructor($username, $password, $firstName, $lastName, $CDN_D);
 		
 		$firstName = "Didier";
 		$lastName = "Costa";
 		$username = "DCosta";
 		$password = "1234";
 		
+		
 		$error = "";
 		
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN_D);
 		} catch (Exception $e) {
 			$error = $e->getMessage();
 		}
-		$this->assertEquals($error, "Username must be unique!<br>");
+		$this->assertEquals($error, "Username must be unique!<br><br>");
 		
 	}
 }
