@@ -37,7 +37,7 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Costa";
 		$username = "DCosta";
 		$password = "passw0rd";
-		$CDN = 123;
+		$CDN = array ([123]);
 		try {
 			$this->pc->createInstructor($username, $password, $firstName, $lastName, $CDN);
 		} catch (Exception $e) {
@@ -58,9 +58,8 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Drogba";
 		$username = "DDrogba";
 		$password = "1234";
-		$CDN = 45678;
 		try {
-			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN_B);
+			$this->pc->createInstructor($username, $password, $firstName, $lastName,$CDN);
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			$this->fail();
@@ -87,7 +86,7 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Costa";
 		$username = "DCosta";
 		$password = "passw0rd";
-		$CDN_C = 54321;
+		$CDN_C = null;
 		
 		$error = "";
 	
@@ -137,7 +136,7 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		$lastName = "Costa";
 		$username = "DCosta";
 		$password = "passw0rd";
-		$CDN_D = 789;
+		$CDN_D = null;
 		
 		$this->pc->createInstructor($username, $password, $firstName, $lastName, $CDN_D);
 		
