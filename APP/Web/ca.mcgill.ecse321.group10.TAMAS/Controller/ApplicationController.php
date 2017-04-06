@@ -15,17 +15,24 @@ class ApplicationController{
 	private $am;
 	private $pm;
 	private $cm;
-	
+	/**
+	 * Constructor for the ApplicationController class
+	 */
 	public function __construct(){
 		$this->pt = new PersistenceTAMAS();
 		$this->am = $this->pt->loadApplicationManagerFromStore();
 		$this->pm = $this->pt->loadProfileManagerFromStore();
 		$this->cm = $this->pt->loadCourseManagerFromStore();
 	}
-	
+	/**
+	 * Checks all inputs for the Job class constructor, if the inputs are valid then
+	 * it creates a job and saves the job in persistence.
+	 * If the inputs are invalid it throwns an exception.
+	*/
 	public function createJob($job_time, $aDay, $aPosition, $aSalary, 
 							$aRequirements, $aCDN, $anInstructor) {
-		//Validate primitive var input
+		//Validate primitive var inputs.
+		//For all invalid inputs, throw an exception to be displayed on the webpage
 		$error = "";
 		
 		if(!is_numeric($job_time)) {
@@ -58,6 +65,7 @@ class ApplicationController{
 			}
 		}
 		if ($myInstructor == null) $error .= ("Instructor was not found!<br><br>");
+		
 		// Find the event
 		$myCourse = null;
 		foreach ($this->cm->getCourses() as $course){
@@ -68,6 +76,10 @@ class ApplicationController{
 		}
 		if ($myCourse == null) $error .= ("Course was not found!<br><br>");
 		
+		/**
+		 * If there is an error then ouput it,
+		 * otherwise create the Job and save it in persistence
+		 */
 		if(strlen($error) > 0) {
 			throw new Exception($error);
 		} else {
@@ -80,7 +92,7 @@ class ApplicationController{
 				echo $e->getMessage();
 			}
 						
-			// Write all the data
+			// Write all the data to persistence
 			$this->pt->writeApplicationDataToStore($this->am);
 		}
 	}
