@@ -10,6 +10,9 @@ require_once __DIR__.'\..\Model\Instructor.php';
 require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
 
+/**
+ *Controller for applications and jobs, handles creating jobs. 
+ */
 class ApplicationController{
 	private $pt;
 	private $am;
@@ -27,12 +30,22 @@ class ApplicationController{
 	/**
 	 * Checks all inputs for the Job class constructor, if the inputs are valid then
 	 * it creates a job and saves the job in persistence.
-	 * If the inputs are invalid it throwns an exception.
-	*/
+	 * If any inputs are invalid it throwns an exception.
+	 * 
+	 * @param integer $job_time 		The amount of time needed for the job.
+	 * @param string $aDay				The day of the week the applicant needs to be available.
+	 * @param string $aPosition		The position that the applicant will be applying to.
+	 * @param integer $aSalary			The hourly salary for the position.
+	 * @param string $aRequirements	The requirements of the job.
+	 * @param integer $aCDN				The unique course number.
+	 * @param Instructor $anInstructor		The instructor repsonsible for the course.
+	 * @throws Exception
+	 * 
+	 */
 	public function createJob($job_time, $aDay, $aPosition, $aSalary, 
 							$aRequirements, $aCDN, $anInstructor) {
 		//Validate primitive var inputs.
-		//For all invalid inputs, throw an exception to be displayed on the webpage
+		//For all invalid inputs, throw an error to be displayed on the webpage
 		$error = "";
 		
 		if(!is_numeric($job_time)) {

@@ -9,21 +9,35 @@ require_once __DIR__.'\..\Model\Profile.php';
 require_once __DIR__.'\..\Model\Instructor.php';
 require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
-
+/**
+ *Controller for courses, handles creation, deletion and retrieving time data
+ */
 class CourseController{
 	private $pt;
 	private $cm;
 	private $am;
-				
+	/**
+	 * Constructor for the CourseController class
+	 */			
 	public function __construct(){
 		$this->pt = new PersistenceTAMAS();
 		$this->cm = $this->pt->loadCourseManagerFromStore();
 		$this->am = $this->pt->loadApplicationManagerFromStore();
 	}
-	
+	/**
+	 * Checks all inputs for the Course class constructor, if the inputs are valid then
+	 * it creates a course and saves the it in persistence.
+	 * If any inputs are invalid it throwns an exception.
+	 * 
+	 * @param string $course_name		The name of the course.
+	 * @param unknown $CDN				The unique course identification number.	
+	 * @param unknown $graderTimeBudget	The total amount of time allocated to graders.
+	 * @param unknown $TATimeBudget		The total amount of time allocated to teaching assistants.
+	 * @throws Exception
+	 */
 	public function createCourse($course_name, $CDN, 
 								$graderTimeBudget, $TATimeBudget) {
-		// Validate input
+		// Validate input, generate error if any inputs are invalid
 		$error = "";
 		$name = InputValidator::validate_input($course_name);
 		if($name==null || strlen($name) == 0){
@@ -49,6 +63,8 @@ class CourseController{
 			$error .= ("Time budget must be a positive Integer!<br><br>");
 		}
 		
+		//if all inputs calid, create the course object, 
+		//otherwise 
 		if(strlen($error) > 0) {
 			throw new Exception($error);
 		} else {
@@ -60,7 +76,13 @@ class CourseController{
 			$this->pt->writeCourseDataToStore($this->cm);
 		}
 	}
-
+	/**
+	 * Checks if the course exists given the CDN, if so then it removes
+	 * it from persistence, otherwise throws an exception.
+	 * 
+	 * @param integer $CDN	A unique course identification number.
+	 * @throws Exception
+	 */
 	public function deleteCourse($CDN) {
 		
 		$error = "";
@@ -89,7 +111,13 @@ class CourseController{
 			}
 		}
 	}
-	
+	/**
+	 * Returns the amount of hours remaining to be allocated for
+	 * grader and TA positions for the given course.
+	 * 
+	 * @param integer $CDN
+	 * @return string
+	 */
 	public function getRemainingBudget($CDN) {
 
 		$remainingTATime = 0;
