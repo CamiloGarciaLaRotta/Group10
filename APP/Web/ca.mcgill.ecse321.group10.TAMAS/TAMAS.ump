@@ -56,6 +56,7 @@ class Profile {
 
 class Application {
   autounique id;
+  studentEvaluation;
   *-<@> 1 Student student;
   *-<@> 1 Job jobs;
 }

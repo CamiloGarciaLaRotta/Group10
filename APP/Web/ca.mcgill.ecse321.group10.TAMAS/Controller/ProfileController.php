@@ -7,20 +7,36 @@ require_once __DIR__.'\..\Model\Instructor.php';
 require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
 
-
+/**
+ * Controller for Profiles, handles creation, deletion, modification and validation of instructors
+ *
+ */
 class ProfileController{
 	private $pt;
 	private $pm;
 	private $cm;
-	
+	/**
+	 * Constructor for ProfileController
+	 */
 	public function __construct(){
 		$this->pt = new PersistenceTAMAS();
 		$this->pm = $this->pt->loadProfileManagerFromStore(); 
 		$this->cm = $this->pt->loadCourseManagerFromStore();
 	}
-	
+	/**
+	 * Checks all inputs for the instructor class constructor, if the inputs are valid then
+	 * it creates an instructor and saves the it in persistence.
+	 * If any inputs are invalid it throwns an exception.
+	 * 
+	 * @param string $aUsername		The username associated with the profile.
+	 * @param string $aPassword		The password associated with the profile.
+	 * @param string $aFirstName	The first name of the Instructor.
+	 * @param string $aLastName		The last name of the Instructor.
+	 * @param integer array $cdns	The list of courses associated with the Instructor.		
+	 * @throws Exception
+	 */
 	public function createInstructor($aUsername, $aPassword, $aFirstName, $aLastName, $cdns) {
-		// Validate input
+		// Validate input, generate error if invalid inputs are found
 		$error = "";
 		$uName = InputValidator::validate_input($aUsername);
 		$pass = InputValidator::validate_input($aPassword);
@@ -62,11 +78,18 @@ class ProfileController{
 			
 			$this->pm->addInstructor($instructor);			
 
-			// Write all the data
+			// Write all the data to persistence
 			$this->pt->writeProfileDataToStore($this->pm);
 		}
 	}
-	
+	/**
+	 * Validates login input to determine if an instructor is logging in
+	 * by checking existing Instructor profiles
+	 * 
+	 * @param string $aUsername		A login username
+	 * @param string $aPassword		A login password
+	 * @throws Exception
+	 */
 	public function validate($aUsername, $aPassword) {
 		// Validate input
 		$error = "";
@@ -97,7 +120,17 @@ class ProfileController{
 			}
 		}
 	}
-	
+	/**
+	 * Updates profile info with new inputs.
+	 * Validates input and then changes the profile info in persistence.
+	 * 
+	 * @param string $aUsername 	The username of the profile.
+	 * @param string $aFirstName	The new first name of the Instructor.
+	 * @param string $aLastName		Th new last name of the Instructor.
+	 * @param string $anOldPassword	The current password associated with the profile.
+	 * @param string $aNewPassword	The new password to be associated with the profile.
+	 * @throws Exception
+	 */
 	public function updateProfile($aUsername,$aFirstName,
 			$aLastName, $anOldPassword, $aNewPassword) {
 		

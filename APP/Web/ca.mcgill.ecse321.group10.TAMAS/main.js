@@ -32,6 +32,20 @@ function handleEvents() {
 		}
 		$.post("/ca.mcgill.ecse321.group10.TAMAS/Controller/validateTheme.php", {"set":dark})
 	});
+	
+	// if ever a handler is needed to retrieve the application
+//	$('#postingCDN').on("change", function(){
+//		var id = $(this).find('option:selected').attr("name");
+//		console.log(id)
+//		$.ajax({
+//			type: 'post',
+//			url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/getJobData.php',
+//			data: "id=" + $(this).val(),
+//			success: function(response) {
+//				console.log(response)
+//			}
+//		});
+//	});
 }
 
 function updateBudget(cdn) {
@@ -53,7 +67,7 @@ function setSlider() {
 		data: {get: "get"},
 		url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/validateTheme.php',
 		success: function(response) {
-			console.log(response)
+			//console.log(response)
 			if(response === "true") $('#chk').prop('checked', true);
 			else  $('#chk').prop('checked', false);
 		}

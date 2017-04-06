@@ -74,19 +74,19 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		$this->pt->loadProfileManagerFromStore();
 		
 		//make a job with application controller
-		$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None", 5450, $this->pm->getInstructor_index(0));
+		$this->ac->createJob(10,"Wednesday","PositionGRADER", 100, "None", 5450, $this->pm->getInstructor_index(0));
 		
 		
-		
+		$this->pt->loadApplicationManagerFromStore();
+		$job =  $this->am->getJob_index(0);
 		// validate stored data
-		$this->assertCount(1, $this->am->getJobs());
-		$this->assertEquals("8:00", $this->am->getJob_index(0)->getStartTime());
-		$this->assertEquals("18:00", $this->am->getJob_index(0)->getEndTime());
-		$this->assertEquals("PositionGRADER", $this->am->getJob_index(0)->getPosition());
-		$this->assertEquals(100, $this->am->getJob_index(0)->getSalary());
-		$this->assertEquals("None", $this->am->getJob_index(0)->getRequirements());
-		//$this->assertEquals($this->validCourse, $this->am->getJob_index(0)->getCourse());
-		//$this->assertEquals($this->validInstructor, $this->am->getJob_index(0)->getInstructor());
+		$this->assertEquals(10,$job->getTimeBudget());
+		$this->assertEquals("Wednesday", $job->getDay());
+		$this->assertEquals("PositionGRADER", $job->getPosition());
+		$this->assertEquals(100, $job->getSalary());
+		$this->assertEquals("None", $job->getRequirements());
+		$this->assertEquals($this->pm->getInstructor(0),$job->getInstructor());
+		
 	}
 
 	//create a job without a course
@@ -97,7 +97,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		
 		//make the job, catch the error that should be thrown
 		try{
-			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",null, $this->pm->getInstructor_index(0));
+			$this->ac->createJob(10,"Wednesday","PositionGRADER", 100, "None",null, $this->pm->getInstructor_index(0));
 		} catch(Exception $e){
 			$error = $e->getMessage();
 		}
@@ -113,120 +113,104 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		
 		//make the job, catch the error that should be thrown
 		try{
-			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",-1, $this->pm->getInstructor_index(0));
+			$this->ac->createJob(10,"Wednesday","PositionGRADER", 100, "None",-1, $this->pm->getInstructor_index(0));
 		} catch(Exception $e){
 			$error = $e->getMessage();
 		}
 		$this->assertEquals($error, "CDN must be a positive Integer!<br><br>");
 		
-	}
 	
+		//make the job, catch the error that should be thrown
+		try{
+			$this->ac->createJob(10,"Wednesday","PositionGRADER", 100, "None",12316544654, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "Course was not found!<br><br>");
+}
 	
 	
 	//create a job without an instructor
 	public function testCreateJobNoInstructor(){
 		$error="";
-		//make a valid instructor
-		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo",null);
+		
+		//create valid course
+		$this->cc->createCourse("ECSE 489",489,30,30);
 		
 		//make the job, catch the error that should be thrown
 		try{
-			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",-1, $this->pm->getInstructor_index(0));
+			$this->ac->createJob(10,"Wednesday","PositionGRADER", 100, "None",489, $this->pm->getInstructor_index(0));
 		} catch(Exception $e){
 			$error = $e->getMessage();
 		}
-		$this->assertEquals($error, "CDN must be a positive Integer!<br><br>");
-		
-		
-	}
+		$this->assertEquals($error, "Instructor was not found!<br><br>");
+		}
 		
 	
-	//create a job with invalid start time
+	//create a job with invalid time
 	public function testCreateJobInvalidStartTime(){
 		$error="";
+	
+		//create valid course
+		$this->cc->createCourse("ECSE 489",489,30,30);
+		
 		//make a valid instructor
-		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo",null);
+		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo", array([489]));
 		
 		
 		//make the job, catch the error that should be thrown
 		try{
-			$this->ac->createJob("8:00", "18:00","Wednesday","PositionGRADER", 100, "None",, $this->pm->getInstructor_index(0));
+			$this->ac->createJob(-1,"Wednesday","PositionGRADER", 100, "None",null, $this->pm->getInstructor_index(0));
 		} catch(Exception $e){
 			$error = $e->getMessage();
 		}
-		$this->assertEquals($error, "The time budget must be a positive integer!<br><br>");
+		$this->assertEquals($error, "Time budget must be a positive Number!<br><br>");
 		
 		
-	}
-/*	//create a job with invalid end time
-	public function testCreateJobInvalidEndTime(){
-		
-		//make a valid instructor using the controller
-		
-		//make a valid course using the controller
-		
-		//make the job, catch the error that should be thrown
-		
-		
-	}
-	
-	//create a job with start time after end time
-	public function testCreateJobStartAfterEnd(){
-		
-		//make a valid instructor using the controller
-		
-		//make a valid course using the controller
-		
-		//make the job, catch the error that should be thrown
+		try{
+			$this->ac->createJob(null,"Wednesday","PositionGRADER", 100, "None",null, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error, "Time Budget must be a non null Number!<br><br>");
 		
 		
 	}
 	
-	//create a job with non integer or negative salary
+	//create a job with null, non integer or negative salary
 	public function testCreateJobInvalidSalary(){
 		
-		//make a valid instructor using the controller
+		//create valid course
+		$this->cc->createCourse("ECSE 489",489,30,30);
 		
-		//make a valid course using the controller
+		//make a valid instructor
+		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo", array([489]));
 		
-		//make the job, catch the error that should be thrown
-		
-		
-	}
-	
-	//create a job with no salary
-	public function testCreateJobNoSalary(){
-		
-		//make a valid instructor using the controller
-		
-		//make a valid course using the controller
-		
-		//make the job, catch the error that should be thrown
-		
-		
-	}
-	
-	//create a job with no position listed
-	public function testCreateJobNoPosition(){
+		//null salary
+		try{
+			$this->ac->createJob(10,"Wednesday","PositionGRADER", null, "None",489, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error,"Salary must be a non null Number!<br><br>");
 
-		//make a valid instructor using the controller
+		//non integer
+		try{
+			$this->ac->createJob(10,"Wednesday","PositionGRADER", "YOOOOO", "None",489, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error,"Salary must be a non null Number!<br><br>");
 		
-		//make a valid course using the controller
+		//negative
+		try{
+			$this->ac->createJob(10,"Wednesday","PositionGRADER", -5, "None",489, $this->pm->getInstructor_index(0));
+		} catch(Exception $e){
+			$error = $e->getMessage();
+		}
+		$this->assertEquals($error,"Salary must be a positive Number!<br><br>");
 		
-		//make the job, catch the error that should be thrown
-		
-	}
+	}	
 	
-	//create a job with an invalid position
-	public function testCreateJobInvalidPosition(){
-		
-		//make a valid instructor using the controller
-		
-		//make a valid course using the controller
-		
-		//make the job, catch the error that should be thrown
-		
-	}
-	
-**/
+
 }

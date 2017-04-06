@@ -37,23 +37,27 @@ if (isset($_SESSION['username'])) {
 				<h4>Login</h4><br><br>
 				<p>Instructor Platform</p><br><br>
 				<p class="error">
-					<?php
-						if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
-							echo $_SESSION["error"];
-						}
-					?>
+				<?php
+					if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
+						echo $_SESSION["error"];
+					}
+				?>
 				</p>
 			</span>
 			<div class="actions">
 				<form action="" method="post">
-				    Username<input type="text" name="username" placeholder="i.e. JamesMcGill" required autofocus/><br><br>
-					Password<input type="password" name="password" placeholder="*********" required/>
+				    Username
+				    <input type="text" name="username" placeholder="i.e. JamesMcGill" required autofocus/>
+				    <br><br>
+					Password
+					<input type="password" name="password" placeholder="*********" required/>
 					<br><br>
-					<input class="btn <?php 
-	if(isset($_SESSION['dark'])) {
-		if($_SESSION['dark']=="true") echo "dark";
-	}
-	?>" type="submit" name="login" value="Login" />
+					<input class="btn 
+					<?php 
+						if(isset($_SESSION['dark'])) {
+							if($_SESSION['dark']=="true") echo "dark";
+						}
+					?>" type="submit" name="login" value="Login" />
 				</form>
 			</div>
 		</main>

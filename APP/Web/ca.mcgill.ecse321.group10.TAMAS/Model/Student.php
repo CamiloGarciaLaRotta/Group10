@@ -227,9 +227,9 @@ class Student extends Profile
     return 0;
   }
 
-  public function addApplicationVia($aJobs)
+  public function addApplicationVia($aStudentEvaluation, $aJobs)
   {
-    return new Application($this, $aJobs);
+    return new Application($aStudentEvaluation, $this, $aJobs);
   }
 
   public function addApplication($aApplication)

@@ -37,8 +37,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		$this->assertEquals(0, $this->am->numberOfJobs());
 		
-		$startTime = "9:00";
-		$endTime = "11:30";
+		$time=20;
 		$day = "Monday";
 		$position = "PositionTA";
 		$salary = 80.30;
@@ -46,7 +45,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		$course = new Course("MATH 363", 3700, 10, 20);
 		$instructor = new Instructor("PGuardiola", "123", "Pep", "Guardiola");
 		
-		$job = new Job($startTime, $endTime, $day, $salary, $requirements, $course, $instructor);
+		$job = new Job($time, $day, $salary, $requirements, $course, $instructor);
 		
 		try {
 			$this->am->addJob($job);
@@ -58,16 +57,14 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		// validate stored data
 		$this->assertCount(1, $this->am->getJobs());
-		$this->assertEquals($startTime, $this->am->getJob_index(0)->getStartTime());
-		$this->assertEquals($endTime, $this->am->getJob_index(0)->getEndTime());
+		$this->assertEquals($time, $this->am->getJob_index(0)->getTimeBudget());
 		$this->assertEquals($position, $this->am->getJob_index(0)->getPosition());
 		$this->assertEquals($salary, $this->am->getJob_index(0)->getSalary());
 		$this->assertEquals($requirements, $this->am->getJob_index(0)->getRequirements());
 		$this->assertEquals($course, $this->am->getJob_index(0)->getCourse());
 		$this->assertEquals($instructor, $this->am->getJob_index(0)->getInstructor());
 		
-		$startTime = "13:00";
-		$endTime = "15:30";
+		$time = 10;
 		$day = "Friday";
 		$position = "PositionGRADER";
 		$salary = 20.00;
@@ -75,7 +72,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		$course = new Course("COMP 551", 2700, 10, 20);
 		$instructor = new Instructor("JMourinho", "456", "Jose", "Mourinho");
 		
-		$job = new Job($startTime, $endTime, $day, $salary, $requirements, $course, $instructor);
+		$job = new Job($time, $day, $salary, $requirements, $course, $instructor);
 		
 		try {
 			$this->am->addJob($job);
@@ -87,8 +84,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		// validate stored data
 		$this->assertCount(2, $this->am->getJobs());
-		$this->assertEquals($startTime, $this->am->getJob_index(1)->getStartTime());
-		$this->assertEquals($endTime, $this->am->getJob_index(1)->getEndTime());
+		$this->assertEquals($time, $this->am->getJob_index(1)->getTimeBudget());
 		$this->assertEquals($position, $this->am->getJob_index(1)->getPosition());
 		$this->assertEquals($salary, $this->am->getJob_index(1)->getSalary());
 		$this->assertEquals($requirements, $this->am->getJob_index(1)->getRequirements());
