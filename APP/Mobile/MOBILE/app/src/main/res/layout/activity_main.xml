@@ -40,10 +40,10 @@
         android:background="@drawable/roundbutton"
         android:width="150dp"
         android:text="@string/create_job_application"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/BrowseButton"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/BrowseButton"
-        android:layout_alignStart="@+id/BrowseButton" />
+        android:layout_alignStart="@+id/BrowseButton"
+        android:layout_marginBottom="25dp" />
 
     <Button
         android:id="@+id/BrowseButton"

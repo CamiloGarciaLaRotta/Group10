@@ -57,7 +57,6 @@ public class ApplyToJob extends AppCompatActivity {
 
         APPLICATION_FILE_NAME = rootPath + "/applications.xml";
         PROFILE_FILE_NAME = rootPath + "/profiles.xml";
-
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_NAME);
         am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_NAME,PROFILE_FILE_NAME);
 
