@@ -75,8 +75,8 @@ function updateBudget(cdn) {
 			} else {
 				$('#info').show();
 			}
-			$('#TAhours').text("TA Budget: "+budget[0]);
-			$('#Graderhours').text("TA Budget: "+budget[1]);
+			$('#TAhours').text("TA Budget: "+ta);
+			$('#Graderhours').text("TA Budget: "+grader);
 		}
 	});
 }
