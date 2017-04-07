@@ -108,15 +108,15 @@
 							}
 						?>" name="submit" value="Publish"/>
 					</form>
-					<form action="home.php">
+				</div>
+				<form action="home.php">
 						<input type="submit" class="btn 
 						<?php 
 							if(isset($_SESSION['dark'])) {
 								if($_SESSION['dark']) echo "dark";
 							}
 						?>" value="Back" />
-					</form>
-				</div>
+				</form>
 			</div>
 		</main>
 	</body>
