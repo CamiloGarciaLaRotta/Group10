@@ -21,12 +21,14 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 public class MainActivity extends AppCompatActivity {
 
     Button button = null;
-    String rootPath = getObbDir().getAbsolutePath();
+    //String rootPath = getObbDir().getAbsolutePath();
+    String rootPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        rootPath = getApplicationInfo().dataDir;
     }
 
     public void createJobAppClicked(View v){

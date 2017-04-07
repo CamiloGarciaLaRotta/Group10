@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.group10.tamas;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Environment;
 
 import java.io.File;
@@ -30,10 +31,13 @@ public class TAMAS extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        File xmlDir = new File(Environment.getExternalStorageDirectory().getPath() + "/output");
-        rootPath = xmlDir.getAbsolutePath();
+        //File xmlDir = new File(Environment.getExternalStorageDirectory().getPath() + "/output");
+        String xmldir = getApplicationInfo().dataDir;
+        //String xmldir = "/data";
+        rootPath = xmldir;
         APPLICATION_FILE_NAME = rootPath + "/applications.xml";
-        PROFILE_FILE_NAME = rootPath + "./profiles.xml";
+        PROFILE_FILE_NAME = rootPath + "/profiles.xml";
+        System.out.println(PROFILE_FILE_NAME);
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_NAME);
         am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_NAME,PROFILE_FILE_NAME);
         ac = new ApplicationController(am,APPLICATION_FILE_NAME);
