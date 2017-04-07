@@ -86,35 +86,37 @@
 							<option><?php echo $course->getCdn() ?></option>
 						<?php }?>
 					</select><br><br>		
-					Position<br>
-					<input type="radio" name="job_position" value="PositionTA" required> TA
-					<input type="radio" name="job_position" value="PositionGRADER" required> Grader<br><br>
-					Requirements
-					<textarea class="text" cols="20" rows ="5" name="job_requirements" maxlength="100" reqired></textarea><br><br>	
-					Hourly Salary<input type ="text" name="job_salary" required/><br><br>
-					Available Day<select name="job_day">
-						<option value="monday">Monday</option>
-						<option value="tuesday">Tuesday</option>
-						<option value="wednesday">Wednesday</option>
-						<option value="thursday">Thursday</option>
-						<option value="friday">Friday</option>
-					</select><br><br>
-					Time Allocated<input type ="text" name="job_time" required/><br><br><br>
-					<input type= "submit" class="btn 
-					<?php 
-						if(isset($_SESSION['dark'])) {
-							if($_SESSION['dark']=="true") echo "dark";
-						}
-					?>" name="submit" value="Publish"/>
-				</form>
-				<form action="home.php">
-					<input type="submit" class="btn 
-					<?php 
-						if(isset($_SESSION['dark'])) {
-							if($_SESSION['dark']) echo "dark";
-						}
-					?>" value="Back" />
-				</form>
+					<div id="info">
+						Position<br>
+						<label id="ta"><input type="radio" name="job_position" value="PositionTA" > TA</label>
+						<label id="grader"><input type="radio" name="job_position" value="PositionGRADER" > Grader</label><br><br>
+						Requirements
+						<textarea class="text" cols="20" rows ="5" name="job_requirements" maxlength="100" reqired></textarea><br><br>	
+						Hourly Salary<input type ="text" name="job_salary" required/><br><br>
+						Available Day<select name="job_day">
+							<option value="monday">Monday</option>
+							<option value="tuesday">Tuesday</option>
+							<option value="wednesday">Wednesday</option>
+							<option value="thursday">Thursday</option>
+							<option value="friday">Friday</option>
+						</select><br><br>
+						Time Allocated<input type ="text" name="job_time"/><br><br><br>
+						<input type= "submit" class="btn 
+						<?php 
+							if(isset($_SESSION['dark'])) {
+								if($_SESSION['dark']=="true") echo "dark";
+							}
+						?>" name="submit" value="Publish"/>
+					</form>
+					<form action="home.php">
+						<input type="submit" class="btn 
+						<?php 
+							if(isset($_SESSION['dark'])) {
+								if($_SESSION['dark']) echo "dark";
+							}
+						?>" value="Back" />
+					</form>
+				</div>
 			</div>
 		</main>
 	</body>

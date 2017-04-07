@@ -55,6 +55,26 @@ function updateBudget(cdn) {
 		data: { 'cdn':cdn },
 		success: function(response) {
 			var budget = response.split(',')
+			var ta = parseInt(budget[0]);
+			var grader = parseInt(budget[1]);
+			console.log(ta + " " + grader)
+			if (ta <= 0) {
+				ta = 0;
+				$('#ta').hide();
+			} else {
+				$('#ta').show();
+			}
+			if (grader <= 0) {
+				grader = 0;
+				$('#grader').hide();
+			} else {
+				$('#grader').show();
+			}
+			if(ta ==0 && grader == 0) {
+				$('#info').hide();
+			} else {
+				$('#info').show();
+			}
 			$('#TAhours').text("TA Budget: "+budget[0]);
 			$('#Graderhours').text("TA Budget: "+budget[1]);
 		}
