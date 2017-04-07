@@ -11,7 +11,7 @@
     <string name="login">Login</string>
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to Login -->
     <string name="prompt_user">Username</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in</string>
@@ -25,7 +25,8 @@
     </string>
     <string name="title_activity_testlogin">Sign in</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to Login -->
     <string name="prompt_email">Email</string>
     <string name="error_invalid_email">This email address is invalid</string>
+    <string name="back">back</string>
 </resources>

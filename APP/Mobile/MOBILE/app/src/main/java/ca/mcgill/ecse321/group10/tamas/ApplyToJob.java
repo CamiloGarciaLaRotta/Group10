@@ -31,7 +31,7 @@ public class ApplyToJob extends AppCompatActivity {
     private static int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE;
     private ApplicationManager am;
     private ProfileManager pm;
-    private EditText usernameField = null;
+    private String username = null;
     private Spinner jobSpinner = null;
     private TextView errorText = null;
     private String errors = "";
@@ -46,19 +46,12 @@ public class ApplyToJob extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_to_job);
-
-
         jobSpinner = (Spinner) findViewById(R.id.spinner);
-        usernameField = (EditText) findViewById(R.id.usernameField);
-        usernameField.setHint("Try dummy1, dummy2, or dummy3");
+        username = ((TAMAS) this.getApplication()).getUsername();
         errorText = (TextView) findViewById(R.id.errors);
 
-        String rootPath = getObbDir().getAbsolutePath();
-
-        APPLICATION_FILE_NAME = rootPath + "/applications.xml";
-        PROFILE_FILE_NAME = rootPath + "/profiles.xml";
-        pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_NAME);
-        am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_NAME,PROFILE_FILE_NAME);
+        pm = ((TAMAS) getApplication()).getProfileManager();
+        am = ((TAMAS) getApplication()).getApplicationManager();
 
         jobs = am.getJobs();
         students = pm.getStudents();
@@ -80,13 +73,6 @@ public class ApplyToJob extends AppCompatActivity {
         jobSpinner.setAdapter(jobAdapter);
     }
 
-    public void usernameClicked(View v){
-        if(v.getId() == R.id.usernameField){
-            if (usernameField.getText().toString().trim().equalsIgnoreCase("")) {
-                usernameField.setError("This field can not be blank");
-            }
-        }
-    }
 
 
     private static int getStudentIndex(List<Student> students, String name){
@@ -102,7 +88,6 @@ public class ApplyToJob extends AppCompatActivity {
     public void ApplyToJobClicked(View v) {
         if(v.getId() == R.id.applyButton) {
             errors = "";
-            String username = usernameField.getText().toString();
             int index = getStudentIndex(students,username);
             if(index == -1) errors += "Student username not found. \n";
             if(jobSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
@@ -110,7 +95,7 @@ public class ApplyToJob extends AppCompatActivity {
                 try {
                     Student student = pm.getStudent(index);
                     Job job = am.getJob(jobSpinner.getSelectedItemPosition());
-                    ApplicationController ac = new ApplicationController(am,APPLICATION_FILE_NAME);
+                    ApplicationController ac = ((TAMAS) this.getApplication()).getApplicationController();
                     ac.createApplication(student,job);
                     String msg = student.getUsername() + " has applied to\n" + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".\nGood luck!";
@@ -118,7 +103,6 @@ public class ApplyToJob extends AppCompatActivity {
                     toast.setGravity(0,0,15);
                     toast.show();
                     //success
-                    usernameField.setText("");
                 } catch(Exception e) {
                     errors += "Failed to create application.\n";
                 }
@@ -130,7 +114,6 @@ public class ApplyToJob extends AppCompatActivity {
     @Deprecated
     public void applyToJobClicked(View v){
         if(v.getId() == R.id.applyButton){
-            String username = usernameField.getText().toString();
             System.out.println(username);
             int index = getStudentIndex(students,username);
             Student student = null;
@@ -157,7 +140,6 @@ public class ApplyToJob extends AppCompatActivity {
                 toast.show();
                 //success
                 errorText.setText("");
-                usernameField.setText("");
             }catch (Exception e){
                 //do nothing, already handles inputs in previous try catch blocks
             } finally {
