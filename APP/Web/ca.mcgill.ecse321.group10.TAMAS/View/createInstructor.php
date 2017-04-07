@@ -68,9 +68,9 @@
 					Password<input type="password" name="instructor_password" required/><br><br>
 					First Name<input type ="text" name="instructor_fName" required/><br><br>
 					Last Name<input type ="text" name="instructor_lName" required/><br><br>
-					Courses<br><select name='cdn[]' size="5" multiple>
+					Courses<br><select name='cdn[]' size="5" id="courseCDN" multiple>
 						<?php foreach ($cm->getCourses() as $course){?>
-							<option><?php echo $course->getCdn() ?></option>
+							<option value="<?php echo $course->getCdn() ?>"><?php echo $course->getClassName() ?></option>
 						<?php }?>
 					</select><br><br>	
 					<input type= "submit" class="btn 

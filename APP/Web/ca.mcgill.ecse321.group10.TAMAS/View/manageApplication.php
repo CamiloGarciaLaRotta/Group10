@@ -85,13 +85,15 @@
 				<form action='../Controller/validateHire.php' method='post'>
 					Course CDN<br><select name='app_courseCDN' id="courseCDN">
 						<?php foreach ($profile->getCourses() as $course){?>
-							<option><?php echo $course->getCdn() ?></option>
+							<option value="<?php echo $course->getCdn() ?>"><?php echo $course->getClassName() ?></option>
 						<?php }?>
 					</select><br><br>		
 					Application<br>
 					<select size="5" name="application" id="applicationID">
 						<?php 
-						// TODO DISPLAY ALL APLICATIONS FOR CHOSEN CLASS
+						foreach ($am->getApplications() as $app) {
+							
+						}
 						?>
 					</select><br><br>
 					Student Evaluation

@@ -83,7 +83,7 @@
 				<form action='../Controller/validateJob.php' id="form" method='post'>
 					Course CDN<br><select name='job_courseCDN' id="courseCDN">
 						<?php foreach ($profile->getCourses() as $course){?>
-							<option><?php echo $course->getCdn() ?></option>
+							<option value="<?php echo $course->getCdn(); ?>"><?php echo $course->getClassName(); ?></option>
 						<?php }?>
 					</select><br><br>		
 					<div id="info">

@@ -249,9 +249,9 @@ class Job
     return 0;
   }
 
-  public function addApplicationVia($aStudentEvaluation, $aStudent)
+  public function addApplicationVia($aStudent)
   {
-    return new Application($aStudentEvaluation, $aStudent, $this);
+    return new Application($aStudent, $this);
   }
 
   public function addApplication($aApplication)

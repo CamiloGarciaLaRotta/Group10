@@ -29,9 +29,9 @@ class Application
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aStudentEvaluation, $aStudent, $aJobs)
+  public function __construct($aStudent, $aJobs)
   {
-    $this->studentEvaluation = $aStudentEvaluation;
+    $this->studentEvaluation = NULL;
     $this->id = self::$nextId++;
     $didAddStudent = $this->setStudent($aStudent);
     if (!$didAddStudent)

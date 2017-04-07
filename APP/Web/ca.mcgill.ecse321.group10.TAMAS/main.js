@@ -1,25 +1,11 @@
 function handleEvents() {
 	// show time budgets of selected course
 	$('#courseCDN').change(function() {
-		updateBudget(this.value);
+		var cdn = $("#courseCDN").val();
+		updateBudget(cdn);
 	});
-	
-	//update time budgets if hired
-	$('#hire').on('click', function() {
-		updateBudget($('#courseCDN').val());
-	});
-	
-	//display application information
-	$('#applicationID').on('select', function() {
-		$.ajax({
-			type: 'post',
-			url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/getAppContent.php',
-			data: "id=" + this.value,
-			success: function(response) {
-				$('#ApplicationInfo').text(response);
-			}
-		});
-	});
+		
+
 	
 	$("#chk").change(function(){
 		var dark = $(this).is(':checked');
@@ -32,6 +18,18 @@ function handleEvents() {
 		}
 		$.post("/ca.mcgill.ecse321.group10.TAMAS/Controller/validateTheme.php", {"set":dark})
 	});
+	
+//	//display application information
+//	$('#applicationID').on('select', function() {
+//		$.ajax({
+//			type: 'post',
+//			url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/getAppContent.php',
+//			data: "id=" + this.value,
+//			success: function(response) {
+//				$('#ApplicationInfo').text(response);
+//			}
+//		});
+//	});
 	
 	// if ever a handler is needed to retrieve the application
 //	$('#postingCDN').on("change", function(){
@@ -49,6 +47,7 @@ function handleEvents() {
 }
 
 function updateBudget(cdn) {
+	console.log(cdn)
 	$.ajax({
 		type: 'post',
 		url: '../Controller/getBudget.php',
@@ -96,7 +95,10 @@ function setSlider() {
 
 $(function() {
 	console.log("Client side active");
-	if($('main').hasClass("job") || $('main').hasClass("application") ) updateBudget($('#courseCDN').val())
+	if($('main').hasClass("job") || $('main').hasClass("application") ) {
+		var cdn = $("#courseCDN").val();
+		updateBudget(cdn);
+	}
 	setSlider()
 	handleEvents();
 });
