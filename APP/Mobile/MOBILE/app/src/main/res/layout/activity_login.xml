@@ -29,7 +29,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="textVisiblePassword"
         android:hint="@string/prompt_password"
         android:textColor="#0000"
         android:id="@+id/password"
@@ -41,33 +41,35 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/buttonBackground"
-        android:hint="@string/action_sign_in"
-        android:textColor="#0000"
-        android:onClick="loginClicked"
+        android:textColor="#F00"
+        android:id="@+id/errors"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/username"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="91dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginBottom="23dp" />
 
     <Button
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/back"
-        android:onClick="backClicked"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="16dp"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="91dp"
+        android:background="@color/buttonBackground"
+        android:hint="@string/action_sign_in"
+        android:onClick="loginClicked"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="7dp"
-        android:id="@+id/button2" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
 
 </android.support.constraint.ConstraintLayout>

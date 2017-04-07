@@ -6,6 +6,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,7 +29,6 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 public class ApplyToJob extends AppCompatActivity {
 
 
-    private static int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE;
     private ApplicationManager am;
     private ProfileManager pm;
     private String username = null;
@@ -52,18 +52,15 @@ public class ApplyToJob extends AppCompatActivity {
 
         pm = ((TAMAS) getApplication()).getProfileManager();
         am = ((TAMAS) getApplication()).getApplicationManager();
+        Log.v("load",pm.getStudent(0).toString());
 
         jobs = am.getJobs();
         students = pm.getStudents();
 
-        //get string of student and job names
-        String [] studentNames = new String[pm.getStudents().size()];
+        //get string of job names
         String [] jobNames = new String[am.getJobs().size()];
 
-        for(int c = 0; c < studentNames.length; c++) {
-            studentNames[c] = pm.getStudent(c).getUsername();
-        }
-
+        Log.v("size", String.valueOf(am.getJobs().size()));
         for(int c = 0; c < jobNames.length; c++) {
             jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
         }
@@ -88,12 +85,11 @@ public class ApplyToJob extends AppCompatActivity {
     public void ApplyToJobClicked(View v) {
         if(v.getId() == R.id.applyButton) {
             errors = "";
-            int index = getStudentIndex(students,username);
-            if(index == -1) errors += "Student username not found. \n";
+            Student student = ((TAMAS) getApplication()).getStudent();
+            if(student == null) errors += "Must be logged in\n";
             if(jobSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
             if(errors.length() == 0) {
                 try {
-                    Student student = pm.getStudent(index);
                     Job job = am.getJob(jobSpinner.getSelectedItemPosition());
                     ApplicationController ac = ((TAMAS) this.getApplication()).getApplicationController();
                     ac.createApplication(student,job);
@@ -114,7 +110,6 @@ public class ApplyToJob extends AppCompatActivity {
     @Deprecated
     public void applyToJobClicked(View v){
         if(v.getId() == R.id.applyButton){
-            System.out.println(username);
             int index = getStudentIndex(students,username);
             Student student = null;
             Job job = null;
