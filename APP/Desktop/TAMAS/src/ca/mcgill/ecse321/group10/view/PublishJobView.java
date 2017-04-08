@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.group10.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
@@ -28,6 +29,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
 import ca.mcgill.ecse321.group10.controller.CourseController;
 import ca.mcgill.ecse321.group10.controller.InputException;
+import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 import widgets.Constants;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
@@ -165,8 +167,10 @@ public class PublishJobView extends JFrame{
 		
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
 	    getContentPane().setLayout(layout);
-	    getContentPane().setBackground(Constants.bgColor);
+	    if(constants.get(1)== 0) getContentPane().setBackground(Constants.dark_bgColor);
+	    else getContentPane().setBackground(Constants.light_bgColor);
 	    layout.setAutoCreateGaps(true);
 	    layout.setAutoCreateContainerGaps(true);
 	    layout.setHorizontalGroup(

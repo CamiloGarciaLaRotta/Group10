@@ -33,9 +33,9 @@ public class MenuView extends JFrame{
 	private static final int X_SIZE = 300;
 	private static final int Y_SIZE = 300;
 
-	private JLabel greeting;
-	private JLabel lTAMAS;
-	private JLabel error;
+	private ThemedLabel greeting;
+	private ThemedLabel lTAMAS;
+	private ThemedLabel error;
 	private JButton applicationButton;
 	private JButton publishButton;
 	private JButton profileButton;
@@ -46,6 +46,7 @@ public class MenuView extends JFrame{
 	private JButton logoutButton;
 	private JButton evaluateButton;
 	private JButton feedbackButton;
+	private JButton colorButton;
 	
 	private JButton studentButton;
 	private JButton instructorButton;
@@ -59,12 +60,17 @@ public class MenuView extends JFrame{
 	private ProfileManager pm;
 	private CourseManager cm;
 	
-	private JPanel pAdmin;
-	private JPanel pInstructor;
-	private JPanel pStudent;
-	private JPanel mainPanel;
+	private ThemedPanel pAdmin;
+	private ThemedPanel pInstructor;
+	private ThemedPanel pStudent;
+	private ThemedPanel mainPanel;
+	private ThemedPanel panel;
+	private ThemedPanel tabs;
 	
 	private Profile user;
+	
+	private String[] colorToggle;
+	private int theme;
 	
 	@Deprecated
 	public MenuView(ApplicationManager am, ProfileManager pm, CourseManager cm) {
@@ -83,7 +89,25 @@ public class MenuView extends JFrame{
 		initComponents();
 	}
 	
+	private void refreshWidgets() {
+		greeting.setColors();
+		lTAMAS.setColors();
+		error.setColors();
+		pAdmin.setColors();
+		pInstructor.setColors();
+		pStudent.setColors();
+		mainPanel.setColors();
+		panel.setColors();
+		tabs.setColors();
+		colorButton.setText(colorToggle[theme]);
+	}
+	
 	private void initComponents() {
+		colorToggle = new String[2];
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		theme = constants.get(1);
+		colorToggle[0] = "Switch to light theme";
+		colorToggle[1] = "Switch to dark theme";
 		if(user.getClass() == Admin.class) state = Tab.Admin;
 		else if(user.getClass() == Instructor.class) state = Tab.Instructor;
 		else state = Tab.Student;
@@ -101,6 +125,7 @@ public class MenuView extends JFrame{
 		logoutButton = new JButton();
 		evaluateButton = new JButton();
 		feedbackButton = new JButton();
+		colorButton = new JButton();
 		
 		adminButton = new ThemedTabButton();
 		instructorButton = new ThemedTabButton();
@@ -121,6 +146,7 @@ public class MenuView extends JFrame{
 		logoutButton.setText("Log out");
 		evaluateButton.setText("Evaluate Your TAs");
 		feedbackButton.setText("View Your Evaluations");
+		colorButton.setText(colorToggle[theme]);
 		
 		adminButton.setText("Admin");
 		instructorButton.setText("Instructor");
@@ -258,6 +284,17 @@ public class MenuView extends JFrame{
 			}
 		});
 		
+		colorButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				theme ^= 1;
+				ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+				constants.set(1, theme);
+				PersistenceXStream.setFilename("output/constants.xml");
+				PersistenceXStream.saveToXMLwithXStream(constants);
+				refreshWidgets();
+			}
+		});
+		
 		pAdmin = new ThemedPanel(Constants.grey);
 		pAdmin.setLayout(new BoxLayout(pAdmin,BoxLayout.Y_AXIS));
 		pInstructor = new ThemedPanel(Constants.grey);
@@ -267,10 +304,10 @@ public class MenuView extends JFrame{
 		mainPanel = new ThemedPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
 		
-		JPanel panel = new ThemedPanel();
+		panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
-		JPanel tabs = new ThemedPanel();
+		tabs = new ThemedPanel();
 		tabs.setLayout(new FlowLayout());
 		tabs.add(adminButton);
 		tabs.add(instructorButton);
@@ -292,6 +329,7 @@ public class MenuView extends JFrame{
 		
 		mainPanel.add(pAdmin);
 		panel.add(mainPanel);
+		panel.add(colorButton);
 		panel.add(logoutButton);
 		
 		this.add(panel);
@@ -310,6 +348,7 @@ public class MenuView extends JFrame{
 		logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		evaluateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		feedbackButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		colorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		refresh();
 		pack();

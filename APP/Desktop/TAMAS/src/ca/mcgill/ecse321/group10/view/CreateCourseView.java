@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.group10.view;
 
+import java.util.ArrayList;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +17,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.CourseController;
 import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
+import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 import widgets.Constants;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
@@ -85,7 +88,9 @@ public class CreateCourseView extends JFrame{
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		getContentPane().setBackground(Constants.bgColor);
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		if(constants.get(1) == 0) getContentPane().setBackground(Constants.dark_bgColor);
+		else getContentPane().setBackground(Constants.light_bgColor);
 	    layout.setAutoCreateGaps(true);
 	    layout.setAutoCreateContainerGaps(true);
 	    

@@ -1,21 +1,34 @@
 package widgets;
 
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
+
+import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ThemedTextField extends JTextField{
 	
 	public ThemedTextField() {
 		super();
-		this.setBackground(Constants.tfBgColor);
-		this.setForeground(Constants.tfFgColor);
+		setColors();
 		this.setCaretColor(Constants.cursorColor);
 	}
 	
 	public ThemedTextField(int width) {
 		super(width);
-		this.setBackground(Constants.tfBgColor);
-		this.setForeground(Constants.tfFgColor);
+		setColors();
 		this.setCaretColor(Constants.cursorColor);
+	}
+	
+	public void setColors() {
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		if(constants.get(1) == 0) {
+			this.setBackground(Constants.dark_tfBgColor);
+			this.setForeground(Constants.dark_tfFgColor);
+		} else {
+			this.setBackground(Constants.light_tfBgColor);
+			this.setForeground(Constants.light_tfFgColor);
+		}
 	}
 
 }

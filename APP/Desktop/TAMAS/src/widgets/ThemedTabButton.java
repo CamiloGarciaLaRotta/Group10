@@ -1,6 +1,10 @@
 package widgets;
 
+import java.util.ArrayList;
+
 import javax.swing.JButton;
+
+import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ThemedTabButton extends JButton{
 	
@@ -8,19 +12,25 @@ public class ThemedTabButton extends JButton{
 	
 	public ThemedTabButton() {
 		super();
-		initColors();
+		setColors();
 		s = "";
 	}
 	
 	public ThemedTabButton(String s) {
 		super(s);
-		initColors();
+		setColors();
 		this.s = s;
 	}
 	
-	private void initColors() {
-		this.setBackground(Constants.darkBlue);
-		this.setForeground(Constants.tfFgColor);
+	public void setColors() {
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		if(constants.get(1) == 0) {
+			this.setBackground(Constants.darkBlue);
+			this.setForeground(Constants.dark_tfFgColor);
+		} else {
+			this.setBackground(Constants.lightRed);
+			this.setForeground(Constants.light_tfFgColor);
+		}
 	}
 	
 	public void setText(String s) {
@@ -31,7 +41,7 @@ public class ThemedTabButton extends JButton{
 	public void setEnabled(boolean enabled) {
 		
 		if(enabled) {
-			initColors();
+			setColors();
 		}
 		else {
 			this.setBackground(null);

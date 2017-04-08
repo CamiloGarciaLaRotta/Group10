@@ -39,6 +39,7 @@ public abstract class PersistenceXStream {
     		}
     		constants = new ArrayList<Integer>();
     		constants.add(0);
+    		constants.add(0);
     		saveToXMLwithXStream(constants);
     	}
     	return constants;
