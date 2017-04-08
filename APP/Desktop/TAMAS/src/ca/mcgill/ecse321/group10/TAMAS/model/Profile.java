@@ -1,9 +1,9 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
+/*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 
-// line 51 "../../../../../../alternatemodel.ump"
+// line 50 "../../../../../../alternatemodel.ump"
 // line 124 "../../../../../../alternatemodel.ump"
 public class Profile
 {

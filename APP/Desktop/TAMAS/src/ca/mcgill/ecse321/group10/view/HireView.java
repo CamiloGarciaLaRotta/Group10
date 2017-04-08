@@ -375,7 +375,7 @@ public class HireView extends JFrame{
 		String[] jobNames = new String[jobs.size()];
 		for(int c = 0; c < jobNames.length; c++) {
 			jobNames[c] = jobs.get(c).getCourse().getClassName() + " " + 
-			jobs.get(c).getPositionFullName() + " (" + jobs.get(c).getCourse().getCdn() + ")";
+			jobs.get(c).getPositionFullName() + " (" + jobs.get(c).getCourse().getCdn() + ")" + " " + jobs.get(c).getDay();
 		}
 		cbJob.setModel(new DefaultComboBoxModel(jobNames));
 		

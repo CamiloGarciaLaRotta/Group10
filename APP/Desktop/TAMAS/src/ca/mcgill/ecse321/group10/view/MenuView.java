@@ -279,8 +279,8 @@ public class MenuView extends JFrame{
 		
 		feedbackButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				if(user.getClass() == Admin.class) new FeedbackView(pm,null).setVisible(true);
-				else if(user.getClass() == Student.class) new FeedbackView(pm,(Student)user).setVisible(true);
+				if(user.getClass() == Admin.class) new FeedbackView(am,pm,null).setVisible(true);
+				else if(user.getClass() == Student.class) new FeedbackView(am,pm,(Student)user).setVisible(true);
 				error.setText("");
 			}
 		});
