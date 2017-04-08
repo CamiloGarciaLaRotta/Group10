@@ -43,7 +43,6 @@ class PersistenceTAMAS {
 		return $cm;
 	}
 	
-
 	function writeApplicationDataToStore($am) {
 		$str = serialize($am);
 		file_put_contents($this->filenameAM, $str);

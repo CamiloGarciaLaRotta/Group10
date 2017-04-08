@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__.'\ProfileController.php';
 
+// validation script of Profile Modification
+
 session_start();
 
 $pc =new ProfileController();
@@ -9,15 +11,14 @@ try {
 	$_SESSION['errorProfile'] = "";
 	$_SESSION['successProfile'] = "";
 
-	// validate <datalist>
+	// avoid ilegal input
 	$firstName = isset($_POST['firstName']) ? $_POST['firstName'] : "XXX";
 	$lastName = isset($_POST['lastName']) ? $_POST['lastName'] : 'XXX';
 	$oldPassword = isset($_POST['oldPassword']) ? $_POST['oldPassword'] : 'XXX';
 	$newPassword = isset($_POST['newPassword']) ? $_POST['newPassword'] : 'XXX';
-
+	
 	$pc->updateProfile($_SESSION['username'],$firstName,
 			$lastName, $oldPassword, $newPassword);
-
 }
 catch (Exception $e) {
 	$_SESSION['errorProfile'] = $e->getMessage();

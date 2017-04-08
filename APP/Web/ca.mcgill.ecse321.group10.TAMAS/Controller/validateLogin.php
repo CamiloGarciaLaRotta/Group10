@@ -1,10 +1,13 @@
 <?php
 require_once __DIR__.'\ProfileController.php';
 
+// validation script for login
+
 session_start();
 
 $pc = new ProfileController();
 
+// avoid ilegal input
 $username = (isset($_POST['username'])) ? $_POST['username'] : "";
 $password = (isset($_POST['password'])) ? $_POST['password'] : "";
 
