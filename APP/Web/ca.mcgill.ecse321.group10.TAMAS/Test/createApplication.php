@@ -6,6 +6,7 @@ require_once __DIR__.'\..\Model\ProfileManager.php';
 require_once __DIR__.'\..\Model\ApplicationManager.php';
 require_once __DIR__.'\..\Controller\ApplicationController.php';
 require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__.'\..\Model\Profile.php';
 
 class JobTest extends PHPUnit_Framework_TestCase {
 
