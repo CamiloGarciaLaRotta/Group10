@@ -16,7 +16,7 @@ class Job
   //------------------------
 
   //Job Attributes
-  private $timeBudget;
+  private $hours;
   private $day;
   private $salary;
   private $requirements;
@@ -39,9 +39,9 @@ class Job
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTimeBudget, $aDay, $aSalary, $aRequirements, $aCourse, $aInstructor)
+  public function __construct($aHours, $aDay, $aSalary, $aRequirements, $aCourse, $aInstructor)
   {
-    $this->timeBudget = $aTimeBudget;
+    $this->hours = $aHours;
     $this->day = $aDay;
     $this->salary = $aSalary;
     $this->requirements = $aRequirements;
@@ -65,10 +65,10 @@ class Job
   // INTERFACE
   //------------------------
 
-  public function setTimeBudget($aTimeBudget)
+  public function setHours($aHours)
   {
     $wasSet = false;
-    $this->timeBudget = $aTimeBudget;
+    $this->hours = $aHours;
     $wasSet = true;
     return $wasSet;
   }
@@ -89,9 +89,9 @@ class Job
     return $wasSet;
   }
 
-  public function getTimeBudget()
+  public function getHours()
   {
-    return $this->timeBudget;
+    return $this->hours;
   }
 
   public function getDay()

@@ -3,7 +3,9 @@ function handleEvents() {
 	$('#courseCDN').change(function() {
 		var cdn = $("#courseCDN").val();
 		updateBudget(cdn);
-		if($('main').hasClass('application')) updateApplications(cdn);
+		if($('main').hasClass('application')) {
+			updateApplications(cdn);
+		}
 	});
 	
 	$('#applicationID').change(function() {
@@ -25,7 +27,7 @@ function handleEvents() {
 }
 
 function updateBudget(cdn) {
-	//console.log(cdn)
+	console.log(cdn)
 	$.ajax({
 		type: 'post',
 		url: '../Controller/getBudget.php',
@@ -34,7 +36,7 @@ function updateBudget(cdn) {
 			var budget = response.split(',')
 			var ta = parseInt(budget[0]);
 			var grader = parseInt(budget[1]);
-			//console.log(ta + " " + grader)
+			console.log(ta + " " + grader)
 			if (ta <= 0) {
 				ta = 0;
 				$('#ta').hide();
@@ -59,15 +61,18 @@ function updateBudget(cdn) {
 }
 
 function updateApplications(cdn){
-	console.log(cdn)
+	$('#applicationID').empty();
+	$('#studentName').html("");
+	$('#studentExp').html("");
+	$('#evaluation').val("");
+	//console.log(cdn)
 	$.ajax({
 		type: 'post',
 		url: '../Controller/getApplicationInfo.php',
 		data: { 'cdn':cdn },
 		success: function(response) {
 			var r = JSON.parse(response)
-			console.log(r)
-			$('#applicationID').empty();
+			//console.log(r)
 			jQuery.each(r, function(id, app) {
 				$('#applicationID').append($('<option>', {
 				    value: id,
@@ -79,16 +84,15 @@ function updateApplications(cdn){
 }
 
 function updateAppInfo(id){
-	console.log(id)
+	//console.log(id)
 	$.ajax({
 		type: 'post',
 		url: '../Controller/getApplicationInfo.php',
 		data: { 'id':id },
 		success: function(response) {
-			console.log(response)
+			//console.log(response)
 			var r = JSON.parse(response)
-			
-			console.log(r)
+			//console.log(r)
 			$('#studentName').html("Student Name:<br>   "+r.student);
 			$('#studentExp').html("Experience:<br>    "+r.experience);
 			$('#evaluation').val(r.evaluation)

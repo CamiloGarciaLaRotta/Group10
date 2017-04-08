@@ -10,6 +10,7 @@ class Student extends Profile
   //------------------------
 
   //Student Attributes
+  private $hoursLeft;
   private $experience;
 
   //Student State Machines
@@ -28,6 +29,7 @@ class Student extends Profile
   public function __construct($aUsername, $aPassword, $aFirstName, $aLastName, $aExperience)
   {
     parent::__construct($aUsername, $aPassword, $aFirstName, $aLastName);
+    $this->hoursLeft = 0;
     $this->experience = $aExperience;
     $this->jobs = array();
     $this->applications = array();
@@ -38,12 +40,25 @@ class Student extends Profile
   // INTERFACE
   //------------------------
 
+  public function setHoursLeft($aHoursLeft)
+  {
+    $wasSet = false;
+    $this->hoursLeft = $aHoursLeft;
+    $wasSet = true;
+    return $wasSet;
+  }
+
   public function setExperience($aExperience)
   {
     $wasSet = false;
     $this->experience = $aExperience;
     $wasSet = true;
     return $wasSet;
+  }
+
+  public function getHoursLeft()
+  {
+    return $this->hoursLeft;
   }
 
   public function getExperience()

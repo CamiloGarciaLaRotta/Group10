@@ -17,6 +17,7 @@ class Application
 
   //Application Attributes
   private $studentEvaluation;
+  private $offerAccepted;
 
   //Autounique Attributes
   private $id;
@@ -32,6 +33,7 @@ class Application
   public function __construct($aStudent, $aJobs)
   {
     $this->studentEvaluation = NULL;
+    $this->offerAccepted = false;
     $this->id = self::$nextId++;
     $didAddStudent = $this->setStudent($aStudent);
     if (!$didAddStudent)
@@ -57,14 +59,32 @@ class Application
     return $wasSet;
   }
 
+  public function setOfferAccepted($aOfferAccepted)
+  {
+    $wasSet = false;
+    $this->offerAccepted = $aOfferAccepted;
+    $wasSet = true;
+    return $wasSet;
+  }
+
   public function getStudentEvaluation()
   {
     return $this->studentEvaluation;
   }
 
+  public function getOfferAccepted()
+  {
+    return $this->offerAccepted;
+  }
+
   public function getId()
   {
     return $this->id;
+  }
+
+  public function isOfferAccepted()
+  {
+    return $this->offerAccepted;
   }
 
   public function getStudent()

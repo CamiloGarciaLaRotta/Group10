@@ -16,12 +16,12 @@ class Course
   /**
    * time budget
    */
-  private $graderTimeBudget;
+  private $graderBudget;
 
   /**
    * time budget
    */
-  private $taTimeBudget;
+  private $taBudget;
 
   //Course Associations
   private $jobs;
@@ -30,12 +30,12 @@ class Course
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aClassName, $aCdn, $aGraderTimeBudget, $aTaTimeBudget)
+  public function __construct($aClassName, $aCdn, $aGraderBudget, $aTaBudget)
   {
     $this->className = $aClassName;
     $this->cdn = $aCdn;
-    $this->graderTimeBudget = $aGraderTimeBudget;
-    $this->taTimeBudget = $aTaTimeBudget;
+    $this->graderBudget = $aGraderBudget;
+    $this->taBudget = $aTaBudget;
     $this->jobs = array();
   }
 
@@ -51,18 +51,18 @@ class Course
     return $wasSet;
   }
 
-  public function setGraderTimeBudget($aGraderTimeBudget)
+  public function setGraderBudget($aGraderBudget)
   {
     $wasSet = false;
-    $this->graderTimeBudget = $aGraderTimeBudget;
+    $this->graderBudget = $aGraderBudget;
     $wasSet = true;
     return $wasSet;
   }
 
-  public function setTaTimeBudget($aTaTimeBudget)
+  public function setTaBudget($aTaBudget)
   {
     $wasSet = false;
-    $this->taTimeBudget = $aTaTimeBudget;
+    $this->taBudget = $aTaBudget;
     $wasSet = true;
     return $wasSet;
   }
@@ -77,14 +77,14 @@ class Course
     return $this->cdn;
   }
 
-  public function getGraderTimeBudget()
+  public function getGraderBudget()
   {
-    return $this->graderTimeBudget;
+    return $this->graderBudget;
   }
 
-  public function getTaTimeBudget()
+  public function getTaBudget()
   {
-    return $this->taTimeBudget;
+    return $this->taBudget;
   }
 
   public function getJob_index($index)
@@ -133,9 +133,9 @@ class Course
     return 0;
   }
 
-  public function addJobVia($aTimeBudget, $aDay, $aSalary, $aRequirements, $aInstructor)
+  public function addJobVia($aHours, $aDay, $aSalary, $aRequirements, $aInstructor)
   {
-    return new Job($aTimeBudget, $aDay, $aSalary, $aRequirements, $this, $aInstructor);
+    return new Job($aHours, $aDay, $aSalary, $aRequirements, $this, $aInstructor);
   }
 
   public function addJob($aJob)
