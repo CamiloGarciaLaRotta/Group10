@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
 // line 3 "../../../../../../alternatemodel.ump"
-// line 88 "../../../../../../alternatemodel.ump"
+// line 89 "../../../../../../alternatemodel.ump"
 public class Course
 {
 

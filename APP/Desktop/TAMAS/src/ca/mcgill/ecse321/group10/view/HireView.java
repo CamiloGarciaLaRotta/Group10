@@ -17,7 +17,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import ca.mcgill.ecse321.group10.TAMAS.model.Application;
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
 import ca.mcgill.ecse321.group10.TAMAS.model.Job;
@@ -37,16 +40,21 @@ public class HireView extends JFrame{
 	private JLabel lInstructor;
 	private JLabel lJob;
 	private JLabel lApplicant;
+	private JLabel lOthers;
 	private ThemedLabel message;
 	private JComboBox cbInstructor;
 	private JComboBox cbJob;
 	private JList applicantList;
 	private JScrollPane applicantScroller;
+	private JList othersList;
+	private JScrollPane othersScroller;
 	private JButton hireButton;
+	private JButton hireAllButton;
 	
 	private List<Instructor> instructors;
 	private List<Job> jobs;
 	private List<Student> applicants;
+	private List<Application> others;
 	
 	private Instructor instructor;
 	
@@ -61,6 +69,13 @@ public class HireView extends JFrame{
 	private void initComponents() {
 		instructors = pm.getInstructors();
 		jobs = new ArrayList<Job>();
+		
+		others = new ArrayList<Application>();
+		
+		lOthers = new ThemedLabel("Student has also applied for:");
+		othersList = new ThemedList(new String[0]);
+		othersList.setEnabled(false);
+		othersScroller = new JScrollPane(othersList);
 		
 		for(int c = 0; c < am.getJobs().size(); c++) {
 			String curUsername;
@@ -90,6 +105,9 @@ public class HireView extends JFrame{
 		
 		cbInstructor.addActionListener(
 				new java.awt.event.ActionListener() {
+					public void actionPerformedBad(java.awt.event.ActionEvent e) {
+						refreshData();
+					}
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						if(instructor == null) instructor = instructors.get(cbInstructor.getSelectedIndex());
 						jobs.clear();
@@ -133,6 +151,9 @@ public class HireView extends JFrame{
 		
 		cbJob.addActionListener(
 				new java.awt.event.ActionListener() {
+					public void actionPerformedBad(java.awt.event.ActionEvent e) {
+						refreshData();
+					}
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						applicants.clear();
 						DefaultListModel model = new DefaultListModel();
@@ -188,16 +209,36 @@ public class HireView extends JFrame{
 		applicantList.setLayoutOrientation(JList.VERTICAL);
 		applicantScroller = new JScrollPane(applicantList);
 		
-		hireButton = new JButton("Hire");
+		othersList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		othersList.setLayoutOrientation(JList.VERTICAL);
+		
+		applicantList.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if(e.getValueIsAdjusting()) return;
+				refreshOthers();
+			}
+		});
+		
+		refreshOthers();
+		
+		hireButton = new JButton("Hire For This Job");
+		hireAllButton = new JButton("Hire for All Listed");
 		hireButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				hirePerson();
 			}
 		});
-		hireButton.setPreferredSize(new Dimension(this.getWidth()/2,40));
+		hireAllButton.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				hirePersonAll();
+			}
+		});
+		//hireAllButton.setPreferredSize(new Dimension(this.getWidth()/2,40));
 
 		JPanel panel = new ThemedPanel();
+		JPanel buttonPanel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+		buttonPanel.setLayout(new FlowLayout());
 		panel.add(message);
 		if(instructor == null) {
 			panel.add(lInstructor);
@@ -207,7 +248,11 @@ public class HireView extends JFrame{
 		panel.add(cbJob);
 		panel.add(lApplicant);
 		panel.add(applicantScroller);
-		panel.add(hireButton);
+		panel.add(lOthers);
+		panel.add(othersScroller);
+		buttonPanel.add(hireButton);
+		buttonPanel.add(hireAllButton);
+		panel.add(buttonPanel);
 		panel.setMinimumSize(new Dimension(200,400));
 		
 		message.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -217,11 +262,42 @@ public class HireView extends JFrame{
 		cbJob.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lApplicant.setAlignmentX(Component.LEFT_ALIGNMENT);
 		applicantScroller.setAlignmentX(Component.LEFT_ALIGNMENT);
-		hireButton.setAlignmentX(Component.LEFT_ALIGNMENT);		
+		hireButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+		hireAllButton.setAlignmentX(Component.LEFT_ALIGNMENT);	
+		buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(panel);
 		//this.setVisible(true);
 		this.setMinimumSize(new Dimension(200,400));
 		pack();
+	}
+	
+	private void hirePersonAll() {
+		String error = "";
+		if(cbInstructor == null && cbInstructor.getSelectedIndex() == -1) {
+			error += "Instructor must be selected!";
+		}
+		if(cbJob.getSelectedIndex() == -1) {
+			error += "Job must be selected!";
+		}
+		if(applicantList.getSelectedIndex() == -1) {
+			error += "Student must be selected!";
+		}
+		if(error.length() != 0) {
+			message.setType(ThemedLabel.LabelType.Error);
+			message.setText(error);
+		}
+		else {
+			Student s = applicants.get(applicantList.getSelectedIndex());
+			ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+			ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
+			for(int c = 0; c < others.size(); c++) {
+				ac.setJobOffered(others.get(c).getJobs(), true);
+				pc.offerJobToStudent(s, others.get(c).getJobs());
+			}
+			message.setType(ThemedLabel.LabelType.Success);
+			message.setText("Job offers sent!");
+		}
+		refreshData();
 	}
 	
 	private void hirePerson() {
@@ -260,6 +336,32 @@ public class HireView extends JFrame{
 			message.setText("Job offer sent!");
 		}
 		refreshData();
+	}
+	
+	private void refreshOthers() {
+		if(applicantList.getSelectedIndex() == -1) {
+			others.clear();
+			othersList.setModel(new DefaultListModel());
+			pack();
+			return;
+		}
+		others.clear();
+		System.out.println("Refreshing others...");
+		Student s = applicants.get(applicantList.getSelectedIndex());
+		int curCDN = jobs.get(cbJob.getSelectedIndex()).getCourse().getCdn();
+		DefaultListModel<String> otherJobNames = new DefaultListModel<String>();
+		for(int c = 0; c < am.getApplications().size(); c++) {
+			Application a = am.getApplication(c);
+			if(curCDN == a.getJobs().getCourse().getCdn() && !a.getJobs().isOfferSent() && s.getUsername().equals(a.getStudent().getUsername())) {
+				others.add(a);
+			}
+		}
+		for(int c = 0; c < others.size(); c++) {
+			Job j = others.get(c).getJobs();
+			otherJobNames.addElement(j.getCourse().getClassName() + " " + j.getPositionFullName() + " " + j.getDay());
+		}
+		othersList.setModel(otherJobNames);
+		pack();
 	}
 	
 	private void refreshData() {

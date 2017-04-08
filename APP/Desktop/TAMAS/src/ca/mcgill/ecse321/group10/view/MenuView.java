@@ -44,6 +44,7 @@ public class MenuView extends JFrame{
 	private JButton offerButton;
 	private JButton approveButton;
 	private JButton logoutButton;
+	private JButton evaluateButton;
 	
 	private JButton studentButton;
 	private JButton instructorButton;
@@ -97,6 +98,7 @@ public class MenuView extends JFrame{
 		offerButton = new JButton();
 		approveButton = new JButton();
 		logoutButton = new JButton();
+		evaluateButton = new JButton();
 		
 		adminButton = new ThemedTabButton();
 		instructorButton = new ThemedTabButton();
@@ -115,6 +117,7 @@ public class MenuView extends JFrame{
 		offerButton.setText("View Job Offers");
 		approveButton.setText("Manage Job Offers");
 		logoutButton.setText("Log out");
+		evaluateButton.setText("Evaluate Your TAs");
 		
 		adminButton.setText("Admin");
 		instructorButton.setText("Instructor");
@@ -236,6 +239,14 @@ public class MenuView extends JFrame{
 			}
 		});
 		
+		evaluateButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				if(user.getClass() == Admin.class) new EvaluateView(am,pm,null).setVisible(true);
+				else if(user.getClass() == Instructor.class) new EvaluateView(am,pm,(Instructor)user).setVisible(true);
+				error.setText("");
+			}
+		});
+		
 		pAdmin = new ThemedPanel(Constants.grey);
 		pAdmin.setLayout(new BoxLayout(pAdmin,BoxLayout.Y_AXIS));
 		pInstructor = new ThemedPanel(Constants.grey);
@@ -264,6 +275,7 @@ public class MenuView extends JFrame{
 		pInstructor.add(publishButton);
 		pStudent.add(applicationButton);
 		pInstructor.add(hireButton);
+		pInstructor.add(evaluateButton);
 		pStudent.add(offerButton);
 		
 		mainPanel.add(pAdmin);
@@ -284,6 +296,7 @@ public class MenuView extends JFrame{
 		courseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		approveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		evaluateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		refresh();
 		pack();

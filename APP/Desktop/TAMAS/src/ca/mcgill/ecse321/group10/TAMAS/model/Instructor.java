@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
 // line 32 "../../../../../../alternatemodel.ump"
-// line 109 "../../../../../../alternatemodel.ump"
+// line 110 "../../../../../../alternatemodel.ump"
 public class Instructor extends Profile
 {
 

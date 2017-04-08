@@ -143,13 +143,25 @@ public class ProfileController {
 	
 	public void removeJobFromStudent(Student s, Job j) {
 		for(int c = 0; c < pm.getStudents().size(); c++) {
-			if(pm.getStudent(c).getId() == s.getId()) {
+			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
 				pm.getStudent(c).removeJob(j);
 				break;
 			}
 		}
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
+	}
+	
+	public void addStudentEvaluation(Student s, String eval) {
+		for(int c = 0; c < pm.getStudents().size(); c++) {
+			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
+				String newEval = pm.getStudent(c).getEvaluations() + eval;
+				pm.getStudent(c).setEvaluations(newEval);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(pm);
+				break;
+			}
+		}
 	}
 	
 	public void persist() {

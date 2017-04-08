@@ -45,6 +45,7 @@ class Student {
     GRADUATE{}
   }
   0..1 -> * Job jobs;
+  lazy evaluations;
 }
 
 class Profile {

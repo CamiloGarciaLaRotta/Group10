@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
 // line 11 "../../../../../../alternatemodel.ump"
-// line 94 "../../../../../../alternatemodel.ump"
-// line 128 "../../../../../../alternatemodel.ump"
+// line 95 "../../../../../../alternatemodel.ump"
+// line 129 "../../../../../../alternatemodel.ump"
 public class Job
 {
 
