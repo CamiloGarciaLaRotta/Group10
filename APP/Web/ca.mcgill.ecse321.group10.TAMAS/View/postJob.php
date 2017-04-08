@@ -100,7 +100,7 @@
 							<option value="thursday">Thursday</option>
 							<option value="friday">Friday</option>
 						</select><br><br>
-						Time Allocated<input type ="text" name="job_time"/><br><br><br>
+						Hours/Semester<input type ="text" name="job_time"/><br><br><br>
 						<input type= "submit" class="btn 
 						<?php 
 							if(isset($_SESSION['dark'])) {
