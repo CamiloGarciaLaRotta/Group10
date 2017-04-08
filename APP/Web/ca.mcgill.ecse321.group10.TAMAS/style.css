@@ -5,16 +5,83 @@
 }
 body{
 	font-family: 'Ubuntu', sans-serif;
-	width:100%;
-	height:100%;
 	background-color:#476da3;
+	height:100%;
+  width:100%;
 }
+main{
+	position:fixed;
+  top: 50%;
+	left: 50%;
+	width: 500px;
+	height: 300px;
+	margin-top: -300px; 
+	margin-left: -250px;
+	background-color:#cecdca;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+}
+main > * {
+	float:left;
+	width:30%;
+  height:100%;
+	padding:10%;
+}
+/* container for page title and introduction */
+.intro{
+	display: inline-block;
+}
+.intro p {
+	display: inline;
+}
+/* container for page relaated form */
+.actions{
+	display: inline-block;
+	text-align:center;
+}
+/* output messages */
 .error {
 	color: #FF0000;
 }
 .success {
 	color: forestgreen;
 }
+/* form inputs and buttons */
+input[type=submit] {
+	font-family: 'Ubuntu', sans-serif;
+	margin-bottom:30px;
+  padding:5px 15px; 
+  background:#FDE9A4; 
+  border:0 none;
+  cursor:pointer;  
+  width: 160px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+}
+input[type=submit]:hover {
+  padding:5px 15px; 
+  background:#fff; 
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+}
+input[type=submit]:active {
+  padding:5px 15px; 
+  background:#ddd; 
+  border:1 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+}
+select {
+	width: 160px;
+}
+textarea {
+	resize:vertical;
+}
+/* PAGE SPECIFIC CSS */
+/* specific height of main container for different pages */
 .course{
 	height: 400px;
 }
@@ -30,68 +97,6 @@ body{
 .profile {
 	height: 425px;
 }
-main{
-	position:fixed;
-	width: 500px;
-	height: 300px;
-	top: 50%;
-	left: 50%;
-	margin-top: -300px; /* Negative half of height. */
-	margin-left: -250px; /* Negative half of width. */
-	background-color:#cecdca;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; 
-}
-main > * {
-	height:100%;
-	float:left;
-	width:30%;
-	padding:10%;
-}
-.intro{
-	display: inline-block;
-}
-
-.intro p {
-	display: inline;
-}
-.actions{
-	display: inline-block;
-	text-align:center;
-}
-input[type=submit] {
-	font-family: 'Ubuntu', sans-serif;
-	margin-bottom:30px;
-    padding:5px 15px; 
-    background:#FDE9A4; 
-    border:0 none;
-    cursor:pointer;  
-    width: 160px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; 
-}
-input[type=submit]:hover {
-    padding:5px 15px; 
-    background:#fff; 
-    border:0 none;
-    cursor:pointer;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; 
-}
-input[type=submit]:active {
-    padding:5px 15px; 
-    background:#ddd; 
-    border:1 none;
-    cursor:pointer;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; 
-}
-select {
-	width: 160px;
-}
-textarea {
-	resize:vertical;
-}
 /* THEME TOGGLE CSS */
 .switch {
   position: fixed;
@@ -101,11 +106,8 @@ textarea {
   margin-top:10px;
   margin-right:10px;
 }
-
 /* Hide default HTML checkbox */
 .switch input {display:none;}
-
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -117,7 +119,6 @@ textarea {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -129,26 +130,20 @@ textarea {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input:checked + .slider {
   background-color: #6d6d6d;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(15px);
   -ms-transform: translateX(15px);
   transform: translateX(15px);
 }
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
@@ -159,7 +154,6 @@ input[type=submit].dark{
 }
 input[type=submit]:hover.dark{
 	background:#1976d2;
-	
 	color:white;
 }
 input[type=submit]:active.dark{
