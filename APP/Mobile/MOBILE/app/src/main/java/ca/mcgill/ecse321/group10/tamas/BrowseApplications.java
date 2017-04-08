@@ -33,7 +33,6 @@ public class BrowseApplications extends AppCompatActivity {
     private ProfileController pc;
     private ApplicationController ac;
 
-
     ArrayList<Job> jobs = null;
     Student student = null;
     List<Application> applications = null;
@@ -131,7 +130,6 @@ public class BrowseApplications extends AppCompatActivity {
                 }
 
             }
-
 
             errorView.setText(errors);
         }

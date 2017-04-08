@@ -63,7 +63,7 @@
         android:text=""
         android:padding="10dp"
         android:background="@drawable/descriptionbackground"
-        android:textColor="#000000"
+        android:textColor="@color/Black"
         android:textSize="18sp"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"

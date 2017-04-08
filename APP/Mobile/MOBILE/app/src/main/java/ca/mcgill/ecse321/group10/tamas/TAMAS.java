@@ -123,6 +123,28 @@ public class TAMAS extends Application {
             ac.setJobOffered(am.getJob(1), true);
             ac.setJobOffered(am.getJob(5), true);
             ac.setJobOffered(am.getJob(10), true);
+
+            ac.createApplication(student,am.getJob(0));
+            ac.createApplication(student,am.getJob(1));
+            ac.createApplication(student,am.getJob(5));
+            ac.createApplication(student,am.getJob(10));
+
+            ac.setJobOfferAccepted(am.getApplication(0),true);
+            ac.setJobOfferAccepted(am.getApplication(1),true);
+            ac.setJobOfferAccepted(am.getApplication(2),true);
+            ac.setJobOfferAccepted(am.getApplication(3),true);
+
+            String msg = "He's okay";
+
+            ac.addStudentEvaluation(am.getApplication(0), msg);
+            ac.addStudentEvaluation(am.getApplication(1), msg);
+            ac.addStudentEvaluation(am.getApplication(2), msg);
+            ac.addStudentEvaluation(am.getApplication(3), msg);
+
+
+
+            String eval = am.getJob(0).getApplication(0).getStudentEvaluation();
+
         }
         catch (Exception e) {
             Log.d("ERROR", e.getStackTrace().toString());
