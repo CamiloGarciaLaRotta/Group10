@@ -117,7 +117,7 @@ class ApplicationController{
 		$matchedApps = array();
 		foreach($applications as $app) {
 			if($app->getJobs()->getCourse()->getCdn() == $cdn){
-				$matchedApps[$app->getId()] = $app->getJobs()->getPosition()." - ".$app->getStudent()->getDegree(); 
+				$matchedApps[$app->getId()] = $this->getCleanPosition($app->getJobs())." - ".$this->getCleanDegree($app->getStudent()); 
 			}
 		}
 		
@@ -177,6 +177,14 @@ class ApplicationController{
 		
 		// Write all the data to persistence
 		$this->pt->writeApplicationDataToStore($this->am);
+	}
+	
+	public function getCleanDegree($student){
+		return ($student->getDegree() == "DegreeGRADUATE") ? "Graduate" : "Undergrad";
+	}
+	
+	public function getCleanPosition($job){
+		return ($job->getPosition() == "PositionTA") ? "TA" : "Grader"; 
 	}
 }
 ?>

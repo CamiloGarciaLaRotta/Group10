@@ -133,17 +133,17 @@ class CourseController{
 			}
 		}
 		
-		$remainingTATime = $course->getTaTimeBudget();
-		$remainingGraderTime = $course->getGraderTimeBudget();
+		$remainingTATime = $course->getTaBudget();
+		$remainingGraderTime = $course->getGraderBudget();
 		
 		// get application allocated budget
 		$jobs = $this->am->getJobs();
 		foreach($jobs as $j){
 			if($j->getCourse()->getCdn() == $CDN){
 				if($j->getPosition()=="PositionTA") {
-					$remainingTATime -= $j->getTimeBudget();
+					$remainingTATime -= $j->getHours();
 				} else {
-					$remainingGraderTime -= $j->getTimeBudget();
+					$remainingGraderTime -= $j->getHours();
 				}
 			}
 		}

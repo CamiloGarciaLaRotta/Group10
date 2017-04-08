@@ -45,7 +45,6 @@ class Student {
     GRADUATE{}
   }
   0..1 -> * Job jobs;
-  lazy evaluations;
 }
 
 class Profile {
@@ -58,6 +57,7 @@ class Profile {
 
 class Application {
   autounique id;
+  lazy studentEvaluation;
   *-<@> 1 Student student;
   *-<@> 1 Job jobs;
   lazy Boolean offerAccepted;

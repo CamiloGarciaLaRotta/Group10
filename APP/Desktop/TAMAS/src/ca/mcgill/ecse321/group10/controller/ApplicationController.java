@@ -66,6 +66,17 @@ public class ApplicationController {
 		}
 	}
 	
+	public void addStudentEvaluation(Application a, String eval) {
+		for(int c = 0; c < am.getApplications().size(); c++) {
+			if(a.getStudent().getUsername().equals(am.getApplication(c).getStudent().getUsername()) && a.getJobs().toString().equals(am.getApplication(c).getJobs().toString())) {
+				a.setStudentEvaluation(eval);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(am);
+				break;
+			}
+		}
+	}
+	
 	public void modifyJobPosition(int index, Job.Position pos) {
 		am.getJob(index).setPosition(pos);
 		PersistenceXStream.setFilename(filename);
