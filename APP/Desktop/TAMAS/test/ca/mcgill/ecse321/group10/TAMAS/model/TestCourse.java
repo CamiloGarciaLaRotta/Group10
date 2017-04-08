@@ -275,9 +275,9 @@ public class TestCourse {
 		catch (InputException e) {
 		}
 		assertEquals(1,cm.numberOfCourses());
-		cm.getCourse(0).setGraderTimeBudget(newGraderTimeBudget);
+		cm.getCourse(0).setGraderBudget(newGraderTimeBudget);
 		// assertEquals (expected, actual, delta)
-		assertEquals((float)15.00,(float)cm.getCourse(0).getGraderTimeBudget(),0);
+		assertEquals((float)15.00,(float)cm.getCourse(0).getGraderBudget(),0);
 	}
 
 	@Test
@@ -297,9 +297,9 @@ public class TestCourse {
 		catch (InputException e) {
 		}
 		assertEquals(1,cm.numberOfCourses());
-		cm.getCourse(0).setTaTimeBudget(newTaTimeBudget);
+		cm.getCourse(0).setTaBudget(newTaTimeBudget);
 		// assertEquals (expected, actual, delta)
-		assertEquals((float)69.00,(float)cm.getCourse(0).getTaTimeBudget(),0);
+		assertEquals((float)69.00,(float)cm.getCourse(0).getTaBudget(),0);
 	}
 
 	@Test
@@ -356,7 +356,7 @@ public class TestCourse {
 		catch (InputException e) {
 		}
 		assertEquals(1,cm.numberOfCourses());
-		assertEquals(10.00,cm.getCourse(0).getGraderTimeBudget(),0);
+		assertEquals(10.00,cm.getCourse(0).getGraderBudget(),0);
 	}
 
 	@Test
@@ -375,7 +375,7 @@ public class TestCourse {
 		catch (InputException e) {
 		}
 		assertEquals(1,cm.numberOfCourses());
-		assertEquals(10.00,cm.getCourse(0).getTaTimeBudget(),0);
+		assertEquals(10.00,cm.getCourse(0).getTaBudget(),0);
 	}
 	@Test
 	public void testAddJobTimeTimeStringDoubleStringInstructor() {
@@ -401,7 +401,7 @@ public class TestCourse {
 		catch (InputException e) {
 		}
 		assertEquals(1,cm.numberOfCourses());
-		cm.getCourse(0).addJob(aStartTime, aEndTime, aDay, aSalary, aRequirements, aInstructor);
+		cm.getCourse(0).addJob(0, aDay, aSalary, aRequirements, aInstructor); //TODO EDIT THIS
 		assertTrue(cm.getCourse(0).hasJobs());
 	}
 
@@ -431,7 +431,7 @@ public class TestCourse {
 		}
 		catch (InputException e) {
 		}
-		Job aJob = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor);
+		Job aJob = new Job(0, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor); //TODO EDIT THIS
 		assertEquals(1,cm.numberOfCourses());
 		cm.getCourse(0).addJob(aJob);
 		assertTrue(cm.getCourse(0).hasJobs());
@@ -468,8 +468,8 @@ public class TestCourse {
 		}
 		catch (InputException e) {
 		}
-		Job aJob = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor);
-		Job aJob2 = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, cm.getCourse(1), aInstructor);
+		Job aJob = new Job(0, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor); //TODO EDIT THIS
+		Job aJob2 = new Job(0, aDay, aSalary, aRequirements, cm.getCourse(1), aInstructor); //TODO EDIT THIS
 		// Two number of courses contained in course manager
 		assertEquals(2,cm.numberOfCourses());
 		// return false because aJob already has course that it is being added to
@@ -506,7 +506,7 @@ public class TestCourse {
 		}
 		catch (InputException e) {
 		}
-		Job aJob = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor);
+		Job aJob = new Job(0, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor); //TODO EDIT THIS
 		assertEquals(1,cm.numberOfCourses());
 		cm.getCourse(0).addJob(aJob);
 		assertTrue(cm.getCourse(0).hasJobs());
@@ -547,8 +547,8 @@ public class TestCourse {
 		}
 		catch (InputException e) {
 		}
-		Job aJob = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor);
-		Job aJob2 = new Job(aStartTime, aEndTime, aDay2, aSalary, aRequirements, cm.getCourse(0), aInstructor);
+		Job aJob = new Job(0, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor); //TODO EDIT THIS
+		Job aJob2 = new Job(0, aDay2, aSalary, aRequirements, cm.getCourse(0), aInstructor); //TODO EDIT THIS
 		assertEquals(1,cm.numberOfCourses());
 		cm.getCourse(0).addJob(aJob);
 		cm.getCourse(0).addJob(aJob2);
@@ -589,7 +589,7 @@ public class TestCourse {
 		}
 		catch (InputException e) {
 		}
-		Job aJob = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements,cm.getCourse(0),aInstructor);
+		Job aJob = new Job(0, aDay, aSalary, aRequirements,cm.getCourse(0),aInstructor); //TODO EDIT THIS
 		// this job already exists to this course, hence it will return false
 		assertFalse(cm.getCourse(0).addJobAt(aJob, 1));
 		assertFalse(cm.getCourse(0).addJobAt(aJob, -1));
@@ -625,7 +625,7 @@ public class TestCourse {
 		}
 		catch (InputException e) {
 		}
-		Job aJob = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements,cm.getCourse(0),aInstructor);
+		Job aJob = new Job(0, aDay, aSalary, aRequirements,cm.getCourse(0),aInstructor); //TODO EDIT THIS
 		// this job already exists to this course, hence it will move it to index 0
 		assertTrue(cm.getCourse(0).addOrMoveJobAt(aJob, 0));
 		// this will test for when index is negative
@@ -661,8 +661,8 @@ public class TestCourse {
 		}
 		catch (InputException e) {
 		}
-		Job aJob = new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor);
-		Job aJob2 = new Job(aStartTime, aEndTime, aDay2, aSalary, aRequirements, cm.getCourse(0), aInstructor);
+		Job aJob = new Job(0, aDay, aSalary, aRequirements, cm.getCourse(0), aInstructor); //TODO EDIT THIS
+		Job aJob2 = new Job(0, aDay2, aSalary, aRequirements, cm.getCourse(0), aInstructor); //TODO EDIT THIS
 		cm.getCourse(0).addJob(aJob);
 		cm.getCourse(0).addJob(aJob2);
 		cm.getCourse(0).delete();
@@ -689,8 +689,8 @@ public class TestCourse {
 				'@' + Integer.toHexString(cm.getCourse(0).hashCode()) + "["+
 	            "className" + ":" + cm.getCourse(0).getClassName()+ "," +
 	            "cdn" + ":" + cm.getCourse(0).getCdn()+ "," +
-	            "graderTimeBudget" + ":" + cm.getCourse(0).getGraderTimeBudget()+ "," +
-	            "taTimeBudget" + ":" + cm.getCourse(0).getTaTimeBudget()+ "]",
+	            "graderTimeBudget" + ":" + cm.getCourse(0).getGraderBudget()+ "," +
+	            "taTimeBudget" + ":" + cm.getCourse(0).getTaBudget()+ "]",
 	            cm.getCourse(0).toString());
 	}
 }

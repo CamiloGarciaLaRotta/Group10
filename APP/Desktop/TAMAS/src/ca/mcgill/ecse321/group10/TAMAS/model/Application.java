@@ -34,6 +34,7 @@ public class Application
 
   public Application(Student aStudent, Job aJobs)
   {
+    offerAccepted = false;
     id = nextId++;
     boolean didAddStudent = setStudent(aStudent);
     if (!didAddStudent)
@@ -67,6 +68,11 @@ public class Application
   public int getId()
   {
     return id;
+  }
+
+  public boolean isOfferAccepted()
+  {
+    return offerAccepted;
   }
 
   public Student getStudent()

@@ -38,9 +38,12 @@ public class ApplicationView extends JFrame{
 	private JTextArea taInfo;
 	private JScrollPane infoScroller;
 	
-	public ApplicationView(ApplicationManager am, ProfileManager pm) {
+	private Student student;
+	
+	public ApplicationView(ApplicationManager am, ProfileManager pm, Student student) {
 		this.am = am;
 		this.pm = pm;
+		this.student = student;
 		initComponents();
 	}
 	
@@ -95,8 +98,10 @@ public class ApplicationView extends JFrame{
 		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		panel.add(message);
-		panel.add(lStudent);
-		panel.add(studentScroller);
+		if(student == null) {
+			panel.add(lStudent);
+			panel.add(studentScroller);
+		}
 		panel.add(lJob);
 		panel.add(jobScroller, null);
 		panel.add(lInfo);
@@ -108,7 +113,7 @@ public class ApplicationView extends JFrame{
 	
 	private void applyPressed() {
 		String error = "";
-		if(studentList.getSelectedIndex() == -1) error += "Student must be selected!";
+		if(student == null && studentList.getSelectedIndex() == -1) error += "Student must be selected!";
 		if(jobList.getSelectedIndex() == -1) error += "Job must be selected!";
 		if(error.length() != 0) {
 			message.setType(ThemedLabel.LabelType.Error);
@@ -116,7 +121,7 @@ public class ApplicationView extends JFrame{
 		}
 		else {
 			message.setType(ThemedLabel.LabelType.Success);
-			Student student = pm.getStudent(studentList.getSelectedIndex());
+			if(student == null) student = pm.getStudent(studentList.getSelectedIndex());
 			Job job = am.getJob(jobList.getSelectedIndex());
 			ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 			try {
@@ -137,7 +142,7 @@ public class ApplicationView extends JFrame{
 		info += "*" + j.getCourse().getClassName() + " " + j.getPositionFullName() + "*\n";
 		info += "Course taught by Prof. " + j.getInstructor().getFirstName() + " " + j.getInstructor().getLastName() + "\n\n";
 		info += "Salary: $" + j.getSalary() + "/h\n";
-		info += "Hours: " + j.getDay() + "s from " + j.getStartTime().toString() + " to " + j.getEndTime().toString() + "\n";
+		info += "Hours: " + j.getDay() + "s, " + j.getHours() + " per semester";
 		taInfo.setText(info);
 		pack();
 	}

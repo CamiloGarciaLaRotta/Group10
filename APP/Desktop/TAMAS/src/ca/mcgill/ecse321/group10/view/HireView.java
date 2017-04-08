@@ -48,10 +48,13 @@ public class HireView extends JFrame{
 	private List<Job> jobs;
 	private List<Student> applicants;
 	
-	public HireView(ApplicationManager am, ProfileManager pm) {
+	private Instructor instructor;
+	
+	public HireView(ApplicationManager am, ProfileManager pm, Instructor instructor) {
 		super("Choose Students to Hire");
 		this.am = am;
 		this.pm = pm;
+		this.instructor = instructor;
 		initComponents();
 	}
 	
@@ -60,7 +63,10 @@ public class HireView extends JFrame{
 		jobs = new ArrayList<Job>();
 		
 		for(int c = 0; c < am.getJobs().size(); c++) {
-			if(am.getJob(c).getInstructor().getUsername().equals(pm.getInstructor(0).getUsername())) {
+			String curUsername;
+			if(instructor == null) curUsername = pm.getInstructor(0).getUsername();
+			else curUsername = instructor.getUsername();
+			if(am.getJob(c).getInstructor().getUsername().equals(curUsername)) {
 				jobs.add(am.getJob(c));
 			}
 		}
@@ -68,7 +74,7 @@ public class HireView extends JFrame{
 		String[] jobNames = new String[jobs.size()];
 		for(int c = 0; c < jobNames.length; c++) {
 			jobNames[c] = jobs.get(c).getCourse().getClassName() + " " + 
-							jobs.get(c).getPositionFullName() + " (" + jobs.get(c).getCourse().getCdn() + ")";
+							jobs.get(c).getPositionFullName() + " (" + jobs.get(c).getCourse().getCdn() + ")" + "[" + jobs.get(c).getId() + "]" + " " + jobs.get(c).getDay();
 		}
 
 		message = new ThemedLabel("", ThemedLabel.LabelType.Error);
@@ -85,7 +91,7 @@ public class HireView extends JFrame{
 		cbInstructor.addActionListener(
 				new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
-						Instructor i = instructors.get(cbInstructor.getSelectedIndex());
+						if(instructor == null) instructor = instructors.get(cbInstructor.getSelectedIndex());
 						jobs.clear();
 						for(int c = 0; c < am.getJobs().size(); c++) {
 							if(am.getJob(c).getInstructor().getUsername().equals(instructors.get(cbInstructor.getSelectedIndex()).getUsername())) {
@@ -193,8 +199,10 @@ public class HireView extends JFrame{
 		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		panel.add(message);
-		panel.add(lInstructor);
-		panel.add(cbInstructor);
+		if(instructor == null) {
+			panel.add(lInstructor);
+			panel.add(cbInstructor);
+		}
 		panel.add(lJob);
 		panel.add(cbJob);
 		panel.add(lApplicant);
@@ -218,7 +226,7 @@ public class HireView extends JFrame{
 	
 	private void hirePerson() {
 		String error = "";
-		if(cbInstructor.getSelectedIndex() == -1) {
+		if(cbInstructor == null && cbInstructor.getSelectedIndex() == -1) {
 			error += "Instructor must be selected!";
 		}
 		if(cbJob.getSelectedIndex() == -1) {
@@ -232,17 +240,22 @@ public class HireView extends JFrame{
 			message.setText(error);
 		}
 		else {
-			jobs.get(cbJob.getSelectedIndex()).setOfferSent(true);
+			//jobs.get(cbJob.getSelectedIndex()).setOfferSent(true);
 			Student s = applicants.get(applicantList.getSelectedIndex());
-			new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME).persist();
-			for(int c = 0; c < pm.getStudents().size(); c++) {
-				if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
-					System.out.println("FOUND!");
-					pm.getStudent(c).addJob(jobs.get(cbJob.getSelectedIndex()));
-					break;
-				}
-			}
-			new ProfileController(pm, ProfileController.PROFILE_FILE_NAME).persist();
+			//new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME).persist();
+			//for(int c = 0; c < pm.getStudents().size(); c++) {
+		//		if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
+			//		System.out.println("FOUND!");
+			//		pm.getStudent(c).addJob(jobs.get(cbJob.getSelectedIndex()));
+			//		break;
+			//	}
+			//}
+			//new ProfileController(pm, ProfileController.PROFILE_FILE_NAME).persist();
+			
+			ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+			ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
+			ac.setJobOffered(jobs.get(cbJob.getSelectedIndex()), true);
+			pc.offerJobToStudent(s, jobs.get(cbJob.getSelectedIndex()));
 			message.setType(ThemedLabel.LabelType.Success);
 			message.setText("Job offer sent!");
 		}
@@ -250,10 +263,10 @@ public class HireView extends JFrame{
 	}
 	
 	private void refreshData() {
-		Instructor i = pm.getInstructor(cbInstructor.getSelectedIndex());
+		if(instructor == null) instructor = pm.getInstructor(cbInstructor.getSelectedIndex());
 		jobs.clear();
 		for(int c = 0; c < am.getJobs().size(); c++) {
-			if(am.getJob(c).getInstructor().getUsername().equals(pm.getInstructor(cbInstructor.getSelectedIndex()).getUsername())) {
+			if(am.getJob(c).getInstructor().getUsername().equals(instructor.getUsername())) {
 				jobs.add(am.getJob(c));
 			}
 		}

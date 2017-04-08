@@ -39,7 +39,7 @@ public class TestApplication {
 	private String aDay = "Wednesday";
 	private double aSalary = 5.75;
 	private String aRequirements = "None";
-	private Job aJob = new Job(aStartTime,aEndTime,aDay,aSalary, aRequirements, aCourse, aInstructor);
+	private Job aJob = new Job(0,aDay,aSalary, aRequirements, aCourse, aInstructor); //TODO EDIT THIS
 	
 	
 	@BeforeClass

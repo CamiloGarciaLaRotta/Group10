@@ -3,7 +3,6 @@
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
-import java.sql.Time;
 
 // line 3 "../../../../../../alternatemodel.ump"
 // line 88 "../../../../../../alternatemodel.ump"
@@ -17,8 +16,8 @@ public class Course
   //Course Attributes
   private String className;
   private int cdn;
-  private float graderTimeBudget;
-  private float taTimeBudget;
+  private float graderBudget;
+  private float taBudget;
 
   //Course Associations
   private List<Job> jobs;
@@ -27,12 +26,12 @@ public class Course
   // CONSTRUCTOR
   //------------------------
 
-  public Course(String aClassName, int aCdn, float aGraderTimeBudget, float aTaTimeBudget)
+  public Course(String aClassName, int aCdn, float aGraderBudget, float aTaBudget)
   {
     className = aClassName;
     cdn = aCdn;
-    graderTimeBudget = aGraderTimeBudget;
-    taTimeBudget = aTaTimeBudget;
+    graderBudget = aGraderBudget;
+    taBudget = aTaBudget;
     jobs = new ArrayList<Job>();
   }
 
@@ -48,18 +47,18 @@ public class Course
     return wasSet;
   }
 
-  public boolean setGraderTimeBudget(float aGraderTimeBudget)
+  public boolean setGraderBudget(float aGraderBudget)
   {
     boolean wasSet = false;
-    graderTimeBudget = aGraderTimeBudget;
+    graderBudget = aGraderBudget;
     wasSet = true;
     return wasSet;
   }
 
-  public boolean setTaTimeBudget(float aTaTimeBudget)
+  public boolean setTaBudget(float aTaBudget)
   {
     boolean wasSet = false;
-    taTimeBudget = aTaTimeBudget;
+    taBudget = aTaBudget;
     wasSet = true;
     return wasSet;
   }
@@ -77,17 +76,17 @@ public class Course
   /**
    * time budget
    */
-  public float getGraderTimeBudget()
+  public float getGraderBudget()
   {
-    return graderTimeBudget;
+    return graderBudget;
   }
 
   /**
    * time budget
    */
-  public float getTaTimeBudget()
+  public float getTaBudget()
   {
-    return taTimeBudget;
+    return taBudget;
   }
 
   public Job getJob(int index)
@@ -125,9 +124,9 @@ public class Course
     return 0;
   }
 
-  public Job addJob(Time aStartTime, Time aEndTime, String aDay, double aSalary, String aRequirements, Instructor aInstructor)
+  public Job addJob(float aHours, String aDay, double aSalary, String aRequirements, Instructor aInstructor)
   {
-    return new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, this, aInstructor);
+    return new Job(aHours, aDay, aSalary, aRequirements, this, aInstructor);
   }
 
   public boolean addJob(Job aJob)
@@ -210,8 +209,8 @@ public class Course
     return super.toString() + "["+
             "className" + ":" + getClassName()+ "," +
             "cdn" + ":" + getCdn()+ "," +
-            "graderTimeBudget" + ":" + getGraderTimeBudget()+ "," +
-            "taTimeBudget" + ":" + getTaTimeBudget()+ "]"
+            "graderBudget" + ":" + getGraderBudget()+ "," +
+            "taBudget" + ":" + getTaBudget()+ "]"
      + outputString;
   }
 }

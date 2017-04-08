@@ -3,9 +3,8 @@
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
-import java.sql.Time;
 
-// line 33 "../../../../../../alternatemodel.ump"
+// line 32 "../../../../../../alternatemodel.ump"
 // line 109 "../../../../../../alternatemodel.ump"
 public class Instructor extends Profile
 {
@@ -244,9 +243,9 @@ public class Instructor extends Profile
     return 0;
   }
 
-  public Job addJob(Time aStartTime, Time aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse)
+  public Job addJob(float aHours, String aDay, double aSalary, String aRequirements, Course aCourse)
   {
-    return new Job(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, this);
+    return new Job(aHours, aDay, aSalary, aRequirements, aCourse, this);
   }
 
   public boolean addJob(Job aJob)

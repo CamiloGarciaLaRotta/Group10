@@ -89,6 +89,10 @@ public class ProfileController {
 	}
 	
 	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience)  throws InputException{
+		addStudentToSystem(aUsername,aPassword,aFirstName,aLastName,experience,Student.Degree.UNDERGRAD);
+	}
+	
+	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience, Student.Degree degree)  throws InputException{
 		String error = "";
 		if(aUsername == null || aUsername.trim().length() == 0) {
 			error += ("Student username cannot be empty") + " ";
@@ -105,10 +109,47 @@ public class ProfileController {
 		if(error.length() > 0) throw new InputException(error);
 		else{
 			Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
+			student.setDegree(degree);
+			student.setHoursLeft(180.0f);
 			pm.addStudent(student);
 			PersistenceXStream.setFilename(filename);
 			PersistenceXStream.saveToXMLwithXStream(pm);
 		}
+	}
+	
+	public void offerJobToStudent(Student s, Job j) {
+		for(int c = 0; c < pm.getStudents().size(); c++) {
+			if(pm.getStudent(c).getId() == s.getId()) {
+				pm.getStudent(c).addJob(j);
+				break;
+			}
+		}
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(pm);
+	}
+	
+	public void acceptJob(Student student, Job job) throws InputException{
+		for(int c = 0; c < pm.getStudents().size(); c++) {
+			if(pm.getStudent(c).getId() == student.getId()) {
+				if(pm.getStudent(c).getHoursLeft() - job.getHours() > 0) {
+					pm.getStudent(c).setHoursLeft(pm.getStudent(c).getHoursLeft() - job.getHours());
+					PersistenceXStream.setFilename(filename);
+					PersistenceXStream.saveToXMLwithXStream(pm);
+				}
+				else throw new InputException("Student cannot take on so many hours!");
+			}
+		}
+	}
+	
+	public void removeJobFromStudent(Student s, Job j) {
+		for(int c = 0; c < pm.getStudents().size(); c++) {
+			if(pm.getStudent(c).getId() == s.getId()) {
+				pm.getStudent(c).removeJob(j);
+				break;
+			}
+		}
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
 	public void persist() {

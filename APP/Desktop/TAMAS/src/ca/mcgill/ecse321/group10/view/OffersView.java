@@ -19,6 +19,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
+import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
@@ -35,14 +36,18 @@ public class OffersView extends JFrame{
 	private JButton acceptButton;
 	private JButton rejectButton;
 	private ThemedLabel message;
+	private ThemedLabel stats;
 	
 	private ApplicationManager am;
 	private ProfileManager pm;
 	
-	public OffersView(ApplicationManager am, ProfileManager pm) {
+	private Student student;
+	
+	public OffersView(ApplicationManager am, ProfileManager pm, Student student) {
 		super("Accept or Reject Job Offers");
 		this.am = am;
 		this.pm = pm;
+		this.student = student;
 		initComponents();
 	}
 	
@@ -61,6 +66,7 @@ public class OffersView extends JFrame{
 		});
 		
 		offerList = new ThemedList(new String[0]);
+		stats = new ThemedLabel("");
 		refreshOfferList();
 		offerScroller = new JScrollPane(offerList);
 		lOffers = new ThemedLabel("Select job offer:");
@@ -88,8 +94,12 @@ public class OffersView extends JFrame{
 		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		panel.add(message);
-		panel.add(lStudent);
-		panel.add(cbStudent);
+		panel.add(stats);
+		if(student == null) {
+			panel.add(lStudent);
+			panel.add(cbStudent);
+		}
+
 		panel.add(lOffers);
 		panel.add(offerScroller);
 		JPanel buttonPanel = new ThemedPanel();
@@ -100,6 +110,7 @@ public class OffersView extends JFrame{
 		lStudent.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lOffers.setAlignmentX(Component.LEFT_ALIGNMENT);
 		message.setAlignmentX(Component.LEFT_ALIGNMENT);
+		stats.setAlignmentX(Component.LEFT_ALIGNMENT);
 		cbStudent.setAlignmentX(Component.LEFT_ALIGNMENT);
 		offerScroller.setAlignmentX(Component.LEFT_ALIGNMENT);
 		buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -111,7 +122,9 @@ public class OffersView extends JFrame{
 	
 	private void refreshOfferList() {
 		listModel = new DefaultListModel<String>();
-		int jobOffers = pm.getStudent(cbStudent.getSelectedIndex()).getJobs().size();
+		int jobOffers;
+		if(student == null) jobOffers = pm.getStudent(cbStudent.getSelectedIndex()).getJobs().size();
+		else jobOffers = student.getJobs().size();
 		if(jobOffers == 0) {
 			listModel.addElement("You have no pending job offers");
 			offerList.setEnabled(false);
@@ -119,13 +132,16 @@ public class OffersView extends JFrame{
 		else {
 			offerList.setEnabled(true);
 			for(int c = 0; c < jobOffers; c++) {
-				Job currentJob = pm.getStudent(cbStudent.getSelectedIndex()).getJob(c);
+				Job currentJob;
+				if(student == null) currentJob = pm.getStudent(cbStudent.getSelectedIndex()).getJob(c);
+				else currentJob = student.getJob(c);
 				String offerName = currentJob.getCourse().getClassName() + 
 									" " + currentJob.getPositionFullName() + " - $" + currentJob.getSalary() + "/h";
 				listModel.addElement(offerName);
 			}
 		}
 		offerList.setModel(listModel);
+		refreshStats();
 		pack();
 	}
 	
@@ -137,30 +153,58 @@ public class OffersView extends JFrame{
 			return;
 		}
 		message.setType(ThemedLabel.LabelType.Success);
+		
+		Student currentStudent;
+		Job currentJob;
 
-		Student currentStudent = pm.getStudent(cbStudent.getSelectedIndex());
+		if(student == null) {
+			currentStudent = pm.getStudent(cbStudent.getSelectedIndex());	
+		}
+		else currentStudent = student;
 		String currentUsername = currentStudent.getUsername();
-		Job currentJob = currentStudent.getJob(offerList.getSelectedIndex());
+		currentJob = currentStudent.getJob(offerList.getSelectedIndex());
 		String currentJobName = getJobString(currentJob); 
 		for(int c = 0; c < am.getApplications().size(); c++) {
 			if(am.getApplication(c).getStudent().getUsername().equals(currentUsername) && getJobString(am.getApplication(c).getJobs()).equals(currentJobName)) {
-				am.getApplication(c).setOfferAccepted(accept);
-				new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME).persist();
-				if(accept)
-					message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was accepted!");
-				else
+				//am.getApplication(c).setOfferAccepted(accept);
+				//new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME).persist();
+				ApplicationController ac = new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME);
+				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
+				if(accept) {
+					try {
+						ac.setJobOfferAccepted(am.getApplication(c), true);
+						pc.acceptJob(am.getApplication(c).getStudent(), am.getApplication(c).getJobs());
+						message.setType(ThemedLabel.LabelType.Success);
+						message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was accepted!");
+					} catch(InputException ex) {
+						message.setType(ThemedLabel.LabelType.Error);
+						message.setText(ex.getMessage());
+					}
+				}
+				else {
 					message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was rejected.");
+					ac.setJobOfferAccepted(am.getApplication(c), false);
+				}
 				break;
 			}
 		}
-		currentStudent.removeJob(currentJob);
-		new ProfileController(pm,ProfileController.PROFILE_FILE_NAME).persist();
+		//currentStudent.removeJob(currentJob);
+		//new ProfileController(pm,ProfileController.PROFILE_FILE_NAME).persist();
+		
+		ProfileController pc = new ProfileController(pm,ProfileController.PROFILE_FILE_NAME);
+		pc.removeJobFromStudent(currentStudent,currentJob);
 		refreshOfferList();
 	}
 	
+	private void refreshStats() {
+		float hoursLeft;
+		if(student == null) hoursLeft = pm.getStudent(cbStudent.getSelectedIndex()).getHoursLeft();
+		else hoursLeft = student.getHoursLeft();
+		stats.setText("You can currently accept up to " + hoursLeft + " hours of work");
+	}
+	
 	private String getJobString(Job currentJob) {
-		return currentJob.getCourse().getClassName() + currentJob.getPositionFullName() + currentJob.getSalary() +
-				currentJob.getStartTime().toString() + currentJob.getEndTime().toString();
+		return currentJob.getCourse().getClassName() + currentJob.getPositionFullName() + currentJob.getSalary();
 	}
 
 }

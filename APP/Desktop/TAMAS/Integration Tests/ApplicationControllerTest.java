@@ -52,7 +52,7 @@ public class ApplicationControllerTest {
 	public void testModifyJobAndCreateApplication() throws InputException {
 		Course aCourse = new Course("testCourse",1,2,3);
 		Instructor aInstructor = new Instructor("User","Pass", "first", "Last");
-		ac.addJobToSystem(timeBefore, timeAfter, "Monday", 1000, "None", aCourse, aInstructor);
+		ac.addJobToSystem(0, "Monday", 1000, "None", aCourse, aInstructor); //TODO EDIT THIS
 		
 		am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
 		assertEquals(1,am.getJobs().size());
@@ -74,20 +74,20 @@ public class ApplicationControllerTest {
 		Instructor aInstructor = new Instructor("User","Pass", "first", "Last");
 		
 		try {
-			ac.addJobToSystem(timeBefore, timeAfter, "Monday", 1000, "None", null, aInstructor);
+			ac.addJobToSystem(0, "Monday", 1000, "None", null, aInstructor); //TODO EDIT THIS
 		} catch (Exception e) {
 			am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,am.getApplications().size());
 		}
 		
 		try {
-			ac.addJobToSystem(timeBefore, timeAfter, "Monday", 1000, "None", aCourse, null);
+			ac.addJobToSystem(0, "Monday", 1000, "None", aCourse, null); //TODO EDIT THIS
 		} catch (Exception e) {
 			am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,am.getApplications().size());
 		}
 		try {
-			ac.addJobToSystem(timeAfter, timeBefore, "Monday", -1000, "None", aCourse, aInstructor);
+			ac.addJobToSystem(0, "Monday", -1000, "None", aCourse, aInstructor); //TODO EDIT THIS
 		} catch (Exception e) {
 			am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,am.getApplications().size());

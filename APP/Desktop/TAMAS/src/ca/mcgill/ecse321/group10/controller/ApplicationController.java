@@ -22,22 +22,47 @@ public class ApplicationController {
 		this.filename = filename;
 	}
 	
-	public void addJobToSystem(Time aStartTime, Time aEndTime, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor) throws InputException {
+	public void addJobToSystem(float hours, String day, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor, Job.Position position) throws InputException {
 		String error = "";
 		if(aInstructor == null) error += "Instructor must be defined! ";
 		if(aCourse == null) error += "Course must be defined! ";
 		//if(aEndTime.getTime() - aStartTime.getTime() < 0) error += "Start time cannot be after end time! ";
-		if(aStartTime == null || aEndTime == null) error += "Start or End Time(s) cannot be empty! ";
-		else if (aStartTime.after(aEndTime)) error += "Start time cannot be after end time! ";
+		if(hours < 45.0f) error += "Job must offer at least 45 hours per semester!";
 		if(aSalary < 0) error += "Salary must be positive! ";
 		if(day == null) error += "Day must be specified! ";
 		else if(day.equals("Saturday") || day.equals("Sunday")) error += "Day must be a work day! ";
+		if(position == Job.Position.TA) {
+			if(aCourse.getTaBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
+			//else aCourse.setTaBudget((float)(aCourse.getTaBudget() - hours * aSalary));
+		} else {
+			if(aCourse.getGraderBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
+			//else aCourse.setGraderBudget((float)(aCourse.getGraderBudget() - hours * aSalary));
+		}
 		if(error.length() > 0) throw new InputException(error);
 		else{
-			Job j = new Job(aStartTime,aEndTime,day, aSalary,aRequirements,aCourse,aInstructor);
+			Job j = new Job(hours,day, aSalary,aRequirements,aCourse,aInstructor);
+			j.setPosition(position);
 			am.addJob(j);
 			PersistenceXStream.setFilename(filename);
 			PersistenceXStream.saveToXMLwithXStream(am);
+		}
+	}
+	
+	public void setJobOffered(Job j, boolean offered) {
+		for(int c = 0; c < am.getJobs().size(); c++) {
+			if(j.getId() == am.getJob(c).getId()) j.setOfferSent(offered);
+		}
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(am);
+	}
+	
+	public void setJobOfferAccepted(Application a, boolean accepted) {
+		for(int c = 0; c < am.getApplications().size(); c++) {
+			if(am.getApplication(c).getId() == a.getId()) {
+				am.getApplication(c).setOfferAccepted(accepted);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(am);
+			}
 		}
 	}
 	

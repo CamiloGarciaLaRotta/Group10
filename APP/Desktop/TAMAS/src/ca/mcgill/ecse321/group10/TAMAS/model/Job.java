@@ -2,7 +2,6 @@
 /*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
-import java.sql.Time;
 import java.util.*;
 
 // line 11 "../../../../../../alternatemodel.ump"
@@ -22,8 +21,7 @@ public class Job
   //------------------------
 
   //Job Attributes
-  private Time startTime;
-  private Time endTime;
+  private float hours;
   private String day;
   private double salary;
   private String requirements;
@@ -45,10 +43,9 @@ public class Job
   // CONSTRUCTOR
   //------------------------
 
-  public Job(Time aStartTime, Time aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
+  public Job(float aHours, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
   {
-    startTime = aStartTime;
-    endTime = aEndTime;
+    hours = aHours;
     day = aDay;
     salary = aSalary;
     requirements = aRequirements;
@@ -72,18 +69,10 @@ public class Job
   // INTERFACE
   //------------------------
 
-  public boolean setStartTime(Time aStartTime)
+  public boolean setHours(float aHours)
   {
     boolean wasSet = false;
-    startTime = aStartTime;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setEndTime(Time aEndTime)
-  {
-    boolean wasSet = false;
-    endTime = aEndTime;
+    hours = aHours;
     wasSet = true;
     return wasSet;
   }
@@ -104,14 +93,9 @@ public class Job
     return wasSet;
   }
 
-  public Time getStartTime()
+  public float getHours()
   {
-    return startTime;
-  }
-
-  public Time getEndTime()
-  {
-    return endTime;
+    return hours;
   }
 
   public String getDay()
@@ -334,12 +318,11 @@ public class Job
     String outputString = "";
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
+            "hours" + ":" + getHours()+ "," +
             "day" + ":" + getDay()+ "," +
             "salary" + ":" + getSalary()+ "," +
             "requirements" + ":" + getRequirements()+ "," +
             "offerSent" + ":" + getOfferSent()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "course = "+(getCourse()!=null?Integer.toHexString(System.identityHashCode(getCourse())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "instructor = "+(getInstructor()!=null?Integer.toHexString(System.identityHashCode(getInstructor())):"null")
      + outputString;

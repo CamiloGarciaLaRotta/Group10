@@ -51,7 +51,7 @@ public class StudentView extends JFrame{
 		applicationButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(am.getJobs().size() > 0) {
-					new ApplicationView(am,pm).setVisible(true);
+					new ApplicationView(am,pm,null).setVisible(true);
 					error.setText("");
 				}
 				else error.setText("No jobs available.");
@@ -62,7 +62,7 @@ public class StudentView extends JFrame{
 		offerButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(am.getApplications().size() != 0) {
-					new OffersView(am,pm).setVisible(true);
+					new OffersView(am,pm,null).setVisible(true);
 					error.setText("");
 				}
 				else error.setText("No applications have been made yet.");

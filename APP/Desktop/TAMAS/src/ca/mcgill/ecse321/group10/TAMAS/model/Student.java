@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
-// line 40 "../../../../../../alternatemodel.ump"
+// line 39 "../../../../../../alternatemodel.ump"
 // line 117 "../../../../../../alternatemodel.ump"
 public class Student extends Profile
 {
@@ -14,6 +14,7 @@ public class Student extends Profile
   //------------------------
 
   //Student Attributes
+  private float hoursLeft;
   private String experience;
 
   //Student State Machines
@@ -31,6 +32,7 @@ public class Student extends Profile
   public Student(String aUsername, String aPassword, String aFirstName, String aLastName, String aExperience)
   {
     super(aUsername, aPassword, aFirstName, aLastName);
+    hoursLeft = 0.0f;
     experience = aExperience;
     jobs = new ArrayList<Job>();
     applications = new ArrayList<Application>();
@@ -41,12 +43,25 @@ public class Student extends Profile
   // INTERFACE
   //------------------------
 
+  public boolean setHoursLeft(float aHoursLeft)
+  {
+    boolean wasSet = false;
+    hoursLeft = aHoursLeft;
+    wasSet = true;
+    return wasSet;
+  }
+
   public boolean setExperience(String aExperience)
   {
     boolean wasSet = false;
     experience = aExperience;
     wasSet = true;
     return wasSet;
+  }
+
+  public float getHoursLeft()
+  {
+    return hoursLeft;
   }
 
   public String getExperience()
@@ -278,6 +293,7 @@ public class Student extends Profile
   {
     String outputString = "";
     return super.toString() + "["+
+            "hoursLeft" + ":" + getHoursLeft()+ "," +
             "experience" + ":" + getExperience()+ "]"
      + outputString;
   }

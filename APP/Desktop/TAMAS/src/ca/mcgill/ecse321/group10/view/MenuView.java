@@ -10,11 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
+import ca.mcgill.ecse321.group10.TAMAS.model.Admin;
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
+import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
+import ca.mcgill.ecse321.group10.TAMAS.model.Profile;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
+import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 import widgets.Constants;
 import widgets.ThemedLabel;
@@ -23,10 +26,15 @@ import widgets.ThemedTabButton;
 
 public class MenuView extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1163663035678723691L;
 	private static final int X_SIZE = 300;
 	private static final int Y_SIZE = 300;
 
 	private JLabel greeting;
+	private JLabel lTAMAS;
 	private JLabel error;
 	private JButton applicationButton;
 	private JButton publishButton;
@@ -35,6 +43,7 @@ public class MenuView extends JFrame{
 	private JButton hireButton;
 	private JButton offerButton;
 	private JButton approveButton;
+	private JButton logoutButton;
 	
 	private JButton studentButton;
 	private JButton instructorButton;
@@ -53,18 +62,32 @@ public class MenuView extends JFrame{
 	private JPanel pStudent;
 	private JPanel mainPanel;
 	
-	private static final Dimension BUTTON_SIZE = new Dimension(350,75);
+	private Profile user;
 	
+	@Deprecated
 	public MenuView(ApplicationManager am, ProfileManager pm, CourseManager cm) {
 		this.am = am;
 		this.pm = pm;
 		this.cm = cm;
+		this.user = null;
+		initComponents();
+	}
+	
+	public MenuView(ApplicationManager am, ProfileManager pm, CourseManager cm, Profile user) {
+		this.am = am;
+		this.pm = pm;
+		this.cm = cm;
+		this.user = user;
 		initComponents();
 	}
 	
 	private void initComponents() {
-		state = Tab.Admin;
+		if(user.getClass() == Admin.class) state = Tab.Admin;
+		else if(user.getClass() == Instructor.class) state = Tab.Instructor;
+		else state = Tab.Student;
+		
 		greeting = new ThemedLabel("");
+		lTAMAS = new ThemedLabel("");
 		error = new ThemedLabel("",ThemedLabel.LabelType.Error);
 		applicationButton = new JButton();
 		publishButton = new JButton();
@@ -73,15 +96,17 @@ public class MenuView extends JFrame{
 		hireButton = new JButton();
 		offerButton = new JButton();
 		approveButton = new JButton();
+		logoutButton = new JButton();
 		
 		adminButton = new ThemedTabButton();
 		instructorButton = new ThemedTabButton();
 		studentButton = new ThemedTabButton();
 		
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Main Control Center");
 		
-		greeting.setText("Welcome to TAMAS. Power is in your hands.");
+		lTAMAS.setText("Welcome to TAMAS. Power is in your hands.");
+		if(user != null) greeting.setText("Hello, " + user.getFirstName() + ".");
 		applicationButton.setText("Create Job Application");
 		publishButton.setText("Publish Job Posting");
 		profileButton.setText("Register Profile");
@@ -89,6 +114,7 @@ public class MenuView extends JFrame{
 		hireButton.setText("Hire Applicants");
 		offerButton.setText("View Job Offers");
 		approveButton.setText("Manage Job Offers");
+		logoutButton.setText("Log out");
 		
 		adminButton.setText("Admin");
 		instructorButton.setText("Instructor");
@@ -118,7 +144,8 @@ public class MenuView extends JFrame{
 		publishButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(cm.getCourses().size() > 0) {
-					new PublishJobView(am,pm,cm).setVisible(true);
+					if(user.getClass() == Admin.class) new PublishJobView(am,pm,cm,null).setVisible(true);
+					else if(user.getClass() == Instructor.class) new PublishJobView(am,pm,cm,(Instructor)user).setVisible(true);
 					error.setText("");
 				}
 				else error.setText("No courses are available. Please create a course.");
@@ -130,7 +157,8 @@ public class MenuView extends JFrame{
 		applicationButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(am.getJobs().size() > 0) {
-					new ApplicationView(am,pm).setVisible(true);
+					if(user.getClass() == Admin.class) new ApplicationView(am,pm,null).setVisible(true);
+					else if(user.getClass() == Student.class) new ApplicationView(am,pm,(Student)user).setVisible(true);
 					error.setText("");
 				}
 				else error.setText("No jobs available.");
@@ -142,7 +170,8 @@ public class MenuView extends JFrame{
 		hireButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(am.getApplications().size() != 0) {
-					new HireView(am,pm).setVisible(true);
+					if(user.getClass() == Admin.class) new HireView(am,pm,null).setVisible(true);
+					else if(user.getClass() == Instructor.class) new HireView(am,pm,(Instructor)user).setVisible(true);
 					error.setText("");
 				}
 				else error.setText("No applications have been made yet.");
@@ -155,7 +184,8 @@ public class MenuView extends JFrame{
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
 				if(constants.get(0) != 0) {
-					new OffersView(am,pm).setVisible(true);
+					if(user.getClass() == Admin.class) new OffersView(am,pm,null).setVisible(true);
+					else if(user.getClass() == Student.class) new OffersView(am,pm,(Student)user).setVisible(true);
 					error.setText("");
 				}
 				else error.setText("Admins have not approved of job offers yet.");
@@ -200,6 +230,12 @@ public class MenuView extends JFrame{
 			}
 		});
 		
+		logoutButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				dispose();
+			}
+		});
+		
 		pAdmin = new ThemedPanel(Constants.grey);
 		pAdmin.setLayout(new BoxLayout(pAdmin,BoxLayout.Y_AXIS));
 		pInstructor = new ThemedPanel(Constants.grey);
@@ -219,8 +255,9 @@ public class MenuView extends JFrame{
 		tabs.add(studentButton);
 		
 		panel.add(greeting);
+		panel.add(lTAMAS);
 		panel.add(error);
-		panel.add(tabs);
+		if(user.getClass() == Admin.class) panel.add(tabs);
 		pAdmin.add(profileButton);
 		pAdmin.add(courseButton);
 		pAdmin.add(approveButton);
@@ -231,11 +268,13 @@ public class MenuView extends JFrame{
 		
 		mainPanel.add(pAdmin);
 		panel.add(mainPanel);
+		panel.add(logoutButton);
 		
 		this.add(panel);
 		this.setSize(new Dimension(X_SIZE,Y_SIZE));
 		
 		greeting.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lTAMAS.setAlignmentX(Component.CENTER_ALIGNMENT);
 		error.setAlignmentX(Component.CENTER_ALIGNMENT);
 		profileButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		hireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -244,6 +283,7 @@ public class MenuView extends JFrame{
 		publishButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		courseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		approveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		refresh();
 		pack();

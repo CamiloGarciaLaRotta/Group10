@@ -33,6 +33,28 @@ public class CourseController {
 			PersistenceXStream.saveToXMLwithXStream(cm);
 		}
 	}
+	
+	public void modifyTaBudget(Course course, float cost) {
+		for(int c = 0; c < cm.getCourses().size(); c++) {
+			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+				cm.getCourse(c).setTaBudget(cm.getCourse(c).getTaBudget() - cost);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(cm);
+				break;
+			}
+		}
+	}
+	
+	public void modifyGraderBudget(Course course, float cost) {
+		for(int c = 0; c < cm.getCourses().size(); c++) {
+			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+				cm.getCourse(c).setGraderBudget(cm.getCourse(c).getGraderBudget() - cost);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(cm);
+				break;
+			}
+		}
+	}
 	// This will check to see if the course being saved has a unique CDN
 	// ONLY USE IT BEFORE YOU ACTUALLY CREATE THE COURSE
 	// USE IT NOWHERE BUT HERE

@@ -7,6 +7,11 @@ import javax.swing.JLabel;
 
 public class ThemedLabel extends JLabel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 38904693619812596L;
+
 	public enum LabelType {Normal, Error, Success};
 	
 	public ThemedLabel(String s) {

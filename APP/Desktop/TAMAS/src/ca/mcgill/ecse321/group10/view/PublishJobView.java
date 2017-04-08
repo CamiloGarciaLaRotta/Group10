@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.group10.view;
 
-import java.sql.Time;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
@@ -15,7 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
@@ -28,6 +26,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
 import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
+import ca.mcgill.ecse321.group10.controller.CourseController;
 import ca.mcgill.ecse321.group10.controller.InputException;
 import widgets.Constants;
 import widgets.ThemedLabel;
@@ -46,17 +45,17 @@ public class PublishJobView extends JFrame{
 	private JList courseList;
 	private JScrollPane instructorScroller;
 	private JScrollPane courseScroller;
-	private JSpinner jStartTime;
-	private JSpinner jEndTime;
 	private JSpinner jDay;
-	private JLabel lStart;
-	private JLabel lEnd;
 	private JLabel lSalary;
 	private JLabel lReqs;
 	private JLabel errorLabel;
 	private JLabel lPos;
+	private JLabel lHours;
+	private JLabel lRemaining;
 	private JTextField tfSalary;
+	private JTextField tfHours;
 	private JTextField tfReqs;
+	private JTextField tfRemaining;
 	private JButton publish;
 	private JRadioButton rbTA;
 	private JRadioButton rbGrader;
@@ -66,19 +65,20 @@ public class PublishJobView extends JFrame{
 	
 	private String error;
 	
-	public PublishJobView(ApplicationManager am, ProfileManager pm, CourseManager cm) {
+	private Instructor instructor;
+	
+	public PublishJobView(ApplicationManager am, ProfileManager pm, CourseManager cm, Instructor instructor) {
 		this.am = am;
 		this.pm = pm;
 		this.cm = cm;
 		error = "";
+		this.instructor = instructor;
 		initComponents();
 	}
 	
 	private void initComponents() {
 		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Publish Job Posting");
-		lStart = new ThemedLabel("Start Time: ");
-		lEnd = new ThemedLabel("End Time: ");
 		lSalary = new ThemedLabel("Salary: ");
 		lReqs = new ThemedLabel("Requirements: ");
 		tfSalary = new ThemedTextField();
@@ -113,6 +113,12 @@ public class PublishJobView extends JFrame{
 		courseList.setLayoutOrientation(JList.VERTICAL);
 		courseScroller = new JScrollPane(courseList);
 		
+		if(instructor != null) {
+			for(int c = 0; c < instructor.getCourses().size(); c++) {
+				courseListModel.addElement(instructor.getCourse(c).getClassName());
+			}
+		}
+		
 		instructorList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				if(e.getValueIsAdjusting()) return;
@@ -122,23 +128,37 @@ public class PublishJobView extends JFrame{
 					for(int c = 0;c < courses.size(); c++) {
 						courseListModel.addElement(courses.get(c).getClassName());
 					}
+					updateBudget();
 				}
 			}
 		});
 		
-		jStartTime = new ThemedSpinner(new SpinnerDateModel());
-		JSpinner.DateEditor startEditor = new JSpinner.DateEditor(jStartTime, "HH:mm");
-		startEditor.setBackground(Constants.tfBgColor);
-		startEditor.setBackground(Constants.tfFgColor);
-		jStartTime.setEditor(startEditor);
-		jStartTime.setValue(new Time(3600000 * 15 / 2));
+		courseList.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if(e.getValueIsAdjusting()) return;
+				if(courseList.getSelectedIndex() != -1) {
+					updateBudget();
+				}
+			}
+		});
 		
-		jEndTime = new ThemedSpinner(new SpinnerDateModel());
-		JSpinner.DateEditor endEditor = new JSpinner.DateEditor(jEndTime, "HH:mm");
-		endEditor.setBackground(Constants.tfBgColor);
-		endEditor.setBackground(Constants.tfFgColor);
-		jEndTime.setEditor(endEditor);
-		jEndTime.setValue(new Time(3600000 * 9));
+		rbTA.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				updateBudget();
+			}
+		});
+		
+		rbGrader.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				updateBudget();
+			}
+		});
+		
+		lHours = new ThemedLabel("Hours per semester:");
+		tfHours = new ThemedTextField(15);
+		lRemaining = new ThemedLabel("Remaining budget:");
+		tfRemaining = new ThemedTextField(15);
+		tfRemaining.setEnabled(false);
 		
 		String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 		jDay = new ThemedSpinner(new SpinnerListModel(days));
@@ -167,23 +187,23 @@ public class PublishJobView extends JFrame{
 	    				)
 	    		.addGroup(
 	    				layout.createSequentialGroup()
+	    				.addComponent(lRemaining)
+	    				.addComponent(tfRemaining,50,75,100)
+	    				)
+	    		.addGroup(
+	    				layout.createSequentialGroup()
 	    				.addComponent(lReqs)
 	    				.addComponent(tfReqs, 50, 75, 100)
 	    				)
 	    		.addGroup(
 	    				layout.createSequentialGroup()
-	    				.addComponent(lStart)
-	    				.addComponent(jStartTime, 50, 75, 100)
-	    				)
-	    		.addGroup(
-	    				layout.createSequentialGroup()
-	    				.addComponent(lEnd)
-	    				.addComponent(jEndTime, 50, 75, 100)
+	    				.addComponent(lHours)
+	    				.addComponent(tfHours, 50, 75, 100)
 	    				)
 	    		.addComponent(jDay)
 	    		.addComponent(publish)
 	    		);
-	    layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[]{lStart,lEnd,lSalary,lReqs});
+	    layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[]{lRemaining,lSalary,lReqs,lHours});
 	    layout.setVerticalGroup(
 	    		layout.createSequentialGroup()
 	    		.addComponent(errorLabel)
@@ -202,24 +222,29 @@ public class PublishJobView extends JFrame{
 	    				)
 	    		.addGroup(
 	    				layout.createParallelGroup()
+	    				.addComponent(lRemaining)
+	    				.addComponent(tfRemaining,50,75,100)
+	    				)
+	    		.addGroup(
+	    				layout.createParallelGroup()
 	    				.addComponent(lReqs)
 	    				.addComponent(tfReqs, 50, 75, 100)
 	    				)
 	    		.addGroup(
 	    				layout.createParallelGroup()
-	    				.addComponent(lStart)
-	    				.addComponent(jStartTime, 50, 75, 100)
-	    				)
-	    		.addGroup(
-	    				layout.createParallelGroup()
-	    				.addComponent(lEnd)
-	    				.addComponent(jEndTime, 50, 75, 100)
+	    				.addComponent(lHours)
+	    				.addComponent(tfHours, 50, 75, 100)
 	    				)
 	    		.addComponent(jDay)
 	    		.addComponent(publish)
 	    		);
 	    layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[]{lSalary,lReqs,tfSalary,tfReqs});
-	    layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[]{lStart,lEnd,jStartTime,jEndTime});
+	    layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[]{lHours,tfHours});
+	    layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[]{lRemaining,tfRemaining});
+	    
+	    updateBudget();
+	    
+	    if(instructor != null) instructorScroller.setVisible(false);
 
 	    pack();
 	}
@@ -231,46 +256,56 @@ public class PublishJobView extends JFrame{
 		tfSalary.setText("");
 		tfReqs.setText("");
 		jDay.setValue("Monday");
-		jStartTime.setValue(new Time(3600000 * 15 / 2));
-		jEndTime.setValue(new Time(3600000 * 9));
 		rbGrader.setSelected(false);
 		rbTA.setSelected(true);
+		updateBudget();
 		pack();
 	}
 	
 	private void publishPressed() {
 		error = "";
-		if(instructorList.getSelectedIndex() == -1) error += "Instructor must be specified!\n";
+		if(instructor == null && instructorList.getSelectedIndex() == -1) error += "Instructor must be specified!\n";
 		if(courseList.getSelectedIndex() == -1) error += "Course must be specified!\n";
 		try {
 			double salary = Double.parseDouble(tfSalary.getText());
 			String requirements = tfReqs.getText();
 			String day = (String)jDay.getValue();
 			System.out.println("Day: " + day);
-			Instructor instructor = pm.getInstructor(instructorList.getSelectedIndex());
+			if(instructor == null) instructor = pm.getInstructor(instructorList.getSelectedIndex());
 			Course course = instructor.getCourse(courseList.getSelectedIndex());
 			try {
-				Time startTime = new Time(((java.util.Date)jStartTime.getValue()).getTime());
-				Time endTime = new Time(((java.util.Date)jEndTime.getValue()).getTime());
+				if(tfHours.getText().trim().length() == 0) throw new Exception("empty");
+				float hours = Float.parseFloat(tfHours.getText());
 				
 				if(error.length() == 0) {
 					ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+					CourseController cc = new CourseController(cm,CourseController.COURSE_FILE_NAME);
 					try {
-						ac.addJobToSystem(startTime, endTime, day, salary, requirements, course, instructor);
-						if(rbTA.isSelected()) ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.TA);
-						else ac.modifyJobPosition(am.getJobs().size()-1, Job.Position.GRADER);
+						Job.Position pos = (rbTA.isSelected()) ? Job.Position.TA : Job.Position.GRADER;
+						ac.addJobToSystem(hours, day, salary, requirements, course, instructor,pos);
+						if(rbTA.isSelected()) cc.modifyTaBudget(course, hours * (float)salary);
+						else cc.modifyGraderBudget(course, hours * (float)salary);
 					} catch (InputException e) {
 						error += e.getMessage();
 					}
 				}
 			}catch(Exception e) {
-				error += "Invalid time format: expected HH:mm\n";
+				error += "Invalid entry for hours! Must be floating point number.";
 			}
 		}catch (Exception e) {
 			error += "Salary must be a number!\n";
 		}
 		refreshData();
 	}
-		
+	
+	private void updateBudget() {
+		if(courseList.getSelectedIndex() == -1) {
+			tfRemaining.setText("");
+			pack();
+			return;
+		}
+		if(rbTA.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getTaBudget());
+		else tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getGraderBudget());
+	}
 	
 }

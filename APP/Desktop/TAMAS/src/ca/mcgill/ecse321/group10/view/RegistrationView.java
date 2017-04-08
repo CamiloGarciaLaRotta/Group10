@@ -5,6 +5,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -12,26 +13,37 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
+import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
 import widgets.Constants;
 import widgets.ThemedLabel;
+import widgets.ThemedPasswordField;
 import widgets.ThemedRadioButton;
 import widgets.ThemedTextArea;
 import widgets.ThemedTextField;
 
 public class RegistrationView extends JFrame implements java.awt.event.ActionListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6576949847499887611L;
+
 	private ProfileManager pm;
 	
-	JLabel error;
+	ThemedLabel error;
 	
 	JRadioButton rbStudent, rbInstructor, rbAdmin;
 	ButtonGroup radioGroup;
 	JLabel lRole;
 	
-	JLabel lFirst, lLast, lUser, lPass;
-	JTextField tfFirst, tfLast, tfUser, tfPass;
+	JRadioButton rbUndergrad, rbGrad;
+	ButtonGroup degGroup;
+	
+	JLabel lFirst, lLast, lUser, lPass, lDegree;
+	JTextField tfFirst, tfLast, tfUser;
+	JPasswordField tfPass;
 	JButton submit;
 	
 	JTextArea taReqs;
@@ -56,6 +68,10 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		rbInstructor = new ThemedRadioButton();
 		rbAdmin = new ThemedRadioButton();
 		radioGroup = new ButtonGroup();
+		rbUndergrad = new ThemedRadioButton();
+		rbGrad = new ThemedRadioButton();
+		lDegree = new ThemedLabel("Degree:");
+		degGroup = new ButtonGroup();
 		lRole = new ThemedLabel("");
 		lFirst = new ThemedLabel("");	
 		lLast = new ThemedLabel("");
@@ -64,7 +80,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		tfFirst = new ThemedTextField();
 		tfLast = new ThemedTextField();
 		tfUser = new ThemedTextField();
-		tfPass = new ThemedTextField();
+		tfPass = new ThemedPasswordField();
 		submit = new JButton();
 		
 		lReqs = new ThemedLabel("Skills: ");
@@ -91,6 +107,11 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		lUser.setText("Username: ");
 		lPass.setText("Password: ");
 		submit.setText("Submit");
+		rbUndergrad.setText("Undergraduate");
+		rbGrad.setText("Graduate");
+		rbUndergrad.setSelected(true);
+		degGroup.add(rbUndergrad);
+		degGroup.add(rbGrad);
 		
 		submit.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -119,6 +140,12 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 	    				)
 	    		.addGroup(
 	    				layout.createSequentialGroup()
+	    				.addComponent(lDegree)
+	    				.addComponent(rbUndergrad)
+	    				.addComponent(rbGrad)
+	    				)
+	    		.addGroup(
+	    				layout.createSequentialGroup()
 	    				.addComponent(lFirst)
 	    				.addComponent(tfFirst,200,200,400)
 	    				)
@@ -142,43 +169,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 	    		.addComponent(submit)
 	    );
 	    layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[]{lFirst,lLast,lUser,lPass});
-	    /*
-	    layout.setVerticalGroup(
-	    		layout.createSequentialGroup()
-	    		.addGroup(
-	    				layout.createParallelGroup()
-	    				.addComponent(lRole)
-	    				.addGroup(
-	    						layout.createSequentialGroup()
-	    						.addComponent(rbAdmin)
-	    						.addComponent(rbInstructor)
-	    						.addComponent(rbStudent)
-	    						)
-	    				)
-	    		.addGroup(
-	    				layout.createParallelGroup()
-	    				.addComponent(lFirst)
-	    				.addComponent(tfFirst,50,75,100)
-	    				)
-	    		.addGroup(
-	    				layout.createParallelGroup()
-	    				.addComponent(lLast)
-	    				.addComponent(tfLast,200,200,400)
-	    				)
-	    		.addGroup(
-	    				layout.createParallelGroup()
-	    				.addComponent(lUser)
-	    				.addComponent(tfUser,200,200,400)
-	    				)
-	    		.addGroup(
-	    				layout.createParallelGroup()
-	    				.addComponent(lPass)
-	    				.addComponent(tfPass,200,200,400)
-	    				)
-	    		.addComponent(submit)
-	    		);
-	    pack();
-	    */
+	    
 	    layout.setVerticalGroup(
 	    		layout.createSequentialGroup()
 	    		.addComponent(error)
@@ -191,6 +182,12 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 	    	    				.addComponent(rbInstructor)
 	    	    				.addComponent(rbStudent)
 	    						)
+	    				)
+	    		.addGroup(
+	    				layout.createParallelGroup()
+	    				.addComponent(lDegree)
+	    				.addComponent(rbUndergrad)
+	    				.addComponent(rbGrad)
 	    				)
 	    		.addGroup(
 	    				layout.createParallelGroup()
@@ -228,29 +225,38 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 			lReqs.setVisible(true);
 			reqScroller.setVisible(true);
 			taReqs.setText(reqs);
+			lDegree.setVisible(true);
+			rbUndergrad.setVisible(true);
+			rbGrad.setVisible(true);
 		}
 		else {
 			lReqs.setVisible(false);
 			reqScroller.setVisible(false);
 			reqs = taReqs.getText();
+			lDegree.setVisible(false);
+			rbUndergrad.setVisible(false);
+			rbGrad.setVisible(false);
 		}
 		pack();
 	}
 	
 	private void submitPressed() {
+		error.setType(ThemedLabel.LabelType.Error);
 		problem = false;
 		String first = tfFirst.getText();
 		String last = tfLast.getText();
 		String user = tfUser.getText();
-		String pass = tfPass.getText();
+		String pass = String.valueOf(tfPass.getPassword());
 		ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 		if(rbStudent.isSelected()) {
 			try {
 				reqs = taReqs.getText();
-				pc.addStudentToSystem(user, pass, first, last, reqs);
+				Student.Degree deg = (rbUndergrad.isSelected()) ? Student.Degree.UNDERGRAD : Student.Degree.GRADUATE;
+				pc.addStudentToSystem(user, pass, first, last, reqs,deg);
 				error.setText("Student " + user + " created.");
 				reqs = "";
 				taReqs.setText("");
+				error.setType(ThemedLabel.LabelType.Success);
 			} catch (InputException e) {
 				error.setText(e.getMessage());
 				problem = true;
@@ -261,6 +267,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 			try {
 				pc.addInstructorToSystem(user, pass, first, last);
 				error.setText("Instructor " + user + " created.");
+				error.setType(ThemedLabel.LabelType.Success);
 			} catch (InputException e) {
 				error.setText(e.getMessage());
 				problem = true;
@@ -271,6 +278,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 			try {
 				pc.addAdminToSystem(user, pass, first, last);
 				error.setText("Admin " + user + " created.");
+				error.setType(ThemedLabel.LabelType.Success);
 			} catch (InputException e) {
 				error.setText(e.getMessage());
 				problem = true;

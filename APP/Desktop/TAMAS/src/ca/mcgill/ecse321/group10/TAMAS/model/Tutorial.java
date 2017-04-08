@@ -2,10 +2,9 @@
 /*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
-import java.sql.Time;
 import java.util.*;
 
-// line 25 "../../../../../../alternatemodel.ump"
+// line 24 "../../../../../../alternatemodel.ump"
 // line 99 "../../../../../../alternatemodel.ump"
 public class Tutorial extends Job
 {
@@ -18,9 +17,9 @@ public class Tutorial extends Job
   // CONSTRUCTOR
   //------------------------
 
-  public Tutorial(Time aStartTime, Time aEndTime, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
+  public Tutorial(float aHours, String aDay, double aSalary, String aRequirements, Course aCourse, Instructor aInstructor)
   {
-    super(aStartTime, aEndTime, aDay, aSalary, aRequirements, aCourse, aInstructor);
+    super(aHours, aDay, aSalary, aRequirements, aCourse, aInstructor);
   }
 
   //------------------------
