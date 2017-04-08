@@ -5,6 +5,7 @@ class Course {
   immutable Integer cdn;
   Float graderBudget; // time budget
   Float taBudget;      // time budget
+  Float labBudget;
   1 <@>- * Job jobs;
   }
 
@@ -13,7 +14,8 @@ class Job{
   Float hours;
   day;
   position {
-	  TA{}
+	  TUTORIAL{}
+	  LABORATORY{}
 	  GRADER{}
   }
   immutable double salary;

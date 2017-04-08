@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
 // line 3 "../../../../../../alternatemodel.ump"
-// line 89 "../../../../../../alternatemodel.ump"
+// line 91 "../../../../../../alternatemodel.ump"
 public class Course
 {
 
@@ -18,6 +18,7 @@ public class Course
   private int cdn;
   private float graderBudget;
   private float taBudget;
+  private float labBudget;
 
   //Course Associations
   private List<Job> jobs;
@@ -26,12 +27,13 @@ public class Course
   // CONSTRUCTOR
   //------------------------
 
-  public Course(String aClassName, int aCdn, float aGraderBudget, float aTaBudget)
+  public Course(String aClassName, int aCdn, float aGraderBudget, float aTaBudget, float aLabBudget)
   {
     className = aClassName;
     cdn = aCdn;
     graderBudget = aGraderBudget;
     taBudget = aTaBudget;
+    labBudget = aLabBudget;
     jobs = new ArrayList<Job>();
   }
 
@@ -63,6 +65,14 @@ public class Course
     return wasSet;
   }
 
+  public boolean setLabBudget(float aLabBudget)
+  {
+    boolean wasSet = false;
+    labBudget = aLabBudget;
+    wasSet = true;
+    return wasSet;
+  }
+
   public String getClassName()
   {
     return className;
@@ -87,6 +97,11 @@ public class Course
   public float getTaBudget()
   {
     return taBudget;
+  }
+
+  public float getLabBudget()
+  {
+    return labBudget;
   }
 
   public Job getJob(int index)
@@ -210,7 +225,8 @@ public class Course
             "className" + ":" + getClassName()+ "," +
             "cdn" + ":" + getCdn()+ "," +
             "graderBudget" + ":" + getGraderBudget()+ "," +
-            "taBudget" + ":" + getTaBudget()+ "]"
+            "taBudget" + ":" + getTaBudget()+ "," +
+            "labBudget" + ":" + getLabBudget()+ "]"
      + outputString;
   }
 }

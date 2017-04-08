@@ -34,11 +34,13 @@ public class CreateCourseView extends JFrame{
 	private JLabel lCode;
 	private JLabel lGraderBudget;
 	private JLabel lTABudget;
+	private JLabel lLabBudget;
 	private JLabel errorLabel;
 	private JTextField tfName;
 	private JTextField tfCode;
 	private JTextField tfGraderBudget;
 	private JTextField tfTABudget;
+	private JTextField tfLabBudget;
 	private JButton create;
 	
 	private String error;
@@ -66,10 +68,12 @@ public class CreateCourseView extends JFrame{
 		lCode = new ThemedLabel("");
 		lGraderBudget = new ThemedLabel("");
 		lTABudget = new ThemedLabel("");
+		lLabBudget = new ThemedLabel("");
 		tfName = new ThemedTextField();
 		tfCode = new ThemedTextField();
 		tfGraderBudget = new ThemedTextField();
 		tfTABudget = new ThemedTextField();
+		tfLabBudget = new ThemedTextField();
 		create = new JButton();
 		
 		create.addActionListener(new java.awt.event.ActionListener(){
@@ -82,8 +86,9 @@ public class CreateCourseView extends JFrame{
 		
 		lName.setText("Course Name: ");
 		lCode.setText("CDN: ");
-		lGraderBudget.setText("Grader Time Budget (hrs): ");
-		lTABudget.setText("TA Time Budget (hrs): ");
+		lGraderBudget.setText("Grader Budget ($/semester): ");
+		lTABudget.setText("TA Budget ($/semester): ");
+		lLabBudget.setText("Lab Budget ($/semester): ");
 		create.setText("Create Course");
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
@@ -118,9 +123,14 @@ public class CreateCourseView extends JFrame{
 	    				.addComponent(lTABudget)
 	    				.addComponent(tfTABudget, 50, 75, 100)
 	    				)
+	    		.addGroup(
+	    				layout.createSequentialGroup()
+	    				.addComponent(lLabBudget)
+	    				.addComponent(tfLabBudget, 50, 75, 100)
+	    				)
 	    		.addComponent(create)
 	    		);
-	    layout.linkSize(SwingConstants.HORIZONTAL,new java.awt.Component[] {lName,lCode,lTABudget,lGraderBudget});
+	    layout.linkSize(SwingConstants.HORIZONTAL,new java.awt.Component[] {lName,lCode,lTABudget,lGraderBudget,lLabBudget});
 	    layout.setVerticalGroup(
 	    		layout.createSequentialGroup()
 	    		.addComponent(errorLabel)
@@ -145,6 +155,11 @@ public class CreateCourseView extends JFrame{
 	    				.addComponent(lTABudget)
 	    				.addComponent(tfTABudget, 50, 75, 100)
 	    				)
+	    		.addGroup(
+	    				layout.createParallelGroup()
+	    				.addComponent(lLabBudget)
+	    				.addComponent(tfLabBudget, 50, 75, 100)
+	    				)
 	    		.addComponent(create)
 	    		);
 	    //layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[] {lName,tfName,lCode,tfCode,lGraderBudget,tfGraderBudget,lTABudget,tfTABudget});
@@ -162,6 +177,7 @@ public class CreateCourseView extends JFrame{
 		tfCode.setText("");
 		tfGraderBudget.setText("");
 		tfTABudget.setText("");
+		tfLabBudget.setText("");
 		pack();
 	}
 	
@@ -177,9 +193,12 @@ public class CreateCourseView extends JFrame{
 			int code = Integer.parseInt(tfCode.getText());
 			float graderBudget = Float.parseFloat(tfGraderBudget.getText());
 			float taBudget = Float.parseFloat(tfTABudget.getText());
+			float labBudget;
+			if(tfLabBudget.getText().trim().length() == 0) labBudget = 0.0f;
+			else labBudget = Float.parseFloat(tfLabBudget.getText());
 			CourseController cc = new CourseController(cm, CourseController.COURSE_FILE_NAME);
 			try {
-				cc.createCourse(name, code, graderBudget, taBudget);
+				cc.createCourse(name, code, graderBudget, taBudget,labBudget);
 				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 				pc.addCourseToInstructor(instructorList.getSelectedIndex(), cm.getCourse(cm.getCourses().size()-1));
 			} catch (InputException e) {
