@@ -20,31 +20,9 @@ try {
 	$job_courseCDN = isset($_POST['job_courseCDN']) ? $_POST['job_courseCDN'] : '';
 	$job_instructorUsername = $_SESSION['username'];
 	
-	// switch($_POST['submit']) {
-	// 	//case 'Create':
-	// 	case 'Publish': 
-			$ac->createJob($job_time, $job_day, $job_position,
-					$job_salary, $job_requirements,
-					$job_courseCDN, $job_instructorUsername);
-
-// LEFT EHRE FOR FUTURE IMPLEMENTATIONS
-// 		case 'Delete': 
-// 			$job = NULL;
-// 			if (isset($_POST['jobspinner'])) {
-// 				$jobID = $_POST['jobspinner'];
-// 			}
-			
-// 			$ac->deleteJob($jobID);
-// 			break;
-	
-// 		case 'Publish': 
-// 			$job = NULL;
-// 			if (isset($_POST['jobspinner'])) {
-// 				$jobID = $_POST['jobspinner'];
-// 			}
-				
-// 			$ac->publishJob($jobID);
-// 			break;
+	$ac->createJob($job_time, $job_day, $job_position,
+			$job_salary, $job_requirements,
+				$job_courseCDN, $job_instructorUsername);
 } catch (Exception $e) {
 	$_SESSION['errorJob'] = $e->getMessage();
 }

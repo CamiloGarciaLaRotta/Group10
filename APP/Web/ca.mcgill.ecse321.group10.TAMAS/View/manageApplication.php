@@ -64,7 +64,12 @@
 				<p id="Graderhours"> </p>
 				<br><br>
 				<hr>
-				<p id="ApplicationInfo"> </p>
+				<br>
+				<p id="studentName"> </p>
+				<br>
+				<br>
+				<p id="studentExp"> </p>
+				<br>
 				<p class="error">
 					<?php
 					if(isset($_SESSION['errorHire']) && !empty($_SESSION['errorHire'])){
@@ -72,7 +77,7 @@
 					}
 					?>
 				</p>
-				<br>
+				<br><br>
 				<p class="success">
 					<?php
 					if(isset($_SESSION['successHire']) && !empty($_SESSION['successHire'])){
@@ -89,23 +94,23 @@
 						<?php }?>
 					</select><br><br>		
 					Application<br>
-					<select size="5" name="application" id="applicationID">
-						<?php 
-						foreach ($am->getApplications() as $app) {
-							
-						}
-						?>
+					<select size="5" name="application" id="applicationID" required>
 					</select><br><br>
 					Student Evaluation
-					<textarea class="text" cols="20" rows ="5" name="evaluation" maxlength="100" >
-						<?php echo  "TODO"?>
+					<textarea class="text" cols="20" rows ="5" name="evaluation" id="evaluation" maxlength="100" >
 					</textarea><br><br>
+					<br><input id="evaluate" type="submit" class="btn 
+					<?php 
+						if(isset($_SESSION['dark'])) {
+							if($_SESSION['dark']=="true") echo "dark";
+						}
+					?>" name="manageApp" value="Submit Evaluation" />
 					<br><input id="hire" type="submit" class="btn 
 					<?php 
 						if(isset($_SESSION['dark'])) {
 							if($_SESSION['dark']=="true") echo "dark";
 						}
-					?>" name="hire" value="Hire" />
+					?>" name=""manageApp"" value="Hire" />
 				</form>
 				<form action="home.php">
 					<input type="submit" class="btn 
