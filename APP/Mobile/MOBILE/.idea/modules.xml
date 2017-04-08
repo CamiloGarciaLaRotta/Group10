@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/MOBILE.iml" filepath="$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/MOBILE.iml" />
       <module fileurl="file://$PROJECT_DIR$/MOBILE.iml" filepath="$PROJECT_DIR$/MOBILE.iml" />
-      <module fileurl="file://$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/app/app.iml" filepath="$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/MOBILE.iml" filepath="$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/MOBILE.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/app/app.iml" filepath="$USER_HOME$/Harley's Projects/Intro to Software Engineering/Project/Group10/APP/Mobile/MOBILE/app/app.iml" />
     </modules>
   </component>
 </project>
