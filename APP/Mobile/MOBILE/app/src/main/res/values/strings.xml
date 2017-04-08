@@ -34,4 +34,5 @@
     <string name="modify_profile">Modify Profile</string>
     <string name="view_your_evaluations">View your Evaluations</string>
     <string name="accept_job_offer">Accept Job Offer</string>
+    <string name="no_job_offers_available">No Job Offers Available</string>
 </resources>

@@ -94,7 +94,7 @@ public class FeedbackView extends JFrame {
 		
 		JPanel panel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		panel.add(cbStudents);
+		if(student == null) panel.add(cbStudents);
 		panel.add(cbApplications);
 		panel.add(label);
 		panel.add(evalScroller);

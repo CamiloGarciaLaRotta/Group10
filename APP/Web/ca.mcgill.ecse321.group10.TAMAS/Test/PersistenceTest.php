@@ -59,10 +59,10 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		// create dummy course
 		$className = "MATH 363";
 		$CDN = 1200;
-		$graderTime = 10;
-		$TATime = 20;
-		
-		$course = new Course($className, $CDN, $graderTime, $TATime);
+		$graderTime = 50;
+		$TATime = 60;
+		$labtime = 10;
+		$course = new Course($className, $CDN, $graderTime, $TATime,$labtime);
 		$this->cm->addCourse($course);
 		
 		// store data
@@ -77,8 +77,9 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(1, $this->cm->numberOfCourses());
 		$this->assertEquals($className, $this->cm->getCourse_index(0)->getClassName());
 		$this->assertEquals($CDN, $this->cm->getCourse_index(0)->getCdn());
-		$this->assertEquals($graderTime, $this->cm->getCourse_index(0)->getGraderTimeBudget());
-		$this->assertEquals($TATime, $this->cm->getCourse_index(0)->getTaTimeBudget());
+		$this->assertEquals($graderTime, $this->cm->getCourse_index(0)->getGraderBudget());
+		$this->assertEquals($TATime, $this->cm->getCourse_index(0)->getTutorialBudget());
+		$this->assertEquals($labtime,$this->cm->getCourse_index(0)->getLabBudget());
 	}
 	
 	public function testProfilePersistence(){

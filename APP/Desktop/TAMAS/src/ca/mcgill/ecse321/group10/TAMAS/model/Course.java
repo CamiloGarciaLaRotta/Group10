@@ -17,7 +17,7 @@ public class Course
   private String className;
   private int cdn;
   private float graderBudget;
-  private float taBudget;
+  private float tutorialBudget;
   private float labBudget;
 
   //Course Associations
@@ -27,12 +27,12 @@ public class Course
   // CONSTRUCTOR
   //------------------------
 
-  public Course(String aClassName, int aCdn, float aGraderBudget, float aTaBudget, float aLabBudget)
+  public Course(String aClassName, int aCdn, float aGraderBudget, float aTutorialBudget, float aLabBudget)
   {
     className = aClassName;
     cdn = aCdn;
     graderBudget = aGraderBudget;
-    taBudget = aTaBudget;
+    tutorialBudget = aTutorialBudget;
     labBudget = aLabBudget;
     jobs = new ArrayList<Job>();
   }
@@ -57,10 +57,10 @@ public class Course
     return wasSet;
   }
 
-  public boolean setTaBudget(float aTaBudget)
+  public boolean setTutorialBudget(float aTutorialBudget)
   {
     boolean wasSet = false;
-    taBudget = aTaBudget;
+    tutorialBudget = aTutorialBudget;
     wasSet = true;
     return wasSet;
   }
@@ -83,20 +83,14 @@ public class Course
     return cdn;
   }
 
-  /**
-   * time budget
-   */
   public float getGraderBudget()
   {
     return graderBudget;
   }
 
-  /**
-   * time budget
-   */
-  public float getTaBudget()
+  public float getTutorialBudget()
   {
-    return taBudget;
+    return tutorialBudget;
   }
 
   public float getLabBudget()
@@ -225,7 +219,7 @@ public class Course
             "className" + ":" + getClassName()+ "," +
             "cdn" + ":" + getCdn()+ "," +
             "graderBudget" + ":" + getGraderBudget()+ "," +
-            "taBudget" + ":" + getTaBudget()+ "," +
+            "tutorialBudget" + ":" + getTutorialBudget()+ "," +
             "labBudget" + ":" + getLabBudget()+ "]"
      + outputString;
   }

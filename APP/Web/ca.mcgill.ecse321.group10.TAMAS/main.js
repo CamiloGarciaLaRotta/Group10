@@ -28,22 +28,28 @@ function handleEvents() {
 }
 
 function updateBudget(cdn) {
-	//console.log(cdn)
+	console.log(cdn)
 	$.ajax({
 		type: 'post',
 		url: '../Controller/getBudget.php',
 		data: { 'cdn':cdn },
 		success: function(response) {
-			//console.log(response)
+			console.log(response)
 			var budget = response.split(',')
-			var ta = parseInt(budget[0]);
-			var grader = parseInt(budget[1]);
-			//console.log(ta + " " + grader)
-			if (ta <= 0) {
-				ta = 0;
-				$('#ta').hide();
+			var tut = parseInt(budget[0]);
+			var lab = parseInt(budget[1]);
+			var grader = parseInt(budget[2]);
+			if (tut <= 0) {
+				tut = 0;
+				$('#tut').hide();
 			} else {
-				$('#ta').show();
+				$('#tut').show();
+			}
+			if (lab <= 0) {
+				lab = 0;
+				$('#lab').hide();
+			} else {
+				$('#lab').show();
 			}
 			if (grader <= 0) {
 				grader = 0;
@@ -51,12 +57,13 @@ function updateBudget(cdn) {
 			} else {
 				$('#grader').show();
 			}
-			if(ta ==0 && grader == 0) {
+			if(tut == 0 && lab == 0 && grader == 0) {
 				$('#info').hide();
 			} else {
 				$('#info').show();
 			}
-			$('#TAhours').text("TA Budget: "+ta);
+			$('#tutHours').text("Tut. Budget: "+tut);
+			$('#labHours').text("Lab. Budget: "+lab);
 			$('#Graderhours').text("Grader Budget: "+grader);
 		}
 	});

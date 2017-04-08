@@ -323,7 +323,7 @@ public class PublishJobView extends JFrame{
 			pack();
 			return;
 		}
-		if(rbTA.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getTaBudget());
+		if(rbTA.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getTutorialBudget());
 		else if(rbGrader.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getGraderBudget());
 		else tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getLabBudget());
 	}

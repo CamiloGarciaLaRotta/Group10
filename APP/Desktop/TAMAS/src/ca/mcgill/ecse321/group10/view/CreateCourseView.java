@@ -87,7 +87,7 @@ public class CreateCourseView extends JFrame{
 		lName.setText("Course Name: ");
 		lCode.setText("CDN: ");
 		lGraderBudget.setText("Grader Budget ($/semester): ");
-		lTABudget.setText("TA Budget ($/semester): ");
+		lTABudget.setText("Tutorial Budget ($/semester): ");
 		lLabBudget.setText("Lab Budget ($/semester): ");
 		create.setText("Create Course");
 		
@@ -130,7 +130,7 @@ public class CreateCourseView extends JFrame{
 	    				)
 	    		.addComponent(create)
 	    		);
-	    layout.linkSize(SwingConstants.HORIZONTAL,new java.awt.Component[] {lName,lCode,lTABudget,lGraderBudget});
+	    layout.linkSize(SwingConstants.HORIZONTAL,new java.awt.Component[] {lName,lCode,lTABudget,lGraderBudget,lLabBudget});
 	    layout.setVerticalGroup(
 	    		layout.createSequentialGroup()
 	    		.addComponent(errorLabel)
