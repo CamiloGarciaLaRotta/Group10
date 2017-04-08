@@ -172,10 +172,11 @@ public class OffersView extends JFrame{
 				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 				if(accept) {
 					try {
-						ac.setJobOfferAccepted(am.getApplication(c), true);
 						pc.acceptJob(am.getApplication(c).getStudent(), am.getApplication(c).getJobs());
+						ac.setJobOfferAccepted(am.getApplication(c), true);
 						message.setType(ThemedLabel.LabelType.Success);
 						message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was accepted!");
+						pc.removeJobFromStudent(currentStudent,currentJob);
 					} catch(InputException ex) {
 						message.setType(ThemedLabel.LabelType.Error);
 						message.setText(ex.getMessage());
@@ -184,15 +185,13 @@ public class OffersView extends JFrame{
 				else {
 					message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was rejected.");
 					ac.setJobOfferAccepted(am.getApplication(c), false);
+					pc.removeJobFromStudent(currentStudent,currentJob);
 				}
 				break;
 			}
 		}
 		//currentStudent.removeJob(currentJob);
 		//new ProfileController(pm,ProfileController.PROFILE_FILE_NAME).persist();
-		
-		ProfileController pc = new ProfileController(pm,ProfileController.PROFILE_FILE_NAME);
-		pc.removeJobFromStudent(currentStudent,currentJob);
 		refreshOfferList();
 	}
 	
