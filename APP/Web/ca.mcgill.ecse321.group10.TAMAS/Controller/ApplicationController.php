@@ -146,7 +146,20 @@ class ApplicationController{
 	}
 	
 	public function hire($id){
-		// TODO WAIT FOR HARLEYS VALIDATION ON THE FLAG
+		// retrieve selected application
+		$selectedApp = null;
+		$applications = $this->am->getApplications();
+		foreach($applications as $app) {
+			if($app->getId() == $id){
+				$selectedApp = $app;
+				break;
+			}
+		}
+		
+		$selectedApp->getJobs()->setOfferSent(TRUE);
+		
+		// Write all the data to persistence
+		$this->pt->writeApplicationDataToStore($this->am);
 	}
 	
 	public function setEvaluation($eval, $id){

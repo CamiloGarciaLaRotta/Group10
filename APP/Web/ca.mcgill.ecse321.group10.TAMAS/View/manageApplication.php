@@ -110,7 +110,7 @@
 						if(isset($_SESSION['dark'])) {
 							if($_SESSION['dark']=="true") echo "dark";
 						}
-					?>" name=""manageApp"" value="Hire" />
+					?>" name="manageApp" value="Hire" />
 				</form>
 				<form action="home.php">
 					<input type="submit" class="btn 

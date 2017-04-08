@@ -14,10 +14,10 @@ $ac = new ApplicationController();
 $_SESSION['errorHire'] = "";
 $_SESSION['successHire'] = "";
 		
-
+echo $_POST['manageApp'];
 if($_POST['manageApp'] == 'Hire'){
 	try{
-		$id = (isset($_POST['applicationID'])) ?  $_POST['applicationID'] : "";
+		$id = (isset($_POST['application'])) ?  $_POST['application'] : "";
 		$ac->hire($id);
 	} catch(Exception $e){
 		$_SESSION['errorHire'] = $e->getMessage();
