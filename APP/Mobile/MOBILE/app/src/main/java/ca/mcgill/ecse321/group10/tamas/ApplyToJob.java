@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,10 @@ public class ApplyToJob extends AppCompatActivity {
     private String username = null;
     private Spinner jobSpinner = null;
     private TextView errorText = null;
+
+    private TextView jobDescription1, jobDescription2, jobDescription3, jobDescription4, jobDescription5 = null;
+
+
     private String errors = "";
 
 
@@ -49,6 +54,11 @@ public class ApplyToJob extends AppCompatActivity {
         jobSpinner = (Spinner) findViewById(R.id.spinner);
         username = ((TAMAS) this.getApplication()).getUsername();
         errorText = (TextView) findViewById(R.id.errors);
+        jobDescription1 = (TextView) findViewById(R.id.JobDescription1);
+        jobDescription2 = (TextView) findViewById(R.id.JobDescription2);
+        jobDescription3 = (TextView) findViewById(R.id.JobDescription3);
+        jobDescription4 = (TextView) findViewById(R.id.JobDescription4);
+        jobDescription5 = (TextView) findViewById(R.id.JobDescription5);
 
         pm = ((TAMAS) getApplication()).getProfileManager();
         am = ((TAMAS) getApplication()).getApplicationManager();
@@ -68,8 +78,37 @@ public class ApplyToJob extends AppCompatActivity {
         final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, jobNames);
         jobSpinner.setAdapter(jobAdapter);
+
+        jobSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener(){
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Job selectedJob = jobs.get(position); //job index within jobs should be at the same index as jobNames from the adapter
+                        setJobDescription(selectedJob);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        //do nothing
+                    }
+                }
+        );
     }
 
+
+    private void setJobDescription(Job job){
+        String description1 = "*" + job.getCourse().getClassName() + " " + job.getPositionFullName() + "*\n";
+        String description2 = "Course taught by: ";
+        String description5 = "Prof. " + job.getInstructor().getFirstName() + " " + job.getInstructor().getLastName();
+        String description3 = "Salary: $" + job.getSalary() + "/h";
+        String description4 = "Hours: " + job.getDay() + "s from " + job.getStartTime().toString() + " to " + job.getEndTime().toString();
+        jobDescription1.setText(description1);
+        jobDescription2.setText(description2);
+        jobDescription3.setText(description3);
+        jobDescription4.setText(description4);
+        jobDescription5.setText(description5);
+    }
 
 
     private static int getStudentIndex(List<Student> students, String name){

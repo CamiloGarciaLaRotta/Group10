@@ -9,6 +9,7 @@ require_once __DIR__.'\..\Model\Profile.php';
 require_once __DIR__.'\..\Model\Instructor.php';
 require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
+require_once __DIR__.'\..\Model\Student.php';
 
 /**
  *Controller for applications and jobs, handles creating jobs. 
@@ -109,52 +110,73 @@ class ApplicationController{
 			$this->pt->writeApplicationDataToStore($this->am);
 		}
 	}
-
-// KEPT FOR FUTURE DELIVERABLES
-// 	public function deleteJob($jobID) {
-// 		$error = "";
-		
-// 		$myJob = NULL;
-// 		foreach ($this->am->getJobs() as $job){
-// 			if(strcmp($job->getId(), $jobID) ==0){
-// 				$myjob = $job;
-// 				break;
-// 			}
-// 		}
-			
-// 		if ($myjob != NULL){
-// 			// Delete posting
-// 			$this->am->removeJob($myjob);
-		
-// 			// Write all the data
-// 			$this->pt->writeApplicationDataToStore($this->am);
-// 		} else {
-// 			$error .= "Job Application not found!<br>";
-// 			throw new Exception(trim($error));
-// 		}
-// 	}
 	
-// 	public function publishJob($jobID) {
-// 		$error = "";
+	public function getApplications($cdn) {
+		$applications = $this->am->getApplications();
+
+		$matchedApps = array();
+		foreach($applications as $app) {
+			if($app->getJobs()->getCourse()->getCdn() == $cdn){
+				$matchedApps[$app->getId()] = $app->getJobs()->getPosition()." - ".$app->getStudent()->getDegree(); 
+			}
+		}
 		
-// 		$myJob = NULL;
-// 		foreach ($this->am->getJobs() as $job){
-// 			if(strcmp($job->getId(), $jobID) ==0){
-// 				$myjob = $job;
-// 				break;
-// 			}
-// 		}
-			
-// 		if ($myjob != NULL){
-// 			// Delete posting
-// 			$this->am->publishJob($myjob);  //TODO MUST IMPLEMENT A FLAG TO PUBLISH
+		echo json_encode($matchedApps);
+	}
+	
+	public function getApplicationInfo($id) {
 		
-// 			// Write all the data
-// 			$this->pt->writeApplicationDataToStore($this->am);
-// 		} else {
-// 			$error .= "Job Application not found!<br>";
-// 			throw new Exception(trim($error));
-// 		}
-// 	}
+		// retrieve selected application
+		$selectedApp = null;
+		$applications = $this->am->getApplications();
+		foreach($applications as $app) {
+			if($app->getId() == $id){
+				$selectedApp = $app;
+				break;
+			}
+		}
+		
+ 		// encode necessary information
+		$info = array();
+		$info["student"] = $selectedApp->getStudent()->getFirstName()." ".$selectedApp->getStudent()->getLastName();
+		$info["experience"] = $selectedApp->getStudent()->getExperience();
+		$info["evaluation"] = $selectedApp->getStudentEvaluation();
+		
+		echo json_encode($info);
+	}
+	
+	public function hire($id){
+		// retrieve selected application
+		$selectedApp = null;
+		$applications = $this->am->getApplications();
+		foreach($applications as $app) {
+			if($app->getId() == $id){
+				$selectedApp = $app;
+				break;
+			}
+		}
+		
+		$selectedApp->getJobs()->setOfferSent(TRUE);
+		
+		// Write all the data to persistence
+		$this->pt->writeApplicationDataToStore($this->am);
+	}
+	
+	public function setEvaluation($eval, $id){
+		// retrieve selected application
+		$selectedApp = null;
+		$applications = $this->am->getApplications();
+		foreach($applications as $app) {
+			if($app->getId() == $id){
+				$selectedApp = $app;
+				break;
+			}
+		}
+		
+		$selectedApp->setStudentEvaluation($eval);
+		
+		// Write all the data to persistence
+		$this->pt->writeApplicationDataToStore($this->am);
+	}
 }
 ?>

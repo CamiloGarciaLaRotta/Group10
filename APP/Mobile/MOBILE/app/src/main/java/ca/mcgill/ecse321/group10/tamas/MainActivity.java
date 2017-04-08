@@ -44,5 +44,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void browseAppsClicked(View v){
+        if (v.getId() == R.id.BrowseApps){
+            Intent i = new Intent(MainActivity.this, BrowseApplications.class);
+            startActivity(i);
+        }
+    }
+
 
 }

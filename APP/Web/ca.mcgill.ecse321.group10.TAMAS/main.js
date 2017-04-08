@@ -3,10 +3,14 @@ function handleEvents() {
 	$('#courseCDN').change(function() {
 		var cdn = $("#courseCDN").val();
 		updateBudget(cdn);
+		if($('main').hasClass('application')) updateApplications(cdn);
+	});
+	
+	$('#applicationID').change(function() {
+		var id = $("#applicationID").val();
+		updateAppInfo(id);
 	});
 		
-
-	
 	$("#chk").change(function(){
 		var dark = $(this).is(':checked');
 		if(dark){
@@ -18,36 +22,10 @@ function handleEvents() {
 		}
 		$.post("/ca.mcgill.ecse321.group10.TAMAS/Controller/validateTheme.php", {"set":dark})
 	});
-	
-//	//display application information
-//	$('#applicationID').on('select', function() {
-//		$.ajax({
-//			type: 'post',
-//			url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/getAppContent.php',
-//			data: "id=" + this.value,
-//			success: function(response) {
-//				$('#ApplicationInfo').text(response);
-//			}
-//		});
-//	});
-	
-	// if ever a handler is needed to retrieve the application
-//	$('#postingCDN').on("change", function(){
-//		var id = $(this).find('option:selected').attr("name");
-//		console.log(id)
-//		$.ajax({
-//			type: 'post',
-//			url: '/ca.mcgill.ecse321.group10.TAMAS/Controller/getJobData.php',
-//			data: "id=" + $(this).val(),
-//			success: function(response) {
-//				console.log(response)
-//			}
-//		});
-//	});
 }
 
 function updateBudget(cdn) {
-	console.log(cdn)
+	//console.log(cdn)
 	$.ajax({
 		type: 'post',
 		url: '../Controller/getBudget.php',
@@ -56,7 +34,7 @@ function updateBudget(cdn) {
 			var budget = response.split(',')
 			var ta = parseInt(budget[0]);
 			var grader = parseInt(budget[1]);
-			console.log(ta + " " + grader)
+			//console.log(ta + " " + grader)
 			if (ta <= 0) {
 				ta = 0;
 				$('#ta').hide();
@@ -80,6 +58,44 @@ function updateBudget(cdn) {
 	});
 }
 
+function updateApplications(cdn){
+	console.log(cdn)
+	$.ajax({
+		type: 'post',
+		url: '../Controller/getApplicationInfo.php',
+		data: { 'cdn':cdn },
+		success: function(response) {
+			var r = JSON.parse(response)
+			console.log(r)
+			$('#applicationID').empty();
+			jQuery.each(r, function(id, app) {
+				$('#applicationID').append($('<option>', {
+				    value: id,
+				    text: app
+				}));
+			});
+		}
+	});
+}
+
+function updateAppInfo(id){
+	console.log(id)
+	$.ajax({
+		type: 'post',
+		url: '../Controller/getApplicationInfo.php',
+		data: { 'id':id },
+		success: function(response) {
+			console.log(response)
+			var r = JSON.parse(response)
+			
+			console.log(r)
+			$('#studentName').html("Student Name:<br>   "+r.student);
+			$('#studentExp').html("Experience:<br>    "+r.experience);
+			$('#evaluation').val(r.evaluation)
+		}
+	});
+}
+
 function setSlider() {
 	$.ajax({
 		type: 'post',
@@ -95,10 +111,11 @@ function setSlider() {
 
 $(function() {
 	console.log("Client side active");
+	setSlider()
 	if($('main').hasClass("job") || $('main').hasClass("application") ) {
 		var cdn = $("#courseCDN").val();
 		updateBudget(cdn);
 	}
-	setSlider()
+	if($('main').hasClass('application')) updateApplications(cdn);
 	handleEvents();
 });
