@@ -46,7 +46,7 @@ public class ProfileControllerTest {
 		pc.addStudentToSystem("exp", "is", "blank", "test", "");
 		
 		
-		Course course = new Course("history", 1,2,3);
+		Course course = new Course("history", 1,2,3,4);
 		pc.addCourseToInstructor(0, course);
 		
 		pm = (ProfileManager) PersistenceXStream.loadFromXMLwithXStream();

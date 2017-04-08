@@ -36,7 +36,7 @@ public class CourseControllerTest {
 
 	@Test
 	public void testCreateCourseValid() throws InputException {
-		cc.createCourse("history", 1, 2, 3);
+		cc.createCourse("history", 1, 2, 3, 4);
 		cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
 		assertEquals(1,cm.getCourses().size());
 	}
@@ -44,31 +44,37 @@ public class CourseControllerTest {
 	@Test
 	public void testCreateCourseInvalid(){
 		try{
-			cc.createCourse(null, 1, 2, 3);
+			cc.createCourse(null, 1, 2, 3, 4);
 		}catch(InputException e){
 			cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,cm.getCourses().size());
 		}
 		try{
-			cc.createCourse("", 1, 2, 3);
+			cc.createCourse("", 1, 2, 3, 4);
 		}catch(InputException e){
 			cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,cm.getCourses().size());
 		}
 		try{
-			cc.createCourse("course", -1, 2, 3);
+			cc.createCourse("course", -1, 2, 3, 4);
 		}catch(InputException e){
 			cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,cm.getCourses().size());
 		}
 		try{
-			cc.createCourse("course", 1, -2, 3);
+			cc.createCourse("course", 1, -2, 3, 4);
 		}catch(InputException e){
 			cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,cm.getCourses().size());
 		}
 		try{
-			cc.createCourse("course", 1, 2, -3);
+			cc.createCourse("course", 1, 2, -3, 4);
+		}catch(InputException e){
+			cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
+			assertEquals(0,cm.getCourses().size());
+		}
+		try{
+			cc.createCourse("course", 1, 2, 3, -4);
 		}catch(InputException e){
 			cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(0,cm.getCourses().size());
@@ -78,12 +84,12 @@ public class CourseControllerTest {
 	@Test
 	public void testUniqueCDN(){
 		try {
-			cc.createCourse("course1", 1,2,3);
+			cc.createCourse("course1", 1,2,3,4);
 		} catch (InputException e) {
 		}
 		
 		try {
-			cc.createCourse("course2", 1,4,5);
+			cc.createCourse("course2", 1,4,5,4);
 		} catch (InputException e) {
 			cm = (CourseManager) PersistenceXStream.loadFromXMLwithXStream();
 			assertEquals(1,cm.getCourses().size());
