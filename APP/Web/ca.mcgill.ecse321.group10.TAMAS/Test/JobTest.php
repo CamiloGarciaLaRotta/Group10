@@ -84,7 +84,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		// validate stored data
 		$this->assertCount(2, $this->am->getJobs());
-		//$this->assertEquals($time, $this->am->getJob_index(1)->getBudget());
+		$this->assertEquals($time, $this->am->getJob_index(1)->getBudget());
 		$this->assertEquals($position, $this->am->getJob_index(1)->getPosition());
 		$this->assertEquals($salary, $this->am->getJob_index(1)->getSalary());
 		$this->assertEquals($requirements, $this->am->getJob_index(1)->getRequirements());
