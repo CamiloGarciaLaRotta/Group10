@@ -19,6 +19,7 @@ import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
 import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
+
 /**
  * Created by jshnaidman on 2017-04-07.
  */
@@ -55,6 +56,8 @@ public class TAMAS extends Application {
         cc = new CourseController(cm,COURSE_FILE_PATH);
 
         createDummyData();
+        //for testing
+        student = pm.getStudent(0);
 
     }
 
@@ -68,16 +71,17 @@ public class TAMAS extends Application {
             pc.addStudentToSystem("dummy1", "ecse321", "dummy", "one", "not much experience");
             pc.addStudentToSystem("dummy2", "ecse321", "dummy", "two", "a lot of experience");
             pc.addStudentToSystem("dummy3", "ecse321", "dummy", "three", "high gpa");
+            pc.addStudentToSystem("j","s","j","s","none");
             pc.addInstructorToSystem("donaldknuth","taocp","Donald","Knuth");
             pc.addInstructorToSystem("linus","linux","Linus","Torvalds");
             pc.addInstructorToSystem("vimcreator","sdfjdfs","Bill","Joy");
-            cc.createCourse("The Art of Computer Programming",0,32,46);
-            cc.createCourse("The Dragon Curve",1,234,653);
-            cc.createCourse("Kernel Development",2,234,66);
-            cc.createCourse("Linux",3,33,11);
-            cc.createCourse("Becoming a Billionaire",4,322,10000);
-            cc.createCourse("Vim 101", 5, 22, 553.2f);
-            cc.createCourse("Algorithm Analysis",66,33.2f,33.5f);
+            cc.createCourse("The Art of Computer Programming",1,45,45,45);
+            cc.createCourse("The Dragon Curve",2,45,45,45);
+            cc.createCourse("Kernel Development",3,45,45,45);
+            cc.createCourse("Linux",4,45,45,45);
+            cc.createCourse("Becoming a Billionaire",5,45,45,45);
+            cc.createCourse("Vim 101",6,45,45,45);
+            cc.createCourse("Algorithm Analysis",7,45,45,45);
             pc.addCourseToInstructor(0,cm.getCourse(0));
             pc.addCourseToInstructor(0,cm.getCourse(1));
             pc.addCourseToInstructor(1,cm.getCourse(2));
@@ -85,41 +89,43 @@ public class TAMAS extends Application {
             pc.addCourseToInstructor(2,cm.getCourse(4));
             pc.addCourseToInstructor(2,cm.getCourse(5));
             pc.addCourseToInstructor(0,cm.getCourse(6));
-            ac.addJobToSystem(new Time(0),new Time(1000),"Tuesday",11.12,"None",cm.getCourse(0),pm.getInstructor(0));
-            ac.modifyJobPosition(0, Job.Position.TA);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Wednesday",10.12,"None",cm.getCourse(0),pm.getInstructor(0));
-            ac.modifyJobPosition(1, Job.Position.GRADER);
-            ac.addJobToSystem(new Time(0),new Time(4000),"Monday",11.12,"Lots",cm.getCourse(1),pm.getInstructor(0));
-            ac.modifyJobPosition(2, Job.Position.TA);
-            ac.addJobToSystem(new Time(0),new Time(2000),"Friday",10.12,"None",cm.getCourse(1),pm.getInstructor(0));
-            ac.modifyJobPosition(3, Job.Position.GRADER);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Friday",11.12,"None",cm.getCourse(2),pm.getInstructor(1));
-            ac.modifyJobPosition(4, Job.Position.TA);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Wednesday",10.12,"None",cm.getCourse(2),pm.getInstructor(1));
-            ac.modifyJobPosition(5, Job.Position.GRADER);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Wednesday",11.12,"None",cm.getCourse(3),pm.getInstructor(1));
-            ac.modifyJobPosition(6, Job.Position.TA);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Thursday",10.12,"None",cm.getCourse(3),pm.getInstructor(1));
-            ac.modifyJobPosition(7, Job.Position.GRADER);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Friday",11.12,"None",cm.getCourse(4),pm.getInstructor(2));
-            ac.modifyJobPosition(8, Job.Position.TA);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Monday",10.12,"None",cm.getCourse(4),pm.getInstructor(2));
-            ac.modifyJobPosition(9, Job.Position.GRADER);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Tuesday",11.12,"None",cm.getCourse(5),pm.getInstructor(2));
-            ac.modifyJobPosition(10, Job.Position.TA);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Monday",10.12,"None",cm.getCourse(5),pm.getInstructor(2));
-            ac.modifyJobPosition(11, Job.Position.GRADER);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Tuesday",11.12,"None",cm.getCourse(6),pm.getInstructor(0));
-            ac.modifyJobPosition(12, Job.Position.TA);
-            ac.addJobToSystem(new Time(0),new Time(1000),"Monday",10.12,"None",cm.getCourse(6),pm.getInstructor(0));
-            ac.modifyJobPosition(13, Job.Position.GRADER);
 
+            ac.addJobToSystem(45,"Tuesday",11.12,"None",cm.getCourse(0),pm.getInstructor(0), Job.Position.TUTORIAL);
+            
+            ac.addJobToSystem(45,"Wednesday",10.12,"None",cm.getCourse(0),pm.getInstructor(0),  Job.Position.TUTORIAL);
+            
+            ac.addJobToSystem(120,"Monday",11.12,"Lots",cm.getCourse(1),pm.getInstructor(0),  Job.Position.TUTORIAL);
+            
+            ac.addJobToSystem(150,"Friday",10.12,"None",cm.getCourse(1),pm.getInstructor(0),  Job.Position.TUTORIAL);
+            
+            ac.addJobToSystem(110,"Friday",11.12,"None",cm.getCourse(2),pm.getInstructor(1), Job.Position.GRADER);
+            
+            ac.addJobToSystem(145,"Wednesday",10.12,"None",cm.getCourse(2),pm.getInstructor(1), Job.Position.GRADER);
+            
+            ac.addJobToSystem(145,"Wednesday",11.12,"None",cm.getCourse(3),pm.getInstructor(1), Job.Position.GRADER);
+            
+            ac.addJobToSystem(145,"Thursday",10.12,"None",cm.getCourse(3),pm.getInstructor(1), Job.Position.GRADER);
+            
+            ac.addJobToSystem(145,"Friday",11.12,"None",cm.getCourse(4),pm.getInstructor(2), Job.Position.GRADER);
+            
+            ac.addJobToSystem(145,"Monday",10.12,"None",cm.getCourse(4),pm.getInstructor(2), Job.Position.GRADER);
+            
+            ac.addJobToSystem(145,"Tuesday",11.12,"None",cm.getCourse(5),pm.getInstructor(2), Job.Position.LABORATORY);
+            
+            ac.addJobToSystem(145,"Monday",10.12,"None",cm.getCourse(5),pm.getInstructor(2), Job.Position.LABORATORY);
+            
+            ac.addJobToSystem(145,"Tuesday",11.12,"None",cm.getCourse(6),pm.getInstructor(0), Job.Position.LABORATORY);
+            
+            ac.addJobToSystem(145,"Monday",10.12,"None",cm.getCourse(6),pm.getInstructor(0), Job.Position.LABORATORY);
+            
 
-            ac.
+            ac.setJobOffered(am.getJob(0), true);
+            ac.setJobOffered(am.getJob(1), true);
+            ac.setJobOffered(am.getJob(5), true);
+            ac.setJobOffered(am.getJob(10), true);
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
-            Log.d("ERROR", e.getMessage());
+            Log.d("ERROR", e.getStackTrace().toString());
         }
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_PATH);
         am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_PATH,PROFILE_FILE_PATH);

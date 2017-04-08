@@ -5,12 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="ca.mcgill.ecse321.group10.tamas.BrowseEvals">
+    tools:context="ca.mcgill.ecse321.group10.tamas.BrowseEvals"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <Spinner>
+    <Spinner
+        android:id="@+id/EvalSpinner"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="53dp"
+        tools:layout_editor_absoluteX="8dp" />
 
-
-        
-    </Spinner>
+    <TextView
+        android:id="@+id/Evaluations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Evaluations Exist"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:background="@drawable/descriptionbackground"
+        tools:layout_editor_absoluteY="300dp"
+        tools:layout_editor_absoluteX="90dp" />
 
 </android.support.constraint.ConstraintLayout>
