@@ -36,7 +36,7 @@ public class ApplyToJob extends AppCompatActivity {
     private Spinner jobSpinner = null;
     private TextView errorText = null;
 
-    private TextView jobDescription1, jobDescription2, jobDescription3, jobDescription4, jobDescription5 = null;
+    private TextView jobDescription = null;
 
 
     private String errors = "";
@@ -44,8 +44,6 @@ public class ApplyToJob extends AppCompatActivity {
 
     List<Job> jobs = null;
     List<Student> students = null;
-    public String APPLICATION_FILE_NAME, PROFILE_FILE_NAME;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +52,7 @@ public class ApplyToJob extends AppCompatActivity {
         jobSpinner = (Spinner) findViewById(R.id.spinner);
         username = ((TAMAS) this.getApplication()).getUsername();
         errorText = (TextView) findViewById(R.id.errors);
-        jobDescription1 = (TextView) findViewById(R.id.JobDescription1);
-        jobDescription2 = (TextView) findViewById(R.id.JobDescription2);
-        jobDescription3 = (TextView) findViewById(R.id.JobDescription3);
-        jobDescription4 = (TextView) findViewById(R.id.JobDescription4);
-        jobDescription5 = (TextView) findViewById(R.id.JobDescription5);
+        jobDescription = (TextView) findViewById(R.id.JobDescription);
 
         pm = ((TAMAS) getApplication()).getProfileManager();
         am = ((TAMAS) getApplication()).getApplicationManager();
@@ -98,16 +92,12 @@ public class ApplyToJob extends AppCompatActivity {
 
 
     private void setJobDescription(Job job){
-        String description1 = "*" + job.getCourse().getClassName() + " " + job.getPositionFullName() + "*\n";
-        String description2 = "Course taught by: ";
-        String description5 = "Prof. " + job.getInstructor().getFirstName() + " " + job.getInstructor().getLastName();
-        String description3 = "Salary: $" + job.getSalary() + "/h";
-        String description4 = "Hours: " + job.getDay() + "s from " + job.getStartTime().toString() + " to " + job.getEndTime().toString();
-        jobDescription1.setText(description1);
-        jobDescription2.setText(description2);
-        jobDescription3.setText(description3);
-        jobDescription4.setText(description4);
-        jobDescription5.setText(description5);
+         String description = "*" + job.getCourse().getClassName() + " " + job.getPositionFullName() + "*";
+         description += "\n\nCourse taught by: ";
+         description += "\nProf. " + job.getInstructor().getFirstName() + " " + job.getInstructor().getLastName();
+         description += "\n\nSalary: $" + job.getSalary() + "/h";
+         description += "\n\nHours: \n" + job.getDay() + "s from " + job.getStartTime().toString() + " to " + job.getEndTime().toString();
+        jobDescription.setText(description);
     }
 
 
@@ -165,7 +155,7 @@ public class ApplyToJob extends AppCompatActivity {
             try{
                 //Application application = new Application(student,job);
                 //am.addApplication(application);
-                ApplicationController ac = new ApplicationController(am,APPLICATION_FILE_NAME);
+                ApplicationController ac = ((TAMAS) getApplication()).getApplicationController();
                 ac.createApplication(student,job);
                 String msg = student.getUsername() + " has applied to\n" + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".\nGood luck!";

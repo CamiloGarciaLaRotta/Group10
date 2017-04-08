@@ -29,6 +29,9 @@
     <string name="prompt_email">Email</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="back">back</string>
-    <string name="browse_applications">Browse Applications</string>
+    <string name="browse_applications">Browse Job Offers</string>
     <string name="apply_to_job">Apply to Job</string>
+    <string name="modify_profile">Modify Profile</string>
+    <string name="view_your_evaluations">View your Evaluations</string>
+    <string name="accept_job_offer">Accept Job Offer</string>
 </resources>

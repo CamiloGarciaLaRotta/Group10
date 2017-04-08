@@ -113,6 +113,9 @@ public class TAMAS extends Application {
             ac.modifyJobPosition(12, Job.Position.TA);
             ac.addJobToSystem(new Time(0),new Time(1000),"Monday",10.12,"None",cm.getCourse(6),pm.getInstructor(0));
             ac.modifyJobPosition(13, Job.Position.GRADER);
+
+
+            ac.
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

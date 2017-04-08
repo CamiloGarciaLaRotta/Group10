@@ -25,7 +25,9 @@
         <activity
             android:name=".Login"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".BrowseApplications"></activity>
+        <activity android:name=".BrowseApplications" />
+        <activity android:name=".BrowseEvals" />
+        <activity android:name=".ModifyProfile"></activity>
     </application>
 
 </manifest>
