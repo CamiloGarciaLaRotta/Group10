@@ -26,8 +26,9 @@ class Job
   private $id;
 
   //Job State Machines
-  private static $PositionTA = 1;
-  private static $PositionGRADER = 2;
+  private static $PositionTUTORIAL = 1;
+  private static $PositionLABORATORY = 2;
+  private static $PositionGRADER = 3;
   private $position;
 
   //Job Associations
@@ -58,7 +59,7 @@ class Job
       throw new Exception("Unable to create job due to instructor");
     }
     $this->applications = array();
-    $this->setPosition(self::$PositionTA);
+    $this->setPosition(self::$PositionTUTORIAL);
   }
 
   //------------------------
@@ -132,16 +133,22 @@ class Job
 
   public function getPosition()
   {
-    if ($this->position == self::$PositionTA) { return "PositionTA"; }
+    if ($this->position == self::$PositionTUTORIAL) { return "PositionTUTORIAL"; }
+    elseif ($this->position == self::$PositionLABORATORY) { return "PositionLABORATORY"; }
     elseif ($this->position == self::$PositionGRADER) { return "PositionGRADER"; }
     return null;
   }
 
   public function setPosition($aPosition)
   {
-    if ($aPosition == "PositionTA" || $aPosition == self::$PositionTA)
+    if ($aPosition == "PositionTUTORIAL" || $aPosition == self::$PositionTUTORIAL)
     {
-      $this->position = self::$PositionTA;
+      $this->position = self::$PositionTUTORIAL;
+      return true;
+    }
+    elseif ($aPosition == "PositionLABORATORY" || $aPosition == self::$PositionLABORATORY)
+    {
+      $this->position = self::$PositionLABORATORY;
       return true;
     }
     elseif ($aPosition == "PositionGRADER" || $aPosition == self::$PositionGRADER)

@@ -12,16 +12,9 @@ class Course
   //Course Attributes
   private $className;
   private $cdn;
-
-  /**
-   * time budget
-   */
   private $graderBudget;
-
-  /**
-   * time budget
-   */
-  private $taBudget;
+  private $tutorialBudget;
+  private $labBudget;
 
   //Course Associations
   private $jobs;
@@ -30,12 +23,13 @@ class Course
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aClassName, $aCdn, $aGraderBudget, $aTaBudget)
+  public function __construct($aClassName, $aCdn, $aGraderBudget, $aTutorialBudget, $aLabBudget)
   {
     $this->className = $aClassName;
     $this->cdn = $aCdn;
     $this->graderBudget = $aGraderBudget;
-    $this->taBudget = $aTaBudget;
+    $this->tutorialBudget = $aTutorialBudget;
+    $this->labBudget = $aLabBudget;
     $this->jobs = array();
   }
 
@@ -59,10 +53,18 @@ class Course
     return $wasSet;
   }
 
-  public function setTaBudget($aTaBudget)
+  public function setTutorialBudget($aTutorialBudget)
   {
     $wasSet = false;
-    $this->taBudget = $aTaBudget;
+    $this->tutorialBudget = $aTutorialBudget;
+    $wasSet = true;
+    return $wasSet;
+  }
+
+  public function setLabBudget($aLabBudget)
+  {
+    $wasSet = false;
+    $this->labBudget = $aLabBudget;
     $wasSet = true;
     return $wasSet;
   }
@@ -82,9 +84,14 @@ class Course
     return $this->graderBudget;
   }
 
-  public function getTaBudget()
+  public function getTutorialBudget()
   {
-    return $this->taBudget;
+    return $this->tutorialBudget;
+  }
+
+  public function getLabBudget()
+  {
+    return $this->labBudget;
   }
 
   public function getJob_index($index)
