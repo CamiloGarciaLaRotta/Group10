@@ -8,7 +8,7 @@ require_once __DIR__.'\..\Controller\ApplicationController.php';
 require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
 require_once __DIR__.'\..\Model\Profile.php';
 
-class JobTest extends PHPUnit_Framework_TestCase {
+class createApplication extends PHPUnit_Framework_TestCase {
 
 	protected $ac;
 	protected $pt;

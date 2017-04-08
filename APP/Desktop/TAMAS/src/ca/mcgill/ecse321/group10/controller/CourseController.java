@@ -38,10 +38,10 @@ public class CourseController {
 	public void modifyTaBudget(Course course, float cost) throws InputException{
 		for(int c = 0; c < cm.getCourses().size(); c++) {
 			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
-				if(cm.getCourse(c).getTaBudget() - cost < 0) {
+				if(cm.getCourse(c).getTutorialBudget() - cost < 0) {
 					throw new InputException("Not enough budget for this job!");
 				}
-				cm.getCourse(c).setTaBudget(cm.getCourse(c).getTaBudget() - cost);
+				cm.getCourse(c).setTutorialBudget(cm.getCourse(c).getTutorialBudget() - cost);
 				PersistenceXStream.setFilename(filename);
 				PersistenceXStream.saveToXMLwithXStream(cm);
 				break;
