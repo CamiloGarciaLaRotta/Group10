@@ -31,12 +31,14 @@ public class ApplicationController {
 		if(aSalary < 0) error += "Salary must be positive! ";
 		if(day == null) error += "Day must be specified! ";
 		else if(day.equals("Saturday") || day.equals("Sunday")) error += "Day must be a work day! ";
-		if(position == Job.Position.TA) {
-			if(aCourse.getTaBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
+		if(position == Job.Position.TUTORIAL) {
+			//if(aCourse.getTaBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
 			//else aCourse.setTaBudget((float)(aCourse.getTaBudget() - hours * aSalary));
-		} else {
-			if(aCourse.getGraderBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
+		} else if (position == Job.Position.GRADER) {
+			//if(aCourse.getGraderBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
 			//else aCourse.setGraderBudget((float)(aCourse.getGraderBudget() - hours * aSalary));
+		} else {
+			//if(aCourse.getLabBudget() - hours * aSalary < 0) error += "Not enough budget remaining!";
 		}
 		if(error.length() > 0) throw new InputException(error);
 		else{

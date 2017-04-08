@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
-// line 71 "../../../../../../alternatemodel.ump"
+// line 73 "../../../../../../alternatemodel.ump"
 public class ProfileManager
 {
 

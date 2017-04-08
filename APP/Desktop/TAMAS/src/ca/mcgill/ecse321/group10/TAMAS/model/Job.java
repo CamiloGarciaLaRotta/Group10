@@ -4,9 +4,9 @@
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
 
-// line 11 "../../../../../../alternatemodel.ump"
-// line 95 "../../../../../../alternatemodel.ump"
-// line 129 "../../../../../../alternatemodel.ump"
+// line 12 "../../../../../../alternatemodel.ump"
+// line 97 "../../../../../../alternatemodel.ump"
+// line 131 "../../../../../../alternatemodel.ump"
 public class Job
 {
 
@@ -31,7 +31,7 @@ public class Job
   private int id;
 
   //Job State Machines
-  public enum Position { TA, GRADER }
+  public enum Position { TUTORIAL, LABORATORY, GRADER }
   private Position position;
 
   //Job Associations
@@ -62,7 +62,7 @@ public class Job
       throw new RuntimeException("Unable to create job due to instructor");
     }
     applications = new ArrayList<Application>();
-    setPosition(Position.TA);
+    setPosition(Position.TUTORIAL);
   }
 
   //------------------------

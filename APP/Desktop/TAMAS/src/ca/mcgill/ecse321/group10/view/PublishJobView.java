@@ -61,6 +61,7 @@ public class PublishJobView extends JFrame{
 	private JButton publish;
 	private JRadioButton rbTA;
 	private JRadioButton rbGrader;
+	private JRadioButton rbLab;
 	private ButtonGroup typeGroup;
 	
 	private DefaultListModel courseListModel;
@@ -89,12 +90,14 @@ public class PublishJobView extends JFrame{
 		publish = new JButton("Publish Job");
 		
 		lPos = new ThemedLabel("Position type: ");
-		rbTA = new ThemedRadioButton("TA");
+		rbTA = new ThemedRadioButton("Tutorial");
 		rbTA.setSelected(true);
 		rbGrader = new ThemedRadioButton("Grader");
+		rbLab = new ThemedRadioButton("Laboratory");
 		typeGroup = new ButtonGroup();
 		typeGroup.add(rbTA);
 		typeGroup.add(rbGrader);
+		typeGroup.add(rbLab);
 		
 		publish.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -156,6 +159,12 @@ public class PublishJobView extends JFrame{
 			}
 		});
 		
+		rbLab.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				updateBudget();
+			}
+		});
+		
 		lHours = new ThemedLabel("Hours per semester:");
 		tfHours = new ThemedTextField(15);
 		lRemaining = new ThemedLabel("Remaining budget:");
@@ -183,6 +192,7 @@ public class PublishJobView extends JFrame{
 	    				.addComponent(lPos)
 	    				.addComponent(rbTA)
 	    				.addComponent(rbGrader)
+	    				.addComponent(rbLab)
 	    				)
 	    		.addGroup(
 	    				layout.createSequentialGroup()
@@ -218,6 +228,7 @@ public class PublishJobView extends JFrame{
 	    				.addComponent(lPos)
 	    				.addComponent(rbTA)
 	    				.addComponent(rbGrader)
+	    				.addComponent(rbLab)
 	    				)
 	    		.addGroup(
 	    				layout.createParallelGroup()
@@ -285,10 +296,14 @@ public class PublishJobView extends JFrame{
 					ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 					CourseController cc = new CourseController(cm,CourseController.COURSE_FILE_NAME);
 					try {
-						Job.Position pos = (rbTA.isSelected()) ? Job.Position.TA : Job.Position.GRADER;
+						Job.Position pos;
+						if(rbTA.isSelected()) pos = Job.Position.TUTORIAL;
+						else if(rbGrader.isSelected()) pos = Job.Position.GRADER;
+						else pos = Job.Position.LABORATORY;
+						if(pos == Job.Position.TUTORIAL) cc.modifyTaBudget(course, hours * (float)salary);
+						else if(pos == Job.Position.GRADER) cc.modifyGraderBudget(course, hours * (float)salary);
+						else cc.modifyLabBudget(course, hours * (float)salary); 
 						ac.addJobToSystem(hours, day, salary, requirements, course, instructor,pos);
-						if(rbTA.isSelected()) cc.modifyTaBudget(course, hours * (float)salary);
-						else cc.modifyGraderBudget(course, hours * (float)salary);
 					} catch (InputException e) {
 						error += e.getMessage();
 					}
@@ -309,7 +324,8 @@ public class PublishJobView extends JFrame{
 			return;
 		}
 		if(rbTA.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getTaBudget());
-		else tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getGraderBudget());
+		else if(rbGrader.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getGraderBudget());
+		else tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getLabBudget());
 	}
 	
 }

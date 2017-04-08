@@ -16,7 +16,7 @@ public class CourseController {
 		this.filename = filename;
 	}
 	
-	public void createCourse(String aClassName, int aCdn, float aGraderTimeBudget, float aTaTimeBudget) throws InputException {
+	public void createCourse(String aClassName, int aCdn, float aGraderTimeBudget, float aTaTimeBudget, float labBudget) throws InputException {
 		String error = "";
 		if(aClassName == null || aClassName.trim().length() == 0) {
 			error += "Course name cannot be empty! ";
@@ -24,19 +24,23 @@ public class CourseController {
 		if(aCdn < 0) error += "CDN must be positive! ";
 		if(aGraderTimeBudget < 0) error +=  "Grader Budget must be positive! ";
 		if(aTaTimeBudget < 0) error += "TA Budget must be positive! ";
+		if(labBudget < 0) error += "Lab Budget must be positive! ";
 		if (courseCdnAlreadyExists(aCdn)) error += "CDN must be unique! ";
 		if(error.length() > 0) throw new InputException(error);
 		else{
-			Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget);
+			Course c = new Course(aClassName,aCdn,aGraderTimeBudget,aTaTimeBudget,labBudget);
 			cm.addCourse(c);
 			PersistenceXStream.setFilename(filename);
 			PersistenceXStream.saveToXMLwithXStream(cm);
 		}
 	}
 	
-	public void modifyTaBudget(Course course, float cost) {
+	public void modifyTaBudget(Course course, float cost) throws InputException{
 		for(int c = 0; c < cm.getCourses().size(); c++) {
 			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+				if(cm.getCourse(c).getTaBudget() - cost < 0) {
+					throw new InputException("Not enough budget for this job!");
+				}
 				cm.getCourse(c).setTaBudget(cm.getCourse(c).getTaBudget() - cost);
 				PersistenceXStream.setFilename(filename);
 				PersistenceXStream.saveToXMLwithXStream(cm);
@@ -45,10 +49,26 @@ public class CourseController {
 		}
 	}
 	
-	public void modifyGraderBudget(Course course, float cost) {
+	public void modifyGraderBudget(Course course, float cost) throws InputException {
 		for(int c = 0; c < cm.getCourses().size(); c++) {
 			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+				if(cm.getCourse(c).getGraderBudget() - cost < 0) {
+					throw new InputException("Not enough budget for this job!");
+				}
 				cm.getCourse(c).setGraderBudget(cm.getCourse(c).getGraderBudget() - cost);
+				PersistenceXStream.setFilename(filename);
+				PersistenceXStream.saveToXMLwithXStream(cm);
+				break;
+			}
+		}
+	}
+	public void modifyLabBudget(Course course, float cost) throws InputException {
+		for(int c = 0; c < cm.getCourses().size(); c++) {
+			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+				if(cm.getCourse(c).getLabBudget() - cost < 0) {
+					throw new InputException("Not enough budget for this job!");
+				}
+				cm.getCourse(c).setLabBudget(cm.getCourse(c).getLabBudget() - cost);
 				PersistenceXStream.setFilename(filename);
 				PersistenceXStream.saveToXMLwithXStream(cm);
 				break;
