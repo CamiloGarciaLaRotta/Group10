@@ -58,8 +58,11 @@
 			<span class="intro">
 				<h3>TAMAS</h3>
 				<h4>Application Manager</h4>
-				<br><br>
-				<p id="TAhours"> </p>
+								<br><br>
+				TA:<br>
+				<p id="tutHours"></p>
+				<br>
+				<p id="labHours"></p>
 				<br><br>
 				<p id="Graderhours"> </p>
 				<br><br>

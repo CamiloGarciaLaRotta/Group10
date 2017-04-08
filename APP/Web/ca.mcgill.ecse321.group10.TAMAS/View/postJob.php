@@ -56,8 +56,11 @@
 			<span class="intro">
 				<h3>TAMAS</h3>
 				<h4>Job Form</h4>
-						<br><br>
-				<p id="TAhours"> </p>
+				<br><br>
+				TA:<br>
+				<p id="tutHours"></p>
+				<br>
+				<p id="labHours"></p>
 				<br><br>
 				<p id="Graderhours"> </p>
 				<br><br>
@@ -81,26 +84,27 @@
 			</span>
 			<div class="actions">
 				<form action='../Controller/validateJob.php' id="form" method='post'>
-					Course CDN<br><select name='job_courseCDN' id="courseCDN">
+					Course CDN<br><select name='jobCourseCDN' id="courseCDN">
 						<?php foreach ($profile->getCourses() as $course){?>
 							<option value="<?php echo $course->getCdn(); ?>"><?php echo $course->getClassName(); ?></option>
 						<?php }?>
 					</select><br><br>		
 					<div id="info">
 						Position<br>
-						<label id="ta"><input type="radio" name="job_position" value="PositionTA" > TA</label>
-						<label id="grader"><input type="radio" name="job_position" value="PositionGRADER" > Grader</label><br><br>
+						<label id="tut"><input type="radio" name="jobPosition" value="PositionTUTORIAL" >Tutorial (TA)</label><br>
+						<label id="lab"><input type="radio" name="jobPosition" value="PositionLABORATORY" >Laboratoire (TA)</label><br>
+						<label id="grader"><input type="radio" name="jobPosition" value="PositionGRADER" >Grader</label><br><br>
 						Requirements
-						<textarea class="text" cols="20" rows ="5" name="job_requirements" maxlength="100" reqired></textarea><br><br>	
-						Hourly Salary<input type ="text" name="job_salary" required/><br><br>
-						Available Day<select name="job_day">
+						<textarea class="text" cols="20" rows ="5" name="jobRequirements" maxlength="100" reqired></textarea><br><br>	
+						Hourly Salary<input type ="text" name="jobSalary" required/><br><br>
+						Available Day<select name="jobDay">
 							<option value="monday">Monday</option>
 							<option value="tuesday">Tuesday</option>
 							<option value="wednesday">Wednesday</option>
 							<option value="thursday">Thursday</option>
 							<option value="friday">Friday</option>
 						</select><br><br>
-						Hours/Semester<input type ="text" name="job_time"/><br><br><br>
+						Hours/Semester<input type ="text" name="jobTime"/><br><br><br>
 						<input type= "submit" class="btn 
 						<?php 
 							if(isset($_SESSION['dark'])) {

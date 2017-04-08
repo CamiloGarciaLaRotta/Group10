@@ -6,11 +6,6 @@ session_start();
 
 $ac = new ApplicationController();
 
-// ROBERT VERIFY THE INPUT HERE
-// if its submit evaluation it must not be empty
-// its the only thing to check
-// then make sure the error/success messages work fine
-
 $_SESSION['errorHire'] = "";
 $_SESSION['successHire'] = "";
 		
@@ -27,7 +22,6 @@ if($_POST['manageApp'] == 'Hire'){
 	}
 } else if($_POST['manageApp'] == 'Submit Evaluation'){
 	try{
-		// ADD INPUT VERIFICATION HERE'
 		$eval = (isset($_POST['evaluation'])) ? $_POST['evaluation'] : "";
 		$id = (isset($_POST['application'])) ?  $_POST['application'] : "";
 		$ac->setEvaluation($eval,$id);

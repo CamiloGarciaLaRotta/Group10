@@ -187,7 +187,21 @@ class ApplicationController{
 	}
 	
 	public function getCleanPosition($job){
-		return ($job->getPosition() == "PositionTA") ? "TA" : "Grader"; 
+		$pos = "";
+		switch ($job->getPosition()) {
+			case "PositionTUTORIAL":
+				$pos = "Tutorial";
+				break;
+			case "PositionLABORATORY":
+				$pos = "Laboratory";
+				break;
+			case "PositionGRADER":
+				$pos = "Grader";
+				break;
+			default:
+				$pos = "UNDEFINED";
+		}
+		return $pos;
 	}
 }
 ?>
