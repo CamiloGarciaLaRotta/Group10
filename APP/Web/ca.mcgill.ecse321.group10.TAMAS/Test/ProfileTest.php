@@ -47,7 +47,7 @@ class ProfileTest extends PHPUnit_Framework_TestCase {
 		
 		// validate stored data
 		$this->pm = $this->pt->loadProfileManagerFromStore();
-		//$this->assertEquals(1, $this->pm->numberOfInstructors());
+		$this->assertEquals(1, $this->pm->numberOfInstructors());
 		$this->assertCount(1, $this->pm->getInstructors());
 		$this->assertEquals("Diego", $this->pm->getInstructor_index(0)->getFirstName());
 		$this->assertEquals("Costa", $this->pm->getInstructor_index(0)->getLastName());

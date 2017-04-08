@@ -51,7 +51,8 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($className, $this->cm->getCourse_index(0)->getClassName());
 		$this->assertEquals($CDN, $this->cm->getCourse_index(0)->getCdn());
 		$this->assertEquals($graderTime, $this->cm->getCourse_index(0)->getGraderBudget());
-		$this->assertEquals($TATime, $this->cm->getCourse_index(0)->getTaBudget());
+		$this->assertEquals($TATime, $this->cm->getCourse_index(0)->getTutorialBudget());
+		$this->assertEquals($labTime, $this->cm->getCourse_index(0)->getLabBudget());
 		
 		$className = "ECSE 321";
 		$CDN = 800;
@@ -73,6 +74,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($CDN, $this->cm->getCourse_index(1)->getCdn());
 		$this->assertEquals($graderTime, $this->cm->getCourse_index(1)->getGraderBudget());
 		$this->assertEquals($TATime, $this->cm->getCourse_index(1)->getTaBudget());
+		$this->assertEquals($labTime, $this->cm->getCourse_index(0)->getLabBudget());
 		
 	}
 	
@@ -85,12 +87,12 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = 999;
 		$graderTime = 99;
 		$TATime = 49;
-	
+		$labTime = 20;
 		$error = "";
 	
 		// validate empty course name
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
@@ -102,7 +104,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = "abc";
 	
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
@@ -113,7 +115,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$graderTime = -99;
 	
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
@@ -124,7 +126,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$TATime = -9;
 	
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}
