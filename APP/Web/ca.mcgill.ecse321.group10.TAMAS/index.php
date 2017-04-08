@@ -27,7 +27,7 @@ if (isset($_SESSION['username'])) {
 	>
 		<header>
 			<label class="switch">
-			  <input type="checkbox" id="chk">
+			  <input type="checkbox" id="checkTheme">
 			  <div class="slider round" id="theme"></div>
 			</label>
 		</header>
