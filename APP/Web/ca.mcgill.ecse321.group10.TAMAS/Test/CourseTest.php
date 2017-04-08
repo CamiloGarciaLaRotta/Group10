@@ -36,9 +36,10 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = 1200;
 		$graderTime = 50;
 		$TATime = 50;
+		$labTime = 0;
 		
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime, $labTime);
 		} catch(Exception $e) {
 			echo $e->getMessage();
 			$this->fail();
@@ -56,9 +57,10 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = 800;
 		$graderTime = 60;
 		$TATime = 70;
+		$labTime = 10;
 		
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		} catch(Exception $e) {
 			echo $e->getMessage();
 			$this->fail();

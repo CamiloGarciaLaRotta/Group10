@@ -62,7 +62,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$graderTime = 50;
 		$TATime = 60;
 		
-		$course = new Course($className, $CDN, $graderTime, $TATime);
+		$course = new Course($className, $CDN, $graderTime, $TATime,0);
 		$this->cm->addCourse($course);
 		
 		// store data

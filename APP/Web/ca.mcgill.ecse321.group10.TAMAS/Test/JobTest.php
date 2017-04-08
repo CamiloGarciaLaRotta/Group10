@@ -39,10 +39,10 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		$time=20;
 		$day = "Monday";
-		$position = "PositionTA";
+		$position = "PositionTUTORIAL";
 		$salary = 80.30;
 		$requirements = "None";
-		$course = new Course("MATH 363", 3700, 50, 80);
+		$course = new Course("MATH 363", 3700, 50, 80,0);
 		$instructor = new Instructor("PGuardiola", "123", "Pep", "Guardiola");
 		
 		$job = new Job($time, $day, $salary, $requirements, $course, $instructor);
@@ -57,7 +57,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		
 		// validate stored data
 		$this->assertCount(1, $this->am->getJobs());
-		//$this->assertEquals($time, $this->am->getJob_index(0)->getBudget());
+		$this->assertEquals($time, $this->am->getJob_index(0)->getBudget());
 		$this->assertEquals($position, $this->am->getJob_index(0)->getPosition());
 		$this->assertEquals($salary, $this->am->getJob_index(0)->getSalary());
 		$this->assertEquals($requirements, $this->am->getJob_index(0)->getRequirements());
@@ -69,7 +69,7 @@ class JobTest extends PHPUnit_Framework_TestCase {
 		$position = "PositionGRADER";
 		$salary = 20.00;
 		$requirements = "Much Requirements";
-		$course = new Course("COMP 551", 2700, 50, 45);
+		$course = new Course("COMP 551", 2700, 50, 45,10);
 		$instructor = new Instructor("JMourinho", "456", "Jose", "Mourinho");
 		
 		$job = new Job($time, $day, $salary, $requirements, $course, $instructor);
