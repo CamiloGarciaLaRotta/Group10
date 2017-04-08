@@ -14,6 +14,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ca.mcgill.ecse321.group10.TAMAS.model.Admin;
+import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
+import ca.mcgill.ecse321.group10.TAMAS.model.Profile;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.InputException;
@@ -56,9 +59,12 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 	
 	boolean problem;
 	
-	public RegistrationView(ProfileManager pm) {
+	Profile profile;
+	
+	public RegistrationView(ProfileManager pm, Profile profile) {
 		this.pm = pm;
 		reqs = "";
+		this.profile = profile;
 		initComponents();
 		problem = false;
 	}
@@ -121,6 +127,26 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 				submitPressed();
 			}
 		});
+		
+		if(profile != null) {
+			if(profile.getClass() == Admin.class) rbAdmin.setSelected(true);
+			else if(profile.getClass() == Instructor.class) rbInstructor.setSelected(true);
+			else {
+				rbStudent.setSelected(true);
+				Student s = (Student)profile;
+				taReqs.setText(s.getExperience());
+				if(s.getDegree() == Student.Degree.UNDERGRAD) rbUndergrad.setSelected(true);
+				else rbGrad.setSelected(true);
+			}
+			tfFirst.setText(profile.getFirstName());
+			tfLast.setText(profile.getLastName());
+			tfUser.setText(profile.getUsername());
+			tfUser.setEnabled(false);
+			actionPerformed(null);
+			rbStudent.setEnabled(false);
+			rbInstructor.setEnabled(false);
+			rbAdmin.setEnabled(false);
+		}
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -229,7 +255,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		if(rbStudent.isSelected()) {
 			lReqs.setVisible(true);
 			reqScroller.setVisible(true);
-			taReqs.setText(reqs);
+			if(profile == null) taReqs.setText(reqs);
 			lDegree.setVisible(true);
 			rbUndergrad.setVisible(true);
 			rbGrad.setVisible(true);
@@ -257,7 +283,13 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 			try {
 				reqs = taReqs.getText();
 				Student.Degree deg = (rbUndergrad.isSelected()) ? Student.Degree.UNDERGRAD : Student.Degree.GRADUATE;
-				pc.addStudentToSystem(user, pass, first, last, reqs,deg);
+				if(profile == null) {
+					pc.addStudentToSystem(user, pass, first, last, reqs,deg);
+				}
+				else {
+					pc.modifyStudent(user, pass, first, last, reqs, deg);
+					dispose();
+				}
 				error.setText("Student " + user + " created.");
 				reqs = "";
 				taReqs.setText("");
@@ -270,7 +302,11 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		}
 		else if(rbInstructor.isSelected()) {
 			try {
-				pc.addInstructorToSystem(user, pass, first, last);
+				if(profile == null) pc.addInstructorToSystem(user, pass, first, last);
+				else {
+					pc.modifyInstructor(user, pass, first, last);
+					dispose();
+				}
 				error.setText("Instructor " + user + " created.");
 				error.setType(ThemedLabel.LabelType.Success);
 			} catch (InputException e) {
@@ -281,7 +317,11 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		}
 		else if(rbAdmin.isSelected()){
 			try {
-				pc.addAdminToSystem(user, pass, first, last);
+				if(profile == null) pc.addAdminToSystem(user, pass, first, last);
+				else {
+					pc.modifyAdmin(user, pass, first, last);
+					dispose();
+				}
 				error.setText("Admin " + user + " created.");
 				error.setType(ThemedLabel.LabelType.Success);
 			} catch (InputException e) {

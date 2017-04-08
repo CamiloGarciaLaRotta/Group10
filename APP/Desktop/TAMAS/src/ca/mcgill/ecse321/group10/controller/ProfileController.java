@@ -38,18 +38,7 @@ public class ProfileController {
 	
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
-		if(aUsername == null || aUsername.trim().length() == 0) {
-			error += ("Instructor username cannot be empty "); 
-		}
-		if(aPassword == null || aPassword.trim().length() == 0) {
-			error += ("Instructor password cannot be empty") + " ";
-		}
-		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
-			error += ("Instructor first and last names cannot be empty") + " ";
-		}
-		if( !this.isUsernameFree(aUsername) ){
-			error += ("Username is taken") + " ";
-		}
+		error = validateProfile(aUsername,aPassword,aFirstName,aLastName);
 		if(error.length() > 0) throw new InputException(error);
 		else{
 		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
@@ -67,18 +56,7 @@ public class ProfileController {
 	
 	public void addAdminToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
-		if(aUsername == null || aUsername.trim().length() == 0) {
-			error += ("Admin username cannot be empty") + " ";
-		}
-		if(aPassword == null || aPassword.trim().length() == 0) {
-			error += ("Admin password cannot be empty") + " ";
-		}
-		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
-			error += ("Admin first and last names cannot be empty") + " ";
-		}
-		if( !this.isUsernameFree(aUsername) ){
-			error += ("Username is taken") + " ";
-		}
+		error = validateProfile(aUsername,aPassword,aFirstName,aLastName);
 		if(error.length() > 0) throw new InputException(error);
 		else{
 		Admin admin = new Admin(aUsername,aPassword,aFirstName,aLastName);
@@ -94,18 +72,7 @@ public class ProfileController {
 	
 	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience, Student.Degree degree)  throws InputException{
 		String error = "";
-		if(aUsername == null || aUsername.trim().length() == 0) {
-			error += ("Student username cannot be empty") + " ";
-		}
-		if(aPassword == null || aPassword.trim().length() == 0) {
-			error += ("Student password cannot be empty") + " ";
-		}
-		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
-			error += ("Student first and last names cannot be empty") + " ";
-		}
-		if( !this.isUsernameFree(aUsername) ){
-			error += ("Username is taken") + " ";
-		}
+		error = validateProfile(aUsername,aPassword,aFirstName,aLastName);
 		if(error.length() > 0) throw new InputException(error);
 		else{
 			Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
@@ -115,6 +82,79 @@ public class ProfileController {
 			PersistenceXStream.setFilename(filename);
 			PersistenceXStream.saveToXMLwithXStream(pm);
 		}
+	}
+	
+	public void modifyStudent(String aUsername, String aPassword, String aFirstName, String aLastName, String experience, Student.Degree degree) throws InputException {
+		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName);
+		if(error.length() > 0) throw new InputException(error);
+			else {
+			for(int c = 0; c < pm.getStudents().size(); c++) {
+				if(aUsername.equals(pm.getStudent(c).getUsername())) {
+					Student s = pm.getStudent(c);
+					s.setFirstName(aFirstName);
+					s.setLastName(aLastName);
+					s.setPassword(aPassword);
+					s.setExperience(experience);
+					s.setDegree(degree);
+					PersistenceXStream.setFilename(filename);
+					PersistenceXStream.saveToXMLwithXStream(pm);
+					return;
+				}
+			}
+		}
+	}
+	
+	public void modifyAdmin(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
+		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName);
+		if(error.length() > 0) throw new InputException(error);
+		else {
+			for(int c = 0; c < pm.getAdmins().size(); c++) {
+				if(aUsername.equals(pm.getAdmin(c).getUsername())) {
+					Admin a = pm.getAdmin(c);
+					a.setFirstName(aFirstName);
+					a.setLastName(aLastName);
+					a.setPassword(aPassword);
+					PersistenceXStream.setFilename(filename);
+					PersistenceXStream.saveToXMLwithXStream(pm);
+					return;
+				}
+			}
+		}
+	}
+	
+	public void modifyInstructor(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
+		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName);
+		if(error.length() > 0) throw new InputException(error);
+		else {
+			for(int c = 0; c < pm.getInstructors().size(); c++) {
+				if(aUsername.equals(pm.getInstructor(c).getUsername())) {
+					Instructor a = pm.getInstructor(c);
+					a.setFirstName(aFirstName);
+					a.setLastName(aLastName);
+					a.setPassword(aPassword);
+					PersistenceXStream.setFilename(filename);
+					PersistenceXStream.saveToXMLwithXStream(pm);
+					return;
+				}
+			}
+		}
+	}
+	
+	private String validateProfile(String aUsername, String aPassword, String aFirstName, String aLastName) {
+		String error = "";
+		if(aUsername == null || aUsername.trim().length() == 0) {
+			error += ("Username cannot be empty!") + " ";
+		}
+		if(aPassword == null || aPassword.trim().length() == 0) {
+			error += ("Password cannot be empty!") + " ";
+		}
+		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
+			error += ("First and last names cannot be empty!") + " ";
+		}
+		if( !this.isUsernameFree(aUsername) ){
+			error += ("Username is taken!") + " ";
+		}
+		return error;
 	}
 	
 	public void offerJobToStudent(Student s, Job j) {

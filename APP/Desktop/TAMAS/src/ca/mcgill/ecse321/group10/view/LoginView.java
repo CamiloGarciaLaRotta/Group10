@@ -94,7 +94,7 @@ public class LoginView extends JFrame{
 		
 		registerButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				new RegistrationView(pm).setVisible(true);
+				new RegistrationView(pm,null).setVisible(true);
 			}
 		});
 		

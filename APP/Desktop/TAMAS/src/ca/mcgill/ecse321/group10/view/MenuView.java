@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import ca.mcgill.ecse321.group10.TAMAS.model.Admin;
 import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
@@ -47,6 +45,7 @@ public class MenuView extends JFrame{
 	private JButton evaluateButton;
 	private JButton feedbackButton;
 	private JButton colorButton;
+	private JButton updateButton;
 	
 	private JButton studentButton;
 	private JButton instructorButton;
@@ -126,6 +125,7 @@ public class MenuView extends JFrame{
 		evaluateButton = new JButton();
 		feedbackButton = new JButton();
 		colorButton = new JButton();
+		updateButton = new JButton();
 		
 		adminButton = new ThemedTabButton();
 		instructorButton = new ThemedTabButton();
@@ -147,6 +147,7 @@ public class MenuView extends JFrame{
 		evaluateButton.setText("Evaluate Your TAs");
 		feedbackButton.setText("View Your Evaluations");
 		colorButton.setText(colorToggle[theme]);
+		updateButton.setText("Edit Your Profile");
 		
 		adminButton.setText("Admin");
 		instructorButton.setText("Instructor");
@@ -286,12 +287,18 @@ public class MenuView extends JFrame{
 		
 		colorButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				theme ^= 1;
+				theme ^= 1; //The epitome of ECSE323
 				ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
 				constants.set(1, theme);
 				PersistenceXStream.setFilename("output/constants.xml");
 				PersistenceXStream.saveToXMLwithXStream(constants);
 				refreshWidgets();
+			}
+		});
+		
+		updateButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				new RegistrationView(pm,user).setVisible(true);
 			}
 		});
 		
@@ -329,6 +336,7 @@ public class MenuView extends JFrame{
 		
 		mainPanel.add(pAdmin);
 		panel.add(mainPanel);
+		panel.add(updateButton);
 		panel.add(colorButton);
 		panel.add(logoutButton);
 		
@@ -349,6 +357,7 @@ public class MenuView extends JFrame{
 		evaluateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		feedbackButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		colorButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		updateButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		refresh();
 		pack();
@@ -384,7 +393,7 @@ public class MenuView extends JFrame{
 	}
 	
 	private void profilePressed() {
-		new RegistrationView(pm).setVisible(true);
+		new RegistrationView(pm,null).setVisible(true);
 		error.setText("");
 		pack();
 	}

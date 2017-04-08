@@ -84,7 +84,7 @@ public class StudentView extends JFrame{
 	}
 	
 	private void profilePressed() {
-		new RegistrationView(pm).setVisible(true);
+		new RegistrationView(pm,null).setVisible(true);
 		error.setText("");
 		pack();
 	}
