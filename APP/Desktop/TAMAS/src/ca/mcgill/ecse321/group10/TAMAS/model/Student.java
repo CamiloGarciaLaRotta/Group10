@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
+/*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
@@ -16,7 +16,6 @@ public class Student extends Profile
   //Student Attributes
   private float hoursLeft;
   private String experience;
-  private String evaluations;
 
   //Student State Machines
   public enum Degree { UNDERGRAD, GRADUATE }
@@ -35,7 +34,6 @@ public class Student extends Profile
     super(aUsername, aPassword, aFirstName, aLastName);
     hoursLeft = 0.0f;
     experience = aExperience;
-    evaluations = null;
     jobs = new ArrayList<Job>();
     applications = new ArrayList<Application>();
     setDegree(Degree.UNDERGRAD);
@@ -61,14 +59,6 @@ public class Student extends Profile
     return wasSet;
   }
 
-  public boolean setEvaluations(String aEvaluations)
-  {
-    boolean wasSet = false;
-    evaluations = aEvaluations;
-    wasSet = true;
-    return wasSet;
-  }
-
   public float getHoursLeft()
   {
     return hoursLeft;
@@ -77,11 +67,6 @@ public class Student extends Profile
   public String getExperience()
   {
     return experience;
-  }
-
-  public String getEvaluations()
-  {
-    return evaluations;
   }
 
   public String getDegreeFullName()
@@ -309,8 +294,7 @@ public class Student extends Profile
     String outputString = "";
     return super.toString() + "["+
             "hoursLeft" + ":" + getHoursLeft()+ "," +
-            "experience" + ":" + getExperience()+ "," +
-            "evaluations" + ":" + getEvaluations()+ "]"
+            "experience" + ":" + getExperience()+ "]"
      + outputString;
   }
 }

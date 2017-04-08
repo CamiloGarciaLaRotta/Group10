@@ -62,6 +62,9 @@ class CourseController{
 		if(($graderTimeBudget < 0) || ($TATimeBudget < 0)) {
 			$error .= ("Time budget must be a positive Integer!<br><br>");
 		}
+		if(($graderTimeBudget < 45) || ($TATimeBudget < 45)) {
+			$error .= ("Time budget must be at least 45 hours/semester!<br><br>");
+		}
 		
 		//if all inputs calid, create the course object, 
 		//otherwise 
@@ -143,7 +146,7 @@ class CourseController{
 				if($j->getPosition()=="PositionTA") {
 					$remainingTATime -= $j->getHours();
 				} else {
-					$remainingGraderTime -= $j->getHours();
+					$remainingGraderTime -= $j->getHours();;
 				}
 			}
 		}

@@ -113,6 +113,7 @@ public class ApplicationView extends JFrame{
 	
 	private void applyPressed() {
 		String error = "";
+		Student curStudent;
 		if(student == null && studentList.getSelectedIndex() == -1) error += "Student must be selected!";
 		if(jobList.getSelectedIndex() == -1) error += "Job must be selected!";
 		if(error.length() != 0) {
@@ -121,15 +122,16 @@ public class ApplicationView extends JFrame{
 		}
 		else {
 			message.setType(ThemedLabel.LabelType.Success);
-			if(student == null) student = pm.getStudent(studentList.getSelectedIndex());
+			if(student == null) curStudent = pm.getStudent(studentList.getSelectedIndex());
+			else curStudent = student;
 			Job job = am.getJob(jobList.getSelectedIndex());
 			ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 			try {
-				ac.createApplication(student, job);
+				ac.createApplication(curStudent, job);
 			}catch (InputException e) {
 				
 			}
-			String msg = student.getUsername() + " has applied to " + jobList.getSelectedValue().toString() + ". Good luck!";
+			String msg = curStudent.getUsername() + " has applied to " + jobList.getSelectedValue().toString() + ". Good luck!";
 			message.setText(msg);
 			pack();
 		}

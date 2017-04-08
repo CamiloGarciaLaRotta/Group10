@@ -57,6 +57,7 @@ class Profile {
 
 class Application {
   autounique id;
+  lazy studentEvaluation;
   *-<@> 1 Student student;
   *-<@> 1 Job jobs;
   lazy Boolean offerAccepted;

@@ -1,9 +1,9 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
+/*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 
-// line 59 "../../../../../../alternatemodel.ump"
+// line 58 "../../../../../../alternatemodel.ump"
 // line 135 "../../../../../../alternatemodel.ump"
 public class Application
 {
@@ -19,6 +19,7 @@ public class Application
   //------------------------
 
   //Application Attributes
+  private String studentEvaluation;
   private boolean offerAccepted;
 
   //Autounique Attributes
@@ -34,6 +35,7 @@ public class Application
 
   public Application(Student aStudent, Job aJobs)
   {
+    studentEvaluation = null;
     offerAccepted = false;
     id = nextId++;
     boolean didAddStudent = setStudent(aStudent);
@@ -52,12 +54,25 @@ public class Application
   // INTERFACE
   //------------------------
 
+  public boolean setStudentEvaluation(String aStudentEvaluation)
+  {
+    boolean wasSet = false;
+    studentEvaluation = aStudentEvaluation;
+    wasSet = true;
+    return wasSet;
+  }
+
   public boolean setOfferAccepted(boolean aOfferAccepted)
   {
     boolean wasSet = false;
     offerAccepted = aOfferAccepted;
     wasSet = true;
     return wasSet;
+  }
+
+  public String getStudentEvaluation()
+  {
+    return studentEvaluation;
   }
 
   public boolean getOfferAccepted()
@@ -139,6 +154,7 @@ public class Application
     String outputString = "";
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
+            "studentEvaluation" + ":" + getStudentEvaluation()+ "," +
             "offerAccepted" + ":" + getOfferAccepted()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "student = "+(getStudent()!=null?Integer.toHexString(System.identityHashCode(getStudent())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "jobs = "+(getJobs()!=null?Integer.toHexString(System.identityHashCode(getJobs())):"null")

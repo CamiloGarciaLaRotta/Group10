@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.25.0-9e8af9e modeling language!*/
+/*This code was generated using the UMPLE 1.24.0-dab6b48 modeling language!*/
 
 package ca.mcgill.ecse321.group10.TAMAS.model;
 import java.util.*;
@@ -236,6 +236,8 @@ public class Job
   public boolean addApplication(Application aApplication)
   {
     boolean wasAdded = false;
+    if (applications.contains(aApplication)) { return false; }
+    if (applications.contains(aApplication)) { return false; }
     if (applications.contains(aApplication)) { return false; }
     Job existingJobs = aApplication.getJobs();
     boolean isNewJobs = existingJobs != null && !this.equals(existingJobs);
