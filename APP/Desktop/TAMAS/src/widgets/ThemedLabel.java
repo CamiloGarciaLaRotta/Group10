@@ -36,8 +36,8 @@ public class ThemedLabel extends JLabel{
 	public void setType(LabelType type) {
 		this.type = type;
 		if(type == LabelType.Normal) this.setForeground(fgColor);
-		else if(type == LabelType.Error) this.setForeground(fgColor);
-		else if(type == LabelType.Success) this.setForeground(fgColor);
+		else if(type == LabelType.Error) this.setForeground(Constants.errorFgColor);
+		else if(type == LabelType.Success) this.setForeground(Constants.successFgColor);
 	}
 	
 	public void setColors() {

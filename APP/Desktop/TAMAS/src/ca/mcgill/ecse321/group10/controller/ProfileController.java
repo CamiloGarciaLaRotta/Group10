@@ -18,17 +18,17 @@ public class ProfileController {
 	private boolean isUsernameFree(String username){
 		
 		for (Student student: pm.getStudents()){
-			if (student.getUsername() == username){
+			if (student.getUsername().equals(username)){
 				return false;
 			}
 		}
 		for (Instructor instructor: pm.getInstructors()){
-			if (instructor.getUsername() == username){
+			if (instructor.getUsername().equals(username)){
 				return false;
 			}
 		}
 		for(Admin admin: pm.getAdmins()){
-			if(admin.getUsername() == username){
+			if(admin.getUsername().equals(username)){
 				return false;
 			}
 		}
@@ -192,18 +192,6 @@ public class ProfileController {
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
-	public void addStudentEvaluation(Student s, String eval) {
-		for(int c = 0; c < pm.getStudents().size(); c++) {
-			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
-				if(pm.getStudent(c).getEvaluations() == null) pm.getStudent(c).setEvaluations("");
-				String newEval = pm.getStudent(c).getEvaluations() + eval;
-				pm.getStudent(c).setEvaluations(newEval);
-				PersistenceXStream.setFilename(filename);
-				PersistenceXStream.saveToXMLwithXStream(pm);
-				break;
-			}
-		}
-	}
 	
 	public void persist() {
 		PersistenceXStream.setFilename(filename);

@@ -21,7 +21,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Instructor;
 import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
-import ca.mcgill.ecse321.group10.controller.ProfileController;
+import ca.mcgill.ecse321.group10.controller.ApplicationController;
 import widgets.ThemedLabel;
 import widgets.ThemedPanel;
 import widgets.ThemedTextArea;
@@ -95,13 +95,13 @@ public class EvaluateView extends JFrame{
 				Job curJob = applications.get(applicationList.getSelectedIndex()).getJobs();
 				if(instructor == null) curInstructor = instructors.get(instructorList.getSelectedIndex());
 				else curInstructor = instructor;
-				String eval = "From " + curInstructor.getFirstName() + " " + curInstructor.getLastName() + "\n";
-				eval += "Regarding performance as " + curJob.getPositionFullName() + " for " + curJob.getCourse().getClassName() + "(" + curJob.getDay() + "):\n\n";
-				eval += tfEval.getText();
-				eval += "\n**********************************\n\n";
-				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
-				pc.addStudentEvaluation(student, eval);
-				tfEval.setText("");
+				//String eval = "From " + curInstructor.getFirstName() + " " + curInstructor.getLastName() + "\n";
+				//eval += "Regarding performance as " + curJob.getPositionFullName() + " for " + curJob.getCourse().getClassName() + "(" + curJob.getDay() + "):\n\n";
+				String eval = tfEval.getText();
+				//eval += "\n**********************************\n\n";
+				ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
+				ac.addStudentEvaluation(applications.get(applicationList.getSelectedIndex()), eval);
+				//tfEval.setText("");
 				lMessage.setType(ThemedLabel.LabelType.Success);
 				lMessage.setText("Evaluation sent");
 				pack();
@@ -172,6 +172,7 @@ public class EvaluateView extends JFrame{
 		student = applications.get(applicationList.getSelectedIndex()).getStudent();
 		String sname = student.getFirstName() + " " + student.getLastName();
 		lStudent.setText("Student name: " + sname);
+		tfEval.setText(applications.get(applicationList.getSelectedIndex()).getStudentEvaluation());
 		pack();
 	}
 
