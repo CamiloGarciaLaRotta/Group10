@@ -10,6 +10,7 @@ function handleEvents() {
 	
 	$('#applicationID').change(function() {
 		var id = $("#applicationID").val();
+		$('#evaluation').prop('disabled', false);
 		updateAppInfo(id);
 	});
 		
@@ -27,16 +28,17 @@ function handleEvents() {
 }
 
 function updateBudget(cdn) {
-	console.log(cdn)
+	//console.log(cdn)
 	$.ajax({
 		type: 'post',
 		url: '../Controller/getBudget.php',
 		data: { 'cdn':cdn },
 		success: function(response) {
+			//console.log(response)
 			var budget = response.split(',')
 			var ta = parseInt(budget[0]);
 			var grader = parseInt(budget[1]);
-			console.log(ta + " " + grader)
+			//console.log(ta + " " + grader)
 			if (ta <= 0) {
 				ta = 0;
 				$('#ta').hide();
@@ -55,7 +57,7 @@ function updateBudget(cdn) {
 				$('#info').show();
 			}
 			$('#TAhours').text("TA Budget: "+ta);
-			$('#Graderhours').text("TA Budget: "+grader);
+			$('#Graderhours').text("Grader Budget: "+grader);
 		}
 	});
 }
@@ -72,7 +74,9 @@ function updateApplications(cdn){
 		data: { 'cdn':cdn },
 		success: function(response) {
 			var r = JSON.parse(response)
-			//console.log(r)
+			if (jQuery.isEmptyObject(r)) {
+				$('#evaluation').prop('disabled', true);
+			}
 			jQuery.each(r, function(id, app) {
 				$('#applicationID').append($('<option>', {
 				    value: id,
@@ -92,7 +96,6 @@ function updateAppInfo(id){
 		success: function(response) {
 			//console.log(response)
 			var r = JSON.parse(response)
-			//console.log(r)
 			$('#studentName').html("Student Name:<br>   "+r.student);
 			$('#studentExp').html("Experience:<br>    "+r.experience);
 			$('#evaluation').val(r.evaluation)
@@ -120,6 +123,9 @@ $(function() {
 		var cdn = $("#courseCDN").val();
 		updateBudget(cdn);
 	}
-	if($('main').hasClass('application')) updateApplications(cdn);
+	if($('main').hasClass('application')) {
+		updateApplications(cdn);
+		$('#evaluation').prop('disabled', true);
+	}
 	handleEvents();
 });

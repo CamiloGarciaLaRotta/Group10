@@ -55,6 +55,9 @@ class ApplicationController{
 		if($job_time < 0) {
 			$error .= ("Time Budget must be a positive Number!<br><br>");
 		}
+		if($job_time < 45) {
+			$error .= ("Time Budget must be at least 45 hours/semester!<br><br>");
+		}
 		$requirements = InputValidator::validate_input($aRequirements);
 		if($requirements==null || strlen($requirements) == 0){
 			$error .= ("Requirements cannot be empty!<br><br>");

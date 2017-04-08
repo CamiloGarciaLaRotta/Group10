@@ -51,85 +51,27 @@
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
 
-        android:id="@+id/JobDescription1"
+        android:id="@+id/JobDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:gravity="center"
+        android:text=""
+        android:padding="10dp"
+        android:background="@drawable/descriptionbackground"
         android:textColor="#000000"
         android:textSize="18sp"
+        tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/JobDescription2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="13dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <TextView
-
-        android:id="@+id/JobDescription2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="14sp"
-        android:textColor="#000000"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/JobDescription5"
-        app:layout_constraintRight_toRightOf="@+id/JobDescription5"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="9dp"
-        app:layout_constraintLeft_toLeftOf="@+id/JobDescription5" />
-    <TextView
-
-        android:id="@+id/JobDescription3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="14sp"
-        android:textColor="#000000"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/JobDescription4"
-        app:layout_constraintRight_toRightOf="@+id/JobDescription4"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="17dp"
-        app:layout_constraintLeft_toLeftOf="@+id/JobDescription4" />
-    <TextView
-
-        android:id="@+id/JobDescription4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:text="TextView"
-        android:textColor="#000000"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/applyButton"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="47dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
-    <TextView
-
-        android:id="@+id/JobDescription5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="14sp"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/JobDescription3"
-        app:layout_constraintRight_toRightOf="@+id/JobDescription3"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="18dp"
-        app:layout_constraintLeft_toLeftOf="@+id/JobDescription3" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
