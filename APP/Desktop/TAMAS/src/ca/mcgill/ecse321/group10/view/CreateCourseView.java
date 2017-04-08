@@ -130,7 +130,7 @@ public class CreateCourseView extends JFrame{
 	    				)
 	    		.addComponent(create)
 	    		);
-	    layout.linkSize(SwingConstants.HORIZONTAL,new java.awt.Component[] {lName,lCode,lTABudget,lGraderBudget});
+	    layout.linkSize(SwingConstants.HORIZONTAL,new java.awt.Component[] {lName,lCode,lTABudget,lGraderBudget,lLabBudget});
 	    layout.setVerticalGroup(
 	    		layout.createSequentialGroup()
 	    		.addComponent(errorLabel)
