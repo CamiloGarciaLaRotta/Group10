@@ -93,7 +93,7 @@ public class ApplyToJob extends AppCompatActivity {
 
 
     private void setJobDescription(Job job){
-         String description = "*" + job.getCourse().getClassName() + "*"
+         String description = "*" + job.getCourse().getClassName() + "*";
          description += "\nPosition: " + job.getPositionFullName() + "*";
          description += "\n\nCourse taught by: ";
          description += "\nProf. " + job.getInstructor().getFirstName() + " " + job.getInstructor().getLastName();
