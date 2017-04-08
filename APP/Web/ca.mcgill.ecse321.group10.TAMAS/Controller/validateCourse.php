@@ -10,13 +10,14 @@ try {
 	$_SESSION['successCourse'] = "";
 
 	// validate data
-	$course_name = isset($_POST['course_name']) ? $_POST['course_name'] : '';
-	$course_CDN = isset($_POST['course_CDN']) ? $_POST['course_CDN'] : '';
-	$course_graderBudget = isset($_POST['course_graderBudget']) ? $_POST['course_graderBudget'] : '';
-	$course_TABudget = isset($_POST['course_TABudget']) ? $_POST['course_TABudget'] : '';
+	$courseName = isset($_POST['courseName']) ? $_POST['courseName'] : '';
+	$courseCDN = isset($_POST['courseCDN']) ? $_POST['courseCDN'] : '';
+	$courseGraderBudget = isset($_POST['courseGraderBudget']) ? $_POST['courseGraderBudget'] : '';
+	$courseTutBudget = isset($_POST['courseTutBudget']) ? $_POST['courseTutBudget'] : '';
+	$courseLabBudget = isset($_POST['courseLabBudget']) ? $_POST['courseLabBudget'] : '';
 	
-	$cc->createCourse($course_name,$course_CDN, 
-			$course_graderBudget, $course_TABudget);
+	$cc->createCourse($courseName,$courseCDN, 
+			$courseGraderBudget, $courseTutBudget, $courseLabBudget);
 }
 catch (Exception $e) {
 	$_SESSION['errorCourse'] = $e->getMessage();

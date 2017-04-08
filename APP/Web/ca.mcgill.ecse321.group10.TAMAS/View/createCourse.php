@@ -58,10 +58,11 @@
 			</span>
 			<div class="actions">
 				<form action='../Controller/validateCourse.php' method='post'>
-					Course Name<input type ="text" name="course_name" required autofocus /><br><br>
-					CDN<input type ="text" name="course_CDN" required/><br><br>
-					TA Time Budget<input type ="text" name="course_TABudget" required/><br><br>
-					Grader Time Budget<input type="text" name="course_graderBudget" required/><br><br>
+					Course Name<input type ="text" name="courseName" required autofocus /><br><br>
+					CDN<input type ="text" name="courseCDN" required/><br><br>
+					Tutorial Semester Time Budget<input type ="text" name="courseTutBudget" required/><br><br>
+					Lab Semester Time Budget<input type ="text" name="courseLabBudget" required/><br><br>
+					Grader Semester Time Budget<input type="text" name="courseGraderBudget" required/><br><br>
 					<input type= "submit" class="btn 
 					<?php 
 						if(isset($_SESSION['dark'])) {

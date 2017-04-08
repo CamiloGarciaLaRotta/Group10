@@ -35,8 +35,8 @@ class CourseController{
 	 * @param unknown $TATimeBudget		The total amount of time allocated to teaching assistants.
 	 * @throws Exception
 	 */
-	public function createCourse($course_name, $CDN, 
-								$graderTimeBudget, $TATimeBudget) {
+	public function createCourse($course_name, $CDN, $graderTimeBudget, 
+									$tutorialTimeBudget, $labTimeBudget) {
 		// Validate input, generate error if any inputs are invalid
 		$error = "";
 		$name = InputValidator::validate_input($course_name);
@@ -56,23 +56,21 @@ class CourseController{
 				break;
 			}
 		}
-		if((!is_numeric($graderTimeBudget)) || (!is_numeric($TATimeBudget))) {
+		if((!is_numeric($graderTimeBudget)) || (!is_numeric($tutorialTimeBudget)) || (!is_numeric($labTimeBudget))) {
 			$error .= ("Time budget must be a non null Integer!<br><br>");
 		}
-		if(($graderTimeBudget < 0) || ($TATimeBudget < 0)) {
+		if(($graderTimeBudget < 0) || ($tutorialTimeBudget < 0) || ($labTimeBudget < 0)) {
 			$error .= ("Time budget must be a positive Integer!<br><br>");
 		}
-		if(($graderTimeBudget < 45) || ($TATimeBudget < 45)) {
+		if(($graderTimeBudget < 45) || ($tutorialTimeBudget < 45) || ($labTimeBudget < 45)) {
 			$error .= ("Time budget must be at least 45 hours/semester!<br><br>");
 		}
-		
-		//if all inputs calid, create the course object, 
-		//otherwise 
+		//if all inputs calid, create the course object,
 		if(strlen($error) > 0) {
 			throw new Exception($error);
 		} else {
 			// Add the new course
-			$course = new Course($name, $CDN, $graderTimeBudget, $TATimeBudget);
+			$course = new Course($name, $CDN, $graderTimeBudget, $tutorialTimeBudget, $labTimeBudget);
 			$this->cm->addCourse($course);
 				
 			//4. Write all the data
@@ -123,7 +121,8 @@ class CourseController{
 	 */
 	public function getRemainingBudget($CDN) {
 
-		$remainingTATime = 0;
+		$remainingTutTime = 0;
+		$remainingLabTime = 0;
 		$remainingGraderTime = 0;
 		
 		// get course budget
@@ -136,22 +135,25 @@ class CourseController{
 			}
 		}
 		
-		$remainingTATime = $course->getTaBudget();
+		$remainingTutTime = $course->getTutorialBudget();
+		$remainingLabTime = $course->getLabBudget();
 		$remainingGraderTime = $course->getGraderBudget();
 		
 		// get application allocated budget
 		$jobs = $this->am->getJobs();
 		foreach($jobs as $j){
 			if($j->getCourse()->getCdn() == $CDN){
-				if($j->getPosition()=="PositionTA") {
-					$remainingTATime -= $j->getHours();
+				if($j->getPosition()=="PositionTUTORIAL") {
+					$remainingTutTime -= $j->getHours();
+				} else if($j->getPosition()=="PositionLABORATORY") {
+					$remainingLabTime -= $j->getHours();
 				} else {
-					$remainingGraderTime -= $j->getHours();;
+					$remainingGraderTime -= $j->getHours();
 				}
 			}
 		}
 		
-		return $remainingTATime .",".$remainingGraderTime;
+		return $remainingTutTime.",".$remainingLabTime.",".$remainingGraderTime;
 	}
 
 }
