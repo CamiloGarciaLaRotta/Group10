@@ -155,6 +155,7 @@ public class ProfileController {
 	public void addStudentEvaluation(Student s, String eval) {
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
+				if(pm.getStudent(c).getEvaluations() == null) pm.getStudent(c).setEvaluations("");
 				String newEval = pm.getStudent(c).getEvaluations() + eval;
 				pm.getStudent(c).setEvaluations(newEval);
 				PersistenceXStream.setFilename(filename);

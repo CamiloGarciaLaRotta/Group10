@@ -54,6 +54,7 @@ public class EvaluateView extends JFrame{
 	}
 	
 	private void initComponents() {
+		setTitle("Send Feedback to TAs");
 		applications = new ArrayList<Application>();
 		lJob = new ThemedLabel("Select job:");
 		lStudent = new ThemedLabel("Student name: ");
