@@ -28,25 +28,27 @@
         android:id="@+id/Offers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Job Offers Available"
+        android:text="@string/no_job_offers_available"
         android:textColor="#000000"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:padding="10dp"
-        android:background="@color/descriptionBackground"
+        android:gravity="center"
+        android:background="@drawable/descriptionbackground"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/AcceptOffer"
-        android:layout_marginTop="149dp"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="150dp"
-        app:layout_constraintTop_toTopOf="@+id/applications" />
+        android:layout_marginBottom="117dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/ApplicationSpinner"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/AcceptOffer"
         android:padding="10dp"
+        android:onClick="acceptOfferClicked"
         android:background="@color/buttonBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,6 +60,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="69dp" />
+
+    <TextView
+        android:id="@+id/errorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/errorColor"
+        android:textAlignment="center"
+
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="162dp" />
 
 
 </android.support.constraint.ConstraintLayout>

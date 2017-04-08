@@ -25,6 +25,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
 import ca.mcgill.ecse321.group10.controller.InputException;
+import ca.mcgill.ecse321.group10.controller.ProfileController;
 import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ApplyToJob extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class ApplyToJob extends AppCompatActivity {
 
     private ApplicationManager am;
     private ProfileManager pm;
+    private ProfileController pc;
     private String username = null;
     private Spinner jobSpinner = null;
     private TextView errorText = null;
@@ -64,7 +66,6 @@ public class ApplyToJob extends AppCompatActivity {
         //get string of job names
         String [] jobNames = new String[am.getJobs().size()];
 
-        Log.v("size", String.valueOf(am.getJobs().size()));
         for(int c = 0; c < jobNames.length; c++) {
             jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
         }
@@ -72,7 +73,7 @@ public class ApplyToJob extends AppCompatActivity {
         final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, jobNames);
         jobSpinner.setAdapter(jobAdapter);
-
+//create item listener to allow user to acccept job offer by pressing enter
         jobSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener(){
 
@@ -92,11 +93,12 @@ public class ApplyToJob extends AppCompatActivity {
 
 
     private void setJobDescription(Job job){
-         String description = "*" + job.getCourse().getClassName() + " " + job.getPositionFullName() + "*";
+         String description = "*" + job.getCourse().getClassName() + "*"
+         description += "\nPosition: " + job.getPositionFullName() + "*";
          description += "\n\nCourse taught by: ";
          description += "\nProf. " + job.getInstructor().getFirstName() + " " + job.getInstructor().getLastName();
          description += "\n\nSalary: $" + job.getSalary() + "/h";
-         description += "\n\nHours: \n" + job.getDay() + "s from " + job.getStartTime().toString() + " to " + job.getEndTime().toString();
+         description += "\n\nHours: \n" + job.getHours() + " total hours. On " + job.getDay() + "s\n" ;
         jobDescription.setText(description);
     }
 
@@ -122,6 +124,8 @@ public class ApplyToJob extends AppCompatActivity {
                     Job job = am.getJob(jobSpinner.getSelectedItemPosition());
                     ApplicationController ac = ((TAMAS) this.getApplication()).getApplicationController();
                     ac.createApplication(student,job);
+                    pc = ((TAMAS)this.getApplication()).getProfileController();
+                    pc.offerJobToStudent(student,job);
                     String msg = student.getUsername() + " has applied to\n" + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".\nGood luck!";
                     Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
@@ -129,47 +133,14 @@ public class ApplyToJob extends AppCompatActivity {
                     toast.show();
                     //success
                 } catch(Exception e) {
-                    errors += "Failed to create application.\n";
+                    errors += e.getMessage();
+                    Log.d("errors", e.getStackTrace().toString());
+                    errors += "\nFailed to create application.";
                 }
             }
             errorText.setText(errors);
         }
     }
 
-    @Deprecated
-    public void applyToJobClicked(View v){
-        if(v.getId() == R.id.applyButton){
-            int index = getStudentIndex(students,username);
-            Student student = null;
-            Job job = null;
-            try{
-                student = pm.getStudent(index);
-            }catch(Exception e){
-                errors += "Student username not found. \n";
-            }
-            try {
-                job = am.getJob(jobSpinner.getSelectedItemPosition());
-            }catch(Exception e){
-                errors += "No job selected. ";
-            }
-            try{
-                //Application application = new Application(student,job);
-                //am.addApplication(application);
-                ApplicationController ac = ((TAMAS) getApplication()).getApplicationController();
-                ac.createApplication(student,job);
-                String msg = student.getUsername() + " has applied to\n" + job.getCourse().getClassName() +
-                            ": " + job.getId() + " - " + job.getPositionFullName() + ".\nGood luck!";
-                Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
-                toast.setGravity(0,0,15);
-                toast.show();
-                //success
-                errorText.setText("");
-            }catch (Exception e){
-                //do nothing, already handles inputs in previous try catch blocks
-            } finally {
-                errorText.setText(errors);
-            }
 
-        }
-    }
 }
