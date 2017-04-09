@@ -88,7 +88,7 @@
 					<div id="info">
 						Position<br>
 						<label id="tut"><input type="radio" name="jobPosition" value="PositionTUTORIAL" >Tutorial (TA)</label><br>
-						<label id="lab"><input type="radio" name="jobPosition" value="PositionLABORATORY" >Laboratoire (TA)</label><br>
+						<label id="lab"><input type="radio" name="jobPosition" value="PositionLABORATORY" >Laboratory (TA)</label><br>
 						<label id="grader"><input type="radio" name="jobPosition" value="PositionGRADER" >Grader</label><br><br>
 						Requirements
 						<textarea class="text" cols="20" rows ="5" name="jobRequirements" maxlength="100" reqired></textarea><br><br>	
