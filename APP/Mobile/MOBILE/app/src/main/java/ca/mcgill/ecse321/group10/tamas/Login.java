@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
                     }
            }
 
-    protected void loginClicked(View v){
+    public void loginClicked(View v){
         if(v.getId() == R.id.loginButton){
             String errors = "";
             int studentIndex = getStudentIndex(students,usernameField.getText().toString());

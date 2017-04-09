@@ -4,6 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="ca.mcgill.ecse321.group10.tamas.ModifyProfile">
+
+    <TextView
+        android:id="@+id/modTitle"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Edit Profile"
+        android:textSize="18sp"
+        android:textColor="@color/Black"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginTop="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userInfo"
+        android:layout_width="wrap_content"
+        android:textColor="@color/Black"
+        android:layout_height="wrap_content"
+        android:text="There was a problem loading your profile"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginTop="26dp"
+        app:layout_constraintTop_toBottomOf="@+id/modInfo"
+        tools:layout_constraintLeft_creator="1" />
+    <TextView
+        android:id="@+id/modInfo"
+        android:layout_width="wrap_content"
+        android:textColor="@color/Black"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Fields left untouched will not be altered"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/modTitle"
+        tools:layout_constraintLeft_creator="1" />
+
+    <EditText
+        android:id="@+id/modPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter new Password"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/modProfileButton"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="25dp" />
+
+    <EditText
+        android:id="@+id/modFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter new First Name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/modLastName"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/modLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter new Last Name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/modPassword"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/modProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundbutton"
+        android:text="Apply Changes"
+        android:padding="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp" />
 
 </android.support.constraint.ConstraintLayout>
