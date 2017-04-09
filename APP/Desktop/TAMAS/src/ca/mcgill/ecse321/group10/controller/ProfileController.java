@@ -38,7 +38,7 @@ public class ProfileController {
 	
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
-		error = validateProfile(aUsername,aPassword,aFirstName,aLastName);
+		error = validateProfile(aUsername,aPassword,aFirstName,aLastName,true);
 		if(error.length() > 0) throw new InputException(error);
 		else{
 		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
@@ -56,7 +56,7 @@ public class ProfileController {
 	
 	public void addAdminToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
-		error = validateProfile(aUsername,aPassword,aFirstName,aLastName);
+		error = validateProfile(aUsername,aPassword,aFirstName,aLastName,true);
 		if(error.length() > 0) throw new InputException(error);
 		else{
 		Admin admin = new Admin(aUsername,aPassword,aFirstName,aLastName);
@@ -72,7 +72,7 @@ public class ProfileController {
 	
 	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience, Student.Degree degree)  throws InputException{
 		String error = "";
-		error = validateProfile(aUsername,aPassword,aFirstName,aLastName);
+		error = validateProfile(aUsername,aPassword,aFirstName,aLastName,true);
 		if(error.length() > 0) throw new InputException(error);
 		else{
 			Student student = new Student(aUsername,aPassword,aFirstName,aLastName,experience);
@@ -85,7 +85,7 @@ public class ProfileController {
 	}
 	
 	public void modifyStudent(String aUsername, String aPassword, String aFirstName, String aLastName, String experience, Student.Degree degree) throws InputException {
-		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName);
+		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName,false);
 		if(error.length() > 0) throw new InputException(error);
 			else {
 			for(int c = 0; c < pm.getStudents().size(); c++) {
@@ -105,7 +105,7 @@ public class ProfileController {
 	}
 	
 	public void modifyAdmin(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
-		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName);
+		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName,false);
 		if(error.length() > 0) throw new InputException(error);
 		else {
 			for(int c = 0; c < pm.getAdmins().size(); c++) {
@@ -123,7 +123,7 @@ public class ProfileController {
 	}
 	
 	public void modifyInstructor(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
-		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName);
+		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName,false);
 		if(error.length() > 0) throw new InputException(error);
 		else {
 			for(int c = 0; c < pm.getInstructors().size(); c++) {
@@ -140,7 +140,7 @@ public class ProfileController {
 		}
 	}
 	
-	private String validateProfile(String aUsername, String aPassword, String aFirstName, String aLastName) {
+	private String validateProfile(String aUsername, String aPassword, String aFirstName, String aLastName, boolean newProfile) {
 		String error = "";
 		if(aUsername == null || aUsername.trim().length() == 0) {
 			error += ("Username cannot be empty!") + " ";
@@ -151,7 +151,7 @@ public class ProfileController {
 		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
 			error += ("First and last names cannot be empty!") + " ";
 		}
-		if( !this.isUsernameFree(aUsername) ){
+		if( newProfile && !this.isUsernameFree(aUsername) ){
 			error += ("Username is taken!") + " ";
 		}
 		return error;

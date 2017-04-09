@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="TAMAS">
+              as the first entry and export the buildfile again. --><project basedir="." default="build-desktop" name="TAMAS">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -11,6 +11,11 @@
     <property name="source" value="1.7"/>
 	<property name="persistence.dir" value="${user.home}/.tamas/output"/>
 	<property name="junit.output.dir" value="Desktop/TAMAS/junit"/>
+
+	<property name="bin.desktop" value="Desktop/TAMAS/bin"/>
+	<property name="test.web" value="Web/ca.mcgill.ecse321.group10.TAMAS/Test"/>
+	<property name="phpunit.output.dir" value="Web/ca.mcgill.ecse321.group10.TAMAS/phpunit"/>
+
     <path id="JUnit 4.libraryclasspath">
         <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
@@ -24,7 +29,7 @@
         <pathelement location="Desktop/TAMAS/lib/xstream-1.4.7.jar"/>
         <path refid="JUnit 4.libraryclasspath"/>
     </path>
-    <target name="init">
+    <target name="init-desktop">
 		<mkdir dir="Desktop/TAMAS/bin"/>
 		<mkdir dir="Desktop/TAMAS/output"/>
 		<mkdir dir="${persistence.dir}"/>
@@ -45,17 +50,17 @@
             </fileset>
         </copy>
     </target>
-    <target name="clean">
+    <target name="clean-desktop">
 		<delete dir="Desktop/TAMAS/bin"/>
 		<delete dir="Desktop/TAMAS/junit"/>
     </target>
-    <target depends="clean" name="annihilate">
+    <target depends="clean-desktop" name="annihilate">
 		<delete dir="Desktop/TAMAS/output"/>
 		<delete dir="${persistence.dir}"/>
 	</target>
-    <target depends="init,build-subprojects,build-project" name="build"/>
+    <target depends="init-desktop,build-subprojects,build-project" name="build-desktop"/>
     <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
+    <target depends="init-desktop" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
 		<javac debug="true" debuglevel="${debuglevel}" destdir="Desktop/TAMAS/bin" includeantruntime="false" source="${source}" target="${target}">
 			<src path="Desktop/TAMAS/src"/>
@@ -78,13 +83,13 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="TAMAS" depends="test">
+    <target name="run-desktop" depends="test-desktop">
         <java classname="ca.mcgill.ecse321.group10.application.TAMAS" failonerror="true" fork="yes">
             <classpath refid="TAMAS.classpath"/>
         </java>
     </target>
 
-	<target name="test" depends="build">
+	<target name="test-desktop" depends="build-desktop">
 		<echo message=">>>>> STARTING UNIT TESTS..."/>
 		<!--
 		<junit printsummary="yes" haltonfailure="true" fork="yes">
@@ -117,5 +122,34 @@
 		<copy file="Desktop/TAMAS/output/profiles.xml" todir="Desktop/TAMAS/.output"/>
 		<copy file="Desktop/TAMAS/output/courses.xml" todir="Desktop/TAMAS/.output"/>
 		<copy file="Desktop/TAMAS/output/constants.xml" todir="Desktop/TAMAS/.output"/>
+	</target>
+
+	<target name="init-web">
+		<mkdir dir="${phpunit.output.dir}"/>
+	</target>
+
+	<target name="clean-web">
+		<delete dir="${phpunit.output.dir}"/>
+	</target>
+
+	<target name="test-web" depends="init-web">
+		<exec executable="/usr/bin/phpunit" failonerror="false">
+			<arg value="--log-junit"/>
+			<arg path="${phpunit.output.dir}/phpunit.xml"/>
+			<arg path="${test.web}"/>
+		</exec>
+	</target>
+
+	<target name="run-web" depends="test-web">
+		<copy todir="/opt/lampp/htdocs">
+			<fileset dir="Web/ca.mcgill.ecse321.group10.TAMAS"/>
+		</copy>
+		<exec executable="/opt/lampp/xampp">
+			<arg value="start"/>
+		</exec>
+		<exec executable="/usr/bin/google-chrome-stable">
+			<arg value="localhost/ca.mcgill.ecse321.group10.TAMAS/index.php"/>
+			<arg value="--no-sandbox"/>
+		</exec>
 	</target>
 </project>

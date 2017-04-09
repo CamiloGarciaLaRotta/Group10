@@ -185,6 +185,7 @@ public class OffersView extends JFrame{
 				else {
 					message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was rejected.");
 					ac.setJobOfferAccepted(am.getApplication(c), false);
+					ac.setJobOffered(am.getApplication(c).getJobs(), false);
 					pc.removeJobFromStudent(currentStudent,currentJob);
 				}
 				break;

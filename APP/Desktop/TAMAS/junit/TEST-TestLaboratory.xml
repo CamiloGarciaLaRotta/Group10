@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="vandelay" name="TestLaboratory" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T14:06:23">
+<testsuite errors="1" failures="0" hostname="vandelay" name="TestLaboratory" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T15:51:23">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="env.MOZ_PLUGIN_PATH" value="/usr/lib/mozilla/plugins" />
@@ -62,13 +62,13 @@
     <property name="env.OLDPWD" value="/home/harwiltz/Skunkworks/ECSE321/Project/Group10" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
     <property name="env.VTE_VERSION" value="4601" />
-    <property name="env.WINDOWID" value="16777219" />
+    <property name="env.WINDOWID" value="33554435" />
     <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib" />
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="env.XDG_SEAT" value="seat0" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner TestLaboratory skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/junit/TEST-TestLaboratory.xml crashfile=/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/junitvmwatcher4705822180784913310.properties propsfile=/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/junit5887427590802181533.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner TestLaboratory skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/junit/TEST-TestLaboratory.xml crashfile=/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/junitvmwatcher8024812374292169023.properties propsfile=/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/junit5844485042777533776.properties" />
     <property name="java.class.path" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/bin:/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/bin/ca/mcgill/ecse321/group10/TAMAS/model:/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/lib/jdatepicker-1.3.4.jar:/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/lib/xmlpull-1.1.3.1.jar:/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/lib/xpp3_min-1.1.4c.jar:/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/Desktop/TAMAS/lib/xstream-1.4.7.jar:/usr/lib/eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar:/usr/lib/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar:/usr/share/java/junit-4.12.jar:/usr/share/java/apache-ant/ant-launcher.jar:/usr/share/apache-ant/lib/ant.jar:/usr/share/apache-ant/lib/ant-junit.jar:/usr/share/apache-ant/lib/ant-junit4.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 24 2016" />
     <property name="env.XDG_SESSION_ID" value="c1" />
@@ -104,7 +104,7 @@
     <property name="file.encoding" value="UTF-8" />
     <property name="env._JAVA_OPTIONS" value="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true" />
     <property name="java.specification.version" value="1.8" />
-    <property name="ant.project.invoked-targets" value="TAMAS" />
+    <property name="ant.project.invoked-targets" value="run-desktop" />
   </properties>
   <error message="TestLaboratory" type="java.lang.ClassNotFoundException">java.lang.ClassNotFoundException: TestLaboratory
 	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
