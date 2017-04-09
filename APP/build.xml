@@ -4,13 +4,13 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
-	<property name="persistence.dir" value="${user.home}/.tamas/output"/>
-	<property name="junit.output.dir" value="Desktop/TAMAS/junit"/>
+	<property name="persistence.dir" value="${user.home}${file.separator}.tamas${file.separator}output"/>
+	<property name="junit.output.dir" value="Desktop${file.separator}TAMAS${file.separator}junit"/>
 
-	<property name="bin.desktop" value="Desktop/TAMAS/bin"/>
-	<property name="test.web" value="Web/ca.mcgill.ecse321.group10.TAMAS/Test"/>
-	<property name="phpunit.output.dir" value="Web/ca.mcgill.ecse321.group10.TAMAS/phpunit"/>
-	<property name="jar-dir" value="Desktop/TAMAS"/>
+	<property name="bin.desktop" value="Desktop${file.separator}TAMAS${file.separator}bin"/>
+	<property name="test.web" value="Web${file.separator}ca.mcgill.ecse321.group10.TAMAS${file.separator}Test"/>
+	<property name="phpunit.output.dir" value="Web${file.separator}ca.mcgill.ecse321.group10.TAMAS${file.separator}phpunit"/>
+	<property name="jar-dir" value="Desktop${file.separator}TAMAS"/>
 
 	<!-- PLEASE CHANGE THESE PATHS TO ACCOMODATE YOUR PC -->
 	<property name="xampp.dir" value="/opt/lampp"/>
@@ -18,7 +18,7 @@
 	<!-- End of paths to change -->
 
     <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
-	<property name="phpunit" value="Web/phpunit"/>
+	<property name="phpunit" value="Web${file.separator}phpunit"/>
 
 	<!-- DESKTOP TARGETS -->
     <path id="JUnit 4.libraryclasspath">
@@ -26,55 +26,55 @@
         <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
 		-->
-		<pathelement location="Desktop/TAMAS/lib/org.junit_4.12.0.v201504281640/junit.jar"/>
-		<pathelement location="Desktop/TAMAS/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+		<pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}org.junit_4.12.0.v201504281640${file.separator}junit.jar"/>
+		<pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
     <path id="TAMAS.classpath">
-		<pathelement location="Desktop/TAMAS/bin"/>
-		<pathelement location="Desktop/TAMAS/bin/ca/mcgill/ecse321/group10/TAMAS/model"/>
-		<pathelement location="Desktop/TAMAS/lib/jdatepicker-1.3.4.jar"/>
-        <pathelement location="Desktop/TAMAS/lib/xmlpull-1.1.3.1.jar"/>
-        <pathelement location="Desktop/TAMAS/lib/xpp3_min-1.1.4c.jar"/>
-        <pathelement location="Desktop/TAMAS/lib/xstream-1.4.7.jar"/>
+		<pathelement location="Desktop${file.separator}TAMAS${file.separator}bin"/>
+		<pathelement location="Desktop${file.separator}TAMAS${file.separator}bin${file.separator}ca${file.separator}mcgill${file.separator}ecse321${file.separator}group10${file.separator}TAMAS${file.separator}model"/>
+		<pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}jdatepicker-1.3.4.jar"/>
+        <pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}xmlpull-1.1.3.1.jar"/>
+        <pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}xpp3_min-1.1.4c.jar"/>
+        <pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}xstream-1.4.7.jar"/>
         <path refid="JUnit 4.libraryclasspath"/>
     </path>
     <target name="init-desktop">
-		<mkdir dir="Desktop/TAMAS/bin"/>
-		<mkdir dir="Desktop/TAMAS/output"/>
+		<mkdir dir="Desktop${file.separator}TAMAS${file.separator}bin"/>
+		<mkdir dir="Desktop${file.separator}TAMAS${file.separator}output"/>
 		<mkdir dir="${persistence.dir}"/>
-		<mkdir dir="Desktop/TAMAS/junit"/>
-		<copy includeemptydirs="false" todir="Desktop/TAMAS/bin">
-			<fileset dir="Desktop/TAMAS/src">
-                <exclude name="**/*.java"/>
+		<mkdir dir="Desktop${file.separator}TAMAS${file.separator}junit"/>
+		<copy includeemptydirs="false" todir="Desktop${file.separator}TAMAS${file.separator}bin">
+			<fileset dir="Desktop${file.separator}TAMAS${file.separator}src">
+				<exclude name="**${file.separator}*.java"/>
             </fileset>
         </copy>
-		<copy includeemptydirs="false" todir="Desktop/TAMAS/bin">
-			<fileset dir="Desktop/TAMAS/Integration Tests">
-                <exclude name="**/*.java"/>
+		<copy includeemptydirs="false" todir="Desktop${file.separator}TAMAS${file.separator}bin">
+			<fileset dir="Desktop${file.separator}TAMAS${file.separator}Integration Tests">
+                <exclude name="**${file.separator}*.java"/>
             </fileset>
         </copy>
-		<copy includeemptydirs="false" todir="Desktop/TAMAS/bin">
-			<fileset dir="Desktop/TAMAS/test">
-                <exclude name="**/*.java"/>
+		<copy includeemptydirs="false" todir="Desktop${file.separator}TAMAS${file.separator}bin">
+			<fileset dir="Desktop${file.separator}TAMAS${file.separator}test">
+                <exclude name="**${file.separator}*.java"/>
             </fileset>
         </copy>
     </target>
     <target name="clean-desktop">
-		<delete dir="Desktop/TAMAS/bin"/>
-		<delete dir="Desktop/TAMAS/junit"/>
+		<delete dir="Desktop${file.separator}TAMAS${file.separator}bin"/>
+		<delete dir="Desktop${file.separator}TAMAS${file.separator}junit"/>
     </target>
     <target depends="clean-desktop" name="annihilate">
-		<delete dir="Desktop/TAMAS/output"/>
+		<delete dir="Desktop${file.separator}TAMAS${file.separator}output"/>
 		<delete dir="${persistence.dir}"/>
 	</target>
     <target depends="init-desktop,build-subprojects,build-project" name="build-desktop"/>
     <target name="build-subprojects"/>
     <target depends="init-desktop" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-		<javac debug="true" debuglevel="${debuglevel}" destdir="Desktop/TAMAS/bin" includeantruntime="false" source="${source}" target="${target}">
-			<src path="Desktop/TAMAS/src"/>
-			<src path="Desktop/TAMAS/Integration Tests"/>
-			<src path="Desktop/TAMAS/test"/>
+		<javac debug="true" debuglevel="${debuglevel}" destdir="Desktop${file.separator}TAMAS${file.separator}bin" includeantruntime="false" source="${source}" target="${target}">
+			<src path="Desktop${file.separator}TAMAS${file.separator}src"/>
+			<src path="Desktop${file.separator}TAMAS${file.separator}Integration Tests"/>
+			<src path="Desktop${file.separator}TAMAS${file.separator}test"/>
             <classpath refid="TAMAS.classpath"/>
         </javac>
     </target>
@@ -116,21 +116,21 @@
 		<junit printsummary="yes" haltonfailure="false" fork="yes">
 			<classpath>
 				<path refid="TAMAS.classpath"/>
-				<pathelement location="Desktop/TAMAS/bin"/>
+				<pathelement location="Desktop${file.separator}TAMAS${file.separator}bin"/>
 			</classpath>
 			<formatter type="xml"/>
 			<batchtest todir="${junit.output.dir}">
-				<fileset dir="Desktop/TAMAS/Integration Tests" includes="**/*Test*.java" excludes="**/AllTests.java"/>
+				<fileset dir="Desktop${file.separator}TAMAS${file.separator}Integration Tests" includes="**${file.separator}*Test*.java" excludes="**${file.separator}AllTests.java"/>
 			</batchtest>
 		</junit>
 	</target>
 
 	<target name="export-desktop" depends="test-desktop" description="create an executable JAR file for the project">
-		<jar destfile="${jar-dir}/${ant.project.name}.jar" basedir="Desktop/TAMAS/bin">
+		<jar destfile="${jar-dir}${file.separator}${ant.project.name}.jar" basedir="Desktop${file.separator}TAMAS${file.separator}bin">
 			<manifest>
 				<attribute name="Main-Class" value="ca.mcgill.ecse321.group10.application.TAMAS"/>
 			</manifest>
-			<zipgroupfileset dir="Desktop/TAMAS/lib" includes="*.jar"/>
+			<zipgroupfileset dir="Desktop${file.separator}TAMAS${file.separator}lib" includes="*.jar"/>
 		</jar>
 	</target>
 	<!-- End desktop targets -->
@@ -147,17 +147,17 @@
 	<target name="test-web" depends="init-web">
 		<exec executable="${phpunit}" failonerror="false">
 			<arg value="--log-junit"/>
-			<arg path="${phpunit.output.dir}/phpunit.xml"/>
+			<arg path="${phpunit.output.dir}${file.separator}phpunit.xml"/>
 			<arg path="${test.web}"/>
 		</exec>
 	</target>
 
 	<target name="run-web" depends="test-web">
 		<echo message="WARNING: You may need to build this target as root user"/>
-		<copy todir="${xampp.dir}/htdocs">
-			<fileset dir="Web/ca.mcgill.ecse321.group10.TAMAS"/>
+		<copy todir="${xampp.dir}${file.separator}htdocs">
+			<fileset dir="Web${file.separator}ca.mcgill.ecse321.group10.TAMAS"/>
 		</copy>
-		<exec executable="${xampp.dir}/xampp">
+		<exec executable="${xampp.dir}${file.separator}xampp">
 			<arg value="start"/>
 		</exec>
 		<exec executable="${chrome}">
@@ -167,49 +167,49 @@
 	</target>
 
 	<target name="export-web" depends="test-web">
-		<zip destfile="Web/TAMAS-Web.zip" basedir="Web/ca.mcgill.ecse321.group10.TAMAS" excludes="TAMAS.ump,Test/*,test.php" update="true"/>
+		<zip destfile="Web${file.separator}TAMAS-Web.zip" basedir="Web${file.separator}ca.mcgill.ecse321.group10.TAMAS" excludes="TAMAS.ump,Test${file.separator}*,test.php" update="true"/>
 	</target>
 	<!-- End php targets -->
 
 	<!-- MOBILE TARGETS -->
 	<target name="init-mobile">
-		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
-		<exec executable="Mobile/MOBILE/gradlew">
+		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
 			<arg value="init"/>
 			<arg value="-p"/>
-			<arg path="Mobile/MOBILE"/>
+			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
 	<target name="clean-mobile">
-		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
-		<exec executable="Mobile/MOBILE/gradlew">
+		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
 			<arg value="clean"/>
 			<arg value="-p"/>
-			<arg path="Mobile/MOBILE"/>
+			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
 	<target name="build-mobile">
-		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
-		<exec executable="Mobile/MOBILE/gradlew">
+		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
 			<arg value="build"/>
 			<arg value="-p"/>
-			<arg path="Mobile/MOBILE"/>
+			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
 	<target name="export-mobile">
-		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
-		<exec executable="Mobile/MOBILE/gradlew">
+		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
 			<arg value="assembleDebug"/>
 			<arg value="-p"/>
-			<arg path="Mobile/MOBILE"/>
+			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
 	<target name="install-mobile" description="Install apk to connected phone or running emulator">
-		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
-		<exec executable="Mobile/MOBILE/gradlew">
+		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
 			<arg value="installDebug"/>
 			<arg value="-p"/>
-			<arg path="Mobile/MOBILE"/>
+			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
 	<!-- End mobile targets -->
@@ -220,7 +220,7 @@
 	<target name="export-all" depends="export-desktop,export-web,export-mobile"/>
 	<target name="test-all" depends="test-desktop,test-web"/>
 	<target name="remove-pc-persistence">
-		<delete dir="${user.home}/.tamas/output"/>
+		<delete dir="${user.home}${file.separator}.tamas${file.separator}output"/>
 	</target>
 	<target name="start-fresh" depends="remove-pc-persistence,clean-all,export-all"/>
 	<target name="pandemonium" depends="clean-all, run-desktop, run-web, install-mobile"/>
