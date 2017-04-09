@@ -55,26 +55,41 @@ public class TAMAS extends Application {
         pc = new ProfileController(pm,PROFILE_FILE_PATH);
         cc = new CourseController(cm,COURSE_FILE_PATH);
 
+
+
         createDummyData();
-        //for testing
         student = pm.getStudent(0);
+        //for testing
+
+
+//        for(Student s:pm.getStudents()){
+//            if (s.getUsername().equals("jshnai")){
+//                student = s;
+//            }
+//        }
 
     }
 
     private void createDummyData() {
-        if(pm.getStudents().size() != 0 && am.getJobs().size() != 0) {
-            return;
-        }
+//        if(pm.getStudents().size() != 0 && am.getJobs().size() != 0) {
+//            return;
+//        }
 
-        //ONE OF THESE IS THROWING AN EXCEPTION
         try {
-            pc.addStudentToSystem("dummy1", "ecse321", "dummy", "one", "not much experience");
+
+            pc.addStudentToSystem("jshnai", "123", "Jacob", "Shnaidman", "not much experience", Student.Degree.UNDERGRAD);
             pc.addStudentToSystem("dummy2", "ecse321", "dummy", "two", "a lot of experience");
             pc.addStudentToSystem("dummy3", "ecse321", "dummy", "three", "high gpa");
-            pc.addStudentToSystem("j","s","j","s","none");
+            pc.addStudentToSystem("harwiltz","123","harley","wiltzer","none",Student.Degree.GRADUATE);
+
+            Log.d("errorcheck", "Students Added");
+
             pc.addInstructorToSystem("donaldknuth","taocp","Donald","Knuth");
             pc.addInstructorToSystem("linus","linux","Linus","Torvalds");
             pc.addInstructorToSystem("vimcreator","sdfjdfs","Bill","Joy");
+
+            Log.d("errorcheck", "Instructors Added");
+
             cc.createCourse("The Art of Computer Programming",1,45,45,45);
             cc.createCourse("The Dragon Curve",2,45,45,45);
             cc.createCourse("Kernel Development",3,45,45,45);
@@ -82,6 +97,9 @@ public class TAMAS extends Application {
             cc.createCourse("Becoming a Billionaire",5,45,45,45);
             cc.createCourse("Vim 101",6,45,45,45);
             cc.createCourse("Algorithm Analysis",7,45,45,45);
+
+            Log.d("errorcheck", "Courses Added");
+
             pc.addCourseToInstructor(0,cm.getCourse(0));
             pc.addCourseToInstructor(0,cm.getCourse(1));
             pc.addCourseToInstructor(1,cm.getCourse(2));
@@ -90,69 +108,106 @@ public class TAMAS extends Application {
             pc.addCourseToInstructor(2,cm.getCourse(5));
             pc.addCourseToInstructor(0,cm.getCourse(6));
 
+            Log.d("errorcheck", "Courses addded to instructors");
+
             ac.addJobToSystem(45,"Tuesday",11.12,"None",cm.getCourse(0),pm.getInstructor(0), Job.Position.TUTORIAL);
-            
-            ac.addJobToSystem(45,"Wednesday",10.12,"None",cm.getCourse(0),pm.getInstructor(0),  Job.Position.TUTORIAL);
-            
-            ac.addJobToSystem(120,"Monday",11.12,"Lots",cm.getCourse(1),pm.getInstructor(0),  Job.Position.TUTORIAL);
-            
-            ac.addJobToSystem(150,"Friday",10.12,"None",cm.getCourse(1),pm.getInstructor(0),  Job.Position.TUTORIAL);
-            
+
+            Log.d("errorcheck", "1 job Added");
+
             ac.addJobToSystem(110,"Friday",11.12,"None",cm.getCourse(2),pm.getInstructor(1), Job.Position.GRADER);
-            
-            ac.addJobToSystem(145,"Wednesday",10.12,"None",cm.getCourse(2),pm.getInstructor(1), Job.Position.GRADER);
-            
-            ac.addJobToSystem(145,"Wednesday",11.12,"None",cm.getCourse(3),pm.getInstructor(1), Job.Position.GRADER);
-            
-            ac.addJobToSystem(145,"Thursday",10.12,"None",cm.getCourse(3),pm.getInstructor(1), Job.Position.GRADER);
-            
-            ac.addJobToSystem(145,"Friday",11.12,"None",cm.getCourse(4),pm.getInstructor(2), Job.Position.GRADER);
-            
-            ac.addJobToSystem(145,"Monday",10.12,"None",cm.getCourse(4),pm.getInstructor(2), Job.Position.GRADER);
-            
+
             ac.addJobToSystem(145,"Tuesday",11.12,"None",cm.getCourse(5),pm.getInstructor(2), Job.Position.LABORATORY);
-            
+
+            Log.d("errorcheck", "3 jobs Added");
+
+            ac.addJobToSystem(45,"Wednesday",10.12,"None",cm.getCourse(0),pm.getInstructor(0),  Job.Position.TUTORIAL);
+
+            ac.addJobToSystem(120,"Monday",11.12,"Lots",cm.getCourse(1),pm.getInstructor(0),  Job.Position.TUTORIAL);
+
+            ac.addJobToSystem(150,"Friday",10.12,"None",cm.getCourse(1),pm.getInstructor(0),  Job.Position.TUTORIAL);
+
+
+
+            ac.addJobToSystem(145,"Wednesday",10.12,"None",cm.getCourse(2),pm.getInstructor(1), Job.Position.GRADER);
+
+            ac.addJobToSystem(145,"Wednesday",11.12,"None",cm.getCourse(3),pm.getInstructor(1), Job.Position.GRADER);
+
+            ac.addJobToSystem(145,"Thursday",10.12,"None",cm.getCourse(3),pm.getInstructor(1), Job.Position.GRADER);
+
+            ac.addJobToSystem(145,"Friday",11.12,"None",cm.getCourse(4),pm.getInstructor(2), Job.Position.GRADER);
+
+            ac.addJobToSystem(145,"Monday",10.12,"None",cm.getCourse(4),pm.getInstructor(2), Job.Position.GRADER);
+
+
             ac.addJobToSystem(145,"Monday",10.12,"None",cm.getCourse(5),pm.getInstructor(2), Job.Position.LABORATORY);
-            
+
             ac.addJobToSystem(145,"Tuesday",11.12,"None",cm.getCourse(6),pm.getInstructor(0), Job.Position.LABORATORY);
-            
+
             ac.addJobToSystem(145,"Monday",10.12,"None",cm.getCourse(6),pm.getInstructor(0), Job.Position.LABORATORY);
-            
+
+            Log.d("errorcheck", "All jobs Added");
+
 
             ac.setJobOffered(am.getJob(0), true);
             ac.setJobOffered(am.getJob(1), true);
-            ac.setJobOffered(am.getJob(5), true);
-            ac.setJobOffered(am.getJob(10), true);
+            ac.setJobOffered(am.getJob(2), true);
+            ac.setJobOffered(am.getJob(3), true);
 
-            ac.createApplication(student,am.getJob(0));
-            ac.createApplication(student,am.getJob(1));
-            ac.createApplication(student,am.getJob(5));
-            ac.createApplication(student,am.getJob(10));
+            Log.d("errorcheck", "Jobs Offered");
+
+            am.getJob(0);
+            Log.d("errorcheck", "am got first job");
+            am.getJob(1);
+            am.getJob(2);
+            am.getJob(3);
+            Log.d("errorcheck", "am got jobs");
+
+            Log.v("errorcheck","got here");
+            Student appStudent = pm.getStudent(0);
+            if(appStudent == null){
+                Log.v("errorcheck", "student is null");
+            }
+            else{
+                Log.v("errorcheck", appStudent.getUsername());
+
+            }
+            ac.createApplication(appStudent,am.getJob(0));
+            ac.createApplication(appStudent,am.getJob(1));
+            ac.createApplication(appStudent,am.getJob(2));
+            ac.createApplication(appStudent,am.getJob(3));
+
+            Log.d("errorcheck", "#applications: " + am.getApplications().size());
 
             ac.setJobOfferAccepted(am.getApplication(0),true);
+            Log.d("errorcheck", "1 offer Accepted");
             ac.setJobOfferAccepted(am.getApplication(1),true);
             ac.setJobOfferAccepted(am.getApplication(2),true);
             ac.setJobOfferAccepted(am.getApplication(3),true);
 
+            Log.d("errorcheck", "OffersAccepted");
+
             String msg = "He's okay";
 
             ac.addStudentEvaluation(am.getApplication(0), msg);
+            Log.d("errorcheck", "1 Eval Added");
             ac.addStudentEvaluation(am.getApplication(1), msg);
             ac.addStudentEvaluation(am.getApplication(2), msg);
             ac.addStudentEvaluation(am.getApplication(3), msg);
 
+            Log.d("errorcheck", "Evals Added");
 
 
             String eval = am.getJob(0).getApplication(0).getStudentEvaluation();
 
+            Log.d("errorcheck", "eval: " + eval);
+
         }
         catch (Exception e) {
-            Log.d("ERROR", e.getStackTrace().toString());
+            Log.d("errorcheck", e.getMessage());
         }
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_PATH);
         am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_PATH,PROFILE_FILE_PATH);
         cm = PersistenceXStream.initializeCourseManager(COURSE_FILE_PATH);
-        Log.d("dummy", String.valueOf(am.getJobs().size()));
     }
 
 

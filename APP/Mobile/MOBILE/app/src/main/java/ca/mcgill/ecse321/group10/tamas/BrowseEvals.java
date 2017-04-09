@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.group10.tamas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -54,18 +55,26 @@ public class BrowseEvals extends AppCompatActivity {
 
         student = ((TAMAS) getApplication()).getStudent();
         applications = am.getApplications();
+        Log.d("evals", "#applications: " + applications.size());
 
         for (Application application:applications){
             //type in the model - jobs is a single job
             //if the application has been offered and is the student's application, add it to jobs
-            if(application.isOfferAccepted() && application.getStudent().equals(student)){
+            Log.d("evals","Application: " + application.toString() + "\n" + "accepted?: " + application.isOfferAccepted()
+                    + "\nstudent: " + application.getStudent().getUsername() + "\n\n");
+            String appStudent = application.getStudent().getUsername();
+            String curStudent = student.getUsername();
+
+            if(application.isOfferAccepted() && appStudent.equals(curStudent)){
                 Job job = application.getJobs();
                 job.addApplicationAt(application,0);
                 jobs.add(job);
+                Log.d("evals","job found: " + job.getPositionFullName().toString());
             }
         }
 
         //get string of job names
+        Log.d("evals","#jobs: " + jobs.size());
         String [] jobNames = new String[jobs.size()];
 
         for(int c = 0; c < jobNames.length; c++) {
@@ -98,7 +107,7 @@ public class BrowseEvals extends AppCompatActivity {
             return;
         }
         else{
-            String description = "Evaluation:\n" + eval;
+            String description = "Evaluation:\n\n" + eval;
             evaluations.setText(description);
         }
 
