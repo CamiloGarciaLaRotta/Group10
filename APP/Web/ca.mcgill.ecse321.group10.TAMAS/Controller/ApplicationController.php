@@ -114,6 +114,7 @@ class ApplicationController{
 		}
 	}
 	
+	// retrieve a string version of the applications for a given course
 	public function getApplications($cdn) {
 		$applications = $this->am->getApplications();
 
@@ -127,6 +128,7 @@ class ApplicationController{
 		echo json_encode($matchedApps);
 	}
 	
+	// retrieve a string version of application information for a given application
 	public function getApplicationInfo($id) {
 		
 		// retrieve selected application
@@ -148,6 +150,7 @@ class ApplicationController{
 		echo json_encode($info);
 	}
 	
+	// make necessary changes in model and persistence to flag the hiring of a student
 	public function hire($id){
 		// retrieve selected application
 		$selectedApp = null;
@@ -165,6 +168,7 @@ class ApplicationController{
 		$this->pt->writeApplicationDataToStore($this->am);
 	}
 	
+	// setter for the evaluation submitted by an instructor to a students application
 	public function setEvaluation($eval, $id){
 		// retrieve selected application
 		$selectedApp = null;
@@ -182,10 +186,12 @@ class ApplicationController{
 		$this->pt->writeApplicationDataToStore($this->am);
 	}
 	
+	// return a prettified version of the model's degree
 	public function getCleanDegree($student){
 		return ($student->getDegree() == "DegreeGRADUATE") ? "Graduate" : "Undergrad";
 	}
 	
+	// return a prettified versions of the model's position
 	public function getCleanPosition($job){
 		$pos = "";
 		switch ($job->getPosition()) {

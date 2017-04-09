@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__.'\ProfileController.php';
 
+// validation script for Instructor creation
+
 session_start();
 
 $pc =new ProfileController();

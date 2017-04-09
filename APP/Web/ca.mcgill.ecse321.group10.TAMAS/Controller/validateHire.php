@@ -2,6 +2,8 @@
 require_once __DIR__.'\.\InputValidator.php';
 require_once __DIR__.'\.\applicationController.php';
 
+// validation script for hiring form
+
 session_start();
 
 $ac = new ApplicationController();
