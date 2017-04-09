@@ -124,7 +124,8 @@ public class FeedbackView extends JFrame {
 		Student curStudent;
 		if(student == null) curStudent = pm.getStudent(cbStudents.getSelectedIndex());
 		else curStudent = student;
-		tfEval.setText(applications.get(cbApplications.getSelectedIndex()).getStudentEvaluation());
+		if(cbApplications.getSelectedIndex() != -1) tfEval.setText(applications.get(cbApplications.getSelectedIndex()).getStudentEvaluation());
+		else tfEval.setText("");
 		pack();
 	}
 }
