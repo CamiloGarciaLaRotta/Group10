@@ -13,16 +13,21 @@
 	<property name="jar-dir" value="Desktop/TAMAS"/>
 
 	<!-- PLEASE CHANGE THESE PATHS TO ACCOMODATE YOUR PC -->
-	<property name="phpunit" value="/usr/bin/phpunit"/>
 	<property name="xampp.dir" value="/opt/lampp"/>
-    <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
 	<property name="chrome" value="/usr/bin/google-chrome-stable"/>
 	<!-- End of paths to change -->
 
+    <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
+	<property name="phpunit" value="Web/phpunit"/>
+
 	<!-- DESKTOP TARGETS -->
     <path id="JUnit 4.libraryclasspath">
+		<!--
         <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+		-->
+		<pathelement location="Desktop/TAMAS/lib/org.junit_4.12.0.v201504281640/junit.jar"/>
+		<pathelement location="Desktop/TAMAS/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
     <path id="TAMAS.classpath">
 		<pathelement location="Desktop/TAMAS/bin"/>

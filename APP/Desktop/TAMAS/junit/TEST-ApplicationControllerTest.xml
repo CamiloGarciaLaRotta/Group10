@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="vandelay" name="ApplicationControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T17:32:03">
+<testsuite errors="1" failures="0" hostname="vandelay" name="ApplicationControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T18:10:12">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="env.MOZ_PLUGIN_PATH" value="/usr/lib/mozilla/plugins" />
@@ -64,7 +64,7 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="user.home" value="/home/harwiltz" />
     <property name="target" value="1.7" />
-    <property name="env.OLDPWD" value="/home/harwiltz/Skunkworks/ECSE321/Project/Group10/APP/Mobile" />
+    <property name="env.OLDPWD" value="/home/harwiltz/Skunkworks/ECSE321/Project/Group10/APP/Desktop" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
     <property name="env.VTE_VERSION" value="4601" />
     <property name="env.WINDOWID" value="33554435" />
@@ -74,7 +74,7 @@
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
     <property name="java.class.path" value="/usr/share/apache-ant/lib/ant-launcher.jar:/usr/share/java/junit.jar:/usr/share/apache-ant/lib/ant-commons-logging.jar:/usr/share/apache-ant/lib/ant-jsch.jar:/usr/share/apache-ant/lib/ant-apache-oro.jar:/usr/share/apache-ant/lib/ant-launcher.jar:/usr/share/apache-ant/lib/ant-swing.jar:/usr/share/apache-ant/lib/ant-apache-regexp.jar:/usr/share/apache-ant/lib/ant-apache-resolver.jar:/usr/share/apache-ant/lib/ant-jai.jar:/usr/share/apache-ant/lib/ant-junit4.jar:/usr/share/apache-ant/lib/ant-junit.jar:/usr/share/apache-ant/lib/ant-apache-xalan2.jar:/usr/share/apache-ant/lib/ant-testutil.jar:/usr/share/apache-ant/lib/ant.jar:/usr/share/apache-ant/lib/ant-apache-bcel.jar:/usr/share/apache-ant/lib/ant-apache-log4j.jar:/usr/share/apache-ant/lib/ant-apache-bsf.jar:/usr/share/apache-ant/lib/ant-jdepend.jar:/usr/share/apache-ant/lib/ant-antlr.jar:/usr/share/apache-ant/lib/ant-jmf.jar:/usr/share/apache-ant/lib/ant-netrexx.jar:/usr/share/apache-ant/lib/ant-commons-net.jar:/usr/share/apache-ant/lib/ant-javamail.jar:/usr/lib/jvm/java-8-openjdk/lib/tools.jar" />
-    <property name="sun.java.command" value="org.apache.tools.ant.launch.Launcher -cp  pandemonium" />
+    <property name="sun.java.command" value="org.apache.tools.ant.launch.Launcher -cp  test-desktop" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 24 2016" />
     <property name="env.XDG_SESSION_ID" value="c1" />
     <property name="env.XFILESEARCHPATH" value="/usr/dt/app-defaults/%L/Dt" />
@@ -111,7 +111,7 @@
     <property name="env._JAVA_OPTIONS" value="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true" />
     <property name="env.MAIL" value="/var/spool/mail/harwiltz" />
     <property name="java.specification.version" value="1.8" />
-    <property name="ant.project.invoked-targets" value="pandemonium" />
+    <property name="ant.project.invoked-targets" value="test-desktop" />
   </properties>
   <testcase classname="ApplicationControllerTest" name="BeforeFirstTest" time="0.0">
     <error message="Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
