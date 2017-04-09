@@ -87,9 +87,9 @@ public class ApproveOffersView extends JFrame{
 		approveButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				saveData();
-				ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+				ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 				constants.set(0, 1);
-				PersistenceXStream.setFilename("output/constants.xml");
+				PersistenceXStream.setFilename(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 				PersistenceXStream.saveToXMLwithXStream(constants);
 				refreshList();
 			}
@@ -113,7 +113,7 @@ public class ApproveOffersView extends JFrame{
 	
 	private void refreshList() {
 		listModel = new DefaultListModel<String>();
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(0) == 1) {
 			approveButton.setEnabled(false);
 			saveButton.setEnabled(false);

@@ -34,7 +34,7 @@ public class ThemedList extends JList{
 	}
 	
 	public void setColors() {
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(1) == 0) {
 			bgColor = Constants.dark_tfBgColor;
 			fgColor = Constants.dark_tfFgColor;

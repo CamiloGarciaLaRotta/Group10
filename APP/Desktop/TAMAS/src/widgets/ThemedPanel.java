@@ -25,7 +25,7 @@ public class ThemedPanel extends JPanel{
 	}
 	
 	public void setColors() {
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(1) == 0) setBackground(Constants.dark_bgColor);
 		else setBackground(Constants.light_bgColor);
 	}

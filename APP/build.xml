@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="TAMAS">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+	<property name="persistence.dir" value="${user.home}/.tamas/output"/>
+	<property name="junit.output.dir" value="Desktop/TAMAS/junit"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="TAMAS.classpath">
+		<pathelement location="Desktop/TAMAS/bin"/>
+		<pathelement location="Desktop/TAMAS/bin/ca/mcgill/ecse321/group10/TAMAS/model"/>
+		<pathelement location="Desktop/TAMAS/lib/jdatepicker-1.3.4.jar"/>
+        <pathelement location="Desktop/TAMAS/lib/xmlpull-1.1.3.1.jar"/>
+        <pathelement location="Desktop/TAMAS/lib/xpp3_min-1.1.4c.jar"/>
+        <pathelement location="Desktop/TAMAS/lib/xstream-1.4.7.jar"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+		<mkdir dir="Desktop/TAMAS/bin"/>
+		<mkdir dir="Desktop/TAMAS/output"/>
+		<mkdir dir="${persistence.dir}"/>
+		<mkdir dir="Desktop/TAMAS/junit"/>
+        <copy includeemptydirs="false" todir="bin">
+			<fileset dir="Desktop/TAMAS/src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+			<fileset dir="Desktop/TAMAS/Integration Tests">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+			<fileset dir="Desktop/TAMAS/test">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+		<delete dir="Desktop/TAMAS/bin"/>
+		<delete dir="Desktop/TAMAS/junit"/>
+    </target>
+    <target depends="clean" name="annihilate">
+		<delete dir="Desktop/TAMAS/output"/>
+		<delete dir="${persistence.dir}"/>
+	</target>
+    <target depends="init,build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+		<javac debug="true" debuglevel="${debuglevel}" destdir="Desktop/TAMAS/bin" includeantruntime="false" source="${source}" target="${target}">
+			<src path="Desktop/TAMAS/src"/>
+			<src path="Desktop/TAMAS/Integration Tests"/>
+			<src path="Desktop/TAMAS/test"/>
+            <classpath refid="TAMAS.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="TAMAS" depends="test">
+        <java classname="ca.mcgill.ecse321.group10.application.TAMAS" failonerror="true" fork="yes">
+            <classpath refid="TAMAS.classpath"/>
+        </java>
+    </target>
+
+	<target name="test" depends="build">
+		<echo message=">>>>> STARTING UNIT TESTS..."/>
+		<!--
+		<junit printsummary="yes" haltonfailure="true" fork="yes">
+			<classpath>
+				<path refid="TAMAS.classpath"/>
+				<pathelement location="Desktop/TAMAS/bin/ca/mcgill/ecse321/group10/TAMAS/model"/>
+			</classpath>
+			<formatter type="xml"/>
+			<batchtest todir="${junit.output.dir}">
+				<fileset dir="Desktop/TAMAS/test" includes="**/*Test*.java" excludes="**/AllTests.java"/>
+			</batchtest>
+		</junit>
+		-->
+		<echo message=">>>>> STARTING INTEGRATION TESTS..."/>
+		<junit printsummary="yes" haltonfailure="false" fork="yes">
+			<classpath>
+				<path refid="TAMAS.classpath"/>
+				<pathelement location="Desktop/TAMAS/bin"/>
+			</classpath>
+			<formatter type="xml"/>
+			<batchtest todir="${junit.output.dir}">
+				<fileset dir="Desktop/TAMAS/Integration Tests" includes="**/*Test*.java" excludes="**/AllTests.java"/>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="backupxml">
+		<mkdir dir="Desktop/TAMAS/.output"/>
+		<copy file="Desktop/TAMAS/output/applications.xml" todir="Desktop/TAMAS/.output"/>
+		<copy file="Desktop/TAMAS/output/profiles.xml" todir="Desktop/TAMAS/.output"/>
+		<copy file="Desktop/TAMAS/output/courses.xml" todir="Desktop/TAMAS/.output"/>
+		<copy file="Desktop/TAMAS/output/constants.xml" todir="Desktop/TAMAS/.output"/>
+	</target>
+</project>

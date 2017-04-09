@@ -6,7 +6,7 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class CourseController {
 	
-	public static String COURSE_FILE_NAME = "output/courses.xml";
+	public static String COURSE_FILE_NAME = System.getProperty("user.home") + "/.tamas/output/courses.xml";
 
 	private CourseManager cm;
 	private String filename;

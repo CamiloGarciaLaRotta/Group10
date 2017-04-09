@@ -37,7 +37,7 @@
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
-        <copy includeemptydirs="false" todir="bin">
+        <copy includeemptydirs="true" todir="bin">
             <fileset dir="test">
                 <exclude name="**/*.java"/>
             </fileset>
@@ -54,10 +54,10 @@
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+        <javac verbose="true" debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <src path="Integration Tests"/>
-            <src path="test"/>
+			<src path="test"/>
             <classpath refid="TAMAS.classpath"/>
         </javac>
     </target>
@@ -90,7 +90,7 @@
 			</classpath>
 			<formatter type="xml"/>
 			<batchtest todir="${junit.output.dir}">
-				<fileset dir="test" includes="**/*Test*.java" excludes="**/AllTests.java"/>
+				<fileset dir="test/ca/mcgill/ecse321/group10/TAMAS/model" includes="**/*Test*.java" excludes="**/AllTests.java"/>
 			</batchtest>
 		</junit>
 		<echo message=">>>>> STARTING INTEGRATION TESTS..."/>

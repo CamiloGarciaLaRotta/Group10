@@ -1,0 +1,39 @@
+<pmanager id="1">
+  <students id="2">
+    <student id="3">
+      <username>aviato</username>
+      <password>aviato</password>
+      <firstName>Erlich</firstName>
+      <lastName>Bachmann</lastName>
+      <id>3</id>
+      <hoursLeft>180.0</hoursLeft>
+      <experience></experience>
+      <degree>UNDERGRAD</degree>
+      <jobs id="4"/>
+      <applications id="5"/>
+    </student>
+  </students>
+  <instructors id="6">
+    <instructor id="7">
+      <username>dexter</username>
+      <password>darkdefender</password>
+      <firstName>Dexter</firstName>
+      <lastName>Morgan</lastName>
+      <id>2</id>
+      <courses id="8"/>
+      <applications id="9"/>
+      <jobs id="10"/>
+    </instructor>
+  </instructors>
+  <admins id="11">
+    <admin id="12">
+      <username>clatty</username>
+      <password>hello</password>
+      <firstName>Mike</firstName>
+      <lastName>Clattenburg</lastName>
+      <id>1</id>
+      <intructors id="13"/>
+      <students id="14"/>
+    </admin>
+  </admins>
+</pmanager>

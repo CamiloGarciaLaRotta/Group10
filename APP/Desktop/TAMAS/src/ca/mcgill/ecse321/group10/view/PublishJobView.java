@@ -176,7 +176,7 @@ public class PublishJobView extends JFrame{
 		
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 	    getContentPane().setLayout(layout);
 	    if(constants.get(1)== 0) getContentPane().setBackground(Constants.dark_bgColor);
 	    else getContentPane().setBackground(Constants.light_bgColor);

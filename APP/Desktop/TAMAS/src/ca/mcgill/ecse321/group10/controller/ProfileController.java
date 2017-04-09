@@ -5,7 +5,7 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ProfileController {
 	
-	public static String PROFILE_FILE_NAME = "output/profiles.xml";
+	public static String PROFILE_FILE_NAME = System.getProperty("user.home") + "/.tamas/output/profiles.xml";
 	
 	private ProfileManager pm;
 	private String filename;

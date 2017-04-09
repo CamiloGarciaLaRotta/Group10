@@ -12,7 +12,7 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class ApplicationController {
 	
-	public static String APPLICATION_FILE_NAME = "output/applications.xml";
+	public static String APPLICATION_FILE_NAME = System.getProperty("user.home") + "/.tamas/output/applications.xml";
 	
 	private ApplicationManager am;
 	private String filename;

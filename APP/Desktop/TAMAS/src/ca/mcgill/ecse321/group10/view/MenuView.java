@@ -103,7 +103,7 @@ public class MenuView extends JFrame{
 	
 	private void initComponents() {
 		colorToggle = new String[2];
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		theme = constants.get(1);
 		colorToggle[0] = "Switch to light theme";
 		colorToggle[1] = "Switch to dark theme";
@@ -215,7 +215,7 @@ public class MenuView extends JFrame{
 		
 		offerButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+				ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 				if(constants.get(0) != 0) {
 					if(user.getClass() == Admin.class) new OffersView(am,pm,null).setVisible(true);
 					else if(user.getClass() == Student.class) new OffersView(am,pm,(Student)user).setVisible(true);
@@ -288,9 +288,9 @@ public class MenuView extends JFrame{
 		colorButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				theme ^= 1; //The epitome of ECSE323
-				ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+				ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 				constants.set(1, theme);
-				PersistenceXStream.setFilename("output/constants.xml");
+				PersistenceXStream.setFilename(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 				PersistenceXStream.saveToXMLwithXStream(constants);
 				refreshWidgets();
 			}
@@ -385,7 +385,7 @@ public class MenuView extends JFrame{
 			studentButton.setEnabled(false);
 			break;
 		}
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(0) == 1) {
 			approveButton.setText("Job offers already sent...");
 			approveButton.setEnabled(false);

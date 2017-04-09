@@ -150,7 +150,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(1) == 0) getContentPane().setBackground(Constants.dark_bgColor);
 		else getContentPane().setBackground(Constants.light_bgColor);
 	    layout.setAutoCreateGaps(true);

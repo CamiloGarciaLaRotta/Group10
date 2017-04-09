@@ -23,7 +23,7 @@ public class ThemedRadioButton extends JRadioButton{
 	}
 	
 	public void setColors() {
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(1) == 0) {
 			bgColor = Constants.dark_bgColor;
 			fgColor = Constants.dark_normalFgColor;

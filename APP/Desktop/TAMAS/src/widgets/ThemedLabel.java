@@ -23,7 +23,7 @@ public class ThemedLabel extends JLabel{
 	
 	public ThemedLabel(String s) {
 		super(s);
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		fgColor = (constants.get(1) == 0) ? Constants.dark_normalFgColor : Constants.light_normalFgColor;
 		this.setType(LabelType.Normal);
 	}
@@ -41,7 +41,7 @@ public class ThemedLabel extends JLabel{
 	}
 	
 	public void setColors() {
-		ArrayList<Integer> constants = PersistenceXStream.initializeConstants("output/constants.xml");
+		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		fgColor = (constants.get(1) == 0) ? Constants.dark_normalFgColor : Constants.light_normalFgColor;
 		setType(type);
 	}
