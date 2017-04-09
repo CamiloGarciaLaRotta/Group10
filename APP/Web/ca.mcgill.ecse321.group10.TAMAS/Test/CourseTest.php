@@ -85,7 +85,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 	
 		$className = "   ";
 		$CDN = 999;
-		$graderTime = 99;
+		$graderTime = 64;
 		$TATime = 49;
 		$labTime = 50;
 		$error = "";
