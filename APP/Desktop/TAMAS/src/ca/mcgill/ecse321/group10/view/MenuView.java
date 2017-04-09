@@ -395,7 +395,7 @@ public class MenuView extends JFrame{
 			approveButton.setText("Manage Job Offers");
 			approveButton.setEnabled(true);
 			hireButton.setText("Hire Applicants");
-			hireButton.setEnabled(false);
+			hireButton.setEnabled(true);
 		}
 	}
 	
