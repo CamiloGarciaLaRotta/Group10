@@ -389,9 +389,13 @@ public class MenuView extends JFrame{
 		if(constants.get(0) == 1) {
 			approveButton.setText("Job offers already sent...");
 			approveButton.setEnabled(false);
+			hireButton.setText("Can't hire - jobs already sent by admin");
+			hireButton.setEnabled(false);
 		} else {
 			approveButton.setText("Manage Job Offers");
 			approveButton.setEnabled(true);
+			hireButton.setText("Hire Applicants");
+			hireButton.setEnabled(false);
 		}
 	}
 	
