@@ -33,6 +33,7 @@ class CourseController{
 	 * @param unknown $CDN				The unique course identification number.	
 	 * @param unknown $graderTimeBudget	The total amount of time allocated to graders.
 	 * @param unknown $TATimeBudget		The total amount of time allocated to teaching assistants.
+	 * @param unknown $labTimeBudget	The total amount of time allocated to lab assistants.
 	 * @throws Exception
 	 */
 	public function createCourse($course_name, $CDN, $graderTimeBudget, 
