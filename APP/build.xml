@@ -128,14 +128,6 @@
 			<zipgroupfileset dir="Desktop/TAMAS/lib" includes="*.jar"/>
 		</jar>
 	</target>
-
-	<target name="backupxml">
-		<mkdir dir="Desktop/TAMAS/.output"/>
-		<copy file="Desktop/TAMAS/output/applications.xml" todir="Desktop/TAMAS/.output"/>
-		<copy file="Desktop/TAMAS/output/profiles.xml" todir="Desktop/TAMAS/.output"/>
-		<copy file="Desktop/TAMAS/output/courses.xml" todir="Desktop/TAMAS/.output"/>
-		<copy file="Desktop/TAMAS/output/constants.xml" todir="Desktop/TAMAS/.output"/>
-	</target>
 	<!-- End desktop targets -->
 
 	<!-- PHP TARGETS -->
@@ -156,6 +148,7 @@
 	</target>
 
 	<target name="run-web" depends="test-web">
+		<echo message="WARNING: You may need to build this target as root user"/>
 		<copy todir="${xampp.dir}/htdocs">
 			<fileset dir="Web/ca.mcgill.ecse321.group10.TAMAS"/>
 		</copy>
@@ -174,6 +167,30 @@
 	<!-- End php targets -->
 
 	<!-- MOBILE TARGETS -->
+	<target name="init-mobile">
+		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile/MOBILE/gradlew">
+			<arg value="init"/>
+			<arg value="-p"/>
+			<arg path="Mobile/MOBILE"/>
+		</exec>
+	</target>
+	<target name="clean-mobile">
+		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile/MOBILE/gradlew">
+			<arg value="clean"/>
+			<arg value="-p"/>
+			<arg path="Mobile/MOBILE"/>
+		</exec>
+	</target>
+	<target name="build-mobile">
+		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile/MOBILE/gradlew">
+			<arg value="build"/>
+			<arg value="-p"/>
+			<arg path="Mobile/MOBILE"/>
+		</exec>
+	</target>
 	<target name="export-mobile">
 		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
 		<exec executable="Mobile/MOBILE/gradlew">
@@ -190,4 +207,16 @@
 			<arg path="Mobile/MOBILE"/>
 		</exec>
 	</target>
+	<!-- End mobile targets -->
+
+	<!-- CONVENIENCE TARGETS -->
+	<target name="clean-all" depends="clean-desktop, clean-web, clean-mobile"/>
+	<target name="build-all" depends="build-desktop, build-mobile"/>
+	<target name="export-all" depends="export-desktop,export-web,export-mobile"/>
+	<target name="test-all" depends="test-desktop,test-web"/>
+	<target name="remove-pc-persistence">
+		<delete dir="${user.home}/.tamas/output"/>
+	</target>
+	<target name="start-fresh" depends="remove-pc-persistence,clean-all,export-all"/>
+	<target name="pandemonium" depends="clean-all, run-desktop, run-web, install-mobile"/>
 </project>
