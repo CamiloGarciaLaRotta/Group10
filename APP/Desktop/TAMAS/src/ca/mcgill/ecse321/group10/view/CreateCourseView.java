@@ -35,7 +35,7 @@ public class CreateCourseView extends JFrame{
 	private JLabel lGraderBudget;
 	private JLabel lTABudget;
 	private JLabel lLabBudget;
-	private JLabel errorLabel;
+	private ThemedLabel errorLabel;
 	private JTextField tfName;
 	private JTextField tfCode;
 	private JTextField tfGraderBudget;
@@ -183,6 +183,7 @@ public class CreateCourseView extends JFrame{
 	
 	private void createPressed() {
 		error = "";
+		errorLabel.setType(ThemedLabel.LabelType.Error);
 		if(instructorList.getSelectedIndex() == -1) {
 			error += "Instructor must be selected!";
 			refreshData();
@@ -201,6 +202,8 @@ public class CreateCourseView extends JFrame{
 				cc.createCourse(name, code, graderBudget, taBudget,labBudget);
 				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 				pc.addCourseToInstructor(instructorList.getSelectedIndex(), cm.getCourse(cm.getCourses().size()-1));
+				error = "Course " + name + "(" + code + ") created!";
+				errorLabel.setType(ThemedLabel.LabelType.Success);
 			} catch (InputException e) {
 				error += e.getMessage() + "\n";
 			}

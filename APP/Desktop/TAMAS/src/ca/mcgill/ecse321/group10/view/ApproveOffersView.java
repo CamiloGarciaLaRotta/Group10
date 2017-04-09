@@ -52,8 +52,8 @@ public class ApproveOffersView extends JFrame{
 		lCurrent = new ThemedLabel("Current Job Offers:");
 		offersList = new ThemedList(new String[0]);
 		offerScroller = new JScrollPane(offersList);
-		approveButton = new JButton("Approve");
-		removeButton = new JButton("Remove");
+		approveButton = new JButton("Approve All Offers");
+		removeButton = new JButton("Remove Selected Offer");
 		exitButton = new JButton("Exit");
 		
 		refreshList();

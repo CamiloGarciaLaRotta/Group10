@@ -50,7 +50,7 @@ public class PublishJobView extends JFrame{
 	private JSpinner jDay;
 	private JLabel lSalary;
 	private JLabel lReqs;
-	private JLabel errorLabel;
+	private ThemedLabel errorLabel;
 	private JLabel lPos;
 	private JLabel lHours;
 	private JLabel lRemaining;
@@ -280,6 +280,7 @@ public class PublishJobView extends JFrame{
 	
 	private void publishPressed() {
 		error = "";
+		errorLabel.setType(ThemedLabel.LabelType.Error);
 		if(instructor == null && instructorList.getSelectedIndex() == -1) error += "Instructor must be specified!\n";
 		if(courseList.getSelectedIndex() == -1) error += "Course must be specified!\n";
 		try {
@@ -290,8 +291,11 @@ public class PublishJobView extends JFrame{
 			if(instructor == null) instructor = pm.getInstructor(instructorList.getSelectedIndex());
 			Course course = instructor.getCourse(courseList.getSelectedIndex());
 			try {
-				if(tfHours.getText().trim().length() == 0) throw new Exception("empty");
+				if(tfHours.getText().trim().length() == 0) throw new Exception("Hours must be floating point number!");
 				float hours = Float.parseFloat(tfHours.getText());
+				
+				if(hours < 45.0f) throw new Exception("Job must offer at least 45 hours!");
+				else if(hours > 180.0f) throw new Exception("Job can offer a maximum of 180 hours!");
 				
 				if(error.length() == 0) {
 					ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
@@ -305,12 +309,14 @@ public class PublishJobView extends JFrame{
 						else if(pos == Job.Position.GRADER) cc.modifyGraderBudget(course, hours * (float)salary);
 						else cc.modifyLabBudget(course, hours * (float)salary); 
 						ac.addJobToSystem(hours, day, salary, requirements, course, instructor,pos);
+						errorLabel.setType(ThemedLabel.LabelType.Success);
+						error = "Job " + course.getClassName() + " " + pos.toString() + " " + day.toString() + " published!";
 					} catch (InputException e) {
 						error += e.getMessage();
 					}
 				}
 			}catch(Exception e) {
-				error += "Invalid entry for hours! Must be floating point number.";
+				error += e.getMessage();
 			}
 		}catch (Exception e) {
 			error += "Salary must be a number!\n";
