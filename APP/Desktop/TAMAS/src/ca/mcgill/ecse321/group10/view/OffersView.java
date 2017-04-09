@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.group10.view;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -21,6 +22,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
 import ca.mcgill.ecse321.group10.controller.InputException;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
+import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
 import widgets.ThemedPanel;
@@ -186,7 +188,12 @@ public class OffersView extends JFrame{
 					message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was rejected.");
 					ac.setJobOfferAccepted(am.getApplication(c), false);
 					ac.setJobOffered(am.getApplication(c).getJobs(), false);
+					ac.removeApplication(am.getApplication(c));
 					pc.removeJobFromStudent(currentStudent,currentJob);
+					ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home")+"/.tamas/output/constants.xml");
+					constants.set(0, 0);
+					PersistenceXStream.setFilename(System.getProperty("user.home")+"/.tamas/output/constants.xml");
+					PersistenceXStream.saveToXMLwithXStream(constants);
 				}
 				break;
 			}

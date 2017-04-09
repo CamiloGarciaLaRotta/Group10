@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="vandelay" name="ProfileControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T18:42:38">
+<testsuite errors="1" failures="0" hostname="vandelay" name="ProfileControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T19:02:45">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="env.MOZ_PLUGIN_PATH" value="/usr/lib/mozilla/plugins" />
@@ -113,7 +113,7 @@
     <property name="java.specification.version" value="1.8" />
     <property name="ant.project.invoked-targets" value="run-desktop" />
   </properties>
-  <testcase classname="ProfileControllerTest" name="testCreateProfileInvalid" time="0.0">
+  <testcase classname="ProfileControllerTest" name="testCreateProfileInvalid" time="0.001">
     <error message="Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
 </error>
   </testcase>

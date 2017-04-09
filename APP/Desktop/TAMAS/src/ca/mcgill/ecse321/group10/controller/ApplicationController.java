@@ -28,6 +28,7 @@ public class ApplicationController {
 		if(aCourse == null) error += "Course must be defined! ";
 		//if(aEndTime.getTime() - aStartTime.getTime() < 0) error += "Start time cannot be after end time! ";
 		if(hours < 45.0f) error += "Job must offer at least 45 hours per semester!";
+		else if(hours > 180.0f) error += "Job must offer at most 180 hours per semester!";
 		if(aSalary < 0) error += "Salary must be positive! ";
 		if(day == null) error += "Day must be specified! ";
 		else if(day.equals("Saturday") || day.equals("Sunday")) error += "Day must be a work day! ";
@@ -89,6 +90,12 @@ public class ApplicationController {
 		if(s == null || j == null) throw new InputException("Student or job are null");
 		Application a = new Application(s,j);
 		am.addApplication(a);
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(am);
+	}
+	
+	public void removeApplication(Application a) {
+		am.removeApplication(a);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}

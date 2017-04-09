@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="vandelay" name="CourseControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T18:42:38">
+<testsuite errors="1" failures="0" hostname="vandelay" name="CourseControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T19:02:45">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="env.MOZ_PLUGIN_PATH" value="/usr/lib/mozilla/plugins" />

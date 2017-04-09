@@ -389,7 +389,7 @@ public class MenuView extends JFrame{
 		if(constants.get(0) == 1) {
 			approveButton.setText("Job offers already sent...");
 			approveButton.setEnabled(false);
-		}
+		} else approveButton.setEnabled(true);
 	}
 	
 	private void profilePressed() {
