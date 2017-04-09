@@ -270,6 +270,7 @@ public class PublishJobView extends JFrame{
 		if(error.length() != 0) return;
 		tfSalary.setText("");
 		tfReqs.setText("");
+		tfHours.setText("");
 		jDay.setValue("Monday");
 		rbGrader.setSelected(false);
 		rbTA.setSelected(true);

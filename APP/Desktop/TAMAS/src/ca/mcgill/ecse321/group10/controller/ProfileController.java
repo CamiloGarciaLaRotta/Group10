@@ -168,6 +168,17 @@ public class ProfileController {
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
+	public void removeJobOfferFromStudent(Student s, Job j) {
+		for(int c = 0; c < pm.getStudents().size(); c++) {
+			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
+				pm.getStudent(c).removeJob(j);
+				break;
+			}
+		}
+		PersistenceXStream.setFilename(filename);
+		PersistenceXStream.saveToXMLwithXStream(pm);
+	}
+	
 	public void acceptJob(Student student, Job job) throws InputException{
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			if(pm.getStudent(c).getId() == student.getId()) {

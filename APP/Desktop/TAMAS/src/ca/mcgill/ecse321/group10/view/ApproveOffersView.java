@@ -35,7 +35,6 @@ public class ApproveOffersView extends JFrame{
 	private JButton approveButton;
 	private JButton removeButton;
 	private JButton exitButton;
-	private JButton saveButton;
 	
 	private ArrayList<Job> jobs;
 	private ArrayList<Student> students;
@@ -56,7 +55,6 @@ public class ApproveOffersView extends JFrame{
 		approveButton = new JButton("Approve");
 		removeButton = new JButton("Remove");
 		exitButton = new JButton("Exit");
-		saveButton = new JButton("Save Changes");
 		
 		refreshList();
 		
@@ -70,23 +68,20 @@ public class ApproveOffersView extends JFrame{
 		removeButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(offersList.getSelectedIndex() == -1) return;
-				jobs.get(offersList.getSelectedIndex()).setOfferSent(false);
-				students.get(offersList.getSelectedIndex()).removeJob(jobs.get(offersList.getSelectedIndex()));
+				//jobs.get(offersList.getSelectedIndex()).setOfferSent(false);
+				ApplicationController ac = new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME);
+				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
+				ac.setJobOffered(jobs.get(offersList.getSelectedIndex()), false);
+				pc.removeJobFromStudent(students.get(offersList.getSelectedIndex()), jobs.get(offersList.getSelectedIndex()));
+				//students.get(offersList.getSelectedIndex()).removeJob(jobs.get(offersList.getSelectedIndex()));
 				jobs.remove(offersList.getSelectedIndex());
 				students.remove(offersList.getSelectedIndex());
 				refreshList();
 			}
 		});
 		
-		saveButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-				saveData();
-			}
-		});
-		
 		approveButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				saveData();
 				ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 				constants.set(0, 1);
 				PersistenceXStream.setFilename(System.getProperty("user.home") + "/.tamas/output/constants.xml");
@@ -102,7 +97,6 @@ public class ApproveOffersView extends JFrame{
 		JPanel buttonPanel = new ThemedPanel(Constants.grey);
 		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.add(approveButton);
-		buttonPanel.add(saveButton);
 		buttonPanel.add(removeButton);
 		buttonPanel.add(exitButton);
 		panel.add(buttonPanel);
@@ -116,7 +110,6 @@ public class ApproveOffersView extends JFrame{
 		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(0) == 1) {
 			approveButton.setEnabled(false);
-			saveButton.setEnabled(false);
 			removeButton.setEnabled(false);
 			listModel.addElement("Offers already sent");
 			offersList.setEnabled(false);
@@ -135,11 +128,6 @@ public class ApproveOffersView extends JFrame{
 		}
 		offersList.setModel(listModel);
 		pack();
-	}
-	
-	private void saveData() {
-		new ProfileController(pm, ProfileController.PROFILE_FILE_NAME).persist();
-		new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME).persist();
 	}
 
 }
