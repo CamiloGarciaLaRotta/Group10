@@ -37,7 +37,7 @@ public class CourseController {
 	
 	public void modifyTaBudget(Course course, float cost) throws InputException{
 		for(int c = 0; c < cm.getCourses().size(); c++) {
-			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+			if(cm.getCourse(c).getCdn() == course.getCdn()) {
 				if(cm.getCourse(c).getTutorialBudget() - cost < 0) {
 					throw new InputException("Not enough budget for this job!");
 				}
@@ -51,7 +51,7 @@ public class CourseController {
 	
 	public void modifyGraderBudget(Course course, float cost) throws InputException {
 		for(int c = 0; c < cm.getCourses().size(); c++) {
-			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+			if(cm.getCourse(c).getCdn() == course.getCdn()) {
 				if(cm.getCourse(c).getGraderBudget() - cost < 0) {
 					throw new InputException("Not enough budget for this job!");
 				}
@@ -64,7 +64,7 @@ public class CourseController {
 	}
 	public void modifyLabBudget(Course course, float cost) throws InputException {
 		for(int c = 0; c < cm.getCourses().size(); c++) {
-			if(cm.getCourse(c).getClassName().equals(course.getClassName())) {
+			if(cm.getCourse(c).getCdn() == course.getCdn()) {
 				if(cm.getCourse(c).getLabBudget() - cost < 0) {
 					throw new InputException("Not enough budget for this job!");
 				}

@@ -52,7 +52,7 @@ public class ApplicationController {
 	
 	public void setJobOffered(Job j, boolean offered) {
 		for(int c = 0; c < am.getJobs().size(); c++) {
-			if(j.getId() == am.getJob(c).getId()) j.setOfferSent(offered);
+			if(j.toString().equals(am.getJob(c).toString())) j.setOfferSent(offered);
 		}
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
@@ -60,7 +60,7 @@ public class ApplicationController {
 	
 	public void setJobOfferAccepted(Application a, boolean accepted) {
 		for(int c = 0; c < am.getApplications().size(); c++) {
-			if(am.getApplication(c).getId() == a.getId()) {
+			if(a.getStudent().getUsername().equals(am.getApplication(c).getStudent().getUsername()) && a.getJobs().toString().equals(am.getApplication(c).getJobs().toString())) {
 				am.getApplication(c).setOfferAccepted(accepted);
 				PersistenceXStream.setFilename(filename);
 				PersistenceXStream.saveToXMLwithXStream(am);

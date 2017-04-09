@@ -159,7 +159,7 @@ public class ProfileController {
 	
 	public void offerJobToStudent(Student s, Job j) {
 		for(int c = 0; c < pm.getStudents().size(); c++) {
-			if(pm.getStudent(c).getId() == s.getId()) {
+			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
 				pm.getStudent(c).addJob(j);
 				break;
 			}

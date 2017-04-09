@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="shadow" name="CourseControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T03:18:04">
+<testsuite errors="1" failures="0" hostname="vandelay" name="CourseControllerTest" skipped="0" tests="1" time="0.0" timestamp="2017-04-09T14:06:23">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="env.MOZ_PLUGIN_PATH" value="/usr/lib/mozilla/plugins" />
     <property name="persistence.dir" value="/home/harwiltz/.tamas/output" />
+    <property name="swing.aatext" value="true" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
     <property name="os.name" value="Linux" />
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk/jre/classes" />
-    <property name="env.PWD" value="/home/harwiltz/Skunkworks/ECSE321/Group10/APP" />
+    <property name="env.PWD" value="/home/harwiltz/Skunkworks/ECSE321/Project/Group10/APP" />
     <property name="env.LANG" value="en_US.UTF-8" />
-    <property name="env.LESS" value="-R" />
     <property name="java.vm.specification.vendor" value="Oracle Corporation" />
     <property name="ant.home" value="/usr/share/apache-ant" />
     <property name="java.runtime.version" value="1.8.0_121-b13" />
@@ -18,9 +18,9 @@
     <property name="env.DISPLAY" value=":0" />
     <property name="user.name" value="harwiltz" />
     <property name="env.USER" value="harwiltz" />
-    <property name="env.SHELL" value="/bin/zsh" />
+    <property name="env.SHELL" value="/usr/bin/zsh" />
     <property name="env.NLSPATH" value="/usr/dt/lib/nls/msg/%L/%N.cat" />
-    <property name="env.PATH" value="/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/harwiltz/altera/13.0/quartus/bin:/home/harwiltz/altera/13.0/modelsim_ase/bin" />
+    <property name="env.PATH" value="/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/opt/android-sdk/tools/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl" />
     <property name="user.language" value="en" />
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/amd64" />
     <property name="ant.project.default-target" value="build" />
@@ -38,19 +38,19 @@
     <property name="file.separator" value="/" />
     <property name="java.specification.name" value="Java Platform API Specification" />
     <property name="java.class.version" value="52.0" />
+    <property name="env.MPD_HOST" value="127.0.0.1" />
     <property name="user.country" value="US" />
-    <property name="env.GRADLE_HOME" value="/usr/share/java/gradle" />
     <property name="java.home" value="/usr/lib/jvm/java-8-openjdk/jre" />
     <property name="env.ANDROID_HOME" value="/opt/android-sdk" />
     <property name="java.vm.info" value="mixed mode" />
     <property name="env.LOGNAME" value="harwiltz" />
-    <property name="ant.file" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Group10/APP/build.xml" />
-    <property name="os.version" value="4.8.13-1-ARCH" />
+    <property name="ant.file" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/build.xml" />
+    <property name="os.version" value="4.10.6-1-ARCH" />
     <property name="ant.file.type.TAMAS" value="file" />
     <property name="path.separator" value=":" />
     <property name="java.vm.version" value="25.121-b13" />
     <property name="ant.library.dir" value="/usr/share/apache-ant/lib" />
-    <property name="ant.file.TAMAS" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Group10/APP/build.xml" />
+    <property name="ant.file.TAMAS" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP/build.xml" />
     <property name="junit.output.dir" value="Desktop/TAMAS/junit" />
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="env.TERM" value="xterm-termite" />
@@ -59,48 +59,50 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="user.home" value="/home/harwiltz" />
     <property name="target" value="1.7" />
-    <property name="env.OLDPWD" value="/home/harwiltz/Skunkworks/ECSE321/Group10" />
+    <property name="env.OLDPWD" value="/home/harwiltz/Skunkworks/ECSE321/Project/Group10" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
     <property name="env.VTE_VERSION" value="4601" />
-    <property name="env.WINDOWID" value="31457283" />
+    <property name="env.WINDOWID" value="16777219" />
     <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib" />
     <property name="java.vendor.url" value="http://java.oracle.com/" />
     <property name="env.XDG_SEAT" value="seat0" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
     <property name="sun.java.command" value="org.apache.tools.ant.launch.Launcher -cp  TAMAS" />
-    <property name="java.class.path" value="/usr/share/apache-ant/lib/ant-launcher.jar:/usr/share/java/junit.jar:/usr/share/apache-ant/lib/ant-junit4.jar:/usr/share/apache-ant/lib/ant-swing.jar:/usr/share/apache-ant/lib/ant-testutil.jar:/usr/share/apache-ant/lib/ant-apache-oro.jar:/usr/share/apache-ant/lib/ant-jdepend.jar:/usr/share/apache-ant/lib/ant-netrexx.jar:/usr/share/apache-ant/lib/ant-apache-bsf.jar:/usr/share/apache-ant/lib/ant-apache-resolver.jar:/usr/share/apache-ant/lib/ant-apache-bcel.jar:/usr/share/apache-ant/lib/ant-junit.jar:/usr/share/apache-ant/lib/ant-commons-net.jar:/usr/share/apache-ant/lib/ant-commons-logging.jar:/usr/share/apache-ant/lib/ant-javamail.jar:/usr/share/apache-ant/lib/ant-apache-log4j.jar:/usr/share/apache-ant/lib/ant-jsch.jar:/usr/share/apache-ant/lib/ant.jar:/usr/share/apache-ant/lib/ant-jai.jar:/usr/share/apache-ant/lib/ant-jmf.jar:/usr/share/apache-ant/lib/ant-launcher.jar:/usr/share/apache-ant/lib/ant-antlr.jar:/usr/share/apache-ant/lib/ant-apache-xalan2.jar:/usr/share/apache-ant/lib/ant-apache-regexp.jar:/usr/lib/jvm/java-8-openjdk/lib/tools.jar" />
+    <property name="java.class.path" value="/usr/share/apache-ant/lib/ant-launcher.jar:/usr/share/java/junit.jar:/usr/share/apache-ant/lib/ant-commons-logging.jar:/usr/share/apache-ant/lib/ant-jsch.jar:/usr/share/apache-ant/lib/ant-apache-oro.jar:/usr/share/apache-ant/lib/ant-launcher.jar:/usr/share/apache-ant/lib/ant-swing.jar:/usr/share/apache-ant/lib/ant-apache-regexp.jar:/usr/share/apache-ant/lib/ant-apache-resolver.jar:/usr/share/apache-ant/lib/ant-jai.jar:/usr/share/apache-ant/lib/ant-junit4.jar:/usr/share/apache-ant/lib/ant-junit.jar:/usr/share/apache-ant/lib/ant-apache-xalan2.jar:/usr/share/apache-ant/lib/ant-testutil.jar:/usr/share/apache-ant/lib/ant.jar:/usr/share/apache-ant/lib/ant-apache-bcel.jar:/usr/share/apache-ant/lib/ant-apache-log4j.jar:/usr/share/apache-ant/lib/ant-apache-bsf.jar:/usr/share/apache-ant/lib/ant-jdepend.jar:/usr/share/apache-ant/lib/ant-antlr.jar:/usr/share/apache-ant/lib/ant-jmf.jar:/usr/share/apache-ant/lib/ant-netrexx.jar:/usr/share/apache-ant/lib/ant-commons-net.jar:/usr/share/apache-ant/lib/ant-javamail.jar:/usr/lib/jvm/java-8-openjdk/lib/tools.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 24 2016" />
     <property name="env.XDG_SESSION_ID" value="c1" />
     <property name="env.XFILESEARCHPATH" value="/usr/dt/app-defaults/%L/Dt" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
     <property name="ant.file.type" value="file" />
     <property name="java.vm.specification.version" value="1.8" />
-    <property name="sun.cpu.endian" value="little" />
     <property name="sun.os.patch.level" value="unknown" />
+    <property name="sun.cpu.endian" value="little" />
     <property name="env.HOME" value="/home/harwiltz" />
     <property name="debuglevel" value="source,lines,vars" />
     <property name="env.ANT_HOME" value="/usr/share/apache-ant" />
-    <property name="env.LS_COLORS" value="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:" />
     <property name="java.io.tmpdir" value="/tmp" />
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
-    <property name="env.MAVEN_OPTS" value="-Xmx512m" />
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
     <property name="os.arch" value="amd64" />
     <property name="env.XDG_RUNTIME_DIR" value="/run/user/1000" />
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk/jre/lib/ext:/usr/java/packages/lib/ext" />
-    <property name="user.dir" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Group10/APP" />
+    <property name="env.FREETYPE_PROPERTIES" value="truetype:interpreter-version=40" />
+    <property name="user.dir" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP" />
+    <property name="awt.useSystemAAFontSettings" value="on" />
+    <property name="env.GTK_MODULES" value="canberra-gtk-module" />
     <property name="line.separator" value="&#xa;" />
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
     <property name="env.COLORTERM" value="truecolor" />
     <property name="env.EDITOR" value="vim" />
-    <property name="basedir" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Group10/APP" />
+    <property name="basedir" value="/home/harwiltz/Harley&apos;s Projects/Intro to Software Engineering/Project/Group10/APP" />
     <property name="ant.java.version" value="1.8" />
     <property name="ant.core.lib" value="/usr/share/apache-ant/lib/ant.jar" />
     <property name="env.LOCALCLASSPATH" value="/usr/share/apache-ant/lib/ant-launcher.jar:/usr/share/java/junit.jar" />
     <property name="source" value="1.7" />
     <property name="env.MAIL" value="/var/spool/mail/harwiltz" />
     <property name="file.encoding" value="UTF-8" />
+    <property name="env._JAVA_OPTIONS" value="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true" />
     <property name="java.specification.version" value="1.8" />
     <property name="ant.project.invoked-targets" value="TAMAS" />
   </properties>

@@ -10,12 +10,14 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -28,9 +30,11 @@ import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
 import ca.mcgill.ecse321.group10.controller.ProfileController;
+import widgets.ThemedCheckBox;
 import widgets.ThemedLabel;
 import widgets.ThemedList;
 import widgets.ThemedPanel;
+import widgets.ThemedTextArea;
 
 public class HireView extends JFrame{
 	
@@ -50,6 +54,11 @@ public class HireView extends JFrame{
 	private JScrollPane othersScroller;
 	private JButton hireButton;
 	private JButton hireAllButton;
+	
+	private JTextArea taSkills;
+	private JLabel lSkills;
+	
+	private JCheckBox checkGrad;
 	
 	private List<Instructor> instructors;
 	private List<Job> jobs;
@@ -76,6 +85,16 @@ public class HireView extends JFrame{
 		othersList = new ThemedList(new String[0]);
 		othersList.setEnabled(false);
 		othersScroller = new JScrollPane(othersList);
+		
+		taSkills = new ThemedTextArea();
+		taSkills.setWrapStyleWord(true);
+		taSkills.setLineWrap(true);
+		taSkills.setRows(10);
+		taSkills.setEditable(false);
+		
+		lSkills = new ThemedLabel("Student Resume");
+		
+		checkGrad = new ThemedCheckBox("Only Grad Students");
 		
 		for(int c = 0; c < am.getJobs().size(); c++) {
 			String curUsername;
@@ -105,9 +124,6 @@ public class HireView extends JFrame{
 		
 		cbInstructor.addActionListener(
 				new java.awt.event.ActionListener() {
-					public void actionPerformedBad(java.awt.event.ActionEvent e) {
-						refreshData();
-					}
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						if(instructor == null) instructor = instructors.get(cbInstructor.getSelectedIndex());
 						jobs.clear();
@@ -123,87 +139,92 @@ public class HireView extends JFrame{
 						}
 						cbJob.setModel(new DefaultComboBoxModel(jobNames));
 						
-						applicants.clear();
-						DefaultListModel model = new DefaultListModel();
-						if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
-							model.addElement("Offer already sent.");
-							applicantList.setModel(model);
-							applicantList.setEnabled(false);
-						}
-						else {
-							for(int c = 0; c < am.getApplications().size(); c++) {
-								//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
-								if(am.getApplication(c).getJobs().toString().equals(jobs.get(cbJob.getSelectedIndex()).toString())) {
-									applicants.add(am.getApplication(c).getStudent());
-									System.out.println("added");
-								}
-							}
-							System.out.println("===");
-							for(int c = 0; c < applicants.size(); c++) {
-								model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName());
-							}
-							applicantList.setModel(model);
-							applicantList.setEnabled(true);
-						}
+						refreshApplicants();
+//						applicants.clear();
+//						DefaultListModel model = new DefaultListModel();
+//						if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
+//							model.addElement("Offer already sent.");
+//							applicantList.setModel(model);
+//							applicantList.setEnabled(false);
+//						}
+//						else {
+//							for(int c = 0; c < am.getApplications().size(); c++) {
+//								//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
+//								if(am.getApplication(c).getJobs().toString().equals(jobs.get(cbJob.getSelectedIndex()).toString())) {
+//									applicants.add(am.getApplication(c).getStudent());
+//									System.out.println("added");
+//								}
+//							}
+//							System.out.println("===");
+//							for(int c = 0; c < applicants.size(); c++) {
+//								model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName() + ": " + applicants.get(c).getDegreeFullName());
+//							}
+//							applicantList.setModel(model);
+//							applicantList.setEnabled(true);
+//						}
 					}
 				}
 		);
 		
 		cbJob.addActionListener(
 				new java.awt.event.ActionListener() {
-					public void actionPerformedBad(java.awt.event.ActionEvent e) {
-						refreshData();
-					}
 					public void actionPerformed(java.awt.event.ActionEvent e) {
-						applicants.clear();
-						DefaultListModel model = new DefaultListModel();
-						if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
-							model.addElement("Offer already sent.");
-							applicantList.setModel(model);
-							applicantList.setEnabled(false);
-						}
-						else {
-							for(int c = 0; c < am.getApplications().size(); c++) {
-								//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
-								if(am.getApplication(c).getJobs().toString().equals(jobs.get(cbJob.getSelectedIndex()).toString())) {
-									applicants.add(am.getApplication(c).getStudent());
-									System.out.println("added");
-								}
-							}
-							System.out.println("===");
-							for(int c = 0; c < applicants.size(); c++) {
-								model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName());
-							}
-							applicantList.setModel(model);
-							applicantList.setEnabled(true);
-						}
+						refreshApplicants();
+//						applicants.clear();
+//						DefaultListModel model = new DefaultListModel();
+//						if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
+//							model.addElement("Offer already sent.");
+//							applicantList.setModel(model);
+//							applicantList.setEnabled(false);
+//						}
+//						else {
+//							for(int c = 0; c < am.getApplications().size(); c++) {
+//								//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
+//								if(am.getApplication(c).getJobs().toString().equals(jobs.get(cbJob.getSelectedIndex()).toString())) {
+//									applicants.add(am.getApplication(c).getStudent());
+//									System.out.println("added");
+//								}
+//							}
+//							System.out.println("===");
+//							for(int c = 0; c < applicants.size(); c++) {
+//								model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName() + ": " + applicants.get(c).getDegreeFullName());
+//							}
+//							applicantList.setModel(model);
+//							applicantList.setEnabled(true);
+//						}
 					}
 				}
 		);
 
-		
+		checkGrad.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				refreshApplicants();
+			}
+		});
+		applicantList = new ThemedList(new String[0]);
 		applicants = new ArrayList<Student>();
+		refreshApplicants();
 		boolean initSent = false;
-		DefaultListModel model = new DefaultListModel();
-		if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
-			model.addElement("Offer already sent.");
-			initSent = true;
-		}
-		else {
-			for(int c = 0; c < am.getApplications().size(); c++) {
-				//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
-				if(am.getApplication(c).getJobs().toString().equals(am.getJob(cbJob.getSelectedIndex()).toString())) {
-					applicants.add(am.getApplication(c).getStudent());
-					System.out.println("added");
-				}
-			}
-			System.out.println("===");
-			for(int c = 0; c < applicants.size(); c++) {
-				model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName());
-			}
-		}
+//		DefaultListModel model = new DefaultListModel();
+//		if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
+//			model.addElement("Offer already sent.");
+//			initSent = true;
+//		}
+//		else {
+//			for(int c = 0; c < am.getApplications().size(); c++) {
+//				//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
+//				if(am.getApplication(c).getJobs().toString().equals(am.getJob(cbJob.getSelectedIndex()).toString())) {
+//					applicants.add(am.getApplication(c).getStudent());
+//					System.out.println("added");
+//				}
+//			}
+//			System.out.println("===");
+//			for(int c = 0; c < applicants.size(); c++) {
+//				model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName() + ": " + applicants.get(c).getDegreeFullName());
+//			}
+//		}
 		
-		applicantList = new ThemedList(model);
+		//applicantList = new ThemedList(model);
 		if(initSent) applicantList.setEnabled(false);
 		applicantList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		applicantList.setLayoutOrientation(JList.VERTICAL);
@@ -237,8 +258,12 @@ public class HireView extends JFrame{
 
 		JPanel panel = new ThemedPanel();
 		JPanel buttonPanel = new ThemedPanel();
+		JPanel checkboxPanel = new ThemedPanel();
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		buttonPanel.setLayout(new FlowLayout());
+		checkboxPanel.setLayout(new FlowLayout());
+		checkboxPanel.add(lApplicant);
+		checkboxPanel.add(checkGrad);
 		panel.add(message);
 		if(instructor == null) {
 			panel.add(lInstructor);
@@ -246,8 +271,10 @@ public class HireView extends JFrame{
 		}
 		panel.add(lJob);
 		panel.add(cbJob);
-		panel.add(lApplicant);
+		panel.add(checkboxPanel);
 		panel.add(applicantScroller);
+		panel.add(lSkills);
+		panel.add(taSkills);
 		panel.add(lOthers);
 		panel.add(othersScroller);
 		buttonPanel.add(hireButton);
@@ -265,6 +292,9 @@ public class HireView extends JFrame{
 		hireButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 		hireAllButton.setAlignmentX(Component.LEFT_ALIGNMENT);	
 		buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		checkboxPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		lSkills.setAlignmentX(Component.LEFT_ALIGNMENT);
+		taSkills.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(panel);
 		//this.setVisible(true);
 		this.setMinimumSize(new Dimension(200,400));
@@ -318,6 +348,7 @@ public class HireView extends JFrame{
 		else {
 			//jobs.get(cbJob.getSelectedIndex()).setOfferSent(true);
 			Student s = applicants.get(applicantList.getSelectedIndex());
+			System.out.println(s.getUsername());
 			//new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME).persist();
 			//for(int c = 0; c < pm.getStudents().size(); c++) {
 		//		if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
@@ -361,7 +392,38 @@ public class HireView extends JFrame{
 			otherJobNames.addElement(j.getCourse().getClassName() + " " + j.getPositionFullName() + " " + j.getDay());
 		}
 		othersList.setModel(otherJobNames);
-		pack();
+		if(s.getExperience() != null) taSkills.setText(s.getExperience());
+		else taSkills.setText("");
+		//pack();
+	}
+	
+	private void refreshApplicants() {
+		applicants.clear();
+		DefaultListModel model = new DefaultListModel();
+		if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
+			model.addElement("Offer already sent.");
+			applicantList.setModel(model);
+			applicantList.setEnabled(false);
+		}
+		else {
+			for(int c = 0; c < am.getApplications().size(); c++) {
+				//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
+				if(am.getApplication(c).getJobs().toString().equals(jobs.get(cbJob.getSelectedIndex()).toString())) {
+					if(checkGrad.isSelected() && am.getApplication(c).getStudent().getDegree() == Student.Degree.GRADUATE) {
+						applicants.add(am.getApplication(c).getStudent());
+					}
+					else if(!checkGrad.isSelected()) applicants.add(am.getApplication(c).getStudent());
+				}
+			}
+			System.out.println("===");
+			for(int c = 0; c < applicants.size(); c++) {
+				model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName() + ": " + applicants.get(c).getDegreeFullName());
+			}
+			applicantList.setModel(model);
+			applicantList.setEnabled(true);
+		}
+		//hireButton.setMinimumSize(new Dimension(this.getWidth(),40));
+		//pack();
 	}
 	
 	private void refreshData() {
@@ -379,29 +441,6 @@ public class HireView extends JFrame{
 		}
 		cbJob.setModel(new DefaultComboBoxModel(jobNames));
 		
-		applicants.clear();
-		DefaultListModel model = new DefaultListModel();
-		if(jobs.get(cbJob.getSelectedIndex()).getOfferSent()){
-			model.addElement("Offer already sent.");
-			applicantList.setModel(model);
-			applicantList.setEnabled(false);
-		}
-		else {
-			for(int c = 0; c < am.getApplications().size(); c++) {
-				//System.out.println(am.getApplication(c).getJobs().toString() + "====" + am.getJob(cbJob.getSelectedIndex()).toString());
-				if(am.getApplication(c).getJobs().toString().equals(jobs.get(cbJob.getSelectedIndex()).toString())) {
-					applicants.add(am.getApplication(c).getStudent());
-					System.out.println("added");
-				}
-			}
-			System.out.println("===");
-			for(int c = 0; c < applicants.size(); c++) {
-				model.addElement(applicants.get(c).getFirstName() + " " + applicants.get(c).getLastName());
-			}
-			applicantList.setModel(model);
-			applicantList.setEnabled(true);
-		}
-		hireButton.setMinimumSize(new Dimension(this.getWidth(),40));
-		pack();
+		refreshApplicants();
 	}
 }
