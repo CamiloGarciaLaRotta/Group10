@@ -81,6 +81,7 @@ function updateBudget(cdn) {
 
 // retrieve and display applications for a given course
 function updateApplications(cdn){
+	console.log(cdn)
 	// clear all fields
 	$('#applicationID').empty();
 	$('#studentName').html("");
@@ -146,7 +147,7 @@ $(function() {
 	}
 	// only update application info if on application page
 	if($('main').hasClass('application')) {
-		updateApplications(cdn);
+		updateApplications($('#courseCDN').val());
 		$('#evaluation').prop('disabled', true);
 	}
 	handleEvents();

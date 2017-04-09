@@ -16,9 +16,6 @@
 	$timezone = date_default_timezone_set('America/New_York');
 	
 	require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-	require_once __DIR__.'\..\Model\ProfileManager.php';
-	require_once __DIR__.'\..\Model\Profile.php';
-	require_once __DIR__.'\..\Model\Instructor.php';
 	require_once __DIR__.'\..\Model\CourseManager.php';
 	require_once __DIR__.'\..\Model\Course.php';
 	
@@ -26,7 +23,6 @@
 	
 	//Retrieve the data from the model
 	$pt = new PersistenceTAMAS();
-	$pm = $pt->loadProfileManagerFromStore();
 	$cm = $pt->loadCourseManagerFromStore();
 	?>
 	<body 

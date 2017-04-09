@@ -16,21 +16,16 @@
 	$timezone = date_default_timezone_set('America/New_York');
 	
 	require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-	require_once __DIR__.'\..\Model\ApplicationManager.php';
-	require_once __DIR__.'\..\Model\Application.php';
 	require_once __DIR__.'\..\Model\ProfileManager.php';
 	require_once __DIR__.'\..\Model\Profile.php';
 	require_once __DIR__.'\..\Model\Instructor.php';
-	require_once __DIR__.'\..\Model\CourseManager.php';
 	require_once __DIR__.'\..\Model\Course.php';
 	
 	session_start();
 	
 	//Retrieve the data from the model
 	$pt = new PersistenceTAMAS();
-	$am = $pt->loadApplicationManagerFromStore();
 	$pm = $pt->loadProfileManagerFromStore();
-	$cm = $pt->loadCourseManagerFromStore();
 	$profile = null;
 	
 	// gather instance of current logged in profile

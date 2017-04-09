@@ -9,7 +9,6 @@ $ac = new ApplicationController();
 $_SESSION['errorHire'] = "";
 $_SESSION['successHire'] = "";
 		
-echo $_POST['manageApp'];
 if($_POST['manageApp'] == 'Hire'){
 	try{
 		$id = (isset($_POST['application'])) ?  $_POST['application'] : "";
