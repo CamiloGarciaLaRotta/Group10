@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__.'\ApplicationController.php';
 
+// validation script for job creation
+
 session_start();
 
 $ac =new ApplicationController();
 
-// Different actions depending on the origin form
 try {
 
 	$_SESSION['errorJob'] = "";

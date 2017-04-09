@@ -141,26 +141,7 @@ class ProfileController{
 		$lName = InputValidator::validate_input($aLastName);
 		$oldPass = InputValidator::validate_input($anOldPassword);
 		$newPass = InputValidator::validate_input($aNewPassword);
-		
-// 		if((strcmp($fName,"XXX") != 0) && $fName==null || strlen($fName) == 0){
-// 			$error .= ("First name name cannot be empty!<br><br>");
-// 		}
-// 		if($lName != "XXX" && $lName==null || strlen($lName) == 0){
-// 			$error .= ("Last name name cannot be empty!<br><br>");
-// 		}
-// 		if($oldPass != "XXX" && $oldPass==null || strlen($oldPass) == 0){
-// 			$error .= ("Old Password name cannot be empty!<br><br>");
-// 		}
-// 		if($newPass1 != "XXX" && $newPass1==null || strlen($newPass1) == 0){
-// 			$error .= ("First New Password name cannot be empty!<br><br>");
-// 		}
-// 		if($newPass2 != "XXX" && $newPass2==null || strlen($newPass2) == 0){
-// 			$error .= ("Password name cannot be empty!<br><br>");
-// 		}
-// 		if($newPass1 != $newPass2){
-// 			$error .= ("New Passwords don't match!<br><br>");
-// 		}
-		
+
 		if($uName == "admin" && $pass == "admin") {
 			// Do nothing for admin
 		} else {

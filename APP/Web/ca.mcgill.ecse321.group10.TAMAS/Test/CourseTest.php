@@ -36,7 +36,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = 1200;
 		$graderTime = 50;
 		$TATime = 50;
-		$labTime = 0;
+		$labTime = 64;
 		
 		try {
 			$this->cc->createCourse($className, $CDN, $graderTime, $TATime, $labTime);
@@ -58,10 +58,10 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = 800;
 		$graderTime = 60;
 		$TATime = 70;
-		$labTime = 10;
+		$labTime = 50;
 		
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime, $labTime);
 		} catch(Exception $e) {
 			echo $e->getMessage();
 			$this->fail();
@@ -73,8 +73,8 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($className, $this->cm->getCourse_index(1)->getClassName());
 		$this->assertEquals($CDN, $this->cm->getCourse_index(1)->getCdn());
 		$this->assertEquals($graderTime, $this->cm->getCourse_index(1)->getGraderBudget());
-		$this->assertEquals($TATime, $this->cm->getCourse_index(1)->getTaBudget());
-		$this->assertEquals($labTime, $this->cm->getCourse_index(0)->getLabBudget());
+		$this->assertEquals($TATime, $this->cm->getCourse_index(1)->getTutorialBudget());
+		$this->assertEquals($labTime, $this->cm->getCourse_index(1)->getLabBudget());
 		
 	}
 	
@@ -85,9 +85,9 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 	
 		$className = "   ";
 		$CDN = 999;
-		$graderTime = 99;
+		$graderTime = 64;
 		$TATime = 49;
-		$labTime = 20;
+		$labTime = 50;
 		$error = "";
 	
 		// validate empty course name
@@ -110,7 +110,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		}
 		$this->assertEquals("CDN must be a non null Integer!<br><br>", $error);
 	
-		// validate negativie time
+		// validate negative grader time
 		$CDN = 1234;
 		$graderTime = -99;
 	
@@ -121,10 +121,21 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		}
 		$this->assertEquals("Time budget must be a positive Integer!<br><br>Time budget must be at least 45 hours/semester!<br><br>", $error);
 	
-		// validate negativie time
+		// validate negative tutorial time
 		$graderTime = 99;
 		$TATime = -9;
 	
+		try {
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
+		} catch(Exception $e) {
+			$error =  $e->getMessage();
+		}
+		$this->assertEquals("Time budget must be a positive Integer!<br><br>Time budget must be at least 45 hours/semester!<br><br>", $error);
+		
+		// validate negative lab time
+		$TaTime = 99;
+		$labTime = -9;
+		
 		try {
 			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		} catch(Exception $e) {
@@ -142,9 +153,10 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = 1200;
 		$graderTime = 90;
 		$TATime = 100;
+		$labTime = 49;
 	
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 			$this->cc->deleteCourse($CDN);
 		} catch(Exception $e) {
 			echo $e->getMessage();
@@ -180,8 +192,9 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		$CDN = 999;
 		$graderTime = 99;
 		$TATime = 69;
+		$labTime = 72;
 		
-		$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+		$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		
 		$className = "COMP 251";
 		$CDN = 999;
@@ -192,7 +205,7 @@ class CourseTest extends PHPUnit_Framework_TestCase {
 		
 		// validate empty course name
 		try {
-			$this->cc->createCourse($className, $CDN, $graderTime, $TATime);
+			$this->cc->createCourse($className, $CDN, $graderTime, $TATime,$labTime);
 		} catch(Exception $e) {
 			$error =  $e->getMessage();
 		}

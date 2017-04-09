@@ -13,16 +13,9 @@
 	</head>
 	<?php
 	$timezone = date_default_timezone_set('America/New_York');
-	
-	require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-	require_once __DIR__.'\..\Model\CourseManager.php';
-	require_once __DIR__.'\..\Model\Course.php';
-	
+		
 	session_start();
 	
-	//Retrieve the data from the model
-	$pt = new PersistenceTAMAS();
-	$cm = $pt->loadCourseManagerFromStore();
 	?>
 	<body 
 	<?php if(isset($_SESSION['dark'])) {

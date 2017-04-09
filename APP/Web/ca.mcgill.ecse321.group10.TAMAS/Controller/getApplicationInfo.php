@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__.'\ApplicationController.php';
 
+// getter script for application information
+
 $ac = new ApplicationController();
 
 if(isset($_POST['cdn'])){
@@ -10,5 +12,4 @@ if(isset($_POST['cdn'])){
 	// retrieve information of input application
 	echo $ac->getApplicationInfo($_POST['id']); 
 }
-
 ?>

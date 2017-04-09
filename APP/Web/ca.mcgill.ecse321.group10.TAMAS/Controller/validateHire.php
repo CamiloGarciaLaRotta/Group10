@@ -2,6 +2,8 @@
 require_once __DIR__.'\.\InputValidator.php';
 require_once __DIR__.'\.\applicationController.php';
 
+// validation script for hiring form
+
 session_start();
 
 $ac = new ApplicationController();
@@ -9,7 +11,6 @@ $ac = new ApplicationController();
 $_SESSION['errorHire'] = "";
 $_SESSION['successHire'] = "";
 		
-echo $_POST['manageApp'];
 if($_POST['manageApp'] == 'Hire'){
 	try{
 		$id = (isset($_POST['application'])) ?  $_POST['application'] : "";

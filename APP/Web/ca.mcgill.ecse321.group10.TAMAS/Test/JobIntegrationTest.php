@@ -57,10 +57,11 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		//make a valid course
 		$courseName = "Math 363";
 		$CDN = 5450;
-		$graderTimeBudget = 40;
+		$graderTimeBudget = 46;
 		$TATimeBudget = 60;
+		$labTimeBudget = 75;
 		
-		$this->cc->createCourse($courseName,$CDN,$graderTimeBudget,$TATimeBudget);
+		$this->cc->createCourse($courseName,$CDN,$graderTimeBudget,$TATimeBudget,$labTimeBudget);
 		
 		//make a valid instructor
 		$uName = "TRam";
@@ -135,7 +136,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		$error="";
 		
 		//create valid course
-		$this->cc->createCourse("ECSE 489",489,30,30);
+		$this->cc->createCourse("ECSE 489",489,50,50,50);
 		
 		//make the job, catch the error that should be thrown
 		try{
@@ -152,7 +153,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 		$error="";
 	
 		//create valid course
-		$this->cc->createCourse("ECSE 489",489,30,30);
+		$this->cc->createCourse("ECSE 489",489,60,60,60);
 		
 		//make a valid instructor
 		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo", array([489]));
@@ -181,7 +182,7 @@ class JobIntegrationTest extends PHPUnit_Framework_TestCase {
 	public function testCreateJobInvalidSalary(){
 		
 		//create valid course
-		$this->cc->createCourse("ECSE 489",489,30,30);
+		$this->cc->createCourse("ECSE 489",489, 80,80,80);
 		
 		//make a valid instructor
 		$this->pc->createInstructor("TRam","123", "Tony", "Ramundo", array([489]));

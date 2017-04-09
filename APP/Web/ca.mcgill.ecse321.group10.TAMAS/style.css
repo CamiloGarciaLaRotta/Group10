@@ -83,10 +83,10 @@ textarea {
 /* PAGE SPECIFIC CSS */
 /* specific height of main container for different pages */
 .course{
-	height: 400px;
+	height: 525px;
 }
 .instructor{
-	height: 530px;
+	height: 550px;
 }
 .job{
 	height: 625px;

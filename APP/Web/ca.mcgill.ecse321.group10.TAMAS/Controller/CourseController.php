@@ -4,11 +4,9 @@ require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
 require_once __DIR__.'\..\Model\ApplicationManager.php';
 require_once __DIR__.'\..\Model\Application.php';
 require_once __DIR__.'\..\Model\Job.php';
-require_once __DIR__.'\..\Model\ProfileManager.php';
-require_once __DIR__.'\..\Model\Profile.php';
-require_once __DIR__.'\..\Model\Instructor.php';
 require_once __DIR__.'\..\Model\CourseManager.php';
 require_once __DIR__.'\..\Model\Course.php';
+
 /**
  *Controller for courses, handles creation, deletion and retrieving time data
  */
@@ -33,6 +31,7 @@ class CourseController{
 	 * @param unknown $CDN				The unique course identification number.	
 	 * @param unknown $graderTimeBudget	The total amount of time allocated to graders.
 	 * @param unknown $TATimeBudget		The total amount of time allocated to teaching assistants.
+	 * @param unknown $labTimeBudget	The total amount of time allocated to lab assistants.
 	 * @throws Exception
 	 */
 	public function createCourse($course_name, $CDN, $graderTimeBudget, 
