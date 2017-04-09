@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build-desktop" name="TAMAS">
+    <project basedir="." default="build-desktop" name="TAMAS">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
@@ -15,7 +10,16 @@
 	<property name="bin.desktop" value="Desktop/TAMAS/bin"/>
 	<property name="test.web" value="Web/ca.mcgill.ecse321.group10.TAMAS/Test"/>
 	<property name="phpunit.output.dir" value="Web/ca.mcgill.ecse321.group10.TAMAS/phpunit"/>
+	<property name="jar-dir" value="Desktop/TAMAS"/>
 
+	<!-- PLEASE CHANGE THESE PATHS TO ACCOMODATE YOUR PC -->
+	<property name="phpunit" value="/usr/bin/phpunit"/>
+	<property name="xampp.dir" value="/opt/lampp"/>
+    <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
+	<property name="chrome" value="/usr/bin/google-chrome-stable"/>
+	<!-- End of paths to change -->
+
+	<!-- DESKTOP TARGETS -->
     <path id="JUnit 4.libraryclasspath">
         <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
@@ -34,17 +38,17 @@
 		<mkdir dir="Desktop/TAMAS/output"/>
 		<mkdir dir="${persistence.dir}"/>
 		<mkdir dir="Desktop/TAMAS/junit"/>
-        <copy includeemptydirs="false" todir="bin">
+		<copy includeemptydirs="false" todir="Desktop/TAMAS/bin">
 			<fileset dir="Desktop/TAMAS/src">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
-        <copy includeemptydirs="false" todir="bin">
+		<copy includeemptydirs="false" todir="Desktop/TAMAS/bin">
 			<fileset dir="Desktop/TAMAS/Integration Tests">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
-        <copy includeemptydirs="false" todir="bin">
+		<copy includeemptydirs="false" todir="Desktop/TAMAS/bin">
 			<fileset dir="Desktop/TAMAS/test">
                 <exclude name="**/*.java"/>
             </fileset>
@@ -116,6 +120,15 @@
 		</junit>
 	</target>
 
+	<target name="export-desktop" depends="test-desktop" description="create an executable JAR file for the project">
+		<jar destfile="${jar-dir}/${ant.project.name}.jar" basedir="Desktop/TAMAS/bin">
+			<manifest>
+				<attribute name="Main-Class" value="ca.mcgill.ecse321.group10.application.TAMAS"/>
+			</manifest>
+			<zipgroupfileset dir="Desktop/TAMAS/lib" includes="*.jar"/>
+		</jar>
+	</target>
+
 	<target name="backupxml">
 		<mkdir dir="Desktop/TAMAS/.output"/>
 		<copy file="Desktop/TAMAS/output/applications.xml" todir="Desktop/TAMAS/.output"/>
@@ -123,7 +136,9 @@
 		<copy file="Desktop/TAMAS/output/courses.xml" todir="Desktop/TAMAS/.output"/>
 		<copy file="Desktop/TAMAS/output/constants.xml" todir="Desktop/TAMAS/.output"/>
 	</target>
+	<!-- End desktop targets -->
 
+	<!-- PHP TARGETS -->
 	<target name="init-web">
 		<mkdir dir="${phpunit.output.dir}"/>
 	</target>
@@ -133,7 +148,7 @@
 	</target>
 
 	<target name="test-web" depends="init-web">
-		<exec executable="/usr/bin/phpunit" failonerror="false">
+		<exec executable="${phpunit}" failonerror="false">
 			<arg value="--log-junit"/>
 			<arg path="${phpunit.output.dir}/phpunit.xml"/>
 			<arg path="${test.web}"/>
@@ -141,15 +156,38 @@
 	</target>
 
 	<target name="run-web" depends="test-web">
-		<copy todir="/opt/lampp/htdocs">
+		<copy todir="${xampp.dir}/htdocs">
 			<fileset dir="Web/ca.mcgill.ecse321.group10.TAMAS"/>
 		</copy>
-		<exec executable="/opt/lampp/xampp">
+		<exec executable="${xampp.dir}/xampp">
 			<arg value="start"/>
 		</exec>
-		<exec executable="/usr/bin/google-chrome-stable">
+		<exec executable="${chrome}">
 			<arg value="localhost/ca.mcgill.ecse321.group10.TAMAS/index.php"/>
 			<arg value="--no-sandbox"/>
+		</exec>
+	</target>
+
+	<target name="export-web" depends="test-web">
+		<zip destfile="Web/TAMAS-Web.zip" basedir="Web/ca.mcgill.ecse321.group10.TAMAS" excludes="TAMAS.ump,Test/*,test.php" update="true"/>
+	</target>
+	<!-- End php targets -->
+
+	<!-- MOBILE TARGETS -->
+	<target name="export-mobile">
+		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile/MOBILE/gradlew">
+			<arg value="assembleDebug"/>
+			<arg value="-p"/>
+			<arg path="Mobile/MOBILE"/>
+		</exec>
+	</target>
+	<target name="install-mobile" description="Install apk to connected phone or running emulator">
+		<chmod file="Mobile/MOBILE/gradlew" perm="ugo+rx"/>
+		<exec executable="Mobile/MOBILE/gradlew">
+			<arg value="installDebug"/>
+			<arg value="-p"/>
+			<arg path="Mobile/MOBILE"/>
 		</exec>
 	</target>
 </project>

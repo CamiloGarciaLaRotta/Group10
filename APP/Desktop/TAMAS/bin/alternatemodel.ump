@@ -1,0 +1,149 @@
+namespace ca.mcgill.ecse321.group10.TAMAS.model;
+
+class Course {
+  className;
+  immutable Integer cdn;
+  Float graderBudget;
+  Float tutorialBudget;
+  Float labBudget;
+  1 <@>- * Job jobs;
+  }
+
+class Job{
+  autounique id;
+  Float hours;
+  day;
+  position {
+	  TUTORIAL{}
+	  LABORATORY{}
+	  GRADER{}
+  }
+  immutable double salary;
+  immutable requirements;
+  lazy Boolean offerSent;
+}
+
+class Tutorial {
+  isA Job;
+}
+
+class Laboratory {
+  isA Job;
+}
+
+class Instructor {
+  isA Profile;
+  * -> * Course courses;
+  * -> * Application applications;
+  1 -- * Job jobs;
+}
+
+class Student {
+  isA Profile;
+  lazy Float hoursLeft;
+  experience;
+  degree { // enum, wont show in diagram, shows in code
+    UNDERGRAD{}
+    GRADUATE{}
+  }
+  0..1 -> * Job jobs;
+}
+
+class Profile {
+  autounique id; // either student or employee ID, for the securities yo
+  username;
+  password;
+  firstName;
+  lastName;
+}
+
+class Application {
+  autounique id;
+  lazy studentEvaluation;
+  *-<@> 1 Student student;
+  *-<@> 1 Job jobs;
+  lazy Boolean offerAccepted;
+}
+
+class ApplicationManager {
+	0..1 -> * Application applications;
+	0..1 -> * Job jobs;
+}
+
+class ProfileManager {
+	0..1 -> * Student students;
+	0..1 -> * Instructor instructors;
+	0..1 -> * Admin admins;
+}
+
+class CourseManager {
+	0..1 -> * Course courses;
+}
+
+// unsure if class should create instances of Intrsuctor/Student
+// or rather have all the methods of Instructor/Student
+class Admin{
+  isA Profile;
+  * -> * Instructor intructors;
+  * -> * Student students;
+}//$?[End_of_model]$?
+
+class Course
+{
+  position 62 177 190 107;
+  position.association Course__Job:timeslots 39,107 30,0;
+}
+
+class Job
+{
+  position 96 384 130 74;
+}
+
+class Tutorial
+{
+  position 218 540 109 45;
+}
+
+class Laboratory
+{
+  position 38 534 109 45;
+}
+
+class Instructor
+{
+  position 325 262 109 45;
+  position.association Instructor__Job:jobs 110,9 0,10;
+  position.association Course:courses__Instructor 0,4 190,98;
+  position.association Application:applications__Instructor 14,45 27,0;
+}
+
+class Student
+{
+  position 635 240 147 57;
+  position.association Job:jobs__Student 0,53 30,0;
+}
+
+class Profile
+{
+  position 477 20 141 125;
+}
+
+class Job
+{
+  position 458 485 163 107;
+  position.association Course:course__Job 0,10 190,74;
+}
+
+class Application
+{
+  position 622 370 148 74;
+  position.association Application__Job:jobs 125,74 62,0;
+  position.association Application__Student:student 30,0 6,57;
+}
+
+class Admin
+{
+  position 506 267 109 45;
+  position.association Admin__Student:students 110,21 0,53;
+  position.association Admin__Instructor:intructors 0,10 110,10;
+}
