@@ -1,10 +1,13 @@
 package ca.mcgill.ecse321.group10.tamas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.sql.Time;
 
@@ -20,14 +23,26 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button = null;
-
-    String rootPath;
+    TextView userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userInfo = (TextView) findViewById(R.id.currentUser);
+        if (((TAMAS) this.getApplication()).getStudent() == null){
+            Context userInfoContext = findViewById(R.id.userInfo).getContext();
+            userInfo.setTextColor(ContextCompat.getColor(userInfoContext,R.color.errorColor));
+            userInfo.setText("Please log in to use Tamas");
+            userInfo.setTextSize(18);;
+        }
+        else{
+            String username = ((TAMAS) this.getApplication()).getStudent().getUsername();
+            String greeting = "Hello " + username;
+            userInfo.setText(greeting);
+        }
+
+
     }
 
     public void createJobAppClicked(View v){

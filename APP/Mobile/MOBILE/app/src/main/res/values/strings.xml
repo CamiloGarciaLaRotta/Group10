@@ -25,7 +25,7 @@
     </string>
     <string name="title_activity_testlogin">Sign in</string>
 
-    <!-- Strings related to Login -->
+    <!-- Strings related to Modify Profile -->
     <string name="prompt_email">Email</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="back">back</string>
@@ -35,4 +35,11 @@
     <string name="view_your_evaluations">View your Evaluations</string>
     <string name="accept_job_offer">Accept Job Offer</string>
     <string name="no_job_offers_available">No Job Offers Available</string>
+    <string name="apply_changes">Apply Changes</string>
+    <string name="there_was_a_problem_loading_your_profile">There was a problem loading your profile</string>
+    <string name="fields_left_untouched_will_not_be_altered">Fields left untouched will not be altered</string>
+    <string name="enter_new_password">Enter new Password</string>
+    <string name="enter_new_first_name">Enter new First Name</string>
+    <string name="enter_new_last_name">Enter new Last Name</string>
+    <string name="please_log_in_to_use_tamas">Please log in to use Tamas</string>
 </resources>
