@@ -26,7 +26,7 @@
         <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
 		-->
-		<pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}org.junit_4.12.0.v201504281640${file.separator}junit.jar"/>
+		<pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}junit.jar"/>
 		<pathelement location="Desktop${file.separator}TAMAS${file.separator}lib${file.separator}org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
     <path id="TAMAS.classpath">
