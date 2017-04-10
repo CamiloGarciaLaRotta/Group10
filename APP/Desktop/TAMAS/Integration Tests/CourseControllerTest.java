@@ -14,7 +14,7 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 public class CourseControllerTest {
 	private CourseController cc;
 	private CourseManager cm;
-	private static String outputFile = "output"  + File.separator + "testCourseController";
+	private static String outputFile = "testcourses.xml";
 
 
 	@Before

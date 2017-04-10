@@ -13,7 +13,7 @@ import ca.mcgill.ecse321.group10.controller.*;
 public class ProfileControllerTest {
 	private ProfileController pc;
 	private ProfileManager pm;
-	private static String outputFile = "output" + File.separator + "testProfileController";;
+	private static String outputFile = "testprofiles.xml";
 	
 
 	@Before

@@ -100,7 +100,6 @@
 
 	<target name="test-desktop" depends="build-desktop">
 		<echo message=">>>>> STARTING UNIT TESTS..."/>
-		<!--
 		<junit printsummary="yes" haltonfailure="true" fork="yes">
 			<classpath>
 				<path refid="TAMAS.classpath"/>
@@ -111,9 +110,8 @@
 				<fileset dir="Desktop/TAMAS/test" includes="**/*Test*.java" excludes="**/AllTests.java"/>
 			</batchtest>
 		</junit>
-		-->
 		<echo message=">>>>> STARTING INTEGRATION TESTS..."/>
-		<junit printsummary="yes" haltonfailure="false" fork="yes">
+		<junit printsummary="yes" haltonfailure="true" fork="yes">
 			<classpath>
 				<path refid="TAMAS.classpath"/>
 				<pathelement location="Desktop${file.separator}TAMAS${file.separator}bin"/>

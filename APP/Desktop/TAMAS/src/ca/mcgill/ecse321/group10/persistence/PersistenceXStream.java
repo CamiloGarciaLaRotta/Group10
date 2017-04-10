@@ -45,10 +45,9 @@ public abstract class PersistenceXStream {
     	return constants;
     }
 
-    public static ApplicationManager initializeApplicationManager(String fileName, String profileFileName) {
+    public static ApplicationManager initializeApplicationManager(String fileName) {
         // Initialization for persistence
         ApplicationManager am;
-        ProfileManager pm = initializeProfileManager(profileFileName);
         setFilename(fileName);
         setAlias("job", Job.class);
         setAlias("student", Student.class);

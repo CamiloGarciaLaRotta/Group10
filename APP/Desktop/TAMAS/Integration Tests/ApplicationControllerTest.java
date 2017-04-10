@@ -24,9 +24,8 @@ public class ApplicationControllerTest {
 	private ApplicationController ac;
 	private static ApplicationManager am;
 	private ProfileController pc;
-	private static ProfileManager pm;
-	private static String outputFile1 = "output" + File.separator + "testApplicationController";
-	private static String outputFile2 = "output" + File.separator + "testProfileController";
+	private static String outputFile1 = "testapplications.xml";
+	private static String outputFile2 = "testprofiles.xml";
 	private static File f1;
 	private static File f2;
 	private static Time timeBefore = new Time(10);
@@ -35,10 +34,10 @@ public class ApplicationControllerTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		f1 = new File(outputFile1);
-		f2 = new File(outputFile2);
-		pm = PersistenceXStream.initializeProfileManager(outputFile2);
-		am = PersistenceXStream.initializeApplicationManager(outputFile1, outputFile2);
+//		f1 = new File(outputFile1);
+//		f2 = new File(outputFile2);
+//		pm = PersistenceXStream.initializeProfileManager(outputFile2);
+//		am = PersistenceXStream.initializeApplicationManager(outputFile1);
 	}
 	
 
@@ -46,20 +45,17 @@ public class ApplicationControllerTest {
 	public void setUp() throws Exception {
 		f1 = new File(outputFile1);
 		f2 = new File(outputFile2);
-		am = (ApplicationManager) PersistenceXStream.loadFromXMLwithXStream();
-		//am = new ApplicationManager();
-		//pm = new ProfileManager();
+		am = PersistenceXStream.initializeApplicationManager(outputFile1);
 		ac = new ApplicationController(am, outputFile1);
 		assertEquals(0,am.getApplications().size());
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		am = (ApplicationManager)PersistenceXStream.loadFromXMLwithXStream();
 		am.delete();
-		pm.delete();
-		//f1.delete();
-		//f2.delete();
+		PersistenceXStream.setFilename(outputFile1);
+		PersistenceXStream.saveToXMLwithXStream(am);
+		PersistenceXStream.setFilename(outputFile2);
 		assertEquals(0,am.getApplications().size());
 	}
 	

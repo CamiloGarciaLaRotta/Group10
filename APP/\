@@ -34,11 +34,10 @@ public class TestJob {
 	private Instructor aInstructor = new Instructor(aUsername, aPassword, aFirstName, aLastName);
 	
 	private ApplicationManager am;
-	private ProfileManager pm;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-//		PersistenceXStream.initializeApplicationManager("testapplications.xml","testprofiles.xml");
+		PersistenceXStream.initializeApplicationManager(ApplicationController.APPLICATION_FILE_NAME,ProfileController.PROFILE_FILE_NAME);
 	}
 
 	@AfterClass
@@ -47,196 +46,190 @@ public class TestJob {
 
 	@Before
 	public void setUp() throws Exception {
-		am = PersistenceXStream.initializeApplicationManager("testapplications.xml");
-		pm = PersistenceXStream.initializeProfileManager("testprofiles.xml");
+		am = new ApplicationManager(); 
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		am.delete();
-		pm.delete();
-		PersistenceXStream.setFilename("testapplications.xml");
-		PersistenceXStream.saveToXMLwithXStream(am);
-		PersistenceXStream.setFilename("testprofiles.xml");
-		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 
 	@Test
 	public void testJobValidInputs() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 	}
 	
 	@Test
 	public void testJobNullCourse() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
 		aCourse = null;
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Right error (and message)
 			assertEquals("Course must be defined! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	
 	@Test
 	public void testJobNullInstructor() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
 		aInstructor = null;
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Correct error (and message)
 			assertEquals("Instructor must be defined! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	
 	@Test
 	public void testJobNullInstructor_NullCourse() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
 		aInstructor = null;
 		aCourse = null;
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Correct errors (and message)
 			assertEquals("Instructor must be defined! Course must be defined! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	
 	@Test
 	public void testJobNegativeSalary() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = -10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Correct error (and message)
 			assertEquals("Salary must be positive! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	/*
 	@Test
 	public void testJobAlphabeticalSalary() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = "ten";
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Correct error (and message)
 			assertEquals("Salary must be a number! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	*/
 	@Test
 	public void testJobNullDay() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = null;
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Correct error (and message)
 			assertEquals("Day must be specified! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	
 	@Test
 	public void testJobWeekendDay() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Saturday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Correct error (and message)
 			assertEquals("Day must be a work day! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Sunday";
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 			// Correct error (and message)
 			assertEquals("Day must be a work day! ", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	
 	@Test
 	public void testJobDidNotAddCourse() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
@@ -244,19 +237,19 @@ public class TestJob {
 		aCourse = null;
 		
 		try {
-			Job aJob = new Job(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			Job aJob = new Job(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (RuntimeException e) {
 			// Correct error (and message)
 			assertEquals("Unable to create job due to course", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	
 	@Test
 	public void testJobDidNotAddInstructor() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
@@ -264,110 +257,110 @@ public class TestJob {
 		aInstructor = null;
 		
 		try {
-			Job aJob = new Job(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor);
+			Job aJob = new Job(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (RuntimeException e) {
 			// Correct error (and message)
 			assertEquals("Unable to create job due to instructor", e.getMessage());
 		}
 		// Job does not get saved
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 	}
 	
 	
 	@Test
 	public void testSetDay() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		assertTrue(am.getJob(0).setDay("Tuesday"));
 	}
 	
 	@Test
 	public void testGetDay() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		assertEquals("Monday",am.getJob(0).getDay());
 	}
 
 	@Test
 	public void testGetSalary() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		assertEquals(10.00,am.getJob(0).getSalary(),0);
 	}
 
 	@Test
 	public void testGetRequirements() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		assertEquals("Bachelors in Fine Arts",am.getJob(0).getRequirements());
 	}
 
 	@Test
 	public void testGetId() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
 		boolean gotId;
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		// Test id is an autounique attribute, as long as its an int, return true
 		// seems absolutely redundant and useless to test this, but it's done for 100% statement coverage
 		if(am.getJob(0).getId() >= 0 || am.getJob(0).getId() < 0) gotId = true;
@@ -378,85 +371,85 @@ public class TestJob {
 
 	@Test
 	public void testGetPositionFullName_GetPosition() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		// Position is automatically set to TA by default
-		assertEquals("TUTORIAL",am.getJob(0).getPositionFullName());
-		assertEquals("TUTORIAL",am.getJob(0).getPosition().toString());
+		assertEquals("TA",am.getJob(0).getPositionFullName());
+		assertEquals("TA",am.getJob(0).getPosition().toString());
 	}
 
 	@Test
 	public void testSetPosition() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
 		Job.Position aPosition = Job.Position.GRADER;
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		// Setting different position (GRADER) works
 		assertTrue(am.getJob(0).setPosition(aPosition));
 	}
 
 	@Test
 	public void testGetCourse_GetInstructor() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		assertEquals(aCourse,am.getJob(0).getCourse());
 		assertEquals(aInstructor,am.getJob(0).getInstructor());
 	}
 
 	@Test
 	public void testNumberOfStudents_HasStudents() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
 		aRequirements = "Bachelors in Fine Arts";
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		// No students assigned to Job; hence 0
 		//assertEquals(0,am.getJob(0).numberOfStudents());
 		// No students; hence false
@@ -465,7 +458,7 @@ public class TestJob {
 
 	@Test
 	public void testGetApplication() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		String aDay2 = "Tuesday";
@@ -479,16 +472,16 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
+		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
@@ -505,7 +498,7 @@ public class TestJob {
 
 	@Test
 	public void testGetApplications() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		String aDay2 = "Tuesday";
@@ -519,16 +512,16 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
+		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
@@ -544,7 +537,7 @@ public class TestJob {
 
 	@Test
 	public void testSetCourse_SetInstructor() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
@@ -562,15 +555,15 @@ public class TestJob {
 		String lastName2 = "Lesko";
 		Instructor aInstructor2 = new Instructor(userName2, password2, firstName2, lastName2);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		// Setting same Course
 		assertTrue(am.getJob(0).setCourse(aCourse));
 		// Setting same Instructor
@@ -590,7 +583,7 @@ public class TestJob {
 
 	@Test
 	public void testAddStudent_AddStudentAt_RemoveStudent() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
@@ -607,15 +600,15 @@ public class TestJob {
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		Student aStudent2 = new Student(studUsername2, studPassword, aFirstName2, aLastName2, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// 1 Student
 		//assertEquals(1,am.getJob(0).numberOfStudents());
@@ -648,7 +641,7 @@ public class TestJob {
 	
 	@Test
 	public void testAddOrMoveStudentAt() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
@@ -665,15 +658,15 @@ public class TestJob {
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		Student aStudent2 = new Student(studUsername2, studPassword, aFirstName2, aLastName2, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		// Student hasn't been added, adds student and returns true
 		//assertTrue(am.getJob(0).addOrMoveStudentAt(aStudent, 0));
 		// Tests for the branch if (index < 0)
@@ -685,7 +678,7 @@ public class TestJob {
 
 	@Test
 	public void testGetStudents() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
@@ -698,15 +691,15 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		//assertTrue(am.getJob(0).hasStudents());
 		//am.getJob(0).getStudents();
@@ -714,7 +707,7 @@ public class TestJob {
 	
 	@Test
 	public void testAddApplication() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		String aDay2 = "Tuesday";
@@ -728,16 +721,16 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
+		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
@@ -758,7 +751,7 @@ public class TestJob {
 
 	@Test
 	public void testRemoveApplication() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		String aDay2 = "Tuesday";
@@ -772,16 +765,16 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
+		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// Make new application; apply aStudent to am.getJob(0)
@@ -797,7 +790,7 @@ public class TestJob {
 
 	@Test
 	public void testAddApplicationAt() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		String aDay2 = "Tuesday";
@@ -811,16 +804,16 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
+		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
@@ -842,7 +835,7 @@ public class TestJob {
 
 	@Test
 	public void testAddOrMoveApplicationAt() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		String aDay2 = "Tuesday";
@@ -856,16 +849,16 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
+		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		
@@ -889,7 +882,7 @@ public class TestJob {
 
 	@Test
 	public void testDelete() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		String aDay2 = "Tuesday";
@@ -903,16 +896,16 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
+		assertEquals(2,am.numberOfJobs());
 		// Add student to a job
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// Make new application; apply aStudent to am.getJob(0)
@@ -938,7 +931,7 @@ public class TestJob {
 
 	@Test
 	public void testToString() {
-		assertEquals(0,am.getJobs().size());
+		assertEquals(0,am.numberOfJobs());
 		
 		aDay = "Monday";
 		aSalary = 10.00;
@@ -953,15 +946,15 @@ public class TestJob {
 		// Degree set to UNDEGRAD by default
 		Student aStudent = new Student(studUsername, studPassword, aFirstName, aLastName, aExperience);
 		
-		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.addJobToSystem(30.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
 		catch (InputException e) {
 		}
 		// Job gets saved
-		assertEquals(1,am.getJobs().size());
+		assertEquals(1,am.numberOfJobs());
 		//assertTrue(am.getJob(0).addStudent(aStudent));
 		// 1 Student
 		//assertEquals(1,am.getJob(0).numberOfStudents());

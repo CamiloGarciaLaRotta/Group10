@@ -13,7 +13,7 @@ public class TAMAS {
 	
 	public static void main(String[] args) {
 		
-		final ApplicationManager am = PersistenceXStream.initializeApplicationManager(ApplicationController.APPLICATION_FILE_NAME,ProfileController.PROFILE_FILE_NAME);
+		final ApplicationManager am = PersistenceXStream.initializeApplicationManager(ApplicationController.APPLICATION_FILE_NAME);
 		final ProfileManager pm = PersistenceXStream.initializeProfileManager(ProfileController.PROFILE_FILE_NAME);
 		final CourseManager cm = PersistenceXStream.initializeCourseManager(CourseController.COURSE_FILE_NAME);
 		
