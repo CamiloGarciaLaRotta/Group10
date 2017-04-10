@@ -7,6 +7,16 @@ notifications:
     on_success: never # default: change
     on_failure: always # default: always 
 
+android:
+  components:
+  - platform-tools
+  - tools
+  - build-tools-25.0.2
+  - android-25
+
+install:
+  - true   
+
 before_script: cd APP/
 script:
   - ant export-desktop
