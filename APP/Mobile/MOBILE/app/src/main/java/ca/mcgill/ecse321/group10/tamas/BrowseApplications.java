@@ -27,7 +27,6 @@ public class BrowseApplications extends AppCompatActivity {
     private Spinner applicationSpinner;
     private TextView errorView;
 
-    private ProfileManager pm;
     private ApplicationManager am;
 
     private ProfileController pc;
@@ -46,10 +45,8 @@ public class BrowseApplications extends AppCompatActivity {
         applicationSpinner = (Spinner) findViewById(R.id.ApplicationSpinner);
         errorView = (TextView) findViewById(R.id.errorView);
 
-        pm = ((TAMAS) getApplication()).getProfileManager();
         am = ((TAMAS) getApplication()).getApplicationManager();
         ac = ((TAMAS) getApplication()).getApplicationController();
-        pc = ((TAMAS)getApplication()).getProfileController();
 
         jobs = new ArrayList<Job>();
 
@@ -86,7 +83,7 @@ public class BrowseApplications extends AppCompatActivity {
         for (Application application:applications){
             //typo in the model - jobs is a single job
             //if the application has been offered and is the student's application, add it to jobs
-            if(application.getJobs().isOfferSent() && application.getStudent().equals(student)){
+            if(application.getStudent().equals(student)){
                 Job job = application.getJobs();
                 job.addApplicationAt(application,0);
                 jobs.add(job);
@@ -136,6 +133,7 @@ public class BrowseApplications extends AppCompatActivity {
 
                 }catch (Exception e){
                     errors += "\n" + e.getMessage();
+                    Log.d("offer", e.getMessage());
                     errors += "\nFailed to accept job Offer";
                 }
 
@@ -147,7 +145,7 @@ public class BrowseApplications extends AppCompatActivity {
 
 
     public void rejectOfferClicked(View v){
-        if(v.getId() == R.id.AcceptOffer){
+        if(v.getId() == R.id.RejectOffer){
             String errors = "";
             Student student = ((TAMAS) getApplication()).getStudent();
             if(student == null) errors += "Must be logged in\n";
@@ -158,7 +156,6 @@ public class BrowseApplications extends AppCompatActivity {
                 try{
                     pc.removeJobOfferFromStudent(student,job);
                     ac.setJobOfferAccepted(job.getApplication(0),false);
-
                     String msg = "You have rejected the job offer for: " + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".";
                     Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
