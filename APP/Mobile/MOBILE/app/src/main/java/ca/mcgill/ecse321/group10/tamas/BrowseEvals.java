@@ -43,6 +43,10 @@ public class BrowseEvals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_evals);
 
+
+
+
+
         evalSpinner = (Spinner) findViewById(R.id.EvalSpinner);
         evaluations = (TextView) findViewById(R.id.Evaluations);
 
@@ -55,6 +59,15 @@ public class BrowseEvals extends AppCompatActivity {
 
         student = ((TAMAS) getApplication()).getStudent();
         applications = am.getApplications();
+
+
+        if (student == null){
+            TextView errors = (TextView) findViewById(R.id.evalErrors);
+            errors.setText("Please Login first");
+            return;
+        }
+
+
         Log.d("evals", "#applications: " + applications.size());
 
         for (Application application:applications){
@@ -65,11 +78,7 @@ public class BrowseEvals extends AppCompatActivity {
             String appStudent = application.getStudent().getUsername();
             String curStudent = student.getUsername();
 
-            if (curStudent == null){
-                TextView errors = (TextView) findViewById(R.id.evalErrors);
-                errors.setText("Please Login first");
-                return;
-            }
+
 
             if(application.isOfferAccepted() && appStudent.equals(curStudent)){
                 Job job = application.getJobs();

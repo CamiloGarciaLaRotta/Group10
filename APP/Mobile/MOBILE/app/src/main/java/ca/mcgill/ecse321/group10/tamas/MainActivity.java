@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         userInfo = (TextView) findViewById(R.id.currentUser);
         if (((TAMAS) this.getApplication()).getStudent() == null){
-            Context userInfoContext = findViewById(R.id.userInfo).getContext();
+            Context userInfoContext = findViewById(R.id.currentUser).getContext();
             userInfo.setTextColor(ContextCompat.getColor(userInfoContext,R.color.errorColor));
             userInfo.setText("Please log in to use Tamas");
             userInfo.setTextSize(18);;
