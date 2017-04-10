@@ -1,6 +1,10 @@
 language: java
 jdk: oraclejdk7
+notifications:
+  email:
+    recipients:
+      - mlesko1996@gmail.com
+    on_success: never # default: change
+    on_failure: always # default: always
 before_script: cd APP/Desktop/TAMAS/
 script: ant build
-notifications:
-	email: false
