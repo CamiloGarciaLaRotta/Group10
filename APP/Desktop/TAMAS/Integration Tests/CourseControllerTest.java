@@ -20,6 +20,7 @@ public class CourseControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		PersistenceXStream.initializeCourseManager(outputFile);
+		PersistenceXStream.setFilename(outputFile);
 		cm = new CourseManager();
 		cc = new CourseController(cm, outputFile);
 		
