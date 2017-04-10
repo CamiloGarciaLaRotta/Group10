@@ -32,6 +32,7 @@ public class BrowseApplications extends AppCompatActivity {
     private ProfileController pc;
     private ApplicationController ac;
 
+    private int selectedPosition;
     ArrayList<Job> jobs = null;
     Student student = null;
     List<Application> applications = null;
@@ -65,6 +66,7 @@ public class BrowseApplications extends AppCompatActivity {
 
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        selectedPosition = position;
                         Job selectedJob = jobs.get(position); //job index within jobs should be at the same index as jobNames from the adapter
                         setJobDescription(selectedJob);
                     }
@@ -120,7 +122,7 @@ public class BrowseApplications extends AppCompatActivity {
             if(applicationSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
 
             if(errors.length() == 0){
-                Job job = am.getJob(applicationSpinner.getSelectedItemPosition());
+                Job job = jobs.get(applicationSpinner.getSelectedItemPosition());
                 try{
                     pc.acceptJob(student,job);
                     ac.setJobOfferAccepted(job.getApplication(0),true);
@@ -152,7 +154,7 @@ public class BrowseApplications extends AppCompatActivity {
             if(applicationSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
 
             if(errors.length() == 0){
-                Job job = am.getJob(applicationSpinner.getSelectedItemPosition());
+                Job job = jobs.get(applicationSpinner.getSelectedItemPosition());
                 try{
                     pc.removeJobOfferFromStudent(student,job);
                     ac.setJobOfferAccepted(job.getApplication(0),false);
