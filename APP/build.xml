@@ -170,6 +170,14 @@
 	<!-- End php targets -->
 
 	<!-- MOBILE TARGETS -->
+	<condition property="onwindows" value="true">
+		<os family="windows"/>
+	</condition>
+	<condition property="notonwindows" value="true">
+		<not>
+			<os family="windows"/>
+		</not>
+	</condition>
 	<target name="init-mobile">
 		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
 		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
@@ -194,7 +202,7 @@
 			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
-	<target name="export-mobile">
+	<target name="export-mobile-nix" if="notonwindows">
 		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
 		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
 			<arg value="assembleDebug"/>
@@ -202,7 +210,16 @@
 			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
-	<target name="install-mobile" description="Install apk to connected phone or running emulator">
+	<target name="export-mobile-windows" if="onwindows">
+		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew.bat">
+			<arg value="assembleDebug"/>
+			<arg value="-p"/>
+			<arg path="Mobile${file.separator}MOBILE"/>
+		</exec>
+	</target>
+	<target name="export-mobile" depends="export-mobile-windows,export-mobile-nix"/>
+	<target name="install-mobile-nix" description="Install apk to connected phone or running emulator" if="notonwindows">
+		<echo message="Starting android install on *nix..."/>
 		<chmod file="Mobile${file.separator}MOBILE${file.separator}gradlew" perm="ugo+rx"/>
 		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew">
 			<arg value="installDebug"/>
@@ -210,6 +227,15 @@
 			<arg path="Mobile${file.separator}MOBILE"/>
 		</exec>
 	</target>
+	<target name="install-mobile-windows" description="Install apk to connected phone or running emulator" if="onwindows">
+		<echo message="Starting android install on windows..."/>
+		<exec executable="Mobile${file.separator}MOBILE${file.separator}gradlew.bat">
+			<arg value="installDebug"/>
+			<arg value="-p"/>
+			<arg path="Mobile${file.separator}MOBILE"/>
+		</exec>
+	</target>
+	<target name="install-mobile" depends="install-mobile-windows,install-mobile-nix"/>
 	<!-- End mobile targets -->
 
 	<!-- CONVENIENCE TARGETS -->
