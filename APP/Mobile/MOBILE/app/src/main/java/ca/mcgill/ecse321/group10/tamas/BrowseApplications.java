@@ -101,7 +101,7 @@ public class BrowseApplications extends AppCompatActivity {
         String [] jobNames = new String[jobs.size()];
 
         for(int c = 0; c < jobNames.length; c++) {
-            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " +  am.getJob(c).getPositionFullName();
         }
         final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, jobNames);
@@ -113,7 +113,7 @@ public class BrowseApplications extends AppCompatActivity {
         description += "\n\nCourse taught by: ";
         description += "\nProf. " + job.getInstructor().getFirstName() + " " + job.getInstructor().getLastName();
         description += "\n\nSalary: $" + job.getSalary() + "/h";
-        description += "\n\nHours: \n" + job.getHours() + "total hours. On " + job.getDay() + "s\n" ;
+        description += "\n\nHours: \n" + job.getHours() + " total hours. On " + job.getDay() + "s\n" ;
         jobOfferDescription.setText(description);
     }
 
@@ -131,7 +131,8 @@ public class BrowseApplications extends AppCompatActivity {
                     Log.d("offer", "job: " + job.toString());
                     pc.acceptJob(student,job);
                     ac.setJobOfferAccepted(job.getApplication(0),true);
-
+                    ac.removeApplication(job.getApplication(0));
+                    pc.removeJobOfferFromStudent(student,job);
                     String msg = "You have accepted the job offer for: " + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".\nGood luck!";
                     Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
@@ -161,6 +162,8 @@ public class BrowseApplications extends AppCompatActivity {
                 try{
                     pc.removeJobOfferFromStudent(student,job);
                     ac.setJobOfferAccepted(job.getApplication(0),false);
+                    ac.removeApplication(job.getApplication(0));
+                    pc.removeJobOfferFromStudent(student,job);
                     String msg = "You have rejected the job offer for: " + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".";
                     Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);

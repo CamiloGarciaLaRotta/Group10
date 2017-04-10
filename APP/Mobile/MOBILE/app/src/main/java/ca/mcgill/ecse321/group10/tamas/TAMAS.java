@@ -48,7 +48,7 @@ public class TAMAS extends Application {
         COURSE_FILE_PATH = rootPath + "/courses.xml";
 
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_PATH);
-        am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_PATH,PROFILE_FILE_PATH);
+        am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_PATH);
         cm = PersistenceXStream.initializeCourseManager(COURSE_FILE_PATH);
 
         ac = new ApplicationController(am,APPLICATION_FILE_PATH);
@@ -58,7 +58,7 @@ public class TAMAS extends Application {
 
 
         createDummyData();
-        student = pm.getStudent(0);
+    //    student = pm.getStudent(0);
         //for testing
 
 
@@ -207,7 +207,7 @@ public class TAMAS extends Application {
             Log.d("errorcheck", e.getMessage());
         }
         pm = PersistenceXStream.initializeProfileManager(PROFILE_FILE_PATH);
-        am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_PATH,PROFILE_FILE_PATH);
+        am = PersistenceXStream.initializeApplicationManager(APPLICATION_FILE_PATH);
         cm = PersistenceXStream.initializeCourseManager(COURSE_FILE_PATH);
     }
 

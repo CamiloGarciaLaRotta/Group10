@@ -137,7 +137,7 @@ public class BrowseEvals extends AppCompatActivity {
         String [] jobNames = new String[jobs.size()];
 
         for(int c = 0; c < jobNames.length; c++) {
-            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getPositionFullName();
         }
         final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, jobNames);
