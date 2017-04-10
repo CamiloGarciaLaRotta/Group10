@@ -117,8 +117,6 @@ public class BrowseApplications extends AppCompatActivity {
     public void acceptOfferClicked(View v){
         if(v.getId() == R.id.AcceptOffer){
             String errors = "";
-            Student student = ((TAMAS) getApplication()).getStudent();
-            if(student == null) errors += "Must be logged in\n";
             if(applicationSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
 
             if(errors.length() == 0){
@@ -149,8 +147,6 @@ public class BrowseApplications extends AppCompatActivity {
     public void rejectOfferClicked(View v){
         if(v.getId() == R.id.RejectOffer){
             String errors = "";
-            Student student = ((TAMAS) getApplication()).getStudent();
-            if(student == null) errors += "Must be logged in\n";
             if(applicationSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
 
             if(errors.length() == 0){
@@ -166,6 +162,7 @@ public class BrowseApplications extends AppCompatActivity {
 
                 }catch (Exception e){
                     errors += "\n" + e.getMessage();
+                    Log.d("offer", e.getMessage());
                     errors += "\nFailed to reject job Offer";
                 }
 
