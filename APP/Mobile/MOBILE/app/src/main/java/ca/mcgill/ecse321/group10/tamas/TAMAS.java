@@ -187,11 +187,12 @@ public class TAMAS extends Application {
             Log.d("errorcheck", "OffersAccepted");
 
             String msg = "He's okay";
+            String msg2= "He sucks";
 
             ac.addStudentEvaluation(am.getApplication(0), msg);
             Log.d("errorcheck", "1 Eval Added");
-            ac.addStudentEvaluation(am.getApplication(1), msg);
-            ac.addStudentEvaluation(am.getApplication(2), msg);
+            ac.addStudentEvaluation(am.getApplication(1), msg2);
+            ac.addStudentEvaluation(am.getApplication(2), msg2);
             ac.addStudentEvaluation(am.getApplication(3), msg);
 
             Log.d("errorcheck", "Evals Added");
