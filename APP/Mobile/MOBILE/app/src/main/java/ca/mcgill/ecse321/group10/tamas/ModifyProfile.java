@@ -46,14 +46,11 @@ public class ModifyProfile extends AppCompatActivity {
         if (student == null){
             userDescription = "Please Login first";
             userInfo.setText(userDescription);
-            return;
+        }
+        else{
+            setupPage();
         }
 
-        userDescription = "Hello " + student.getFirstName() + " " + student.getLastName();
-        userInfo.setText(userDescription);
-
-        String experience = student.getExperience();
-        editExperience.setText(experience);
 
 
         degreeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -70,15 +67,25 @@ public class ModifyProfile extends AppCompatActivity {
             }
         });
 
-        if(student.getDegree().equals(Student.Degree.GRADUATE)){
-            degreeSwitch.setChecked(true);
-        }
-
 
 
 
     }
 
+
+    private void setupPage(){
+
+
+        String userDescription = "Hello " + student.getFirstName() + " " + student.getLastName();
+        userInfo.setText(userDescription);
+
+        String experience = student.getExperience();
+        editExperience.setText(experience);
+
+        if(student.getDegree().equals(Student.Degree.GRADUATE)){
+            degreeSwitch.setChecked(true);
+        }
+    }
 
 
     public void applyChangesClicked (View v){
@@ -141,9 +148,33 @@ public class ModifyProfile extends AppCompatActivity {
             editLastName.setText("");
             editPassword.setText("");
 
+            String userDescription = "Hello " + student.getFirstName() + " " + student.getLastName();
+            userInfo.setText(userDescription);
+
+
+
             Toast toast = Toast.makeText(this, "Changes Applied", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP | Gravity.CENTER,0,0);
             toast.show();
         }
+    }
+
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        String userDescription;
+        if (student == null){
+            userDescription = "Please Login first";
+            userInfo.setText(userDescription);
+            return;
+        }
+        else{
+            userDescription = "Hello " + student.getFirstName() + " " + student.getLastName();
+            userInfo.setText(userDescription);
+            setupPage();
+        }
+
     }
 }

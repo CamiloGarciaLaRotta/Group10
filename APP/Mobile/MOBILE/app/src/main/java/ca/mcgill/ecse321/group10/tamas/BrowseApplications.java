@@ -54,27 +54,13 @@ public class BrowseApplications extends AppCompatActivity {
         jobs = new ArrayList<Job>();
 
         student = ((TAMAS) getApplication()).getStudent();
-        applications = am.getApplications();
 
-        for (Application application:applications){
-            //type in the model - jobs is a single job
-            //if the application has been offered and is the student's application, add it to jobs
-            if(application.getJobs().isOfferSent() && application.getStudent().equals(student)){
-                Job job = application.getJobs();
-                job.addApplicationAt(application,0);
-             jobs.add(job);
-            }
+        if(student == null){
+            errorView.setText("Please Login first");
         }
-
-        //get string of job names
-        String [] jobNames = new String[jobs.size()];
-
-        for(int c = 0; c < jobNames.length; c++) {
-            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+        else{
+            setupPage();
         }
-        final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, jobNames);
-        applicationSpinner.setAdapter(jobAdapter);
 
         applicationSpinner.setOnItemSelectedListener(
                 //create item listener to allow user to acccept job offer by pressing enter
@@ -92,6 +78,30 @@ public class BrowseApplications extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void setupPage(){
+        applications = am.getApplications();
+        jobs.clear();
+        for (Application application:applications){
+            //typo in the model - jobs is a single job
+            //if the application has been offered and is the student's application, add it to jobs
+            if(application.getJobs().isOfferSent() && application.getStudent().equals(student)){
+                Job job = application.getJobs();
+                job.addApplicationAt(application,0);
+                jobs.add(job);
+            }
+        }
+
+        //get string of job names
+        String [] jobNames = new String[jobs.size()];
+
+        for(int c = 0; c < jobNames.length; c++) {
+            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+        }
+        final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, jobNames);
+        applicationSpinner.setAdapter(jobAdapter);
     }
 
     private void setJobDescription(Job job){
@@ -130,8 +140,8 @@ public class BrowseApplications extends AppCompatActivity {
                 }
 
             }
-
             errorView.setText(errors);
+            setupPage();
         }
     }
 
@@ -163,7 +173,24 @@ public class BrowseApplications extends AppCompatActivity {
             }
 
             errorView.setText(errors);
+            setupPage();
         }
+    }
+
+    @Override
+    public void onResume(){
+     super.onResume();
+
+        student = ((TAMAS)this.getApplication()).getStudent();
+
+        if(student == null){
+            errorView.setText("Please Login first");
+        }
+        else{
+            this.setupPage();
+            errorView.setText("");
+        }
+
     }
 
 }

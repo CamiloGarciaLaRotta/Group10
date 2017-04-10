@@ -15,6 +15,7 @@ import ca.mcgill.ecse321.group10.TAMAS.model.ApplicationManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.CourseManager;
 import ca.mcgill.ecse321.group10.TAMAS.model.Job;
 import ca.mcgill.ecse321.group10.TAMAS.model.ProfileManager;
+import ca.mcgill.ecse321.group10.TAMAS.model.Student;
 import ca.mcgill.ecse321.group10.controller.ApplicationController;
 import ca.mcgill.ecse321.group10.controller.CourseController;
 import ca.mcgill.ecse321.group10.controller.InputException;
@@ -24,25 +25,44 @@ import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 public class MainActivity extends AppCompatActivity {
 
     TextView userInfo;
+    Student student;
+
+    Button modProfile;
+    Button applyToJob;
+    Button browseJobOffers;
+    Button viewEvals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userInfo = (TextView) findViewById(R.id.currentUser);
-        if (((TAMAS) this.getApplication()).getStudent() == null){
+        modProfile = (Button) findViewById(R.id.modifyProfile);
+        applyToJob = (Button) findViewById(R.id.createJob);
+        browseJobOffers = (Button) findViewById(R.id.BrowseApps);
+        viewEvals = (Button) findViewById(R.id.BrowseEvals);
+
+
+
+        student = ((TAMAS) this.getApplication()).getStudent();
+        checkLogin();
+
+    }
+
+    private void checkLogin() {
+        if (student == null){
             Context userInfoContext = findViewById(R.id.currentUser).getContext();
             userInfo.setTextColor(ContextCompat.getColor(userInfoContext,R.color.errorColor));
             userInfo.setText("Please log in to use Tamas");
             userInfo.setTextSize(18);;
+            this.setEnableButtons(false);
         }
         else{
             String username = ((TAMAS) this.getApplication()).getStudent().getUsername();
             String greeting = "Hello " + username;
             userInfo.setText(greeting);
+            this.setEnableButtons(true);
         }
-
-
     }
 
     public void createJobAppClicked(View v){
@@ -81,5 +101,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        student = ((TAMAS) this.getApplication()).getStudent();
+        checkLogin();
+    }
+
+
+
+    private void setEnableButtons(boolean enabled){
+        modProfile.setEnabled(enabled);
+        applyToJob.setEnabled(enabled);
+        browseJobOffers.setEnabled(enabled);
+        viewEvals.setEnabled(enabled);
+    }
 
 }

@@ -25,6 +25,7 @@ public class BrowseEvals extends AppCompatActivity {
 
     private TextView evaluations;
     private Spinner evalSpinner;
+    TextView errors;
 
     private ProfileManager pm;
     private ApplicationManager am;
@@ -43,12 +44,9 @@ public class BrowseEvals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_evals);
 
-
-
-
-
         evalSpinner = (Spinner) findViewById(R.id.EvalSpinner);
         evaluations = (TextView) findViewById(R.id.Evaluations);
+        errors = (TextView) findViewById(R.id.evalErrors);
 
         pm = ((TAMAS) getApplication()).getProfileManager();
         am = ((TAMAS) getApplication()).getApplicationManager();
@@ -58,7 +56,6 @@ public class BrowseEvals extends AppCompatActivity {
         jobs = new ArrayList<Job>();
 
         student = ((TAMAS) getApplication()).getStudent();
-        applications = am.getApplications();
 
 
         if (student == null){
@@ -66,38 +63,9 @@ public class BrowseEvals extends AppCompatActivity {
             errors.setText("Please Login first");
             return;
         }
-
-
-        Log.d("evals", "#applications: " + applications.size());
-
-        for (Application application:applications){
-            //type in the model - jobs is a single job
-            //if the application has been offered and is the student's application, add it to jobs
-            Log.d("evals","Application: " + application.toString() + "\n" + "accepted?: " + application.isOfferAccepted()
-                    + "\nstudent: " + application.getStudent().getUsername() + "\n\n");
-            String appStudent = application.getStudent().getUsername();
-            String curStudent = student.getUsername();
-
-
-
-            if(application.isOfferAccepted() && appStudent.equals(curStudent)){
-                Job job = application.getJobs();
-                job.addApplicationAt(application,0);
-                jobs.add(job);
-                Log.d("evals","job found: " + job.getPositionFullName().toString());
-            }
+        else{
+            setupPage();
         }
-
-        //get string of job names
-        Log.d("evals","#jobs: " + jobs.size());
-        String [] jobNames = new String[jobs.size()];
-
-        for(int c = 0; c < jobNames.length; c++) {
-            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
-        }
-        final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, jobNames);
-        evalSpinner.setAdapter(jobAdapter);
 
         evalSpinner.setOnItemSelectedListener(
                 //create item listener to allow user to acccept job offer by pressing enter
@@ -119,12 +87,61 @@ public class BrowseEvals extends AppCompatActivity {
     private void setEvaluationDescription(Job job){
         String eval = job.getApplication(0).getStudentEvaluation();
         if(eval.length() == 0 || eval == null){
-            return;
+            evaluations.setText("No Evaluation Exists for you");
         }
         else{
             String description = "Evaluation:\n\n" + eval;
             evaluations.setText(description);
         }
+
+
+    }
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        student = ((TAMAS)this.getApplication()).getStudent();
+
+        if (student == null){
+            errors.setText("Please Login first");
+        }
+        else{
+            this.setupPage();
+            errors.setText("");
+        }
+    }
+
+
+    private void setupPage(){
+
+        applications = am.getApplications();
+
+        for (Application application:applications){
+            //type in the model - jobs is a single job
+            //if the application has been offered and is the student's application, add it to jobs
+            Log.d("evals","Application: " + application.toString() + "\n" + "accepted?: " + application.isOfferAccepted()
+                    + "\nstudent: " + application.getStudent().getUsername() + "\n\n");
+            String appStudent = application.getStudent().getUsername();
+            String curStudent = student.getUsername();
+            if(application.isOfferAccepted() && appStudent.equals(curStudent)){
+                Job job = application.getJobs();
+                job.addApplicationAt(application,0);
+                jobs.add(job);
+                Log.d("evals","job found: " + job.getPositionFullName().toString());
+            }
+        }
+
+        //get string of job names
+        Log.d("evals","#jobs: " + jobs.size());
+        String [] jobNames = new String[jobs.size()];
+
+        for(int c = 0; c < jobNames.length; c++) {
+            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+        }
+        final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, jobNames);
+        evalSpinner.setAdapter(jobAdapter);
 
 
     }

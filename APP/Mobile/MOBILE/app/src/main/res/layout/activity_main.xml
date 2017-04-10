@@ -130,6 +130,7 @@
         android:onClick="browseEvalsClicked"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:textColor="@color/Black"
         android:text="@string/view_your_evaluations"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

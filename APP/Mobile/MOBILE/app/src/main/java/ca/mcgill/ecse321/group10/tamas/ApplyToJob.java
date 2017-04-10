@@ -37,15 +37,15 @@ public class ApplyToJob extends AppCompatActivity {
     private String username = null;
     private Spinner jobSpinner = null;
     private TextView errorText = null;
-
     private TextView jobDescription = null;
 
 
     private String errors = "";
 
+    private Student student;
+
 
     List<Job> jobs = null;
-    List<Student> students = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +56,16 @@ public class ApplyToJob extends AppCompatActivity {
         errorText = (TextView) findViewById(R.id.errors);
         jobDescription = (TextView) findViewById(R.id.JobDescription);
 
-        pm = ((TAMAS) getApplication()).getProfileManager();
-        am = ((TAMAS) getApplication()).getApplicationManager();
-        Log.v("load",pm.getStudent(0).toString());
 
-        jobs = am.getJobs();
-        students = pm.getStudents();
+        student = ((TAMAS) getApplication()).getStudent();
 
-        //get string of job names
-        String [] jobNames = new String[am.getJobs().size()];
-
-        for(int c = 0; c < jobNames.length; c++) {
-            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+        if(student == null){
+            errorText.setText("Please Login");
+        }
+        else{
+            setupPage();
         }
 
-        final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, jobNames);
-        jobSpinner.setAdapter(jobAdapter);
 //create item listener to allow user to acccept job offer by pressing enter
         jobSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener(){
@@ -103,20 +96,10 @@ public class ApplyToJob extends AppCompatActivity {
     }
 
 
-    private static int getStudentIndex(List<Student> students, String name){
-        for (int i = 0; i< students.size(); i++){
-            if(students.get(i).getUsername().equals(name)){
-                return i;
-            }
-        }
-        return -1;
-    }
-
 
     public void ApplyToJobClicked(View v) {
         if(v.getId() == R.id.applyButton) {
             errors = "";
-            Student student = ((TAMAS) getApplication()).getStudent();
             if(student == null) errors += "Must be logged in\n";
             if(jobSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
             if(errors.length() == 0) {
@@ -141,6 +124,43 @@ public class ApplyToJob extends AppCompatActivity {
             errorText.setText(errors);
         }
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        student = ((TAMAS)this.getApplication()).getStudent();
+
+        if(student == null){
+            errorText.setText("Please Login");
+        }
+        else{
+            this.setupPage();
+            errorText.setText("");
+        }
+    }
+
+
+    private void setupPage(){
+
+        pm = ((TAMAS) getApplication()).getProfileManager();
+        am = ((TAMAS) getApplication()).getApplicationManager();
+        Log.v("load",pm.getStudent(0).toString());
+
+        jobs = am.getJobs();
+
+        //get string of job names
+        String [] jobNames = new String[am.getJobs().size()];
+
+        for(int c = 0; c < jobNames.length; c++) {
+            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+        }
+
+        final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, jobNames);
+        jobSpinner.setAdapter(jobAdapter);
+    }
+
 
 
 }
