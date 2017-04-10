@@ -56,7 +56,7 @@
 \section{Release Pipeline}
 %% -- Ready for release or not?
 %% -- Where and how shall it be released? Shall we release it as intended in the release plan?
-The release pipeline shall follow the plan as in deliverable #4's report. Every release shall follow semantic versioning: MAJOR.MINOR.PATCH. With the first release being V1.0.0. All executables shall be released under a build directory.\\ 
+The release pipeline shall follow the plan as in deliverable #4's report. Every release shall follow semantic versioning: MAJOR.MINOR.PATCH. With the first release being V1.0.0. During deployment, the Travis script shall invoke the scripts: ant export-desktop, ant export-web, and ant export-mobile. These shall export the necessary jar, apk, and web files.\\ 
 \begin{itemize}
 	\item \textbf{Desktop:} The Executable Desktop JAR archive shall be released. The APP/Desktop directory shall be released as a repository.
 	\item \textbf{Web:} The Web Application zip archive shall be released. The APP/Web directory shall be released as a repository.
