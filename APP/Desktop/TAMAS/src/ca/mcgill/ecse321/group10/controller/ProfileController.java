@@ -148,7 +148,7 @@ public class ProfileController {
 		if(aPassword == null || aPassword.trim().length() == 0) {
 			error += ("Password cannot be empty!") + " ";
 		}
-		if(aFirstName == null || aFirstName.trim().length() == 0 || aLastName == null || aLastName.trim().length() == 0) {
+		if((aFirstName == null || aFirstName.trim().length() == 0) || (aLastName == null || aLastName.trim().length() == 0)) {
 			error += ("First and last names cannot be empty!") + " ";
 		}
 		if( newProfile && !this.isUsernameFree(aUsername) ){
@@ -182,7 +182,7 @@ public class ProfileController {
 	public void acceptJob(Student student, Job job) throws InputException{
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			if(pm.getStudent(c).getId() == student.getId()) {
-				if(pm.getStudent(c).getHoursLeft() - job.getHours() > 0) {
+				if(pm.getStudent(c).getHoursLeft() - job.getHours() >= 0) {
 					pm.getStudent(c).setHoursLeft(pm.getStudent(c).getHoursLeft() - job.getHours());
 					PersistenceXStream.setFilename(filename);
 					PersistenceXStream.saveToXMLwithXStream(pm);
@@ -191,59 +191,4 @@ public class ProfileController {
 			}
 		}
 	}
-	
-	public void removeJobFromStudent(Student s, Job j) {
-		for(int c = 0; c < pm.getStudents().size(); c++) {
-			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
-				pm.getStudent(c).removeJob(j);
-				break;
-			}
-		}
-		PersistenceXStream.setFilename(filename);
-		PersistenceXStream.saveToXMLwithXStream(pm);
-	}
-	
-	
-	public void persist() {
-		PersistenceXStream.setFilename(filename);
-		PersistenceXStream.saveToXMLwithXStream(pm);
-	}
-//	
-//	public void removeInstructorFromSystem(String username){
-//		for (Instructor teacher:pm.getInstructors()){
-//			if(teacher.getUsername() == username){
-//				pm.removeInstructor(teacher);
-//				PersistenceXStream.setFilename(filename);
-//				PersistenceXStream.saveToXMLwithXStream(pm);
-//			}
-//		}
-//	}
-//	
-//	public void removeStudentFromSystem(String username){
-//		for (Student student:pm.getStudents()){
-//			if(student.getUsername() == username){
-//				pm.removeStudent(student);
-//				PersistenceXStream.setFilename(filename);
-//				PersistenceXStream.saveToXMLwithXStream(pm);
-//			}
-//		}
-//	}
-//	
-//	public void removeAdminFromSystem(String username){
-//		for (Admin admin:pm.getAdmins()){
-//			if(admin.getUsername() == username){
-//				pm.removeAdmin(admin);
-//				PersistenceXStream.setFilename(filename);
-//				PersistenceXStream.saveToXMLwithXStream(pm);
-//			}
-//		}
-//	}
-//	
-//	//Followed remove implementation based off of the add implementation
-//	public void RemoveCourseFromInstructor(int instructor, Course course) {
-//		pm.getInstructor(instructor).addCourse(course);
-//		PersistenceXStream.setFilename(filename);
-//		PersistenceXStream.saveToXMLwithXStream(pm);
-//	}
-//	
 }

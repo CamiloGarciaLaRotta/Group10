@@ -178,7 +178,7 @@ public class OffersView extends JFrame{
 						ac.setJobOfferAccepted(am.getApplication(c), true);
 						message.setType(ThemedLabel.LabelType.Success);
 						message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was accepted!");
-						pc.removeJobFromStudent(currentStudent,currentJob);
+						pc.removeJobOfferFromStudent(currentStudent,currentJob);
 					} catch(InputException ex) {
 						message.setType(ThemedLabel.LabelType.Error);
 						message.setText(ex.getMessage());
@@ -189,7 +189,7 @@ public class OffersView extends JFrame{
 					ac.setJobOfferAccepted(am.getApplication(c), false);
 					ac.setJobOffered(am.getApplication(c).getJobs(), false);
 					ac.removeApplication(am.getApplication(c));
-					pc.removeJobFromStudent(currentStudent,currentJob);
+					pc.removeJobOfferFromStudent(currentStudent,currentJob);
 					ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home")+"/.tamas/output/constants.xml");
 					constants.set(0, 0);
 					PersistenceXStream.setFilename(System.getProperty("user.home")+"/.tamas/output/constants.xml");

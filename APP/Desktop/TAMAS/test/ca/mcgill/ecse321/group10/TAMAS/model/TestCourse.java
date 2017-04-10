@@ -24,8 +24,11 @@ public class TestCourse {
     private int cdn;
     private float graderTimeBudget;
     private float taTimeBudget;
+    private float labBudget;
     private String error;
     private Instructor aInstructor = new Instructor("6matty9", "yahboy69", "Matthew", "Lesko");
+    
+    private Course course1 = new Course("Trailer Park Supervision", 32, 1000.0f,1000.0f,1000.0f);
     
     private InputException e;
 
@@ -41,6 +44,12 @@ public class TestCourse {
 	@Before
 	public void setUp() throws Exception {
 		cm = PersistenceXStream.initializeCourseManager("testcourses.xml");
+		className = "Trailer Park Supervision";
+		cdn = 5;
+		graderTimeBudget = 1000.0f;
+		taTimeBudget = 1000.0f;
+		labBudget = 1000.0f;
+		course1 = new Course("Trailer Park Supervision", 32, 1000.0f,1000.0f,1000.0f);
 	}
 
 	@After
@@ -205,10 +214,10 @@ public class TestCourse {
 		CourseController cc = new CourseController(cm,"testcourses.xml");
 
 		try {
-			cc.createCourse(className,cdn,graderTimeBudget,taTimeBudget,2000.0f);
+			cc.createCourse(className,cdn,graderTimeBudget,taTimeBudget,-3.0f);
 		}
 		catch (InputException e) {
-			assertEquals("Grader Budget must be positive! TA Budget must be positive! ", e.getMessage());
+			assertEquals("Grader Budget must be positive! TA Budget must be positive! Lab Budget must be positive! ", e.getMessage());
 			assertEquals(0,cm.numberOfCourses());
 		}
 	}
@@ -648,9 +657,6 @@ public class TestCourse {
 		cdn = 101;
 		graderTimeBudget = (float) 10.00;
 		taTimeBudget = (float) 10.00;
-		
-		Time aStartTime = new Time(36000000);
-		Time aEndTime = new Time(36000000);
 		String aDay = "Monday";
 		String aDay2 = "Tuesday";
 		Double aSalary = 15.00;
@@ -670,5 +676,108 @@ public class TestCourse {
 		cm.getCourse(0).delete();
 		assertFalse(cm.getCourse(0).hasJobs());
 		
+	}
+	
+	@Test
+	public void testModifyBudgets() {
+		assertEquals(0,cm.numberOfCourses());
+		CourseController cc = new CourseController(cm,"testcourses.xml");
+		try {
+			cc.modifyGraderBudget(course1, 50000);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,course1.getGraderBudget() == 1000.0f);
+		try {
+			cc.modifyTaBudget(course1, 50000);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,course1.getTutorialBudget() == 1000.0f);
+		try {
+			cc.modifyLabBudget(course1, 50000);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,course1.getLabBudget() == 1000.0f);
+		try {
+			cc.modifyGraderBudget(course1, 500.0f);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,course1.getGraderBudget() == 1000.0f);
+		try {
+			cc.modifyTaBudget(course1, 500);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,course1.getTutorialBudget() == 1000.0f);
+		try {
+			cc.modifyLabBudget(course1, 500);
+		} catch (InputException e) {
+			
+		}
+		
+		try {
+			cc.createCourse(className,cdn,graderTimeBudget,taTimeBudget,labBudget);
+		} catch(InputException e) {
+			
+		}
+		
+		assertEquals(true,course1.getLabBudget() == 1000.0f);
+		try {
+			cc.modifyGraderBudget(cm.getCourse(0), 50000);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getGraderBudget() == 1000.0f);
+		try {
+			cc.modifyTaBudget(cm.getCourse(0), 50000);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getTutorialBudget() == 1000.0f);
+		try {
+			cc.modifyLabBudget(cm.getCourse(0), 50000);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getLabBudget() == 1000.0f);
+		try {
+			cc.modifyGraderBudget(cm.getCourse(0), 500.0f);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getGraderBudget() == 500.0f);
+		try {
+			cc.modifyTaBudget(cm.getCourse(0), 500);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getTutorialBudget() == 500.0f);
+		try {
+			cc.modifyLabBudget(cm.getCourse(0), 500);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getLabBudget() == 500.0f);
+		try {
+			cc.modifyLabBudget(new Course(className,1,graderTimeBudget,taTimeBudget,labBudget), 500);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getLabBudget() == 500.0f);
+		try {
+			cc.modifyGraderBudget(new Course(className,1,graderTimeBudget,taTimeBudget,labBudget), 500);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getGraderBudget() == 500.0f);
+		try {
+			cc.modifyTaBudget(new Course(className,1,graderTimeBudget,taTimeBudget,labBudget), 500);
+		} catch (InputException e) {
+			
+		}
+		assertEquals(true,cm.getCourse(0).getTutorialBudget() == 500.0f);
 	}
 }

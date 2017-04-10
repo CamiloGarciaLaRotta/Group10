@@ -72,7 +72,7 @@ public class ApproveOffersView extends JFrame{
 				ApplicationController ac = new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME);
 				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 				ac.setJobOffered(jobs.get(offersList.getSelectedIndex()), false);
-				pc.removeJobFromStudent(students.get(offersList.getSelectedIndex()), jobs.get(offersList.getSelectedIndex()));
+				pc.removeJobOfferFromStudent(students.get(offersList.getSelectedIndex()), jobs.get(offersList.getSelectedIndex()));
 				//students.get(offersList.getSelectedIndex()).removeJob(jobs.get(offersList.getSelectedIndex()));
 				jobs.remove(offersList.getSelectedIndex());
 				students.remove(offersList.getSelectedIndex());

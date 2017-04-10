@@ -34,7 +34,13 @@ public class TestJob {
 	private Instructor aInstructor = new Instructor(aUsername, aPassword, aFirstName, aLastName);
 	
 	private ApplicationManager am;
-	private ProfileManager pm;
+	
+	private ApplicationController ac;
+	
+	Job job1 = new Job(45.0f, aDay, 10.0f, "", aCourse, aInstructor);
+	Job job2 = new Job(60.0f,"Friday",15.0f,"",aCourse,aInstructor);
+	
+	Student student1 = new Student("randinator", "tpb", "Randy", "Bobandy","");
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -48,17 +54,14 @@ public class TestJob {
 	@Before
 	public void setUp() throws Exception {
 		am = PersistenceXStream.initializeApplicationManager("testapplications.xml");
-		pm = PersistenceXStream.initializeProfileManager("testprofiles.xml");
+		ac = new ApplicationController(am,"testapplications.xml");
 	}
-
+ 
 	@After
 	public void tearDown() throws Exception {
 		am.delete();
-		pm.delete();
 		PersistenceXStream.setFilename("testapplications.xml");
 		PersistenceXStream.saveToXMLwithXStream(am);
-		PersistenceXStream.setFilename("testprofiles.xml");
-		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 
 	@Test
@@ -126,7 +129,7 @@ public class TestJob {
 		assertEquals(0,am.getJobs().size());
 		
 		aDay = "Monday";
-		aSalary = 10.00;
+		aSalary = 10.00; 
 		aRequirements = "Bachelors in Fine Arts";
 		aInstructor = null;
 		aCourse = null;
@@ -162,27 +165,23 @@ public class TestJob {
 		// Job does not get saved
 		assertEquals(0,am.getJobs().size());
 	}
-	/*
+	
 	@Test
-	public void testJobAlphabeticalSalary() {
+	public void testJobIllegalHours() {
 		assertEquals(0,am.getJobs().size());
-		
-		aDay = "Monday";
-		aSalary = "ten";
-		aRequirements = "Bachelors in Fine Arts";
 		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
-		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-		}
-		catch (InputException e) {
-			// Correct error (and message)
-			assertEquals("Salary must be a number! ", e.getMessage());
-		}
-		// Job does not get saved
+			ac.addJobToSystem(43.0f,"Monday",10.0f,"",aCourse,aInstructor,Job.Position.TUTORIAL);
+		} catch (InputException e) {}
+		
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.addJobToSystem(243.0f,"Monday",10.0f,"",aCourse,aInstructor,Job.Position.TUTORIAL);
+		} catch (InputException e) {}
+		
 		assertEquals(0,am.getJobs().size());
 	}
-	*/
+	
 	@Test
 	public void testJobNullDay() {
 		assertEquals(0,am.getJobs().size());
@@ -567,7 +566,7 @@ public class TestJob {
 		try {
 			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
 		}
-		catch (InputException e) {
+		catch (InputException e) { 
 		}
 		// Job gets saved
 		assertEquals(1,am.getJobs().size());
@@ -775,24 +774,19 @@ public class TestJob {
 		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
 		
 		try {
-			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
-			ac.addJobToSystem(45.0f, aDay2, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+			ac.createApplication(student1, job1);
+			ac.createApplication(student1, job2);
 		}
 		catch (InputException e) {
 		}
+		
 		// Job gets saved
-		assertEquals(2,am.getJobs().size());
-		// Add student to a job
-		//assertTrue(am.getJob(0).addStudent(aStudent));
-		// Make new application; apply aStudent to am.getJob(0)
-		Application aApplication = am.getJob(0).addApplication(aStudent);
-		Application aApplication2 = am.getJob(1).addApplication(aStudent);
-		// Application already exists for this job
-		assertFalse(am.getJob(0).addApplication(aApplication));
-		// Add the application that is for aJob2 to aJob
-		assertTrue(am.getJob(0).addApplication(aApplication2));
-		// Remove aApplication for Job1; always returns false since an application always needs a job
-		assertFalse(am.getJob(0).removeApplication(aApplication));
+		assertEquals(2,am.getApplications().size());
+		
+		ac.removeApplication(am.getApplication(0));
+		
+		assertEquals(1,am.getApplications().size());
+		assertEquals(job2.toString(),am.getApplication(0).getJobs().toString());
 	}
 
 	@Test
@@ -967,6 +961,152 @@ public class TestJob {
 		//assertEquals(1,am.getJob(0).numberOfStudents());
 		
 		assertEquals(am.getJob(0).toString(),am.getJob(0).toString());
+	}
+	
+	@Test
+	public void testSetJobOfferedDoesntExist() {
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.addJobToSystem(45.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+		}
+		catch (InputException e) {
+		}
+		ac.setJobOffered(job2, true); 
+		assertEquals(false,am.getJob(0).isOfferSent());
+	}
+	
+	@Test
+	public void testSetJobOfferedDoesExist() {
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.addJobToSystem(49.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+		}
+		catch (InputException e) {
+		}
+		ac.setJobOffered(am.getJob(0), true);
+		assertEquals(true,am.getJob(0).isOfferSent());
+	}
+	
+	@Test
+	public void testCreateApplicationFail() {
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		assertEquals(0,am.getApplications().size());
+		try {
+			ac.createApplication(null, null);
+		} catch(InputException e) {
+			
+		} 
+		assertEquals(0,am.getApplications().size());
+		try {
+			ac.createApplication(null, job1); 
+		} catch(InputException e) {
+			
+		} 
+		assertEquals(0,am.getApplications().size());
+		try {
+			ac.createApplication(student1, null);
+		} catch(InputException e) {
+			
+		} 
+		assertEquals(0,am.getApplications().size());
+		try {
+			ac.createApplication(student1, job1);
+		} catch(InputException e) {
+			
+		} 
+		assertEquals(1,am.getApplications().size());
+	}
+	
+	@Test 
+	public void testSetJobAcceptedDoesntExist() { 
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.createApplication(student1, job1);
+		} catch(InputException e) {
+			
+		}
+		ac.setJobOfferAccepted(new Application(student1,job2), true);
+		assertEquals(false,am.getApplication(0).getOfferAccepted());
+	}
+	
+	@Test 
+	public void testSetJobAcceptedDoesExist() { 
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.createApplication(student1, job1);
+		} catch(InputException e) {
+			
+		}
+		ac.setJobOfferAccepted(am.getApplication(0), true);
+		assertEquals(true,am.getApplication(0).getOfferAccepted());
+	}
+	
+	@Test
+	public void testSetEvaluationDoesntExist() {
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.createApplication(student1, job1);
+		} catch(InputException e) {
+			
+		}
+		ac.addStudentEvaluation(new Application(student1,job2), "Great job");
+		assertEquals(null,am.getApplication(0).getStudentEvaluation());
+	}
+	
+	@Test
+	public void testSetEvaluationDoesExist() {
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.createApplication(student1, job1);
+		} catch(InputException e) {
+			
+		}
+		ac.addStudentEvaluation(am.getApplication(0), "Great job");
+		assertEquals(true,am.getApplication(0).getStudentEvaluation().equals("Great job"));
+	}
+	
+	@Test
+	public void modifyJobPosition() {
+		aDay = "Monday";
+		aSalary = 10.00;
+		aRequirements = "Bachelors in Fine Arts";
+		ApplicationController ac = new ApplicationController(am,"testapplications.xml");
+		assertEquals(0,am.getJobs().size());
+		try {
+			ac.addJobToSystem(49.0f, aDay, aSalary, aRequirements, aCourse, aInstructor,Job.Position.TUTORIAL);
+		} catch(InputException e) {
+			
+		}
+		ac.modifyJobPosition(0,Job.Position.TUTORIAL);
+		assertEquals(Job.Position.TUTORIAL,am.getJob(0).getPosition());
+		ac.modifyJobPosition(0,Job.Position.LABORATORY);
+		assertEquals(Job.Position.LABORATORY,am.getJob(0).getPosition());
 	}
 
 }

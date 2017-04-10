@@ -32,15 +32,7 @@ public class ApplicationController {
 		if(aSalary < 0) error += "Salary must be positive! ";
 		if(day == null) error += "Day must be specified! ";
 		else if(day.equals("Saturday") || day.equals("Sunday")) error += "Day must be a work day! ";
-		if(position == Job.Position.TUTORIAL) {
-			//if(aCourse.getTaBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
-			//else aCourse.setTaBudget((float)(aCourse.getTaBudget() - hours * aSalary));
-		} else if (position == Job.Position.GRADER) {
-			//if(aCourse.getGraderBudget() - hours * aSalary < 0) error += "Not enough budget remaining! ";
-			//else aCourse.setGraderBudget((float)(aCourse.getGraderBudget() - hours * aSalary));
-		} else {
-			//if(aCourse.getLabBudget() - hours * aSalary < 0) error += "Not enough budget remaining!";
-		}
+
 		if(error.length() > 0) throw new InputException(error);
 		else{
 			Job j = new Job(hours,day, aSalary,aRequirements,aCourse,aInstructor);
@@ -53,7 +45,10 @@ public class ApplicationController {
 	
 	public void setJobOffered(Job j, boolean offered) {
 		for(int c = 0; c < am.getJobs().size(); c++) {
-			if(j.toString().equals(am.getJob(c).toString())) j.setOfferSent(offered);
+			if(j.toString().equals(am.getJob(c).toString())) {
+				j.setOfferSent(offered);
+				break;
+			}
 		}
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
@@ -61,7 +56,8 @@ public class ApplicationController {
 	
 	public void setJobOfferAccepted(Application a, boolean accepted) {
 		for(int c = 0; c < am.getApplications().size(); c++) {
-			if(a.getStudent().getUsername().equals(am.getApplication(c).getStudent().getUsername()) && a.getJobs().toString().equals(am.getApplication(c).getJobs().toString())) {
+			//if(a.getStudent().getUsername().equals(am.getApplication(c).getStudent().getUsername()) && a.getJobs().toString().equals(am.getApplication(c).getJobs().toString())) {
+			if(a.toString().equals(am.getApplication(c).toString())) {
 				am.getApplication(c).setOfferAccepted(accepted);
 				PersistenceXStream.setFilename(filename);
 				PersistenceXStream.saveToXMLwithXStream(am);
@@ -71,7 +67,8 @@ public class ApplicationController {
 	
 	public void addStudentEvaluation(Application a, String eval) {
 		for(int c = 0; c < am.getApplications().size(); c++) {
-			if(a.getStudent().getUsername().equals(am.getApplication(c).getStudent().getUsername()) && a.getJobs().toString().equals(am.getApplication(c).getJobs().toString())) {
+			if(a.toString().equals(am.getApplication(c).toString())) {
+			//if(a.getStudent().getUsername().equals(am.getApplication(c).getStudent().getUsername()) && a.getJobs().toString().equals(am.getApplication(c).getJobs().toString())) {
 				a.setStudentEvaluation(eval);
 				PersistenceXStream.setFilename(filename);
 				PersistenceXStream.saveToXMLwithXStream(am);
@@ -99,10 +96,4 @@ public class ApplicationController {
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(am);
 	}
-	
-	public void persist() {
-		PersistenceXStream.setFilename(filename);
-		PersistenceXStream.saveToXMLwithXStream(am);
-	}
-
 }
