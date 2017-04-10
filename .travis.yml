@@ -40,9 +40,9 @@ deploy:
     secure: 475ae556e51b583d764a3d7b5d9b4cd654d2381a
   file_glob: true
   file:
-    - APP/Desktop/*
-    - APP/Web/*
-    - APP/Mobile/* 
+    - Group10/APP/Desktop/*
+    - Group10/APP/Web/*
+    - Group10/APP/Mobile/* 
   skip_cleanup: true
   on:
     tags: true
