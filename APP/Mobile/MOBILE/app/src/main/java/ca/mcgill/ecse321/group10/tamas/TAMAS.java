@@ -58,7 +58,7 @@ public class TAMAS extends Application {
 
 
         createDummyData();
-        student = pm.getStudent(0);
+        //student = pm.getStudent(0);
         //for testing
 
 
@@ -71,9 +71,9 @@ public class TAMAS extends Application {
     }
 
     private void createDummyData() {
-//        if(pm.getStudents().size() != 0 && am.getJobs().size() != 0) {
-//            return;
-//        }
+        if(pm.getStudents().size() != 0 && am.getJobs().size() != 0) {
+            return;
+        }
 
         try {
 
