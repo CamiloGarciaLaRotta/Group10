@@ -1,4 +1,4 @@
-language: java
+language: android
 jdk: oraclejdk8
 notifications:
   email:
@@ -6,6 +6,21 @@ notifications:
       - mlesko1996@gmail.com
     on_success: never # default: change
     on_failure: always # default: always
+android:
+ components:
+    - build-tools-24.0.0
+    # The SDK version used to compile the project
+    - android-24
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-24
+before_install:
+  - chmod +x gradlew
+
+install:
+  - true    
+
 before_script: cd APP/
 script:
   - ant export-desktop
