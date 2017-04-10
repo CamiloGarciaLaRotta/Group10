@@ -1,3 +1,3 @@
 language: java
 jdk: oraclejdk7
-script: ant APP/Desktop/TAMAS/build
+install: ant APP/Desktop/TAMAS/build
