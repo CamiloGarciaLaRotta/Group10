@@ -30,9 +30,9 @@
 %% -- The final state of the application, do all three platforms work as intended? Which Use Cases are each of the three applications capable of performing? Should the application be run in a certain way?
 
 \begin{itemize}
-	\item \textbf{Desktop:}
-	\item \textbf{Web:}
-	\item \textbf{Mobile:}
+	\item \textbf{Desktop:} The desktop program shall be run by double clicking on the .jar file of the program. The output directory gets initialized in the same directory as the .jar file is located in. All saved data (persistence data) is stored in this output folder. No installation is necessary with the use of the .jar file. Full deletion requires the deletion of the output folder and the .jar file, and if the user has forked the repository, the user would need to delete the local repository as well.
+	\item \textbf{Web:} The Web application is accessed through the web and doesn't host any permanent or temporary files client-side. The user is required to access the server that hosts the website.
+	\item \textbf{Mobile:} The mobile program shall be released as an apk file that may be installed on an Android phone. Once the apk file is installed, the user may use the application on the phone. 
 \end{itemize}
 
 \section{Testing of Applications}
@@ -55,11 +55,12 @@
 
 \section{Release Pipeline}
 %% -- Ready for release or not?
-%% -- Where and how shall it be released? Shall we release it as intended in the release plan? 
+%% -- Where and how shall it be released? Shall we release it as intended in the release plan?
+The release pipeline shall follow the plan as in deliverable #4's report. Every release shall follow semantic versioning: MAJOR.MINOR.PATCH. With the first release being V1.0.0. All executables shall be released under a build directory.\\ 
 \begin{itemize}
-	\item \textbf{Desktop:}
-	\item \textbf{Web:}
-	\item \textbf{Mobile:}
+	\item \textbf{Desktop:} The Executable Desktop JAR archive shall be released. The APP/Desktop directory shall be released as a repository.
+	\item \textbf{Web:} The Web Application zip archive shall be released. The APP/Web directory shall be released as a repository.
+	\item \textbf{Mobile:} The apk file of the android program shall be released. The APP/Mobile directory shall be released as a repository.
 \end{itemize}
 
 \subsection{Future Releases}
@@ -85,6 +86,6 @@
 \textbf{Matthew:} Involved in Unit Testing Desktop application. Involved in implementing new Desktop application features under a Test Driven Development Paradigm.
 
 \subsection{Release:}
-\textbf{Matthew:} Involved in Deployment Phase of Software System. Suggested to use Travis CI as Deployment Tool and GitHub Releases as a release hosting solution.
+\textbf{Matthew:} Involved in Deployment Phase of Software System. Suggested to use Travis CI as Deployment Tool and GitHub Releases as a release hosting solution. Implemented Travis CI as a CI tool.
 
 \end{document}

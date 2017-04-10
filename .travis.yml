@@ -8,3 +8,16 @@ notifications:
     on_failure: always # default: always
 before_script: cd APP/
 script: ant build-desktop
+
+before_deploy: "echo 'ready?'"
+deploy:
+  provider: releases
+  api-key: 475ae556e51b583d764a3d7b5d9b4cd654d2381a
+  file_glob: true
+  file:
+    - APP/Desktop/*
+    - APP/Web/*
+    - APP/Mobile/* 
+  skip_cleanup: true
+  on:
+    tags: true
