@@ -1,3 +1,6 @@
 language: java
 jdk: oraclejdk7
-install: ant APP/Desktop/TAMAS/build
+before_script: cd APP/Desktop/TAMAS/
+script: ant build
+notifications:
+	email: false
