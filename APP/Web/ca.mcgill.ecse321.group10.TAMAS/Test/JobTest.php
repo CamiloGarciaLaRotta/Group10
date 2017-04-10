@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__.'\..\Model\Job.php';
-require_once __DIR__.'\..\Model\ApplicationManager.php';
-require_once __DIR__.'\..\Controller\ApplicationController.php';
-require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Job.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'ApplicationManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Controller'. DIRECTORY_SEPARATOR .'ApplicationController.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Persistence'. DIRECTORY_SEPARATOR .'PersistenceTAMAS.php';
 
 // Due to the dependance of the notion of adding a Job with the ProfileManager and CourseManager,
 // the tests through the controller for these cases will be done at Integration test level.

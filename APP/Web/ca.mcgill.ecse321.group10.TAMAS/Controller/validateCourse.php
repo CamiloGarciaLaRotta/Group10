@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'\CourseController.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'CourseController.php';
 
 // validation script for course creation
 

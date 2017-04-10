@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'\ApplicationController.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'ApplicationController.php';
 
 // getter script for application information
 

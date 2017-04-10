@@ -1,11 +1,11 @@
 <?php
-require_once __DIR__.'\..\Controller\InputValidator.php';
-require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-require_once __DIR__.'\..\Model\ProfileManager.php';
-require_once __DIR__.'\..\Model\Profile.php';
-require_once __DIR__.'\..\Model\Instructor.php';
-require_once __DIR__.'\..\Model\CourseManager.php';
-require_once __DIR__.'\..\Model\Course.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .''. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Controller'. DIRECTORY_SEPARATOR .'InputValidator.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .''. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Persistence'. DIRECTORY_SEPARATOR .'PersistenceTAMAS.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .''. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'ProfileManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .''. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Profile.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .''. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Instructor.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .''. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'CourseManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .''. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Course.php';
 
 /**
  * Controller for Profiles, handles creation, deletion, modification and validation of instructors

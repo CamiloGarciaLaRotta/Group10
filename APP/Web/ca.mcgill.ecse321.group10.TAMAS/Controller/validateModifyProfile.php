@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'\ProfileController.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'ProfileController.php';
 
 // validation script of Profile Modification
 

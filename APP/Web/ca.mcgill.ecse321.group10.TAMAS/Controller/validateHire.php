@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__.'\.\InputValidator.php';
-require_once __DIR__.'\.\applicationController.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'InputValidator.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'applicationController.php';
 
 // validation script for hiring form
 

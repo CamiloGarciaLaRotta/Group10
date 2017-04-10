@@ -1,11 +1,11 @@
 // <?php
-require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-require_once __DIR__.'\..\Model\Course.php';
-require_once __DIR__.'\..\Model\CourseManager.php';
-require_once __DIR__.'\..\Model\Application.php';
-require_once __DIR__.'\..\Model\ApplicationManager.php';
-require_once __DIR__.'\..\Model\Profile.php';
-require_once __DIR__.'\..\Model\ProfileManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Persistence'. DIRECTORY_SEPARATOR .'PersistenceTAMAS.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Course.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'CourseManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Application.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'ApplicationManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Profile.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'ProfileManager.php';
 
 
 // Note that based on RegistrationManager's Persistence test, 
