@@ -43,4 +43,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="90dp" />
 
+    <TextView
+        android:id="@+id/evalErrors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ApplicationErrors"
+        android:textAlignment="center"
+        android:textColor="@color/errorColor"
+        tools:layout_editor_absoluteY="184dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.501" />
+
 </android.support.constraint.ConstraintLayout>

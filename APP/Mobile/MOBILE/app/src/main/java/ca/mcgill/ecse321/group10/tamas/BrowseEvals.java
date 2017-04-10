@@ -65,6 +65,12 @@ public class BrowseEvals extends AppCompatActivity {
             String appStudent = application.getStudent().getUsername();
             String curStudent = student.getUsername();
 
+            if (curStudent == null){
+                TextView errors = (TextView) findViewById(R.id.evalErrors);
+                errors.setText("Please Login first");
+                return;
+            }
+
             if(application.isOfferAccepted() && appStudent.equals(curStudent)){
                 Job job = application.getJobs();
                 job.addApplicationAt(application,0);

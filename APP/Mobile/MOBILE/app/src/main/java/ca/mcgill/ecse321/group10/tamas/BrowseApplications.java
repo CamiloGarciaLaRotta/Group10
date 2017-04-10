@@ -135,4 +135,35 @@ public class BrowseApplications extends AppCompatActivity {
         }
     }
 
+
+    public void rejectOfferClicked(View v){
+        if(v.getId() == R.id.AcceptOffer){
+            String errors = "";
+            Student student = ((TAMAS) getApplication()).getStudent();
+            if(student == null) errors += "Must be logged in\n";
+            if(applicationSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
+
+            if(errors.length() == 0){
+                Job job = am.getJob(applicationSpinner.getSelectedItemPosition());
+                try{
+                    pc.removeJobOfferFromStudent(student,job);
+                    ac.setJobOfferAccepted(job.getApplication(0),false);
+
+                    String msg = "You have rejected the job offer for: " + job.getCourse().getClassName() +
+                            ": " + job.getId() + " - " + job.getPositionFullName() + ".";
+                    Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
+                    toast.setGravity(0,0,15);
+                    toast.show();
+
+                }catch (Exception e){
+                    errors += "\n" + e.getMessage();
+                    errors += "\nFailed to reject job Offer";
+                }
+
+            }
+
+            errorView.setText(errors);
+        }
+    }
+
 }
