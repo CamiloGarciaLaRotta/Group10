@@ -1,5 +1,5 @@
 <?php 
-include __DIR__.'\Controller\validateLogin.php';
+include __DIR__. DIRECTORY_SEPARATOR .'Controller'. DIRECTORY_SEPARATOR .'validateLogin.php';
 
 if (isset($_SESSION['username'])) {
 	header("location: ./View/home.php");

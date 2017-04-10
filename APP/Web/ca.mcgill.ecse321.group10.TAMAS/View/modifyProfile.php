@@ -15,10 +15,10 @@
 	
 	$timezone = date_default_timezone_set('America/New_York');
 	
-	require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-	require_once __DIR__.'\..\Model\ProfileManager.php';
-	require_once __DIR__.'\..\Model\Profile.php';
-	require_once __DIR__.'\..\Model\Instructor.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Persistence'. DIRECTORY_SEPARATOR .'PersistenceTAMAS.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'ProfileManager.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Profile.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Instructor.php';
 	
 	session_start();
 	

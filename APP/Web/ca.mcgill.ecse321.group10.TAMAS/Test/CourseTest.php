@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__.'\..\Model\Course.php';
-require_once __DIR__.'\..\Model\CourseManager.php';
-require_once __DIR__.'\..\Controller\CourseController.php';
-require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Course.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'CourseManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Controller'. DIRECTORY_SEPARATOR .'CourseController.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Persistence'. DIRECTORY_SEPARATOR .'PersistenceTAMAS.php';
 
 class CourseTest extends PHPUnit_Framework_TestCase {
 	

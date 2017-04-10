@@ -15,12 +15,12 @@
 	
 	$timezone = date_default_timezone_set('America/New_York');
 	
-	require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
-	require_once __DIR__.'\..\Model\ProfileManager.php';
-	require_once __DIR__.'\..\Model\Profile.php';
-	require_once __DIR__.'\..\Model\Instructor.php';
-	require_once __DIR__.'\..\Model\CourseManager.php';
-	require_once __DIR__.'\..\Model\Course.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Persistence'. DIRECTORY_SEPARATOR .'PersistenceTAMAS.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'ProfileManager.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Profile.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Instructor.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'CourseManager.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Course.php';
 	
 	session_start();
 	
@@ -88,7 +88,7 @@
 					<div id="info">
 						Position<br>
 						<label id="tut"><input type="radio" name="jobPosition" value="PositionTUTORIAL" >Tutorial (TA)</label><br>
-						<label id="lab"><input type="radio" name="jobPosition" value="PositionLABORATORY" >Laboratory (TA)</label><br>
+						<label id="lab"><input type="radio" name="jobPosition" value="PositionLABORATORY" >Laboratoire (TA)</label><br>
 						<label id="grader"><input type="radio" name="jobPosition" value="PositionGRADER" >Grader</label><br><br>
 						Requirements
 						<textarea class="text" cols="20" rows ="5" name="jobRequirements" maxlength="100" reqired></textarea><br><br>	

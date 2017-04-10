@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__.'\..\Model\Profile.php';
-require_once __DIR__.'\..\Model\ProfileManager.php';
-require_once __DIR__.'\..\Controller\ProfileController.php';
-require_once __DIR__.'\..\Persistence\PersistenceTAMAS.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'Profile.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Model'. DIRECTORY_SEPARATOR .'ProfileManager.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Controller'. DIRECTORY_SEPARATOR .'ProfileController.php';
+require_once __DIR__. DIRECTORY_SEPARATOR .'..'. DIRECTORY_SEPARATOR .'Persistence'. DIRECTORY_SEPARATOR .'PersistenceTAMAS.php';
 
 class ProfileTest extends PHPUnit_Framework_TestCase {
 
