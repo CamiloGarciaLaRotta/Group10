@@ -85,7 +85,9 @@ public class BrowseApplications extends AppCompatActivity {
         for (Application application:applications){
             //typo in the model - jobs is a single job
             //if the application has been offered and is the student's application, add it to jobs
-            if(application.getStudent().equals(student)){
+            if(application.getStudent().getUsername().equals(student.getUsername())){
+                Log.d("offer", "student: " + student.toString());
+                Log.d("offer", "appstudent: "+application.getStudent().toString());
                 Job job = application.getJobs();
                 job.addApplicationAt(application,0);
                 jobs.add(job);
