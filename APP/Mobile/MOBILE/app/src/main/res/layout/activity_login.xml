@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="91dp"
-        android:background="@color/buttonBackground"
+        android:background="@drawable/roundbutton"
         android:hint="@string/action_sign_in"
         android:onClick="loginClicked"
         android:textColor="@color/Black"
