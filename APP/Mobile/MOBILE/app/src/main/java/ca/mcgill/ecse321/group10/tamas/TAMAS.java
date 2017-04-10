@@ -58,7 +58,7 @@ public class TAMAS extends Application {
 
 
         createDummyData();
-        //student = pm.getStudent(0);
+        student = pm.getStudent(0);
         //for testing
 
 

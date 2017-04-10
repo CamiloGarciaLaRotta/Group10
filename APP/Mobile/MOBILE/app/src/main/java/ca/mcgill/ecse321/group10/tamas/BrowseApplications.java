@@ -26,11 +26,12 @@ public class BrowseApplications extends AppCompatActivity {
     private TextView jobOfferDescription;
     private Spinner applicationSpinner;
     private TextView errorView;
-
+    private ProfileManager pm;
     private ApplicationManager am;
 
     private ProfileController pc;
     private ApplicationController ac;
+
 
     private int selectedPosition;
     ArrayList<Job> jobs = null;
@@ -48,6 +49,8 @@ public class BrowseApplications extends AppCompatActivity {
 
         am = ((TAMAS) getApplication()).getApplicationManager();
         ac = ((TAMAS) getApplication()).getApplicationController();
+        pm = ((TAMAS) getApplication()).getProfileManager();
+        pc = ((TAMAS) this.getApplication()).getProfileController();
 
         jobs = new ArrayList<Job>();
 
@@ -122,8 +125,10 @@ public class BrowseApplications extends AppCompatActivity {
             if(applicationSpinner.getSelectedItemPosition() == -1) errors += "No job selected. \n";
 
             if(errors.length() == 0){
+                Log.d("offer", "job size: " + jobs.size());
                 Job job = jobs.get(applicationSpinner.getSelectedItemPosition());
                 try{
+                    Log.d("offer", "job: " + job.toString());
                     pc.acceptJob(student,job);
                     ac.setJobOfferAccepted(job.getApplication(0),true);
 
