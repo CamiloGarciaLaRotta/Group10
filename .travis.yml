@@ -7,9 +7,12 @@ notifications:
     on_success: never # default: change
     on_failure: always # default: always
 before_script: cd APP/
-script: ant build-desktop
+script:
+  - ant export-desktop
+  - ant export-web
+  - ant export-mobile
 
-before_deploy: "echo 'ready?'"
+before_deploy: "echo 'ready to deploy?'"
 deploy:
   provider: releases
   api-key: 475ae556e51b583d764a3d7b5d9b4cd654d2381a

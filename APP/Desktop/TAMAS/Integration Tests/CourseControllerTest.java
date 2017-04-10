@@ -30,6 +30,7 @@ public class CourseControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		cm.delete();
+		PersistenceXStream.saveToXMLwithXStream(cm);
 		File f = new File(outputFile);
 		f.delete();
 		assertEquals(0,cm.getCourses().size());

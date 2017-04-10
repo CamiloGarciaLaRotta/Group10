@@ -1,5 +1,5 @@
 # Group10
-### Desktop Build Status
+### Remote Build Status
 [![Build Status](https://travis-ci.com/ECSE321-Winter2017-McGill/Group10.svg?token=RjSJXSnzv8LjryFGTxf4&branch=master)](https://travis-ci.com/ECSE321-Winter2017-McGill/Group10)
 
 ### Structure
