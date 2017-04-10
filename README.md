@@ -1,4 +1,7 @@
 # Group10
+### Desktop Build Status
+[![Build Status](https://travis-ci.com/ECSE321-Winter2017-McGill/Group10.svg?token=RjSJXSnzv8LjryFGTxf4&branch=master)](https://travis-ci.com/ECSE321-Winter2017-McGill/Group10)
+
 ### Structure
 Each deliverable is self contained in its repository, the latest backlog is kept apart.  
 A brief description of each delivery follows.
