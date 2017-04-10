@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         if (student == null){
             Context userInfoContext = findViewById(R.id.currentUser).getContext();
             userInfo.setTextColor(ContextCompat.getColor(userInfoContext,R.color.errorColor));
-            userInfo.setText("Please login order to use Tamas\nButtons are currently disabled");
+            userInfo.setText("Please login order to use Tamas\nOther buttons are currently disabled");
             userInfo.setTextSize(18);;
             this.setEnableButtons(false);
         }
