@@ -35,5 +35,20 @@ A brief description of each delivery follows.
 		Updated work and remaining work for remaining iterations of implementation
 		
 *  __Deliverable #4__
+	* Release Pipeline Plan: Integration, Build, and Deploment plans must be documented
+		Describe how code is changed, compiled, tested, packaged, and released
+		Describe tools used to support each phase
+	* Updated Work Plan: Define the completed and remaining iterations of implementation until the final deliverable
+		Each completed iteration, indicate which requirements are addressed, report the effort needed to complete
+		the iteration, estimate effort needed to complete iteration, and date for completion.
 *  __Deliverable #5__
-*  __Deliverable #5__
+	* Presentation
+		Grading:
+		Effectiveness of presentation (Communication and organization)
+		Content of presentation
+		Quality of slides
+		Live Demo
+*  __Deliverable #6__
+	* Final report: Includes comments on Correctness of the implementation of the main features, Usability of application,
+	Testing of the applications, Release pipeline
+	* Submit Final Software
