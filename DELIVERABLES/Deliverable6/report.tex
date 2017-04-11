@@ -44,22 +44,10 @@
 	\item \textbf{Mobile:} The shipped application provides the capabilities of appying for a job,
 		accepting/rejecting offers, creating and modifying the user's student profile, and viewing
 		instructor evaluations. 
-	   % \item 1.4.1 - The mobile application only allows student profiles to login
-	   % \item 1.4.2 - The mobile application was written in java
-	   % \item 1.4.3 - The mobile application only used libraries provided by android studio and no other tools were used
-	   % \item 1.4.4 - The students may store their student ID in their description as a string.
-	   % \item 1.4.5 - The application uses a controller to load job postings from persistence
-	   % \item 1.4.6 - The application lists all the job postings to the user in a separate view
-	   % \item 1.4.7 - This was not fulfilled since the administration can view other jobs that the student has applied for and can control whether or not he will get the job
-	   % \item 1.4.8 - The user is not able to specify his preferences and rank his applications. He instead is given the choice to choose which offers he will ultimately accept
-	   % \item 1.4.9 - The mobile application retrieves job offers from persistence
-	   % \item 1.4.10 - The mobile application displays job offers to the user
-	   % \item 1.4.11 - The student may accept or reject job offers
 
 \end{itemize}
 
 \textbf{2. Usability of Application}
-%% -- The final state of the application, do all three platforms work as intended? Which Use Cases are each of the three applications capable of performing? Should the application be run in a certain way?
 
 \begin{itemize}
 	\item \textbf{Desktop:} The desktop program shall be run by double clicking on the .jar file of
@@ -79,30 +67,18 @@
 
 \textbf{3. Testing of Applications}
 
-
-%% -- Talk about the final state of testing. Have all unit tests been done -> Are we confident enough that certain inputs will not cause problems? Do they all pass? Coverage?
-%% -- Is all integration testing done -> Are we confident enough with certain feaures working together? Are there any concerns for certain features? Will there be more testing in the future?
-%% -- Is all system testing done -> Are we confident enough to release the product?
 The unit, integration and system testing strategies devised for deliverable 3 were implemented for the desktop application to ensure that maximal performance and coverage as well as  to ensure proper functionality of the system would be achieved. The testing strategy needed to be adjusted somewhat for the web app due to the differnt way that each functionality was implemented in php. As the android app depended on the java code made for desktop, it was suficient to test units and integration on dekstop and not on android.
 \begin{itemize}
-		\item \textbf{Unit Testing:} 
-		\begin{itemize}
-			\item A plethora of unit tests were written for the desktop application, and currently offer 100\% coverage of the controller classes.
-			\item  In similar fashion to the desktop unit tests, all controllers were tested seperately during unit tests for the web application. Coverage on the unit tests is similar to that of the desktop application.
-		\end{itemize}
-			\item \textbf{Integration Testing:} 
-		\begin{itemize}
-			\item Because the desktop app has more functionality than the web app, the integration testing of it involved a more comprehensive list of test cases than the desktop app did.
-			\item As the web app only handles things from the perspective of a teachers point of view, which means to look at things in terms of jobs, it was sufficient to test that all functionality and error-detection involved in job creation was covered.
-		\end{itemize}
-	\item \textbf{System Testing:}At the system level, all three applications were extensively tested after each new iteration of the source code. Due to the sheer size of the applications, it is difficult to measure the exact system test coverage, though it is believed that the state coverage on all platforms was close to 100\%.
+	\item \textbf{Unit Testing:} A plethora of unit tests were written for the desktop application, and currently offer 100\% coverage of the controller classes. In similar fashion to the desktop unit tests, all controllers were tested separately during unit tests for the web application. Coverage on the unit tests is similar to that of the desktop application.
+		
+		
+	\item \textbf{Integration Testing:} Because the desktop app has more functionality than the web app, the integration testing of it involved a more comprehensive list of test cases than the desktop app did. As the web app only handles things from the perspective of a teachers point of view, which means to look at things in terms of jobs, it was sufficient to test that all functionality and error-detection involved in job creation was covered.
+    		
+    \item \textbf{System Testing:}At the system level, all three applications were extensively tested after each new iteration of the source code. Due to the sheer size of the applications, it is difficult to measure the exact system test coverage, though it is believed that the state coverage on all platforms was close to 100\%.
 \end{itemize}
 
 \textbf{4. Release Pipeline}
 
-
-%% -- Ready for release or not?
-%% -- Where and how shall it be released? Shall we release it as intended in the release plan?
 The release pipeline shall follow the plan as in deliverable 4's report. Every release shall follow semantic versioning: MAJOR.MINOR.PATCH. With the first release being V1.0.0. During deployment, the Travis script shall invoke the scripts: ant export-desktop, ant export-web, and ant export-mobile. These shall export the necessary jar, apk, and web files. All source code shall be available as well.
 \begin{itemize}
 	\item \textbf{Desktop:} The Executable Desktop JAR archive shall be released. The APP/Desktop directory shall be available in the source code.
@@ -118,10 +94,7 @@ the development team's productivity.\\
 
 \textbf{5. Responsibilities for Each Phase}
 \begin{itemize}
-    \item \textbf{Harley Wiltzer: }%MVP
-		%Sole developer of the Desktop application - designed the logic and UI for each
-		%use case. Designed and implemented the multi-platform build script to completion. Principle
-		%tester of the entire Desktop application.
+    \item \textbf{Harley Wiltzer: (XXXh)} Sole developer and principal tester of the Desktop app. Designed the logic and UI for each use case. Designed and implemented the multi-platform build script to completion.
     \item \textbf{Camilo Garcia: }
     \item \textbf{Jacob Shnaidman:(420+h) }
     \item \textbf{Robert Attard: 60+h}
