@@ -35,15 +35,16 @@ script:
 
 before_deploy: 
   - "echo '>>>>>>Getting Ready to Deploy>>>>>>'"
+  - cd APP/
 deploy:
   provider: releases
   api-key: 
     secure: 475ae556e51b583d764a3d7b5d9b4cd654d2381a
   file_glob: true
   file:
-    - "APP/Desktop/TAMAS/TAMAS*.jar"
-    - "APP/Web/TAMAS-Web*.zip"
-    - "APP/Mobile/MOBILE/app/build/outputs/apk/app-debug*.apk" 
+    - "Desktop/TAMAS/TAMAS*.jar"
+    - "Web/TAMAS-Web*.zip"
+    - "Mobile/MOBILE/app/build/outputs/apk/app-debug*.apk" 
   skip_cleanup: true
   on:
     tags: true
