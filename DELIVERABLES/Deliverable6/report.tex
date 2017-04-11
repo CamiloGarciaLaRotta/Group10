@@ -77,11 +77,11 @@
 
 %% -- Ready for release or not?
 %% -- Where and how shall it be released? Shall we release it as intended in the release plan?
-The release pipeline shall follow the plan as in deliverable 4's report. Every release shall follow semantic versioning: MAJOR.MINOR.PATCH. With the first release being V1.0.0. During deployment, the Travis script shall invoke the scripts: ant export-desktop, ant export-web, and ant export-mobile. These shall export the necessary jar, apk, and web files.
+The release pipeline shall follow the plan as in deliverable 4's report. Every release shall follow semantic versioning: MAJOR.MINOR.PATCH. With the first release being V1.0.0. During deployment, the Travis script shall invoke the scripts: ant export-desktop, ant export-web, and ant export-mobile. These shall export the necessary jar, apk, and web files. All source code shall be available as well.
 \begin{itemize}
-	\item \textbf{Desktop:} The Executable Desktop JAR archive shall be released. The APP/Desktop directory shall be released as a repository.
-	\item \textbf{Web:} The Web Application zip archive shall be released. The APP/Web directory shall be released as a repository.
-	\item \textbf{Mobile:} The apk file of the android program shall be released. The APP/Mobile directory shall be released as a repository.
+	\item \textbf{Desktop:} The Executable Desktop JAR archive shall be released. The APP/Desktop directory shall be available in the source code.
+	\item \textbf{Web:} The Web Application zip archive shall be released. The APP/Web directory shall be available in the source code.
+	\item \textbf{Mobile:} The apk file of the android program shall be released. The APP/Mobile directory shall be available in the source code.
 \end{itemize}
 
 It is interesting to note that a good part of the release pipeline time budget was allocated for the build script. Apart from the base functionalities it is also capable of packaging the web app, start the xampp server and open a browser with the address of the web service.Install the mobile app automatically to a connected android device
