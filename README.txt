@@ -51,7 +51,7 @@ build-desktop: Compiles the source
 export-desktop: Creates an executable JAR of the Desktop Application (after going through JUnit tests)
 run-desktop: Launches the Desktop Application (after going through JUnit tests)
 clean-desktop: Removes directories for storing class files and JUnit logs
-remove-pc-persistence: Removes the persistence directory (NOTE: init-desktop should be run after doing this)
+annihilate: Removes the persistence directory (NOTE: init-desktop should be run after doing this)
 
 Web
 ---

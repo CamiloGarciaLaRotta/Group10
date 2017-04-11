@@ -15,10 +15,10 @@
 	<!-- PLEASE CHANGE THESE PATHS TO ACCOMODATE YOUR PC -->
 	<property name="xampp.dir" value="/opt/lampp"/>
 	<property name="chrome" value="/usr/bin/google-chrome-stable"/>
+	<property name="phpunit" value="Web${file.separator}phpunit"/>
 	<!-- End of paths to change -->
 
     <property name="ECLIPSE_HOME" value="/usr/lib/eclipse/"/>
-	<property name="phpunit" value="Web${file.separator}phpunit"/>
 
 	<!-- DESKTOP TARGETS -->
     <path id="JUnit 4.libraryclasspath">
@@ -39,8 +39,6 @@
         <path refid="JUnit 4.libraryclasspath"/>
     </path>
     <target name="init-desktop">
-		<mkdir dir="Desktop${file.separator}TAMAS${file.separator}bin"/>
-		<mkdir dir="Desktop${file.separator}TAMAS${file.separator}output"/>
 		<mkdir dir="${persistence.dir}"/>
 		<mkdir dir="Desktop${file.separator}TAMAS${file.separator}junit"/>
 		<copy includeemptydirs="false" todir="Desktop${file.separator}TAMAS${file.separator}bin">
@@ -64,7 +62,6 @@
 		<delete dir="Desktop${file.separator}TAMAS${file.separator}junit"/>
     </target>
     <target depends="clean-desktop" name="annihilate">
-		<delete dir="Desktop${file.separator}TAMAS${file.separator}output"/>
 		<delete dir="${persistence.dir}"/>
 	</target>
     <target depends="init-desktop,build-subprojects,build-project" name="build-desktop"/>
@@ -243,9 +240,6 @@
 	<target name="build-all" depends="build-desktop, build-mobile"/>
 	<target name="export-all" depends="export-desktop,export-web,export-mobile"/>
 	<target name="test-all" depends="test-desktop,test-web"/>
-	<target name="remove-pc-persistence">
-		<delete dir="${user.home}${file.separator}.tamas${file.separator}output"/>
-	</target>
-	<target name="start-fresh" depends="remove-pc-persistence,clean-all,export-all"/>
+	<target name="start-fresh" depends="annihilate,clean-all,export-all"/>
 	<target name="pandemonium" depends="clean-all, run-desktop, run-web, install-mobile"/>
 </project>
