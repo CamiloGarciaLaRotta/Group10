@@ -46,6 +46,4 @@ deploy:
     - "APP/Mobile/MOBILE/app/build/outputs/apk/app-debug*.apk" 
   skip_cleanup: true
   on:
-    branch: master
-    repo: matthewlesko01/ECSE321-Winter2017-McGill/Group10
     tags: true
