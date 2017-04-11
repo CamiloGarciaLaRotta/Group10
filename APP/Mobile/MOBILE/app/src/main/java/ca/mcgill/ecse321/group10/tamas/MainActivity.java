@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Context userInfoContext = findViewById(R.id.currentUser).getContext();
             userInfo.setTextColor(ContextCompat.getColor(userInfoContext,R.color.errorColor));
             userInfo.setText("Please login order to use Tamas");
-            userInfo.setTextSize(18);;
+            userInfo.setTextSize(18);
             this.setEnableButtons(false);
         }
         else{

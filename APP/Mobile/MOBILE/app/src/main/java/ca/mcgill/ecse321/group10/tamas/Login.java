@@ -74,6 +74,7 @@ public class Login extends AppCompatActivity {
                 String password = student.getPassword();
                 if(passwordField.getText().toString().equals(password)){
                     ((TAMAS) getApplication()).setStudent(student);
+                    finish();
                 }
                 else{
                     errors += "Password incorrect. \n";
@@ -81,7 +82,7 @@ public class Login extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP | Gravity.CENTER,0,0);
-                toast.show();
+                if(errors.length() == 0) toast.show();
             }
             else{
                 usernameField.setText("");
