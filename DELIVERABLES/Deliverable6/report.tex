@@ -83,14 +83,19 @@
 %% -- Talk about the final state of testing. Have all unit tests been done -> Are we confident enough that certain inputs will not cause problems? Do they all pass? Coverage?
 %% -- Is all integration testing done -> Are we confident enough with certain feaures working together? Are there any concerns for certain features? Will there be more testing in the future?
 %% -- Is all system testing done -> Are we confident enough to release the product?
+The unit, integration and system testing strategies devised for deliverable 3 were implemented for the desktop application to ensure that maximal performance and coverage as well as  to ensure proper functionality of the system would be achieved. The testing strategy needed to be adjusted somewhat for the web app due to the differnt way that each functionality was implemented in php. As the android app depended on the java code made for desktop, it was suficient to test units and integration on dekstop and not on android.
 \begin{itemize}
-	\item \textbf{Unit Testing:} A plethora of unit tests were written for the desktop application,
-		and currently offer 100\% coverage of the controller classes.
-	\item \textbf{Integration Testing:}
-	\item \textbf{System Testing:} All three applications were extensively tested at the system
-		level. Due to the sheer size of the applications, it is difficult to measure the exact
-		system test coverage, though it is believed that the state coverage on all platforms was
-		close to 100\%.
+		\item \textbf{Unit Testing:} 
+		\begin{itemize}
+			\item A plethora of unit tests were written for the desktop application, and currently offer 100\% coverage of the controller classes.
+			\item  In similar fashion to the desktop unit tests, all controllers were tested seperately during unit tests for the web application. Coverage on the unit tests is similar to that of the desktop application.
+		\end{itemize}
+			\item \textbf{Integration Testing:} 
+		\begin{itemize}
+			\item Because the desktop app has more functionality than the web app, the integration testing of it involved a more comprehensive list of test cases than the desktop app did.
+			\item As the web app only handles things from the perspective of a teachers point of view, which means to look at things in terms of jobs, it was sufficient to test that all functionality and error-detection involved in job creation was covered.
+		\end{itemize}
+	\item \textbf{System Testing:}At the system level, all three applications were extensively tested after each new iteration of the source code. Due to the sheer size of the applications, it is difficult to measure the exact system test coverage, though it is believed that the state coverage on all platforms was close to 100\%.
 \end{itemize}
 
 \textbf{4. Release Pipeline}
@@ -113,14 +118,15 @@ the development team's productivity.\\
 
 \textbf{5. Responsibilities for Each Phase}
 \begin{itemize}
-    \item \textbf{Harley Wiltzer: }
+    \item \textbf{Harley Wiltzer: }%MVP
 		%Sole developer of the Desktop application - designed the logic and UI for each
 		%use case. Designed and implemented the multi-platform build script to completion. Principle
 		%tester of the entire Desktop application.
     \item \textbf{Camilo Garcia: }
     \item \textbf{Jacob Shnaidman:(420+h) }
-    \item \textbf{Robert Attard: }
-    \item \textbf{Matthew Lesko: (40+h)} 
+    \item \textbf{Robert Attard: 60+h}
+    % Assisted in the development of the system architecture and tweaking of the webb application interface. Ensured that the unit and integration tests for web were up to date so that new features could be implemented. Co-designed the integration testing startegy for desktop and web. Assistenmd in system testing for the desktop app and was primary tester for the web application. Chose the color scheme for the web app.
+    \item \textbf{Matthew Lesko: (60+h)} 
     % Involved in Design of Domain Model, Software Architecture, Use Case Diagram, and Behavioral Sequence Diagram. Updating necessary changes to Domain Model and Detailed Domain Model during this phase. Unit Testing Desktop application. Involved in implementing new Desktop application features under a Test Driven Development Paradigm. Involved in Deployment Phase of Software System. Suggested to use Travis CI as Deployment Tool and GitHub Releases as a release hosting solution. Implemented Travis CI as a CI tool.
 \end{itemize}
 
