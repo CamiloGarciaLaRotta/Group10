@@ -68,12 +68,14 @@ public class ApproveOffersView extends JFrame{
 		removeButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(offersList.getSelectedIndex() == -1) return;
-				//jobs.get(offersList.getSelectedIndex()).setOfferSent(false);
 				ApplicationController ac = new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME);
 				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
+
+				//Un-set jobOffered, remove job offer from student's list
 				ac.setJobOffered(jobs.get(offersList.getSelectedIndex()), false);
 				pc.removeJobOfferFromStudent(students.get(offersList.getSelectedIndex()), jobs.get(offersList.getSelectedIndex()));
-				//students.get(offersList.getSelectedIndex()).removeJob(jobs.get(offersList.getSelectedIndex()));
+
+				//Update student and job arraylists to remove last job offer from list of offers
 				jobs.remove(offersList.getSelectedIndex());
 				students.remove(offersList.getSelectedIndex());
 				refreshList();
@@ -82,8 +84,11 @@ public class ApproveOffersView extends JFrame{
 		
 		approveButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
+				//Load data from persistence
 				ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
+				//Set approval status to 1
 				constants.set(0, 1);
+
 				PersistenceXStream.setFilename(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 				PersistenceXStream.saveToXMLwithXStream(constants);
 				refreshList();
@@ -116,6 +121,8 @@ public class ApproveOffersView extends JFrame{
 			offersList.setModel(listModel);
 			pack();
 		}
+
+		//Populate list of offers by cycling through all students and their associated job offers
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			Student curStudent = pm.getStudent(c);
 			for(int j = 0; j < curStudent.getJobs().size(); j++) {

@@ -53,9 +53,8 @@ public class CreateCourseView extends JFrame{
 	}
 	
 	private void initComponents() {
-		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Create Course");
-		String [] instructorNames = new String[pm.getInstructors().size()];
+		String [] instructorNames = new String[pm.getInstructors().size()]; //Will be used to populate the instructor ComboBox for admin user
 		for(int c = 0; c < instructorNames.length; c++) {
 			instructorNames[c] = pm.getInstructor(c).getFirstName() + " " + pm.getInstructor(c).getLastName();
 		}
@@ -172,6 +171,8 @@ public class CreateCourseView extends JFrame{
 			pack();
 			return;
 		}
+
+		//If job creation was successful, clear all fields
 		errorLabel.setText("");
 		tfName.setText("");
 		tfCode.setText("");
@@ -199,9 +200,11 @@ public class CreateCourseView extends JFrame{
 			else labBudget = Float.parseFloat(tfLabBudget.getText());
 			CourseController cc = new CourseController(cm, CourseController.COURSE_FILE_NAME);
 			try {
+				//Save Course in persistence, then bind it to an Instructor
 				cc.createCourse(name, code, graderBudget, taBudget,labBudget);
 				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
-				pc.addCourseToInstructor(instructorList.getSelectedIndex(), cm.getCourse(cm.getCourses().size()-1));
+				pc.addCourseToInstructor(instructorList.getSelectedIndex(), cm.getCourse(cm.getCourses().size()-1)); //Accesses the last course saved - the one that was just created
+
 				error = "Course " + name + "(" + code + ") created!";
 				errorLabel.setType(ThemedLabel.LabelType.Success);
 			} catch (InputException e) {

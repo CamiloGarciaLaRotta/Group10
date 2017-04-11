@@ -59,10 +59,10 @@ public class ProfileController {
 		error = validateProfile(aUsername,aPassword,aFirstName,aLastName,true);
 		if(error.length() > 0) throw new InputException(error);
 		else{
-		Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
-		pm.addInstructor(instructor);
-		PersistenceXStream.setFilename(filename);
-		PersistenceXStream.saveToXMLwithXStream(pm);
+			Instructor instructor = new Instructor(aUsername,aPassword,aFirstName,aLastName);
+			pm.addInstructor(instructor);
+			PersistenceXStream.setFilename(filename);
+			PersistenceXStream.saveToXMLwithXStream(pm);
 		}
 	}
 	

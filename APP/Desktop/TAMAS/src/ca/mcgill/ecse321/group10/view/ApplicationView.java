@@ -48,10 +48,9 @@ public class ApplicationView extends JFrame{
 	}
 	
 	private void initComponents() {
-		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Apply for a Job");
 		
-		String [] studentNames = new String[pm.getStudents().size()];
+		String [] studentNames = new String[pm.getStudents().size()]; //Will be used in the student ComboBox
 		for(int c = 0; c < studentNames.length; c++) {
 			studentNames[c] = pm.getStudent(c).getUsername();
 		}
@@ -60,9 +59,9 @@ public class ApplicationView extends JFrame{
 		studentList.setLayoutOrientation(JList.VERTICAL);
 		studentScroller = new JScrollPane(studentList);
 		
-		String [] jobNames = new String[am.getJobs().size()];
+		String [] jobNames = new String[am.getJobs().size()]; //Will be used in the job ComboBox
 		for(int c = 0; c < jobNames.length; c++) {
-			jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName();
+			jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getId() + " - " + am.getJob(c).getPositionFullName(); //Readable and distinguished job name
 		}
 		jobList = new ThemedList(jobNames);
 		jobList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -71,7 +70,7 @@ public class ApplicationView extends JFrame{
 		
 		jobList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 			public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-				refreshInfo();
+				refreshInfo(); //Refresh job description when new job is selected
 			}
 		});
 		

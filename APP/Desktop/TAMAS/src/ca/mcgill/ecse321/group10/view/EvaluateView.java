@@ -65,7 +65,7 @@ public class EvaluateView extends JFrame{
 		
 		student = null;
 		
-		instructors = pm.getInstructors();
+		instructors = pm.getInstructors(); //Used to populate Instructor ComboBox for the admin user
 		instructorList = new JComboBox<String>();
 		applicationList = new JComboBox<String>();
 		
@@ -93,15 +93,14 @@ public class EvaluateView extends JFrame{
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				Instructor curInstructor;
 				Job curJob = applications.get(applicationList.getSelectedIndex()).getJobs();
+
+				//Choose to act as instructor from combobox (if you're an admin) or as logged-in profile
 				if(instructor == null) curInstructor = instructors.get(instructorList.getSelectedIndex());
 				else curInstructor = instructor;
-				//String eval = "From " + curInstructor.getFirstName() + " " + curInstructor.getLastName() + "\n";
-				//eval += "Regarding performance as " + curJob.getPositionFullName() + " for " + curJob.getCourse().getClassName() + "(" + curJob.getDay() + "):\n\n";
+
 				String eval = tfEval.getText();
-				//eval += "\n**********************************\n\n";
 				ApplicationController ac = new ApplicationController(am,ApplicationController.APPLICATION_FILE_NAME);
 				ac.addStudentEvaluation(applications.get(applicationList.getSelectedIndex()), eval);
-				//tfEval.setText("");
 				lMessage.setType(ThemedLabel.LabelType.Success);
 				lMessage.setText("Evaluation sent");
 				pack();

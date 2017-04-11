@@ -44,9 +44,8 @@ public class ApplicationController {
 		String error = "";
 		if(aInstructor == null) error += "Instructor must be defined! ";
 		if(aCourse == null) error += "Course must be defined! ";
-		//if(aEndTime.getTime() - aStartTime.getTime() < 0) error += "Start time cannot be after end time! ";
-		if(hours < 45.0f) error += "Job must offer at least 45 hours per semester!";
-		else if(hours > 180.0f) error += "Job must offer at most 180 hours per semester!";
+		if(hours < 45.0f) error += "Job must offer at least 45 hours per semester!"; //Students cannot work less than 45 hours - enforce 45 hour job time minimum
+		else if(hours > 180.0f) error += "Job must offer at most 180 hours per semester!"; //Students cannot work more than 180 hours - enforce 180 hour maximum
 		if(aSalary < 0) error += "Salary must be positive! ";
 		if(day == null) error += "Day must be specified! ";
 		else if(day.equals("Saturday") || day.equals("Sunday")) error += "Day must be a work day! ";

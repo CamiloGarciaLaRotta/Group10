@@ -46,8 +46,8 @@ public abstract class PersistenceXStream {
     			System.exit(1);
     		}
     		constants = new ArrayList<Integer>();
-    		constants.add(0);
-    		constants.add(0);
+    		constants.add(0); //Add int data for admin approval status
+    		constants.add(0); //Add int data for color scheme
     		saveToXMLwithXStream(constants);
     	}
     	return constants;
