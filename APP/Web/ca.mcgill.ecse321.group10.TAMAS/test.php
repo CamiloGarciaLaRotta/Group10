@@ -21,13 +21,13 @@ require_once __DIR__.'\Persistence\PersistenceTAMAS.php';
 		$am = $pt->loadApplicationManagerFromStore();
 		$pm = $pt->loadProfileManagerFromStore();
 
-		$stu1 = new Student("camilo", "camilo", "ca", "milo", "got C on all classes");
+		$stu1 = new Student("TRAM", "student", "Tony", "Ramundo", "got A in all classes");
 		$stu1->setDegree("DegreeUNDERGRAD");
-		$stu2 = new Student("eduardo", "eduardo", "ed", "uardo", "got A+ on all classes");
+		$stu2 = new Student("DRit", "student", "David", "Ritch", "got A+ in all classes");
 		$stu1->setDegree("DegreeGRADUATE");
-		$stu3 = new Student("mike", "mike", "mi", "ke", "Honour student since 1993");
+		$stu3 = new Student("MSalamanca", "student", "Mike", "Salamanca", "Dean's list");
 		$stu3->setDegree("DegreeGRADUATE");
-		$stu4 = new Student("xxx", "xx", "x", "xlo", "gotx on all classes");
+		$stu4 = new Student("ACapone", "student", "Al", "Capone", "got B on all classes");
 		$stu4->setDegree("DegreeUNDERGRAD");
 
 		$pm->addStudent($stu1);
