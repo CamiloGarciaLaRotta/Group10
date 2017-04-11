@@ -51,6 +51,7 @@ public class MenuView extends JFrame{
 	private JButton instructorButton;
 	private JButton adminButton;
 	
+	//Stores which tab is currently active when admin logs in
 	private enum Tab {Admin, Instructor, Student};
 	
 	private Tab state;
@@ -88,6 +89,7 @@ public class MenuView extends JFrame{
 		initComponents();
 	}
 	
+	//Refreshes widget colors
 	private void refreshWidgets() {
 		greeting.setColors();
 		lTAMAS.setColors();
@@ -131,7 +133,6 @@ public class MenuView extends JFrame{
 		instructorButton = new ThemedTabButton();
 		studentButton = new ThemedTabButton();
 		
-		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Main Control Center");
 		
 		lTAMAS.setText("Welcome to TAMAS. Power is in your hands.");
@@ -152,13 +153,6 @@ public class MenuView extends JFrame{
 		adminButton.setText("Admin");
 		instructorButton.setText("Instructor");
 		studentButton.setText("Student");
-		
-		//applicationButton.setPreferredSize(BUTTON_SIZE);
-		//publishButton.setPreferredSize(BUTTON_SIZE);
-		//offerButton.setPreferredSize(BUTTON_SIZE);
-		//hireButton.setPreferredSize(BUTTON_SIZE);
-		//courseButton.setPreferredSize(BUTTON_SIZE);
-		//profileButton.setPreferredSize(BUTTON_SIZE);
 		
 		profileButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -363,6 +357,7 @@ public class MenuView extends JFrame{
 		pack();
 	}
 	
+	//Refresh enabled-ness of buttons, refresh main panel by current tab state
 	private void refresh() {
 		mainPanel.removeAll();
 		switch(state) {

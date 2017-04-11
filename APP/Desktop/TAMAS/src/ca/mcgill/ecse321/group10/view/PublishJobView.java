@@ -80,7 +80,6 @@ public class PublishJobView extends JFrame{
 	}
 	
 	private void initComponents() {
-		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Publish Job Posting");
 		lSalary = new ThemedLabel("Salary: ");
 		lReqs = new ThemedLabel("Requirements: ");
@@ -108,6 +107,7 @@ public class PublishJobView extends JFrame{
 		for(int c = 0; c < instructorNames.length; c++) {
 			instructorNames[c] = pm.getInstructor(c).getFirstName() + " " + pm.getInstructor(c).getLastName();
 		}
+
 		instructorList = new ThemedList(instructorNames);
 		instructorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		instructorList.setLayoutOrientation(JList.VERTICAL);
@@ -127,6 +127,7 @@ public class PublishJobView extends JFrame{
 		instructorList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				if(e.getValueIsAdjusting()) return;
+				//Refresh list of courses when selected instructor changes
 				if(instructorList.getSelectedIndex() != -1) {
 					courseListModel.clear();
 					List<Course> courses = pm.getInstructor(instructorList.getSelectedIndex()).getCourses();
@@ -268,6 +269,7 @@ public class PublishJobView extends JFrame{
 		errorLabel.setText(error);
 		pack();
 		if(error.length() != 0) return;
+		//Clear fields when job has been published successfully
 		tfSalary.setText("");
 		tfReqs.setText("");
 		tfHours.setText("");
@@ -278,6 +280,7 @@ public class PublishJobView extends JFrame{
 		pack();
 	}
 	
+	//Attempt to publish job posting
 	private void publishPressed() {
 		error = "";
 		errorLabel.setType(ThemedLabel.LabelType.Error);
@@ -287,9 +290,11 @@ public class PublishJobView extends JFrame{
 			double salary = Double.parseDouble(tfSalary.getText());
 			String requirements = tfReqs.getText();
 			String day = (String)jDay.getValue();
-			System.out.println("Day: " + day);
+
+
 			if(instructor == null) instructor = pm.getInstructor(instructorList.getSelectedIndex());
 			Course course = instructor.getCourse(courseList.getSelectedIndex());
+
 			try {
 				if(tfHours.getText().trim().length() == 0) throw new Exception("Hours must be floating point number!");
 				float hours = Float.parseFloat(tfHours.getText());
@@ -324,6 +329,7 @@ public class PublishJobView extends JFrame{
 		refreshData();
 	}
 	
+	//Update budget textfields if course or job position changes
 	private void updateBudget() {
 		if(courseList.getSelectedIndex() == -1) {
 			tfRemaining.setText("");

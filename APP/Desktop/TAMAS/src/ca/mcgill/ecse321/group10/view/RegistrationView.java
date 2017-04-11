@@ -70,7 +70,6 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 	}
 	
 	private void initComponents() {
-		//setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Register a Profile");
 		error = new ThemedLabel("",ThemedLabel.LabelType.Error);
 		rbStudent = new ThemedRadioButton();
@@ -129,6 +128,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		});
 		
 		if(profile != null) {
+			//Disable username and radio buttons when profile is currently logged in
 			if(profile.getClass() == Admin.class) rbAdmin.setSelected(true);
 			else if(profile.getClass() == Instructor.class) rbInstructor.setSelected(true);
 			else {
@@ -271,6 +271,7 @@ public class RegistrationView extends JFrame implements java.awt.event.ActionLis
 		pack();
 	}
 	
+	//Attempt to register/modify user profile
 	private void submitPressed() {
 		error.setType(ThemedLabel.LabelType.Error);
 		problem = false;

@@ -117,11 +117,11 @@ public class OffersView extends JFrame{
 		offerScroller.setAlignmentX(Component.LEFT_ALIGNMENT);
 		buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		this.add(panel);
-		//this.setVisible(true);
 		this.setMinimumSize(new Dimension(350,400));
 		pack();
 	}
 	
+	//Refreshes list of job offers
 	private void refreshOfferList() {
 		listModel = new DefaultListModel<String>();
 		int jobOffers;
@@ -147,6 +147,7 @@ public class OffersView extends JFrame{
 		pack();
 	}
 	
+	//Accepts/rejects job offers
 	private void verdict(boolean accept) {
 		if(offerList.getSelectedIndex() == -1) {
 			message.setType(ThemedLabel.LabelType.Error);
@@ -163,22 +164,22 @@ public class OffersView extends JFrame{
 			currentStudent = pm.getStudent(cbStudent.getSelectedIndex());	
 		}
 		else currentStudent = student;
+
 		String currentUsername = currentStudent.getUsername();
 		currentJob = currentStudent.getJob(offerList.getSelectedIndex());
 		String currentJobName = getJobString(currentJob); 
+		//Cycle through applications to find the application corresponding to the current job offer
 		for(int c = 0; c < am.getApplications().size(); c++) {
 			if(am.getApplication(c).getStudent().getUsername().equals(currentUsername) && getJobString(am.getApplication(c).getJobs()).equals(currentJobName)) {
-				//am.getApplication(c).setOfferAccepted(accept);
-				//new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME).persist();
 				ApplicationController ac = new ApplicationController(am, ApplicationController.APPLICATION_FILE_NAME);
 				ProfileController pc = new ProfileController(pm, ProfileController.PROFILE_FILE_NAME);
 				if(accept) {
 					try {
-						pc.acceptJob(am.getApplication(c).getStudent(), am.getApplication(c).getJobs());
-						ac.setJobOfferAccepted(am.getApplication(c), true);
+						pc.acceptJob(am.getApplication(c).getStudent(), am.getApplication(c).getJobs()); //Deduct available hours from student
+						ac.setJobOfferAccepted(am.getApplication(c), true); //Set offerAccepted flag in the application
 						message.setType(ThemedLabel.LabelType.Success);
 						message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was accepted!");
-						pc.removeJobOfferFromStudent(currentStudent,currentJob);
+						pc.removeJobOfferFromStudent(currentStudent,currentJob); //Remove job offer from student since it's already been accepted
 					} catch(InputException ex) {
 						message.setType(ThemedLabel.LabelType.Error);
 						message.setText(ex.getMessage());
@@ -186,10 +187,12 @@ public class OffersView extends JFrame{
 				}
 				else {
 					message.setText("Offer for " + currentJob.getCourse().getClassName() + " " + currentJob.getPositionFullName() + " was rejected.");
-					ac.setJobOfferAccepted(am.getApplication(c), false);
-					ac.setJobOffered(am.getApplication(c).getJobs(), false);
-					ac.removeApplication(am.getApplication(c));
-					pc.removeJobOfferFromStudent(currentStudent,currentJob);
+					ac.setJobOfferAccepted(am.getApplication(c), false); //Set offerAccepted flag to false
+					ac.setJobOffered(am.getApplication(c).getJobs(), false); //Unset the offerSent flag for the current job, so other students may be hired
+					ac.removeApplication(am.getApplication(c)); //Get rid of the rejected job application
+					pc.removeJobOfferFromStudent(currentStudent,currentJob); //Remove rejected job offer from student's list
+
+					//Unset the admin approved data, allowing instructors to hire more students
 					ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home")+"/.tamas/output/constants.xml");
 					constants.set(0, 0);
 					PersistenceXStream.setFilename(System.getProperty("user.home")+"/.tamas/output/constants.xml");
@@ -198,11 +201,10 @@ public class OffersView extends JFrame{
 				break;
 			}
 		}
-		//currentStudent.removeJob(currentJob);
-		//new ProfileController(pm,ProfileController.PROFILE_FILE_NAME).persist();
 		refreshOfferList();
 	}
 	
+	//Refresh label indicating how many available hours are left for the given student
 	private void refreshStats() {
 		float hoursLeft;
 		if(student == null) hoursLeft = pm.getStudent(cbStudent.getSelectedIndex()).getHoursLeft();
