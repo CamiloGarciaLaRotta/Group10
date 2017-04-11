@@ -52,6 +52,7 @@ public abstract class PersistenceXStream {
         setAlias("job", Job.class);
         setAlias("student", Student.class);
         setAlias("application", Application.class);
+        setAlias("course",Course.class);
         setAlias("amanager", ApplicationManager.class);
 
         // load model if exists, create otherwise
