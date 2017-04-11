@@ -4,7 +4,7 @@
 \usepackage{graphicx} %For inserting images and stuff
 \usepackage{listings} %For inserting code snippets
 \usepackage{enumerate} %For fancy enumeration
-\usepackage[margin=1.3cm]{geometry} %Nice margin setting
+\usepackage[margin=1.1cm]{geometry} %Nice margin setting
 
 \title{ECSE 321 - Intro to Software Engineering\\Deliverable 6 Report}
 \author{Harley Wiltzer\\Camilo Garcia La Rotta\\Jake Shnaidman\\Robert Attard\\Matthew Lesko}
@@ -25,16 +25,25 @@
 
     \item \textbf{Functional:} Total implementation of the R. 1.1.1.1 to 1.1.1.4 with the caveat of serialization to text file instead of an xml format for the Web platform. This was a design choice made during the 2nd deliverable to use the same persistence methodology seen in Event Registration. R. 1.1.1.5 was not accomplished, a database was voted as too much of a frame for the access and retrieval of data. A much lightweight approach of storage in text files was preferred. R 1.1.1.6 is partially accomplished. Mobile and Desktop are fully capable of using each others xml outputs. Web remained incompatible due to its plain text output serialization.
         
-    \item \textbf{Non-Functional:} From section R. 1.2.1 only R 1.2.1.3 will ship with the final report. All other requirements in this section were dropped from development as they related to an extra scheduling algorithm design the team lacked time to develop
-    from section R. 1.2.2 all platforms provide a secure authentication procedure linked to a profile. The only requirement not achieved was 1.2.2.6 as NTRU cryptosystems required more research on our part to be able to implement from section 1.2.3 all requirements were achieved, providing a reliable cross platform version of the product was one of the main goals of the team from section 1.2.4 all applications work under the same colour pallet, but as a caveat Mobile is the only platform without light/dark theme mode. It was chosen to rely on androids native accessibility options to change color gradients on the cellphone.
+	\item \textbf{Non-Functional:} From section R. 1.2.1 only R 1.2.1.3 will ship with the final
+		report. All other requirements in this section were dropped from development as they related
+		to an extra scheduling algorithm design that the team lacked time to develop.
+	From section R. 1.2.2, all platforms provide a secure authentication procedure linked to a
+	profile. The only requirement not achieved was 1.2.2.6, as NTRU cryptosystems required more
+	research, and not enough time was available. From section 1.2.3 all requirements were achieved,
+	providing a reliable cross platform version of the product was one of the main goals of the
+	team. From section 1.2.4, all applications work under the same colour pallet, but as a caveat Mobile is
+	the only platform without light/dark theme mode. It was chosen to rely on androids native
+	accessibility options to change color gradients on the cellphone.
         
 
 	\item \textbf{Desktop:} From section R 1.1.2 all but 1.1.2.9 was accomplished. As demanded by the client, the Desktop application is fully able to perform the tasks of an Instructor, Department and Student Profile which can be found in more depth in the Mobile and Web section of this report.
 	
 	\item \textbf{Web:} The web service is capable of dual profile actions. An administrator can log in and create courses instances and instructor profiles as well as linking them. An instructor can log in and publish job postings and manage the received applications as well as evaluating TAs.
     
-	\item \textbf{Mobile:} The shipped application provides the whole capability of appying for job, Accepting/Rejecting an offer
- Creating and Modifying the users student profile 
+	\item \textbf{Mobile:} The shipped application provides the capabilities of appying for a job,
+		accepting/rejecting offers, creating and modifying the user's student profile, and viewing
+		instructor evaluations. 
 	   % \item 1.4.1 - The mobile application only allows student profiles to login
 	   % \item 1.4.2 - The mobile application was written in java
 	   % \item 1.4.3 - The mobile application only used libraries provided by android studio and no other tools were used
@@ -53,11 +62,19 @@
 %% -- The final state of the application, do all three platforms work as intended? Which Use Cases are each of the three applications capable of performing? Should the application be run in a certain way?
 
 \begin{itemize}
-	\item \textbf{Desktop:} The desktop program shall be run by double clicking on the .jar file of the program. The output directory gets initialized in the same directory as the .jar file is located in. All saved data (persistence data) is stored in this output folder. No installation is necessary with the use of the .jar file. Full deletion requires the deletion of the output folder and the .jar file, and if the user has forked the repository, the user would need to delete the local repository as well.
-	
+	\item \textbf{Desktop:} The desktop program shall be run by double clicking on the .jar file of
+		the program. All saved data (persistence data) is stored in the \$HOME/.tamas/output
+		directory, which is generated by executing the init-desktop target of the build script. In
+		order to run the desktop application, this persistence folder \textit{must} be created. Thus
+		must only be done once, when using the app for the first time, and must be done subsequently
+		any time the persistence folder has been deleted.
 	\item \textbf{Web:} The Web application is accessed through the web and doesn't host any permanent or temporary files client-side. The user is required to access the server that hosts the website.
 	
-	\item \textbf{Mobile:} The mobile program shall be released as an apk file that may be installed on an Android phone. Once the apk file is installed, the user may use the application on the phone. 
+	\item \textbf{Mobile:} The mobile program shall be released as an apk file that may be installed
+		on an Android phone. Once the apk file is installed, the user may use the application on the
+		phone. Persistence from the desktop application may be imported into the mobile app by
+		placing it in the mobile device's
+		\texttt{/storage/emulated/0/Android/obb/ca.mcgill.ecse321.group10.TAMAS} directory.
 \end{itemize}
 
 \textbf{3. Testing of Applications}
@@ -67,9 +84,13 @@
 %% -- Is all integration testing done -> Are we confident enough with certain feaures working together? Are there any concerns for certain features? Will there be more testing in the future?
 %% -- Is all system testing done -> Are we confident enough to release the product?
 \begin{itemize}
-	\item \textbf{Unit Testing:}
+	\item \textbf{Unit Testing:} A plethora of unit tests were written for the desktop application,
+		and currently offer 100\% coverage of the controller classes.
 	\item \textbf{Integration Testing:}
-	\item \textbf{System Testing:}
+	\item \textbf{System Testing:} All three applications were extensively tested at the system
+		level. Due to the sheer size of the applications, it is difficult to measure the exact
+		system test coverage, though it is believed that the state coverage on all platforms was
+		close to 100\%.
 \end{itemize}
 
 \textbf{4. Release Pipeline}
@@ -84,7 +105,11 @@ The release pipeline shall follow the plan as in deliverable 4's report. Every r
 	\item \textbf{Mobile:} The apk file of the android program shall be released. The APP/Mobile directory shall be available in the source code.
 \end{itemize}
 
-It is interesting to note that a good part of the release pipeline time budget was allocated for the build script. Apart from the base functionalities it is also capable of packaging the web app, start the xampp server and open a browser with the address of the web service.Install the mobile app automatically to a connected android device
+It is interesting to note that a major part of the release pipeline time budget was allocated to the
+implementation of build script. Apart from the base functionalities it is also capable of packaging
+the web app and loading it in a browser, creating an executable and running the desktop application,
+and installing the mobile app automatically to a connected android device. This strongly increased
+the development team's productivity.\\
 
 \textbf{5. Responsibilities for Each Phase}
 \begin{itemize}
