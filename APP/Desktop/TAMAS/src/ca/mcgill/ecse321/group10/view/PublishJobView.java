@@ -291,9 +291,11 @@ public class PublishJobView extends JFrame{
 			String requirements = tfReqs.getText();
 			String day = (String)jDay.getValue();
 
+			Instructor curInstructor;
 
-			if(instructor == null) instructor = pm.getInstructor(instructorList.getSelectedIndex());
-			Course course = instructor.getCourse(courseList.getSelectedIndex());
+			if(instructor == null) curInstructor = pm.getInstructor(instructorList.getSelectedIndex());
+			else curInstructor = instructor;
+			Course course = curInstructor.getCourse(courseList.getSelectedIndex());
 
 			try {
 				if(tfHours.getText().trim().length() == 0) throw new Exception("Hours must be floating point number!");
@@ -313,9 +315,10 @@ public class PublishJobView extends JFrame{
 						if(pos == Job.Position.TUTORIAL) cc.modifyTaBudget(course, hours * (float)salary);
 						else if(pos == Job.Position.GRADER) cc.modifyGraderBudget(course, hours * (float)salary);
 						else cc.modifyLabBudget(course, hours * (float)salary); 
-						ac.addJobToSystem(hours, day, salary, requirements, course, instructor,pos);
+						ac.addJobToSystem(hours, day, salary, requirements, course, curInstructor,pos);
 						errorLabel.setType(ThemedLabel.LabelType.Success);
 						error = "Job " + course.getClassName() + " " + pos.toString() + " " + day.toString() + " published!";
+						updateBudget();
 					} catch (InputException e) {
 						error += e.getMessage();
 					}
@@ -336,9 +339,22 @@ public class PublishJobView extends JFrame{
 			pack();
 			return;
 		}
-		if(rbTA.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getTutorialBudget());
-		else if(rbGrader.isSelected()) tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getGraderBudget());
-		else tfRemaining.setText("$" + cm.getCourse(courseList.getSelectedIndex()).getLabBudget());
+		
+		Instructor curInstructor;
+		if(instructor == null) curInstructor = pm.getInstructor(instructorList.getSelectedIndex());
+		else curInstructor = instructor;
+		
+		Course course;
+		for(int c = 0; c < cm.getCourses().size(); c++) {
+			if(cm.getCourse(c).getCdn() == curInstructor.getCourse(courseList.getSelectedIndex()).getCdn()) {
+				course = cm.getCourse(c);
+				if(rbTA.isSelected()) tfRemaining.setText("$" + course.getTutorialBudget());
+				else if(rbGrader.isSelected()) tfRemaining.setText("$" + course.getGraderBudget());
+				else tfRemaining.setText("$" + course.getLabBudget());
+				break;
+			}
+		}
+		
 	}
 	
 }
