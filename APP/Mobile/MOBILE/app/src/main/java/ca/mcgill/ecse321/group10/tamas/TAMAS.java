@@ -42,7 +42,9 @@ public class TAMAS extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        rootPath = getApplicationInfo().dataDir;
+        //rootPath = getApplicationInfo().dataDir;
+        rootPath = getObbDir().toString();
+        System.out.println(getObbDir());
         APPLICATION_FILE_PATH = rootPath + "/applications.xml";
         PROFILE_FILE_PATH = rootPath + "/profiles.xml";
         COURSE_FILE_PATH = rootPath + "/courses.xml";
@@ -57,7 +59,7 @@ public class TAMAS extends Application {
 
 
 
-        createDummyData();
+        if(pm.getStudents().size() == 0) createDummyData();
     //    student = pm.getStudent(0);
         //for testing
 

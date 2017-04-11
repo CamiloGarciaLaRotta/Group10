@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.group10.tamas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         if (student == null){
             Context userInfoContext = findViewById(R.id.currentUser).getContext();
             userInfo.setTextColor(ContextCompat.getColor(userInfoContext,R.color.errorColor));
-            userInfo.setText("Please login order to use Tamas\nOther buttons are currently disabled");
+            userInfo.setText("Please login order to use Tamas");
             userInfo.setTextSize(18);;
             this.setEnableButtons(false);
         }
@@ -116,7 +117,25 @@ public class MainActivity extends AppCompatActivity {
         applyToJob.setEnabled(enabled);
         browseJobOffers.setEnabled(enabled);
         viewEvals.setEnabled(enabled);
-
+        if(!enabled) {
+            modProfile.setBackgroundResource(R.drawable.buttondisabled);
+            modProfile.setTextColor(Color.parseColor("#777777"));
+            applyToJob.setBackgroundResource(R.drawable.buttondisabled);
+            applyToJob.setTextColor(Color.parseColor("#777777"));
+            viewEvals.setBackgroundResource(R.drawable.buttondisabled);
+            viewEvals.setTextColor(Color.parseColor("#777777"));
+            browseJobOffers.setBackgroundResource(R.drawable.buttondisabled);
+            browseJobOffers.setTextColor(Color.parseColor("#777777"));
+        } else {
+            modProfile.setBackgroundResource(R.drawable.roundbutton);
+            modProfile.setTextColor(Color.parseColor("#000000"));
+            applyToJob.setBackgroundResource(R.drawable.roundbutton);
+            applyToJob.setTextColor(Color.parseColor("#000000"));
+            viewEvals.setBackgroundResource(R.drawable.roundbutton);
+            viewEvals.setTextColor(Color.parseColor("#000000"));
+            browseJobOffers.setBackgroundResource(R.drawable.roundbutton);
+            browseJobOffers.setTextColor(Color.parseColor("#000000"));
+        }
     }
 
 }

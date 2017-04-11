@@ -85,15 +85,10 @@ public class BrowseApplications extends AppCompatActivity {
     private void setupPage(){
         applications = am.getApplications();
         jobs.clear();
-        for (Application application:applications){
-            //typo in the model - jobs is a single job
-            //if the application has been offered and is the student's application, add it to jobs
-            if(application.getStudent().getUsername().equals(student.getUsername())){
-                Log.d("offer", "student: " + student.toString());
-                Log.d("offer", "appstudent: "+application.getStudent().toString());
-                Job job = application.getJobs();
-                job.addApplicationAt(application,0);
-                jobs.add(job);
+
+        for(int c = 0; c < student.getJobs().size(); c++) {
+            if(student.getJob(c).isOfferSent()) {
+                jobs.add(student.getJob(c));
             }
         }
 
@@ -101,7 +96,7 @@ public class BrowseApplications extends AppCompatActivity {
         String [] jobNames = new String[jobs.size()];
 
         for(int c = 0; c < jobNames.length; c++) {
-            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " +  am.getJob(c).getPositionFullName();
+            jobNames[c] = jobs.get(c).getCourse().getClassName() + ": " +  jobs.get(c).getPositionFullName();
         }
         final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, jobNames);
@@ -133,6 +128,7 @@ public class BrowseApplications extends AppCompatActivity {
                     ac.setJobOfferAccepted(job.getApplication(0),true);
                     ac.removeApplication(job.getApplication(0));
                     pc.removeJobOfferFromStudent(student,job);
+                    jobs.remove(applicationSpinner.getSelectedItemPosition());
                     String msg = "You have accepted the job offer for: " + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".\nGood luck!";
                     Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
@@ -164,6 +160,7 @@ public class BrowseApplications extends AppCompatActivity {
                     ac.setJobOfferAccepted(job.getApplication(0),false);
                     ac.removeApplication(job.getApplication(0));
                     pc.removeJobOfferFromStudent(student,job);
+                    jobs.remove(applicationSpinner.getSelectedItemPosition());
                     String msg = "You have rejected the job offer for: " + job.getCourse().getClassName() +
                             ": " + job.getId() + " - " + job.getPositionFullName() + ".";
                     Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);

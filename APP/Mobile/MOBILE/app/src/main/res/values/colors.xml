@@ -2,6 +2,7 @@
 <resources>
     <color name="background">#486da2</color>
     <color name="buttonBackground">#fbe9a3</color>
+    <color name="buttonDisabledBackground">#999999</color>
     <color name="GreyRectangle">#cecdc9</color>
     <color name="descriptionBackground">#FFFFF5</color>
     <color name="colorPrimary">#476da3</color>

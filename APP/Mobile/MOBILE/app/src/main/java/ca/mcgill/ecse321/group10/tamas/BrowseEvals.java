@@ -117,6 +117,8 @@ public class BrowseEvals extends AppCompatActivity {
 
         applications = am.getApplications();
 
+        jobs.clear();
+
         for (Application application:applications){
             //type in the model - jobs is a single job
             //if the application has been offered and is the student's application, add it to jobs
@@ -126,7 +128,6 @@ public class BrowseEvals extends AppCompatActivity {
             String curStudent = student.getUsername();
             if(application.isOfferAccepted() && appStudent.equals(curStudent)){
                 Job job = application.getJobs();
-                job.addApplicationAt(application,0);
                 jobs.add(job);
                 Log.d("evals","job found: " + job.getPositionFullName().toString());
             }
@@ -137,7 +138,7 @@ public class BrowseEvals extends AppCompatActivity {
         String [] jobNames = new String[jobs.size()];
 
         for(int c = 0; c < jobNames.length; c++) {
-            jobNames[c] = am.getJob(c).getCourse().getClassName() + ": " + am.getJob(c).getPositionFullName();
+            jobNames[c] = jobs.get(c).getCourse().getClassName() + ": " + jobs.get(c).getPositionFullName();
         }
         final ArrayAdapter<String> jobAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, jobNames);
