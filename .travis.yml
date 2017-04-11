@@ -35,16 +35,17 @@ script:
 
 before_deploy: 
   - "echo '>>>>>>Getting Ready to Deploy>>>>>>'"
-  - 
 deploy:
   provider: releases
   api-key: 
     secure: 475ae556e51b583d764a3d7b5d9b4cd654d2381a
   file_glob: true
   file:
-    - APP/Desktop/TAMAS/TAMAS*release*.jar
-    - APP/Web/TAMAS-Web*release*.zip
-    - APP/Mobile/MOBILE/app/build/outputs/apk/app-debug*release*.apk 
+    - "APP/Desktop/TAMAS/TAMAS*.jar"
+    - "APP/Web/TAMAS-Web*.zip"
+    - "APP/Mobile/MOBILE/app/build/outputs/apk/app-debug*.apk" 
   skip_cleanup: true
   on:
+    branch: master
+    repo: matthewlesko01/ECSE321-Winter2017-McGill/Group10
     tags: true
