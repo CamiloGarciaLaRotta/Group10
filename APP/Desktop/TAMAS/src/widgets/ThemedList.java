@@ -8,6 +8,11 @@ import javax.swing.JList;
 
 import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
+/**
+ * JList conforming to the light/dark themes of the desktop application
+ * @author harwiltz
+ *
+ */
 public class ThemedList extends JList{
 	
 	private Color bgColor;
@@ -15,6 +20,10 @@ public class ThemedList extends JList{
 	private Color selBgColor;
 	private Color selFgColor;
 	
+	/**
+	 * 
+	 * @param s list data as an array of strings
+	 */
 	public ThemedList(String[] s) {
 		super(s);
 		setColors();
@@ -24,6 +33,10 @@ public class ThemedList extends JList{
 		this.setSelectionForeground(selFgColor);
 	}
 	
+	/**
+	 * 
+	 * @param d list data as DefaultListModel
+	 */
 	public ThemedList(DefaultListModel d) {
 		super(d);
 		setColors();
@@ -33,6 +46,9 @@ public class ThemedList extends JList{
 		this.setSelectionForeground(selFgColor);
 	}
 	
+	/**
+	 * Sets the relevant colors of the JList based on the current state of the color theme
+	 */
 	public void setColors() {
 		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(1) == 0) {

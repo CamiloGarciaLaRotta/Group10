@@ -7,6 +7,11 @@ import javax.swing.JPasswordField;
 
 import ca.mcgill.ecse321.group10.persistence.PersistenceXStream;
 
+/**
+ * JPasswordField conforming to the light/dark themes of the desktop application
+ * @author harwiltz
+ *
+ */
 public class ThemedPasswordField extends JPasswordField{
 	
 	/**
@@ -22,12 +27,19 @@ public class ThemedPasswordField extends JPasswordField{
 		this.setCaretColor(Constants.cursorColor);
 	}
 	
+	/**
+	 * 
+	 * @param width default width of the password field
+	 */
 	public ThemedPasswordField(int width) {
 		super(width);
 		setColors();
 		this.setCaretColor(Constants.cursorColor);
 	}
 	
+	/**
+	 * Sets the relevant colors of the JPasswordField depending on the current state of the color theme
+	 */
 	public void setColors() {
 		ArrayList<Integer> constants = PersistenceXStream.initializeConstants(System.getProperty("user.home") + "/.tamas/output/constants.xml");
 		if(constants.get(1) == 0) {

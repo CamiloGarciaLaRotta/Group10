@@ -24,6 +24,14 @@ public abstract class PersistenceXStream {
     private static XStream xstream = new XStream();
     private static String filename = "data.xml";
     
+    /**
+     * Initializes an arraylist of integers storing saved data from the application.
+     * Data is formatted as follows:
+     * 	First element: 1 when admin has approved of job modifications, 0 otherwise
+     * 	Second element: 0 or 1, decides whether to show light or dark theme
+     * @param fileName where to initialize arraylist
+     * @return
+     */
     public static ArrayList<Integer> initializeConstants(String fileName) {
     	ArrayList<Integer> constants;
     	setFilename(fileName);
@@ -45,6 +53,11 @@ public abstract class PersistenceXStream {
     	return constants;
     }
 
+    /**
+     * Initializes an ApplicationManager using ApplicationManager data stored in a given file
+     * @param fileName contains XML data corresponding to an ApplicationManager. May be an empty file
+     * @return
+     */
     public static ApplicationManager initializeApplicationManager(String fileName) {
         // Initialization for persistence
         ApplicationManager am;
@@ -73,6 +86,11 @@ public abstract class PersistenceXStream {
 
     }
     
+    /**
+     * Initializes a ProfileManager using ProfileManager data stored in a given file
+     * @param fileName contains XML data corresponding to a ProfileManager. May be an empty file
+     * @return
+     */
     public static ProfileManager initializeProfileManager(String fileName) {
     	ProfileManager pm;
     	setFilename(fileName);
@@ -101,6 +119,11 @@ public abstract class PersistenceXStream {
     	return pm;
     }
     
+    /**
+     * Initializes a CourseManager using CourseManager data stored in a given file
+     * @param fileName contains XML data corresponding to a CourseManager. May be an empty file
+     * @return
+     */
     public static CourseManager initializeCourseManager(String fileName) {
     	CourseManager cm;
     	setFilename(fileName);
@@ -123,6 +146,11 @@ public abstract class PersistenceXStream {
     	return cm;
     }
 
+    /**
+     * Saves a given object serialized in an XML file. File located at PersistenceXStream.filename
+     * @param obj
+     * @return
+     */
     public static boolean saveToXMLwithXStream(Object obj) {
         xstream.setMode(XStream.ID_REFERENCES);
         String xml = xstream.toXML(obj); // save our xml file
@@ -138,6 +166,10 @@ public abstract class PersistenceXStream {
         }
     }
 
+    /**
+     * De-serializes and loads XML data from the file specified by PersistenceXStream.filename
+     * @return
+     */
     public static Object loadFromXMLwithXStream() {
         xstream.setMode(XStream.ID_REFERENCES);
         try {
@@ -150,10 +182,20 @@ public abstract class PersistenceXStream {
         }
     }
 
+    /**
+     * Sets XML aliases for arbitrary classes
+     * @param xmlTagName
+     * @param className
+     */
     public static void setAlias(String xmlTagName, Class<?> className) {
         xstream.alias(xmlTagName, className);
     }
 
+    
+    /**
+     * Modifies the value of PersistenceXStream.filename
+     * @param fn
+     */
     public static void setFilename(String fn) {
         filename = fn;
     }

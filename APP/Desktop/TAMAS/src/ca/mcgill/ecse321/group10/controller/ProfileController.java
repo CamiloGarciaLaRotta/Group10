@@ -10,11 +10,21 @@ public class ProfileController {
 	private ProfileManager pm;
 	private String filename;
 	
+	/**
+	 * Initializes a ProfileController instance
+	 * @param pm the ProfileManager to control
+	 * @param filename the filename to load/save data from/to
+	 */
 	public ProfileController(ProfileManager pm, String filename) {
 		this.pm = pm;
 		this.filename = filename;
 	}
 	
+	/**
+	 * Determines if a proposed username already belongs to another profile in the system
+	 * @param username
+	 * @return true when the username is not already being used
+	 */
 	private boolean isUsernameFree(String username){
 		
 		for (Student student: pm.getStudents()){
@@ -36,6 +46,14 @@ public class ProfileController {
 		return true;
 	}
 	
+	/**
+	 * Saves an Instructor object
+	 * @param aUsername
+	 * @param aPassword
+	 * @param aFirstName
+	 * @param aLastName
+	 * @throws InputException
+	 */
 	public void addInstructorToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
 		error = validateProfile(aUsername,aPassword,aFirstName,aLastName,true);
@@ -48,12 +66,25 @@ public class ProfileController {
 		}
 	}
 	
+	/**
+	 * Binds a Course object to an Instructor object and saves the association
+	 * @param instructor 
+	 * @param course
+	 */
 	public void addCourseToInstructor(int instructor, Course course) {
 		pm.getInstructor(instructor).addCourse(course);
 		PersistenceXStream.setFilename(filename);
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
+	/**
+	 * Saves an Admin object
+	 * @param aUsername
+	 * @param aPassword
+	 * @param aFirstName
+	 * @param aLastName
+	 * @throws InputException
+	 */
 	public void addAdminToSystem(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = "";
 		error = validateProfile(aUsername,aPassword,aFirstName,aLastName,true);
@@ -66,10 +97,29 @@ public class ProfileController {
 		}
 	}
 	
+	/**
+	 * Saves a Student Object, defaulting the degree parameter to Undergrad
+	 * @param aUsername
+	 * @param aPassword
+	 * @param aFirstName
+	 * @param aLastName
+	 * @param experience
+	 * @throws InputException
+	 */
 	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience)  throws InputException{
 		addStudentToSystem(aUsername,aPassword,aFirstName,aLastName,experience,Student.Degree.UNDERGRAD);
 	}
 	
+	/**
+	 * Saves a Student Object
+	 * @param aUsername
+	 * @param aPassword
+	 * @param aFirstName
+	 * @param aLastName
+	 * @param experience
+	 * @param degree
+	 * @throws InputException
+	 */
 	public void addStudentToSystem(String aUsername, String aPassword, String aFirstName, String aLastName, String experience, Student.Degree degree)  throws InputException{
 		String error = "";
 		error = validateProfile(aUsername,aPassword,aFirstName,aLastName,true);
@@ -84,6 +134,16 @@ public class ProfileController {
 		}
 	}
 	
+	/**
+	 * Replaces Student profile parameters for a student with a given username
+	 * @param aUsername username of the student being modified
+	 * @param aPassword new password to save in the student's profile
+	 * @param aFirstName new first name to save in the student's profile
+	 * @param aLastName new last name to save in the student's profile
+	 * @param experience modified experience text to save
+	 * @param degree modified degree status
+	 * @throws InputException
+	 */
 	public void modifyStudent(String aUsername, String aPassword, String aFirstName, String aLastName, String experience, Student.Degree degree) throws InputException {
 		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName,false);
 		if(error.length() > 0) throw new InputException(error);
@@ -104,6 +164,14 @@ public class ProfileController {
 		}
 	}
 	
+	/**
+	 * Replaces Admin profile parameters for an admin with a given username
+	 * @param aUsername username of admin to modify
+	 * @param aPassword new password
+	 * @param aFirstName new first name
+	 * @param aLastName new last name
+	 * @throws InputException
+	 */
 	public void modifyAdmin(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName,false);
 		if(error.length() > 0) throw new InputException(error);
@@ -122,6 +190,14 @@ public class ProfileController {
 		}
 	}
 	
+	/**
+	 * Replaces Instructor profile parameters for an instructor with a given username
+	 * @param aUsername username of instructor to modify
+	 * @param aPassword new password
+	 * @param aFirstName new first name
+	 * @param aLastName new last name
+	 * @throws InputException
+	 */
 	public void modifyInstructor(String aUsername, String aPassword, String aFirstName, String aLastName) throws InputException{
 		String error = validateProfile(aUsername, aPassword, aFirstName, aLastName,false);
 		if(error.length() > 0) throw new InputException(error);
@@ -140,6 +216,15 @@ public class ProfileController {
 		}
 	}
 	
+	/**
+	 * Judges the validity of proposed profile data
+	 * @param aUsername
+	 * @param aPassword
+	 * @param aFirstName
+	 * @param aLastName
+	 * @param newProfile
+	 * @return true if profile data corresponds to a valid Profile
+	 */
 	private String validateProfile(String aUsername, String aPassword, String aFirstName, String aLastName, boolean newProfile) {
 		String error = "";
 		if(aUsername == null || aUsername.trim().length() == 0) {
@@ -157,6 +242,12 @@ public class ProfileController {
 		return error;
 	}
 	
+	/**
+	 * Effectively offers job to student by adding the job to the student's jobs list.
+	 * Note: should be used in conjunction with ApplicationController's setJobOffered() function
+	 * @param s student receiving the job offer
+	 * @param j job being offered
+	 */
 	public void offerJobToStudent(Student s, Job j) {
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
@@ -168,6 +259,12 @@ public class ProfileController {
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
+	/**
+	 * Effectively removes job offer from student; used when student accepts/rejects job offer or when
+	 * admin rejects the job offer. Should be used in conjunction with ApplicationController's setJobOffered() function
+	 * @param s
+	 * @param j
+	 */
 	public void removeJobOfferFromStudent(Student s, Job j) {
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			if(pm.getStudent(c).getUsername().equals(s.getUsername())) {
@@ -179,6 +276,13 @@ public class ProfileController {
 		PersistenceXStream.saveToXMLwithXStream(pm);
 	}
 	
+	/**
+	 * Effectively deduces the amount of available hours left for a given student accepting a given
+	 * job offer. Note: should be used in conjunction with ApplicationController's setJobOfferAccepted() function
+	 * @param student student profile accepting the job offer
+	 * @param job job offer being accepted
+	 * @throws InputException
+	 */
 	public void acceptJob(Student student, Job job) throws InputException{
 		for(int c = 0; c < pm.getStudents().size(); c++) {
 			if(pm.getStudent(c).getId() == student.getId()) {
